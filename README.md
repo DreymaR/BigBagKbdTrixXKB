@@ -1,11 +1,12 @@
-xkb-mod_2-5-1-3
-===============
+DreymaR's Big Bag of Keyboard Tricks
+====================================
 
-"DreymaR's Big Bag of Keyboard Tricks" for Linux (XKB v2.5.1.3)
+For Linux (updated to XKB-data v2.12.1)
 
 * New "Colemak[eD]" AltGr mappings (lv 3-4) putting dead keys on AltGr+symbol keys and reworking most other mappings
-* Angle/Wide modifications to improve wrist angles, hand spacing and right pinky stretch/load effort
 * An Extend layer using Caps Lock for its modifier (lv 5-8; "Extend") for navigation from the home position and more
+* Angle/Wide modifications to improve wrist angles, hand spacing and right pinky stretch/load effort
+* Curl modifications to improve hand curvature
 * For several locales, a 'Unified Symbols' layout with only a few necessary locale changes from the standard Colemak[eD];
 * Also, a layout to 'Keep Local Symbols' like their default (QWERTY-type) counterparts and key cap markings for that locale
 * Access to Cyrillic, Greek and Hebrew letters using layout toggling to intuitive phonetic Colemak layouts

@@ -1,0 +1,19 @@
+# If you change any of the following variables and X is configured to
+# use this file, then the changes will become visible to X only if udev
+# is restarted.  You may need to reboot the system.
+
+# The following variables describe your keyboard and can have the same
+# values as the XkbModel, XkbLayout, XkbVariant and XkbOptions options
+# in /etc/X11/xorg.conf.
+
+#XKBMODEL="pc105"
+XKBMODEL="pc105awide-sl"
+XKBLAYOUT="no,no"
+XKBVARIANT="cmk_ed_us,"
+XKBOPTIONS="compose:menu,terminate:ctrl_alt_bksp,grp_led:scroll,lv5:caps_switch_lock,misc:extend"
+
+# If you don't want to use the XKB layout on the console, you can
+# specify an alternative keymap.  Make sure it will be accessible
+# before /usr is mounted.
+# KMAP=/etc/console-setup/defkeymap.kmap.gz
+

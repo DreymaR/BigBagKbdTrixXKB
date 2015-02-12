@@ -1,0 +1,60 @@
+default  partial alphanumeric_keys
+xkb_symbols "basic" {
+
+    include "rs(latin)"
+
+    name[Group1]="Slovenian";
+
+    key <TLDE> { type[Group1]="TWO_LEVEL", [ cedilla, diaeresis ] };
+};
+
+partial alphanumeric_keys
+xkb_symbols "us" {
+
+    include "rs(latinyz)"
+
+    name[Group1]= "Slovenian (US keyboard with Slovenian letters)";
+
+    key <TLDE> { type[Group1]="TWO_LEVEL", [ cedilla, diaeresis ] };
+};
+
+partial alphanumeric_keys
+xkb_symbols "alternatequotes" {
+
+    include "rs(latinalternatequotes)"
+
+    name[Group1]= "Slovenian (with guillemets for quotes)";
+
+    key <TLDE> { type[Group1]="TWO_LEVEL", [ cedilla, diaeresis ] };
+};
+
+// --> OEystein Bech "DreymaR" Gadmar, 2014-10: Additions to xkb/symbols/si
+// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Slovenian.
+// 2006-01-01 Shai Coleman, http://colemak.com/
+// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+
+// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_ks" {
+    include "si(basic)"
+    include "colemak(cmk_ed_letters)"
+    name[Group1]= "Slovenian (Colemak[eD], keep local symbols)";
+
+// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//    key <AE05> { [ NoSymbol, NoSymbol,       mu, dead_abovering ] };
+//    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, dead_abovering ] }; // 'degree' is mapped on dead_abovering
+
+    key <AD10> { [ ccaron, Ccaron, dead_acute, dead_doubleacute ] }; // from <AC10>
+};
+
+// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+// For Slovenian, necessary local letters are added to designated flexible spots in the layout.
+// NOTE: - Bosnian(ba), Croatian(hr), Slovenian(si) and Serbian(sr) layouts are harmonized.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_us" {
+    include "rs(cmk_ed_us)"
+    name[Group1]= "Slovenian (Colemak[eD], unified symbols)";
+};
+// <-- DreymaR: Additions to xkb/symbols/si

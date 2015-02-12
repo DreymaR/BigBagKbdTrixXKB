@@ -1,0 +1,600 @@
+// Extend mode symbols for xkb on X.Org Server 7.x
+// 2014-02-01 OEystein Bech "DreymaR" Gadmar
+// See "DreymaR's Big Bag of Keyboard Tricks": http://forum.colemak.com/viewtopic.php?pid=9918
+// A modular Extend mapping layer like the one I have in Portable Keyboard Layout for Windows
+// - Key names are in /usr/include/X11/keysymdef.h and XF86keysym.h (Removing the XK_ prefix)
+// - <FK##> mapped as XF86 Multimedia keys; shifted versions were not implemented in WinPKL
+//
+// These keys are modified/transposed by holding down the 'extend key' (CapsLock by default):
+// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+// |Esc + |F1 <> |F2 << |F3 >> |F4 <> |F5 <> |F6 << |F7 >> |F8 <> |F9 <> |F10<> |F11<> |F12<> |
+// |      | Pause| Rew  | Fwd  | Eject| Sleep| Bri- | Bri+ | MyCmp| WWW  | Mail | App1 | App2 |
+// | Caps | Play | Prev | Next | Stop | Mute | Vol- | Vol+ | Media| Home | Srch | File | Calc |
+// +======+======+======+======+======+======+======+======+======+======+======+======+======+
+// |` €€€ |1     |2     |3     |4     |5     |6     |7     |8     |9     |0     |-     |=     |
+// | Del  | F1   | F2   | F3   | F4   | F5   | F6   | F7   | F8   | F9   | F10  | F11  | F12  |
+// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+// |Tab   |Q €€€ |W *** |F <<> |P <>> |G *** |J ### |L ### |U ### |Y ### |; €€€ |[ €€€ |] €€€ |
+// |      | Esc  | *WhUp| BrBck| BrFwd| *MUp | PgUp | Home | Up   | End  | Del  | Esc  | Ins  |
+// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+// |Caps+ |A +++ |R *** |S +++ |T +++ |D *** |H ### |N ### |E ### |I ### |O €€€ |' €€€ |\ ><> |
+// | ++++ | Alt  | *WhDn| Shift| Ctrl | *MDn | PgDn | Left | Down | Right| Back | Menu | BrFav|
+// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+// |_ *** |Z €€€ |X === |C === |V === |B *** |K *** |M *** |, *** |. *** |/ €€€ |Spc € |Entr€ |
+// | *MOn | Undo | Cut  | Copy | Paste| *Bt1 | *Bt2 | *Bt3 | *MLe | *MRi | Multi| Enter| Break|
+// +------+------+------+------+------+------+------+------+------+------+------+-------------+
+// Legend: # Movement; + Modifiers; = GUI edit; * Mouse; <> MultiMedia; € Various commands.
+//
+// KeyPad overlay with nav block to the left (lv7-8):
+// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+// |` €€€ |1     |2     |3     |4 £   |5 €   |6     |7     |8     |9     |0     |-     |=     |
+// | Del  |  !   |  @   |  #   |  $   |  %   |  ^   | KP_7 | KP_8 | KP_9 | KP_* | KP_- | KP_= |
+// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+// |Tab   |Q ### |W ### |F ### |P €€€ |G €€€ |J ### |L     |U     |Y     |;     |[ {   |] }   |
+// |      | Home | Up   | End  | Del  | Esc  | PgUp | KP_4 | KP_5 | KP_6 | KP_+ |  (   |  )   |
+// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+// |Caps+ |A ### |R ### |S ### |T €€€ |D     |H ### |N     |E     |I     |O     |' "   |\ |   |
+// | ++++ | Left | Down | Right| Back | K_Bgn| PgDn | KP_1 | KP_2 | KP_3 | K_Ent|  '   |  \   |
+// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+// |_ *** |Z €€€ |X === |C === |V === |B *** |K     |M     |, ;   |. :   |/     |Spc   |Entr  |
+// | *MOn | Undo | Cut  | Copy | Paste| *Bt1 | K_Lck| KP_0 |  ,   | KP_. | KP_/ | Spc  | K_Ent|
+// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+//
+// NOTE: A lv7 (Level5+Level3) modifier might be necessary to use the KeyPad level sensibly
+//       One idea is to use AltGr+Caps as a lv7_lock (Caps+AltGr is already lv7_switch)
+// NOTE: If a hex pad is needed, the lv7+KBHDJG -> ABCDEF mappings are one solution
+
+default partial
+xkb_symbols "basic" {
+//    name[Group1]= "Extend layer";
+    include "extend(lv5)"
+};
+
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "lv5" {
+//    name[Group1]= "Extend layer";
+//    key.type[group1]="EIGHT_LEVEL"; // (Caps)Lock state not used on these keys
+    key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC"; // Lock affects lv1/5 but not lv3/7 - a bit inflexible but OK I guess
+
+// TODO: If I set lv5-6 of Esc to Caps_Lock, lv1-4 are CapsLock PLUS Esc! Try a LockMods action?
+//    key <ESC>  { [ Escape , Escape , Escape , Escape  , Caps_Lock , Caps_Lock ] };
+    key <SCLK> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Caps_Lock            , Caps_Lock             , // CapsLock
+                   Caps_Lock            , Caps_Lock            ], // CapsLock
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   SetMods(mods=Lock)   , SetMods(mods=Lock)    , // Lock mod for <CAPS>
+                   NoAction()           , NoAction()           ]
+               };  // ScrollLock
+
+    key <FK01> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86AudioPlay         , XF86AudioPause        ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I208>,clearmods=all), Redirect(key=<I209>,clearmods=all), // <I208>/<I209>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // F01
+    key <FK02> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86AudioPrev         , XF86AudioRewind       ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I173>,clearmods=all), Redirect(key=<I176>,clearmods=all), // <I173>/<I176>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // F02
+    key <FK03> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86AudioNext         , XF86AudioForward      ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I171>,clearmods=all), Redirect(key=<I216>,clearmods=all), // <I171>/<I216>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // F03
+    key <FK04> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86AudioStop         , XF86Eject             ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I174>,clearmods=all), Redirect(key=<I169>,clearmods=all), // <I174>/<I169>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // F04
+    key <FK05> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86AudioMute         , XF86Sleep             ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<MUTE>,clearmods=all), Redirect(key=<I150>,clearmods=all), // <MUTE>/<I150>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // F05
+    key <FK06> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86AudioLowerVolume  , XF86MonBrightnessDown ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<VOL->,clearmods=all), Redirect(key=<I232>,clearmods=all), // <VOL->/<I232>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // F06
+    key <FK07> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86AudioRaiseVolume  , XF86MonBrightnessUp   ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<VOL+>,clearmods=all), Redirect(key=<I233>,clearmods=all), // <VOL+>/<I233>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // F07
+    key <FK08> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86AudioMedia        , XF86MyComputer        ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I234>,clearmods=all), Redirect(key=<I165>,clearmods=all), // <I234>/<I165>(‡‡)
+                   NoAction()           , NoAction()           ] // What about XF86Terminal? Not in evdev
+               };  // F08
+    key <FK09> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86HomePage          , XF86WWW               ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I180>,clearmods=all), Redirect(key=<I158>,clearmods=all), // <I180>/<I158>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // F09
+    key <FK10> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86Search            , XF86Mail              ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I225>,clearmods=all), Redirect(key=<I223>,clearmods=all), // <I225>/<I223>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // F10
+    key <FK11> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86Explorer          , XF86Launch1           ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I152>,clearmods=all), Redirect(key=<I156>,clearmods=all), // <I152>/<I156>(‡‡)
+                   NoAction()           , NoAction()           ] // (in inet(evdev), XF86Launch3 is <I210>)
+               };  // F11
+    key <FK12> { symbols[Group1]=[ NoSymbol,NoSymbol,NoSymbol,NoSymbol, XF86Calculator        , XF86Launch2           ],
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I148>,clearmods=all), Redirect(key=<I157>,clearmods=all), // <I148>/<I157>(‡‡)
+                   NoAction()           , NoAction()           ] // (in inet(evdev), XF86Launch4 is <I211>)
+               };  // F12
+
+    key <TLDE> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Delete  , Delete , Delete           , Delete             ], // Del
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<DELE>) , Redirect(key=<DELE>)  , // <DELE>
+                   Redirect(key=<DELE>) , Redirect(key=<DELE>) ]  // <DELE>
+               };  // ` ~
+    key <AE01> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F1      , F1     , exclam           , exclam             ], // !
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK01>,clearmods=LevelFive), Redirect(key=<FK01>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 1
+    key <AE02> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F2      , F2     , at               , at                 ], // @
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK02>,clearmods=LevelFive), Redirect(key=<FK02>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 2
+    key <AE03> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F3      , F3     , numbersign       , numbersign         ],  // #
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK03>,clearmods=LevelFive), Redirect(key=<FK03>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 3
+    key <AE04> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F4      , F4     , dollar           , sterling           ], // $£
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK04>,clearmods=LevelFive), Redirect(key=<FK04>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 4
+    key <AE05> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F5      , F5     , percent          , EuroSign           ], // %€
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK05>,clearmods=LevelFive), Redirect(key=<FK05>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 5
+    key <AE06> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F6      , F6     , asciicircum      , asciicircum        ], // ^
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK06>,clearmods=LevelFive), Redirect(key=<FK06>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 6
+    key <AE07> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F7      , F7     , KP_7             , U21D6              ], // KP_7 ↖ ⇖
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK07>,clearmods=LevelFive), Redirect(key=<FK07>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 7
+    key <AE08> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F8      , F8     , KP_8             , U21D1              ], // KP_8 ↑ ⇑
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK08>,clearmods=LevelFive), Redirect(key=<FK08>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 8
+    key <AE09> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F9      , F9     , KP_9             , U21D7              ], // KP_9 ↗ ⇗
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK09>,clearmods=LevelFive), Redirect(key=<FK09>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 9
+    key <AE10> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F10     , F10    , KP_Multiply      , KP_Multiply        ], // KP_*
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK10>,clearmods=LevelFive), Redirect(key=<FK10>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // 0
+    key <AE11> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F11     , F11    , KP_Subtract      , KP_Subtract        ], // KP_-
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK11>,clearmods=LevelFive), Redirect(key=<FK11>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // - _
+    key <AE12> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   F12     , F12    , KP_Equal         , KP_Equal           ], // KP_=
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<FK12>,clearmods=LevelFive), Redirect(key=<FK12>,clearmods=LevelFive),
+                   NoAction()           , NoAction()           ]
+               };  // = +
+
+    key <AD01> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Escape               , Escape                , // Esc
+                   Home                 , KP_Home              ], // Home
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<ESC>)  , Redirect(key=<ESC>)   , // <ESC>
+                   Redirect(key=<HOME>) , Redirect(key=<HOME>) ]  // <HOME>
+               };  // Cmk Q
+    key <AD02> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   XF86ScrollUp         , XF86ScrollRight       , // ScrollUp(††)
+                   Up                   , KP_Up                ], //  ↑
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   PtrBtn(button=4)     , PtrBtn(button=6)      , // PtrWhBtUp/Ri
+                   NoAction()           , NoAction()           ]
+               };  // Cmk W
+    key <AD03> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   XF86Back             , XF86Back              , // BrBck
+                   End                  , KP_End               ], // End
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I166>) , Redirect(key=<I166>)  , // <I166>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // Cmk F
+    key <AD04> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   XF86Forward          , XF86Forward           , // BrFwd
+                   Delete               , KP_Delete            ], // Del
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I167>) , Redirect(key=<I167>)  , // <I167>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // Cmk P
+    key <AD05> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Pointer_Up           , Pointer_Up            , // PtrUp(††)
+                   Escape               , Escape               ], // Esc
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   MovePtr(x=+0,y=-8)   , MovePtr(x=+0,y=-8)    , // PtrUp(††)
+                   Redirect(key=<ESC>)  , Redirect(key=<ESC>)  ]  // <ESC>
+               };  // Cmk G
+    key <AD06> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Page_Up              , Page_Up               , // PgUp
+                   Page_Up              , KP_Prior             ], // PgUp
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<PGUP>) , Redirect(key=<PGUP>)  , // <PGUP>
+                   Redirect(key=<PGUP>) , NoAction()           ]
+               };  // Cmk J
+    key <AD07> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Home                 , Home                  , // Home
+                   KP_4                 , U21D0                ], // KP_4 ← ⇐
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<HOME>) , Redirect(key=<HOME>)  , // <HOME>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk L
+    key <AD08> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Up                   , Up                    , //  ↑
+                   KP_5                 , U21D4                ], // KP_5 ↔ ⇔
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<UP>)   , Redirect(key=<UP>)    , // <UP>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk U
+    key <AD09> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   End                  , End                   , // End
+                   KP_6                 , U21D2                ], // KP_6 → ⇒
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<END>)  , Redirect(key=<END>)   , // <END>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk Y
+    key <AD10> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Delete               , Delete                , // Del
+                   KP_Add               , KP_Add               ], // KP_+
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<DELE>) , Redirect(key=<DELE>)  , // <DELE>
+                   NoAction()           , NoAction()           ]
+               };  // ; :
+    key <AD11> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Escape               , Escape                , // Esc
+                   parenleft            , braceleft            ], //  (
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<ESC>)  , Redirect(key=<ESC>)   , // <ESC>
+                   NoAction()           , NoAction()           ]
+               };  // [ {
+    key <AD12> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Insert               , Insert                , // Ins
+                   parenright           , braceright           ], //  )
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<INS>)  , Redirect(key=<INS>)   , // <INS>
+                   NoAction()           , NoAction()           ]
+               };  // ] }
+    key <BKSL> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   XF86Favorites        , XF86Favorites         , // BrFav
+                   backslash            , bar                  ], // BKSL
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<I164>,clearmods=all), Redirect(key=<I164>,clearmods=all), // <I164>(‡‡)
+                   NoAction()           , NoAction()           ]
+               };  // \ |
+
+    key <AC01> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Alt_L                , Alt_L                 , // Alt
+                   Left                 , KP_Left              ], //  ←
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   SetMods(mods=Alt)    , SetMods(mods=Alt)     , // Alt mod for <LALT>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk A
+    key <AC02> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Down                 , XF86ScrollDown        , // ScrollDown(††)
+                   Down                 , KP_Down              ], //  ↓
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   PtrBtn(button=5)     , PtrBtn(button=7)      , // PtrWhBtDn/Le
+                   NoAction()           , NoAction()           ]
+               };  // Cmk R
+    key <AC03> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Shift_L              , Shift_L               , // Shift
+                   Right                , KP_Right             ], //  →
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   SetMods(mods=Shift)  , SetMods(mods=Shift)   , // Shift mod for <LFSH>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk S
+    key <AC04> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Control_L            , Control_L             , // Ctrl
+                   BackSpace            , BackSpace            ], // Back
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   SetMods(mods=Control) , SetMods(mods=Shift+Control) , // Control mod for <LCTL>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk T
+    key <AC05> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Pointer_Down         , Pointer_Down          , // PtrDn(††)
+                   KP_Begin             , KP_Begin             ], // KP_Begin?!?
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   MovePtr(x=+0,y=+8)   , MovePtr(x=+0,y=+8)    , // PtrDn(††)
+                   NoAction()           , NoAction()           ]
+               };  // Cmk D
+    key <AC06> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Page_Down            , Page_Down             , // PgDn
+                   Page_Down            , KP_Next              ], // PgDn
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<PGDN>) , Redirect(key=<PGDN>)  , // <PGDN>
+                   Redirect(key=<PGDN>) , NoAction()           ]
+               };  // H
+    key <AC07> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Left                 , Left                  , //  ←
+                   KP_1                 , U21D9                ], // KP_1 ↙ ⇙
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<LEFT>) , Redirect(key=<LEFT>)  , // <LEFT>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk N
+    key <AC08> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Down                 , Down                  , //  ↓
+                   KP_2                 , U21D3                ], // KP_2 ↓ ⇓
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<DOWN>) , Redirect(key=<DOWN>)  , // <DOWN>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk E
+    key <AC09> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Right                , Right                 , //  →
+                   KP_3                 , U21D8                ], // KP_3 ↘ ⇘
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<RGHT>) , Redirect(key=<RGHT>)  , // <RGHT>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk I
+    key <AC10> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   BackSpace            , BackSpace             , // Back
+                   KP_Enter             , KP_Enter             ], // KP_Enter
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<BKSP>) , Redirect(key=<BKSP>)  , // <BKSP>
+                   NoAction()           , NoAction()           ]
+               };  // Cmk O
+    key <AC11> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Menu                 , Menu                  , // Menu
+                   apostrophe           , quotedbl             ], // ' "
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<MENU>) , Redirect(key=<MENU>)  , // <MENU>/<COMP>
+                   NoAction()           , NoAction()           ]
+               };  // ' "
+
+    key <LSGT> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Pointer_EnableKeys  , Pointer_EnableKeys     , // Ptr_On
+                   Pointer_EnableKeys  , Pointer_EnableKeys    ]  // (Enable MouseKeys)
+               };  // < >
+    key <AB01> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Undo                 , Redo                  , // Undo/Redo
+                   Undo                 , Redo                 ], // Undo/Redo
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+      Redirect(key=<AB01>,mods=Control,clearmods=LevelFive), Redirect(key=<AB01>,mods=Shift+Control,clearmods=LevelFive), // Ctrl+Z
+      Redirect(key=<AB01>,mods=Control,clearmods=LevelFive), Redirect(key=<AB01>,mods=Shift+Control,clearmods=LevelFive)] // Ctrl+Z
+//                   Redirect(key=<UNDO>) , Redirect(key=<UNDO>) ]  // <UNDO>(‡‡) (not working?)
+               };  // Z
+    key <AB02> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   XF86Cut              , XF86Cut               , // Cut(§§)
+                   XF86Cut              , XF86Cut              ], // Cut(§§)
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+      Redirect(key=<AB02>,mods=Control,clearmods=LevelFive), Redirect(key=<AB02>,mods=Shift+Control,clearmods=LevelFive), // Ctrl+X
+      Redirect(key=<AB02>,mods=Control,clearmods=LevelFive), Redirect(key=<AB02>,mods=Shift+Control,clearmods=LevelFive)] // Ctrl+X
+//                   Redirect(key=<CUT>)  , Redirect(key=<CUT>)  ]  // <CUT>(‡‡) (not working since Ub14.04?)
+               };  // X
+    key <AB03> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   XF86Copy             , XF86Copy              , // Copy(§§)
+                   XF86Copy             , XF86Copy             ], // Copy(§§)
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+      Redirect(key=<AB03>,mods=Control,clearmods=LevelFive), Redirect(key=<AB03>,mods=Shift+Control,clearmods=LevelFive), // Ctrl+C
+      Redirect(key=<AB03>,mods=Control,clearmods=LevelFive), Redirect(key=<AB03>,mods=Shift+Control,clearmods=LevelFive)] // Ctrl+C
+//                   Redirect(key=<COPY>) , Redirect(key=<COPY>) ]  // <COPY>(‡‡) (not working since Ub14.04?)
+               };  // C
+    key <AB04> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   XF86Paste            , XF86Paste             , // Paste(§§)
+                   XF86Paste            , XF86Paste            ], // Paste(§§)
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+      Redirect(key=<AB04>,mods=Control,clearmods=LevelFive), Redirect(key=<AB04>,mods=Shift+Control,clearmods=LevelFive), // Ctrl+V
+      Redirect(key=<AB04>,mods=Control,clearmods=LevelFive), Redirect(key=<AB04>,mods=Shift+Control,clearmods=LevelFive)] // Ctrl+V
+//                   Redirect(key=<PAST>) , Redirect(key=<PAST>)  , // <PAST>(‡‡)
+//                   Redirect(key=<PAST>) , Redirect(key=<PAST>) ]  // <PAST>(‡‡) (not working since Ub14.04?)
+               };  // V
+    key <AB05> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Pointer_Button1      , Pointer_Button1       , // LBt(††)
+                   Pointer_Button1      , Pointer_Button1      ], // LBt
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   PtrBtn(button=1)     , PtrBtn(button=1)      , // PtrLBt
+                   NoAction()           , NoAction()           ]
+               };  // B
+    key <AB06> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Pointer_Button2      , Pointer_Button2       , // MBt(††)
+                   Num_Lock             , Num_Lock             ], // NumLock
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   PtrBtn(button=2)     , PtrBtn(button=2)      , // PtrMBt
+                   NoAction()           , NoAction()           ]
+               };  // Cmk K
+    key <AB07> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Pointer_Button3      , Pointer_Button3       , // RBt(††)
+                   KP_0                 , U21D5                ], // KP_0 ↕ ⇕
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   PtrBtn(button=3)     , PtrBtn(button=3)      , // PtrRBt
+                   NoAction()           , NoAction()           ]
+               };  // M
+    key <AB08> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Pointer_Left         , Pointer_Left          , // PtrLe(††)
+                   comma                , semicolon            ], //  , ;
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   MovePtr(x=-8,y=+0)   , MovePtr(x=-8,y=+0)    , // PtrLe(††)
+                   NoAction()           , NoAction()           ]
+               };  // , <
+    key <AB09> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Pointer_Right        , Pointer_Right         , // PtrRi(††)
+                   KP_Decimal           , colon                ], // KP_. :
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   MovePtr(x=+8,y=+0)   , MovePtr(x=+8,y=+0)    , // PtrRi(††)
+                   NoAction()           , NoAction()           ]
+               };  // . >
+    key <AB10> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Multi_key            , Multi_key             , // Compose
+                   KP_Divide            , KP_Divide            ]  // KP_/
+               };  // / ?
+
+    key <SPCE> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Return               , Return                , // Enter
+                   space                , nobreakspace         ], // Space
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<RTRN>) , Redirect(key=<RTRN>)  , // <RTRN>
+                   NoAction()           , NoAction()           ]
+               };  // <SPCE>
+//    key <CAPS> { [ NoSymbol,NoSymbol,NoSymbol,NoSymbol ] };  // CapsLock
+
+// §§: XCV Cut/Copy/Paste seem OK in Firefox but not Gedit!? This is a GTK weakness
+//     Some bind fiddling in ~/.gtkrc-2.0 and ~/.config/gtk-3.0/gtk.css can get this working
+// ††: 'Pointer_'mousing needs enabling! Real KP_ keys work but not the Pointer_ mousing symbols
+//    (In the Settings GUI there's a Shift+NumLock option for this, but Pointer_EnableKeys works too)
+// ‡‡: Multimedia keys are in symbols/inet(evdev); this should be enabled (base rules usually handle it)
+// NOTE: RedirectKey alone doesn't work for the #->FK keys; they then act as the remapped FK## (Multimedia)
+
+// NOTE: I'm not mapping the CAPS key to lv5_switch here, as that should be done separately
+//  key <CAPS> { [ ISO_Level5_Shift , BackSpace , Caps_Lock , Caps_Lock , NoSymbol ] };
+//  modifier_map Mod3   { ISO_Level5_Shift };
+
+// NOTE: Leave for the layout/options to decide which key(s) to use as switches!
+//    include "level3(ralt_switch)"
+//    include "level5(caps_switch)"
+};
+
+// NOTE: Alt worked with just the symbol, Shift/Ctrl not. Shift/Control are "real" mods; Alt a "virtual" one.
+//       Adding SetMods() actions to the Shift/Ctrl keys, they work as they should.
+
+// NOTE: Lv5+S+T+N (Shift+Ctrl+Left) is too much at once; letting go of S but not T lets the arrows work.
+//       Using one physical modifier and the other Extend mapped (Lv5+S+<LCTL>+N) functions as expected!
+//       It's the same for Lv5+A+T+<PGDN> for tab switching; works only with physical either Ctrl or Alt.
+
+// NOTE:  See the ALT_NAV keys in http://osdir.com/ml/xfree86.internationalization/2004-04/msg00010.html
+// key <AC06> { type="ALT_NAV", // Here, the D key is mapped to Home using Alt as a modifier:
+// [ d, D, Home ], actions[Group1]=[NoAction(), NoAction(), Redirect(key=<HOME>, clearmods=Alt)] };
+
+// NOTE: Are modifier mappings necessary? Don't think so; they're set right in compat already
+//    modifier_map Shift   { Shift_L   , Shift_R   };
+//    modifier_map Lock    { Caps_Lock , ISO_Lock  };
+//    modifier_map Control { Control_L , Control_R };
+//    modifier_map Control { Control_L, <LCTL>, Control_R, <RCTL> };
+
+// NOTE: Maybe one could use the capslock(groupshift) functionality for Extend layers?
+//    key <CAPS> { [ Mode_switch , BackSpace , Caps_Lock , Caps_Lock , NoSymbol ] };
+//    // The capslock(groupshift) switch defines the <CAPS> ground state as a Mode_switch key.
+// But: The 4 groups are really meant for different locales/scripts/layouts that some people (me!) need.
+
+
+//// An attempt at using the Overlay functionality for modifier Extend mappings.
+//// If the Extend key could both switch lv5 AND Overlay1, maybe the A/S/T modifiers would work?
+//// The idea would be to map only these as overlay keys, and the rest as lv5+
+//// NOTE: Not working. Problem: The Caps key cannot both be a lvl5_switch and overlay_switch!?
+//partial // alphanumeric_keys
+//xkb_symbols "overlay_mods" {
+////    name[Group1]= "Extend layer";
+//
+//    key <AC01> { overlay1 = <LALT> }; //Alt
+//    key <AC03> { overlay1 = <LFSH> }; //Shift
+//    key <AC04> { overlay1 = <LCTL> }; //Ctrl
+////    key <CAPS> { [ Overlay1_Enable ], overlay1 = <CAPS> };
+//
+//// NOTE: The standard OverlayEnable key a is a lock, not a switch key. A compat addition would be needed.
+////       Or could it all be done by 'action' commands, like in symbols/level5 ('lock'!?) and group etc?
+////           actions[Group1] = [ SetMods(mods=LevelFive), SetControls(controls=Overlay1) ]
+//// Look into a variation of this to enable both with one key (in compat?):
+////  interpret Pointer_EnableKeys { action= LockControls(controls=MouseKeys+Overlay1); };
+//// NOTE: LevelFive is a *modifier*, Overlay1 a *control*; need to use both SetMods and SetControls then!?
+//};
+
+// --> OEystein Bech "DreymaR" Gadmar, 2013-09: Additions to xkb/compat/level5
+//// DESC: Level5+Overlay1 combined switch
+//// NOTE: Double-action crashed the server badly! Another tack is needed.
+//    interpret Overlay1_Level5_Shift+Any {
+//	//useModMapMods= level1;  // This makes the code use group 1 for all!
+//	virtualModifier= LevelFive;
+//	action= SetMods(mods=LevelFive);
+//	action= SetControls(controls=Overlay1);
+//    };
+//
+//    interpret Overlay1_Level5_Shift {
+//	action= SetMods(mods=LevelFive);
+//	action= SetControls(controls=Overlay1);
+//    };
+//
+//};
+// <-- DreymaR: Additions to xkb/compat/level5
+
+// --> OEystein Bech "DreymaR" Gadmar, 2013-09: Additions to xkb/symbols/level5
+//// NOTE: Tested the addition of a Level5+Overlay1 switch; the double role didn't work!
+//partial modifier_keys
+//xkb_symbols "caps_overlay_switch" {
+//  key <CAPS> {
+//    type[Group1]="ONE_LEVEL",
+//    vmods = LevelFive,
+//    symbols[Group1] = [ Overlay1_Level5_Shift ],
+//    actions[Group1] = [ SetMods(mods=LevelFive); SetControls(controls=Overlay1) ]
+//    };
+//  modifier_map Mod3   { Overlay1_Level5_Shift };
+//};
+// <-- DreymaR: Additions to xkb/symbols/level5
+
+// An attempt at using the Overlay functionality for all Extend mappings.
+// NOTE: Apparently, any key can only have ONE overlay!
+// The Overlay1/Overlay2 bits determine which one, but for some odd reason a key can't have both defined.
+// This means that the idea of several Extend layers can't be implemented easily in this way.
+// NOTE: For testing purposes, I'm only mapping some keys for now. The rest can follow if this works! :)
+//partial // alphanumeric_keys
+//xkb_symbols "overlay_full" {
+////    name[Group1]= "Extend layer";
+
+//    key <ESC>  { overlay1 = <CAPS> };
+//    key <SCLK> { overlay1 = <CAPS> };
+//    key <TLDE> { overlay1 = <DELE> };
+//    key <AE01> { overlay1 = <FK01> };
+//    key <AE02> { overlay1 = <FK02> };
+//    key <AE03> { overlay1 = <FK03> };
+//    key <AE04> { overlay1 = <FK04> };
+//    key <AE05> { overlay1 = <FK05> };
+//    key <AE06> { overlay1 = <FK06> };
+//    key <AD01> { overlay1 = <ESC>  }; //Esc
+//    key <AD02> { overlay1 = <I185> }; // KEY_SCROLLUP  //(††)
+//    key <AD03> { overlay1 = <I166> }; // #define KEY_BACK
+//    key <I166> { [ XF86Back    ] }; //BrBck
+//    key <AD04> { overlay1 = <I167> }; // #define KEY_FORWARD
+//    key <AD06> { overlay1 = <PGUP> }; //PgUp
+//    key <AD07> { overlay1 = <HOME> }; //Home
+//    key <AD08> { overlay1 = <UP>   }; // ↑
+//    key <AD09> { overlay1 = <END>  }; //End
+//    key <AD10> { overlay1 = <DELE> }; //Del
+//    key <AD11> { overlay1 = <ESC>  }; //Esc
+//    key <AD12> { overlay1 = <INS>  }; //Ins
+//    key <AC01> { overlay1 = <LALT> }; //Alt
+//    key <AC02> { overlay1 = <I186> }; // KEY_SCROLLDOWN //(††)
+//    key <AC03> { overlay1 = <LFSH> }; //Shift
+//    key <AC04> { overlay1 = <LCTL> }; //Ctrl
+//    key <AC06> { overlay1 = <PGDN> }; //PgDn
+//    key <AC07> { overlay1 = <LEFT> }; // ←
+//    key <AC08> { overlay1 = <DOWN> }; // ↓
+//    key <AC09> { overlay1 = <RGHT> }; // →
+//    key <AC10> { overlay1 = <BKSP> }; //Back
+//    key <SPCE> { overlay1 = <RTRN> }; //Entr
+//    key <CAPS> { [ Overlay1_Enable ], overlay1 = <CAPS> };
+//};
+

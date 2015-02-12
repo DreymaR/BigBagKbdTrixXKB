@@ -1,0 +1,418 @@
+// Keyboard layouts for Turkey.
+// This file distributed without any expressed or implied warranty.
+// Nilgün Belma Bugüner <nilgun@belgeler.org>, 2005
+
+// Turkish Q layout
+default  partial
+xkb_symbols "basic" {
+
+    include "latin"
+
+    name[Group1]="Turkish";
+
+    key <AE01>  { [         1,    exclam,        greater,    exclamdown ] };
+    key <AE02>  { [         2, apostrophe,      sterling,   twosuperior ] };
+    key <AE03>  { [         3,asciicircum,    numbersign, threesuperior ] };
+    key <AE04>  { [         4,       plus,        dollar,    onequarter ] };
+    key <AE06>  { [         6,  ampersand, threequarters,    VoidSymbol ] };
+    key <AE07>  { [         7,      slash,     braceleft,    VoidSymbol ] };
+    key <AE08>  { [         8,  parenleft,   bracketleft,    VoidSymbol ] };
+    key <AE09>  { [         9, parenright,  bracketright,     plusminus ] };
+    key <AE10>  { [         0,      equal,    braceright,        degree ] };
+    key <AE11>  { [  asterisk,   question,     backslash,  questiondown ] };
+    key <AE12>  { [     minus, underscore,           bar,    VoidSymbol ] };
+
+    key <AD02>  { [         w,          W,    VoidSymbol,    VoidSymbol ] };
+    key <AD03>  { [         e,          E,      EuroSign,    VoidSymbol ] };
+    key <AD05>  { [         t,          T,     trademark,    VoidSymbol ] };
+    key <AD07>  { [         u,          U,   ucircumflex,   Ucircumflex ] };
+    key <AD08>  { type[group1] = "FOUR_LEVEL_ALPHABETIC",
+                  [  idotless,          I,   icircumflex,   Icircumflex ] };
+    key <AD09>  { [         o,          O,   ocircumflex,   Ocircumflex ] };
+    key <AD10>  { [         p,          P,    VoidSymbol,    VoidSymbol ] };
+    key <AD11>  { [    gbreve,     Gbreve                               ] };
+    key <AD12>  { [udiaeresis, Udiaeresis,    asciitilde,   dead_macron ] };
+
+    key <AC01>  { [         a,          A,   acircumflex,   Acircumflex ] };
+    key <AC02>  { [         s,          S,       section,    VoidSymbol ] };
+    key <AC03>  { [         d,          D,    VoidSymbol,    VoidSymbol ] };
+    key <AC04>  { [         f,          F,   ordfeminine,    VoidSymbol ] };
+    key <AC05>  { [         g,          G,    VoidSymbol,    VoidSymbol ] };
+    key <AC06>  { [         h,          H,    VoidSymbol,    VoidSymbol ] };
+    key <AC08>  { [         k,          K,    VoidSymbol,    VoidSymbol ] };
+    key <AC09>  { [         l,          L,    VoidSymbol,    VoidSymbol ] };
+    key <AC10>  { [  scedilla,   Scedilla,         acute,    dead_acute ] };
+    key <AC11>  { type[group1] = "FOUR_LEVEL_SEMIALPHABETIC",
+                  [         i,  Iabovedot,    apostrophe,    dead_caron ] };
+    key <TLDE>  { [  quotedbl,     eacute,          less,        degree ] };
+
+    key <BKSL>  { [     comma,  semicolon,         grave,    dead_grave ] };
+    key <LSGT>  { [      less,    greater,           bar,     brokenbar ] };
+    key <AB08>  { [odiaeresis, Odiaeresis,      multiply,    VoidSymbol ] };
+    key <AB09>  { [  ccedilla,   Ccedilla,periodcentered,      division ] };
+    key <AB10>  { [    period,      colon, dead_abovedot, dead_abovedot ] };
+
+    include "kpdl(comma)"
+    include "level3(ralt_switch)"
+};
+
+
+// Turkish F layout
+partial
+xkb_symbols "f" {
+
+    include "latin"
+
+    name[Group1]="Turkish (F)";
+
+    key <AE01>  { [         1,     exclam,   onesuperior,    exclamdown ] };
+    key <AE02>  { [         2,   quotedbl,   twosuperior,    VoidSymbol ] };
+    key <AE03>  { [         3,asciicircum,    numbersign, threesuperior ] };
+    key <AE04>  { [         4,     dollar,    onequarter,    VoidSymbol ] };
+    key <AE06>  { [         6,  ampersand, threequarters,    VoidSymbol ] };
+    key <AE07>  { [         7, apostrophe,     braceleft,    VoidSymbol ] };
+    key <AE08>  { [         8,  parenleft,   bracketleft,    VoidSymbol ] };
+    key <AE09>  { [         9, parenright,  bracketright,     plusminus ] };
+    key <AE10>  { [         0,      equal,    braceright,        degree ] };
+    key <AE11>  { [     slash,   question,     backslash,  questiondown ] };
+    key <AE12>  { [     minus, underscore,           bar,    VoidSymbol ] };
+
+    key <AD01>  { [         f,          F,            at,    VoidSymbol ] };
+    key <AD02>  { [         g,          G,    VoidSymbol,    VoidSymbol ] };
+    key <AD03>  { [    gbreve,     Gbreve,    VoidSymbol,    VoidSymbol ] };
+    key <AD04>  { type[group1] = "FOUR_LEVEL_SEMIALPHABETIC",
+                  [  idotless,          I,     paragraph,    VoidSymbol ] };
+    key <AD05>  { [         o,          O,   ocircumflex,   Ocircumflex ] };
+    key <AD06>  { [         d,          D,           yen,    VoidSymbol ] };
+    key <AD07>  { [         r,          R,    registered,    VoidSymbol ] };
+    key <AD08>  { [         n,          N,    VoidSymbol,    VoidSymbol ] };
+    key <AD09>  { [         h,          H,        degree,    VoidSymbol ] };
+    key <AD10>  { [         p,          P,      sterling,    VoidSymbol ] };
+    key <AD11>  { [         q,          Q,dead_diaeresis,dead_abovering ] };
+    key <AD12>  { [         w,          W,    asciitilde,    dead_breve ] };
+
+    key <AC01>  { [         u,          U,   ucircumflex,   Ucircumflex ] };
+    key <AC02>  { type[group1] = "FOUR_LEVEL_ALPHABETIC",
+                  [         i,  Iabovedot,   icircumflex,   Icircumflex ] };
+    key <AC03>  { [         e,          E,      EuroSign,    VoidSymbol ] };
+    key <AC04>  { [         a,          A,   acircumflex,   Acircumflex ] };
+    key <AC05>  { [udiaeresis, Udiaeresis,   ucircumflex,   Ucircumflex ] };
+    key <AC06>  { [         t,          T,     trademark,    VoidSymbol ] };
+    key <AC07>  { [         k,          K,    VoidSymbol,    VoidSymbol ] };
+    key <AC08>  { [         m,          M,            mu,    VoidSymbol ] };
+    key <AC09>  { [         l,          L,    VoidSymbol,    VoidSymbol ] };
+    key <AC10>  { [         y,          Y,         acute,    dead_acute ] };
+    key <AC11>  { [  scedilla,   Scedilla,    numbersign,    dead_caron ] };
+    key <TLDE>  { [      plus,   asterisk,       notsign,     plusminus ] };
+
+    key <BKSL>  { [         x,          X,         grave,    dead_grave ] };
+    key <AB01>  { [         j,          J, guillemotleft,    VoidSymbol ] };
+    key <AB02>  { [odiaeresis, Odiaeresis,guillemotright,    VoidSymbol ] };
+    key <AB03>  { [         v,          V, leftdoublequotemark, VoidSymbol ] };
+    key <AB04>  { [         c,          C,          cent,     copyright ] };
+    key <AB05>  { [  ccedilla,   Ccedilla,rightdoublequotemark, VoidSymbol ] };
+    key <AB06>  { [         z,          Z,    VoidSymbol,    VoidSymbol ] };
+    key <AB07>  { [         s,          S,       section,    VoidSymbol ] };
+    key <AB08>  { [         b,          B,      multiply,  nobreakspace ] };
+    key <AB09>  { [    period,      colon,      division, dead_abovedot ] };
+    key <AB10>  { [     comma,  semicolon,periodcentered,    VoidSymbol ] };
+    key <LSGT>  { [     less,     greater,           bar,     brokenbar ] };
+
+    include "kpdl(comma)"
+    include "level3(ralt_switch)"
+};
+
+// Turkish Alt-Q layout
+partial
+xkb_symbols "alt" {
+
+    include "latin"
+
+    name[Group1]="Turkish (Alt-Q)";
+
+    key <AE07>  { [         7,   ampersand,  lowleftcorner,  upleftcorner ] };
+    key <AE08>  { [         8,    asterisk,          leftt,          topt ] };
+    key <AE09>  { [         9,   parenleft,         rightt,          bott ] };
+    key <AE10>  { [         0,  parenright, lowrightcorner, uprightcorner ] };
+    key <AE11>  { [     minus,  underscore, horizlinescan5,       vertbar ] };
+    key <AE12>  { [     equal,        plus,  crossinglines                ] };
+
+    key <AD03>  { [         e,           E,       EuroSign,    VoidSymbol ] };
+//    key <AD05>    { [         t,           T,      trademark,    VoidSymbol >
+    key <AD07>  { [         u,           U,     udiaeresis,    Udiaeresis ] };
+    key <AD08>  { [         i,           I,       idotless,     Iabovedot ] };
+    key <AD09>  { [         o,           O,     odiaeresis,    Odiaeresis ] };
+    key <AC01>  { [         a,           A,    acircumflex,   Acircumflex ] };
+    key <AC02>  { [         s,           S,       scedilla,      Scedilla ] };
+    key <AC05>  { [         g,           G,         gbreve,        Gbreve ] };
+
+    key <AB03>  { [         c,           C,       ccedilla,      Ccedilla ] };
+
+    include "level3(ralt_switch)"
+};
+
+
+partial alphanumeric_keys
+xkb_symbols "Sundeadkeys" {
+    include "tr(basic)"
+};
+
+partial alphanumeric_keys
+xkb_symbols "sundeadkeys" {
+    include "tr(Sundeadkeys)"
+    name[Group1]="Turkish (Sun dead keys)";
+};
+
+// Kurdish Q layout
+// Erdal Ronahi <erdal.ronahi@gmail.com>, 2006
+// http://ferheng.org
+partial
+xkb_symbols "ku" {
+
+   include "tr(basic)"
+
+   name[Group1]="Kurdish (Turkey, Latin Q)";
+
+    key <AD08>  { [          i,           I,     idotless,            I ] };
+    key <AD11>  { [          x,           X,       gbreve,       Gbreve ] };
+    key <AD12>  { [ucircumflex, Ucircumflex,   asciitilde,  dead_macron ] };
+    key <AC11>  { [icircumflex, Icircumflex,   apostrophe,   dead_caron ] };
+    key <AB08>  { [ecircumflex, Ecircumflex,   odiaeresis,   Odiaeresis ] };
+};
+
+// Kurdish F layout
+partial
+xkb_symbols "ku_f" {
+
+    include "tr(f)"
+
+    name[Group1]="Kurdish (Turkey, F)";
+
+    key <AD03>  { [          x,           X,       gbreve,       Gbreve ] };
+    key <AD04>  { [          i,           I,    paragraph,   VoidSymbol ] };
+    key <AD05>  { [          o,           O,  ocircumflex,  Ocircumflex ] };
+
+    key <AC01>  { [ucircumflex, Ucircumflex,   udiaeresis,   Udiaeresis ] };
+    key <AC02>  { [icircumflex, Icircumflex,            i,    Iabovedot ] };
+    key <AC05>  { [          u,           U,   udiaeresis,   Udiaeresis ] };
+    key <AB02>  { [ecircumflex, Ecircumflex,   odiaeresis,   Odiaeresis ] };
+};
+
+// Kurdish Alt-Q layout
+partial
+xkb_symbols "ku_alt" {
+
+    include "tr(alt)"
+
+    name[Group1]="Kurdish (Turkey, Latin Alt-Q)";
+
+    key <AD03>  { [          e,           E,  ecircumflex,  Ecircumflex ] };
+    key <AD07>  { [          u,           U,  ucircumflex,  Ucircumflex ] };
+    key <AD08>  { [          i,           I,  icircumflex,  Icircumflex ] };
+    key <AD09>  { [          o,           O,   odiaeresis,   Odiaeresis ] };
+};
+
+// Turkish international Q layout
+// Alexis Pellicier <alexis.pellicier@nds.k12.tr>, 2007
+partial
+xkb_symbols "intl" {
+
+    include "latin"
+
+    name[Group1]="Turkish (international with dead keys)";
+
+    key <AE01>  { type[group1] = "FOUR_LEVEL", [         1,    exclam,      onesuperior,    exclamdown ] };
+    key <AE02>  { type[group1] = "FOUR_LEVEL", [         2, apostrophe,        sterling,   twosuperior ] };
+    key <AE03>  { type[group1] = "FOUR_LEVEL", [         3, dead_circumflex, numbersign, threesuperior ] };
+    key <AE04>  { type[group1] = "FOUR_LEVEL", [         4,       plus,          dollar,    onequarter ] };
+    key <AE06>  { type[group1] = "FOUR_LEVEL", [         6,  ampersand,   threequarters,    VoidSymbol ] };
+    key <AE07>  { type[group1] = "FOUR_LEVEL", [         7,      slash,       braceleft,    VoidSymbol ] };
+    key <AE08>  { type[group1] = "FOUR_LEVEL", [         8,  parenleft,     bracketleft,    VoidSymbol ] };
+    key <AE09>  { type[group1] = "FOUR_LEVEL", [         9, parenright,    bracketright,     plusminus ] };
+    key <AE10>  { type[group1] = "FOUR_LEVEL", [         0,      equal,      braceright,        degree ] };
+    key <AE11>  { type[group1] = "FOUR_LEVEL", [  asterisk,   question,       backslash,  questiondown ] };
+    key <AE12>  { type[group1] = "FOUR_LEVEL", [     minus, underscore,        division,    VoidSymbol ] };
+
+    key <AD02>  { [         w,          W,     VoidSymbol,    VoidSymbol ] };
+    key <AD03>  { [         e,          E,       EuroSign,          cent ] };
+    key <AD05>  { [         t,          T,      trademark,    VoidSymbol ] };
+    key <AD07>  { [         u,          U,    ucircumflex,   Ucircumflex ] };
+    key <AD08>  { [  idotless,          I,    icircumflex,   Icircumflex ] };
+    key <AD09>  { [         o,          O,    ocircumflex,   Ocircumflex ] };
+    key <AD10>  { [         p,          P,     VoidSymbol,    VoidSymbol ] };
+    key <AD11>  { [    gbreve,     Gbreve, dead_diaeresis                ] };
+    key <AD12>  { [udiaeresis, Udiaeresis,     dead_tilde,   dead_macron ] };
+
+    key <AC01>  { [         a,          A,    acircumflex,   Acircumflex ] };
+    key <AC02>  { [         s,          S,        section,    VoidSymbol ] };
+    key <AC03>  { [         d,          D,     VoidSymbol,    VoidSymbol ] };
+    key <AC04>  { [         f,          F,    ordfeminine,    VoidSymbol ] };
+    key <AC05>  { [         g,          G,     VoidSymbol,    VoidSymbol ] };
+    key <AC06>  { [         h,          H,     VoidSymbol,    VoidSymbol ] };
+    key <AC08>  { [         k,          K,     VoidSymbol,    VoidSymbol ] };
+    key <AC09>  { [         l,          L,     VoidSymbol,    VoidSymbol ] };
+    key <AC10>  { [  scedilla,   Scedilla,     dead_acute,    dead_acute ] };
+    key <AC11>  { [         i,  Iabovedot,     apostrophe,    dead_caron ] };
+
+    key <TLDE>  { type[group1] = "FOUR_LEVEL", [  quotedbl,     eacute,       plusminus,        degree ] };
+    key <BKSL>  { type[group1] = "FOUR_LEVEL", [     comma,  semicolon,      dead_grave,    dead_grave ] };
+    key <LSGT>  { type[group1] = "FOUR_LEVEL", [      less,    greater,             bar,     brokenbar ] };
+
+    key <AB08>  { [odiaeresis, Odiaeresis,       multiply,    VoidSymbol ] };
+    key <AB09>  { [  ccedilla,   Ccedilla, periodcentered,      division ] };
+    key <AB10>  { type[group1] = "FOUR_LEVEL", [    period,      colon,   dead_abovedot, dead_abovedot ] };
+
+    include "nbsp(level3)"
+    include "level3(ralt_switch)"
+};
+
+
+partial alphanumeric_keys
+xkb_symbols "olpc" {
+
+    include "tr(intl)"
+
+    name[Group1]= "Turkish";
+
+    key <AE01>  { [         1,      exclam,           VoidSymbol,     VoidSymbol ] };
+    key <AE06>  { [         6,   ampersand,           VoidSymbol,     VoidSymbol ] };
+    key <AE12>  { type[group1] = "FOUR_LEVEL",
+                  [     minus,  underscore,                  bar,     VoidSymbol ] };
+
+    key <AB03>  { [         c,           C,  leftdoublequotemark,     VoidSymbol ] };
+    key <AB04>  { [         v,           V, rightdoublequotemark,     VoidSymbol ] };
+    key <AB05>  { [         b,           B,           VoidSymbol,     VoidSymbol ] };
+    key <AB08>  { [odiaeresis,  Odiaeresis,           VoidSymbol,     VoidSymbol ] };
+    key <AB09>  { [  ccedilla,    Ccedilla,             multiply,     VoidSymbol ] };
+    key <AB10>  { [    period,       colon,             division,  dead_abovedot ] };
+
+    key <I219> { [       less,     greater,           VoidSymbol,     VoidSymbol ] };
+};
+
+// Crimean Tatar (Crimean Turkish) layouts.
+// First released (by Ubuntu): 2009-02-24.
+// These layouts are not yet standard.  In particular, the mapping of
+// the letter 'x' might change in the future.  This letter is not used
+// in the current official alphabet, but is included in the layouts for
+// foreign words and for shortcuts.
+// Reşat SABIQ <tilde.birlik @ gmail . com>, 2009
+// Özgür Qarahan <qarahan @ gmail . com>, 2009
+
+// Crimean Tatar (Crimean Turkish) Q layout
+partial
+xkb_symbols "crh" {
+
+    include "tr(basic)"
+
+    name[Group1]="Crimean Tatar (Turkish Q)";
+
+    key <AE11>  { [         x,          X,        asterisk,        question ] };
+
+    key <AC04>  { [         f,          F,          iacute,          Iacute ] };
+    key <AC07>  { [         j,          J,          ibreve,          Ibreve ] };
+    key <TLDE>  { [  quotedbl,  backslash,            less,          degree ] };
+
+    key <AB02>  { [    ntilde,     Ntilde,  guillemotright,         greater ] };
+};
+
+// Crimean Tatar (Crimean Turkish) F layout
+partial
+xkb_symbols "crh_f" {
+
+    include "tr(f)"
+
+    name[Group1]="Crimean Tatar (Turkish F)";
+
+    key <AE11>  { [         x,          X,           slash,        question ] };
+
+    key <AD04>  { type[group1] = "FOUR_LEVEL_SEMIALPHABETIC",
+                  [  idotless,          I,          iacute,          Iacute ] };
+
+    key <AC07>  { [         k,          K,          ibreve,          Ibreve ] };
+    key <TLDE>  { [      plus,   asterisk,       backslash,       plusminus ] };
+
+    key <BKSL>  { [    ntilde,     Ntilde,           grave,      dead_grave ] };
+};
+
+// Crimean Tatar (Crimean Turkish) Alt-Q layout
+partial
+xkb_symbols "crh_alt" {
+
+    include "tr(alt)"
+
+    name[Group1]="Crimean Tatar (Turkish Alt-Q)";
+
+    key <AC04>  { [         f,          F,          iacute,          Iacute ] };
+    key <AC07>  { [         j,          J,          ibreve,          Ibreve ] };
+
+    key <AB06>  { [         n,          N,          ntilde,          Ntilde ] };
+};
+
+// EXTRAS:
+
+partial alphanumeric_keys
+	xkb_symbols "sun_type6" {
+	include "sun_vndr/tr(sun_type6)"
+};
+
+// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/tr
+// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Turkish.
+// 2006-01-01 Shai Coleman, http://colemak.com/
+// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+
+// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_ks" {
+    include "tr(basic)"
+    include "colemak(cmk_ed_letters)"
+    name[Group1]= "Turkish (Colemak[eD], keep local symbols)";
+
+// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//    key <AE05> { [ NoSymbol, NoSymbol,       mu, onehalf ] };
+//    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, onehalf ] }; // onehalf is moved, threeeights is lost
+
+// NOTE: The Turkish layout has idotless where QWERTY has i; this has been added here.
+    key <AC09>  { [ idotless, I, any, any ] };
+
+    key <AD10>	{ [ scedilla, Scedilla, acute, dead_acute ] }; // from <AC10>
+};
+
+// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+// For Turkish, necessary local letters are added to designated flexible spots in the layout.
+// For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_us" {
+    include "colemak(cmk_ed_letters)"
+    include "colemak(cmk_ed_symbols)"
+    include "level3(ralt_switch)"
+    name[Group1]= "Turkish (Colemak[eD], unified symbols)";
+
+// - Turkish doesn't use QWX and J is rare, but they need to be kept in place because of English etc!
+// - ıİ (3.9%) üÜ (1.8%) şŞ (1.6%) çÇ (1.4%) ğĞ (0.9%) öÖ (0.7%) are needed
+// - The 'I' key holds ıI and <AC11> iİ in the 'tr' layout
+// - âÂ îÎ ôÔ are on lv3-4 of 'AIO'
+// - êÊ îÎ ûÛ are needed for Kurdish; íÍ (on 'F') ĭĬ (on 'J') ñÑ (on 'N') for Crimean Tatar
+// - üÜ on '[{' is consistent with other locales (e.g., de); however, the tr layout has it on ']}'!
+// - Putting ıI on 'I', iİ goes to <LSGT> or ']}'?
+// - I already have çÇ on 'K'; this should suffice as it's an easy enough reach (even 1-handed, using a Wide mod)?
+// - Similarly, ğĞ isn't so common that it can't be on 'G' (and ĭĬ on 'J')
+// - I feel that öÖ is easy to write with the dead_diaeresis key on ';:' - but maybe not sufficiently?
+// - There should be a lv1-2 dead_circumflex?!? It's not easy to reach on AltGr+6.
+
+//    key <AD11> { [   bracketleft,     braceleft,                   i,           Iabovedot ] };
+//    key <AD12> { [  bracketright,    braceright,          udiaeresis,          Udiaeresis ] };
+//    key <AD11> { [      idotless,     Iabovedot,         bracketleft,           braceleft ] }; // tr İı
+    key <AD11> { [             i,     Iabovedot,         bracketleft,           braceleft ] }; // from tr <AC11>
+    key <AD12> { [    udiaeresis,    Udiaeresis,        bracketright,          braceright ] }; // tr <AD12>
+    key <AC09> { [      idotless,             I,            NoSymbol,            NoSymbol ] }; // tr ı
+    key <LSGT> { [      scedilla,      Scedilla,          odiaeresis,          Odiaeresis ] }; // from tr <AC10>/<AB08>
+//    key <LSGT> { [ dead_circumflex,  dead_tilde,          odiaeresis,          Odiaeresis ] }; // needed '^'; tr <AB08>
+//    key <AC03> { [             s,             S,            scedilla,            Scedilla ] }; // from tr <AC10>
+// NOTE: The "Curl-DH" ergo mod moves H (and possibly K) which may interfere with these mappings.
+//    key <AC06> { [             h,             H,              ssharp,             section ] }; // from Cmk[eD] 's'
+    key <AD05> { [             g,             G,              gbreve,              Gbreve ] }; // from tr <AD11>
+    key <AB06> { [             k,             K,              ibreve,              Ibreve ] }; // Crimean Turkish
+};
+// <-- DreymaR: Additions to xkb/symbols/tr

@@ -1,0 +1,103 @@
+// $XKeyboardConfig$
+
+//  *****************************************************************************************
+// ******                                                                               ******
+// *****        Colemak layouts - adding locale variants in a consistent fashion         *****
+// *****                    by OEystein Bech "DreymaR" Gadmar, 2012-                     *****
+// *****    (copy this template to a new file then find/replace '<LANGUAGE>'/'<LL>')       *****
+// *****           ('<LL>' is usually the ISO-3166 two-letter country code)                *****
+// ******                                                                               ******
+//  *****************************************************************************************
+
+// ***********************************************
+// ***   In the symbols file for <LANGUAGE>    ***
+// ***       (its filename is '<LL>')            ***
+// ***********************************************
+
+// --> OEystein Bech "DreymaR" Gadmar, 2014-01: Additions to xkb/symbols/<LL>
+// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for <LANGUAGE>.
+// 2006-01-01 Shai Coleman, http://colemak.com/
+// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+
+// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_ks" {
+    include "<LL>(basic)"
+    include "colemak(cmk_ed_letters)"
+    name[Group1]= "<LANGUAGE> (Colemak[eD], keep local symbols)";
+
+// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//    key <AE05> { [ NoSymbol, NoSymbol,       mu, onehalf ] };
+//    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, onehalf ] }; // onehalf is moved, threeeights is lost
+
+    key <AD10> { [ §, §, §, § ] }; // from <AC10>
+//    key <AD10> { [ semicolon, colon, dead_diaeresis, ellipsis ] }; // Colemak[eD] <AD10>
+};
+
+// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+// For <LANGUAGE>, necessary local letters are added to designated flexible spots in the layout.
+// For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_us" {
+    include "colemak(cmk_ed_letters)"
+    include "colemak(cmk_ed_symbols)"
+    include "level3(ralt_switch)"
+    name[Group1]= "<LANGUAGE> (Colemak[eD], unified symbols)";
+
+// NEEDED: 
+// <LANGUAGE> letter frequencies:
+// NOTE:
+
+    key <LSGT> { [             §,             §,                  oe,                  OE ] }; // from <AC10>
+//    key <AD11> { [   bracketleft,     braceleft,                   §,                   § ] };
+//    key <AD12> { [  bracketright,    braceright,                   §,                   § ] };
+    key <AD11> { [             §,             §,         bracketleft,           braceleft ] }; // from <AD11>
+    key <AD12> { [             §,             §,        bracketright,          braceright ] }; // from <AC11>
+// NOTE: The "Curl-DH" ergo mod moves H (and possibly K) which may interfere with these mappings.
+//    key <AB06> { [             k,             K,                   §,                   § ] }; // from <A>
+//    key <AC06> { [             h,             H,                   §,                   § ] }; // from <A>
+//    key <AD06> { [             j,             J,                   §,                   § ] }; // from <A>
+//    key <AD07> { [             l,             L,                   §,                   § ] }; // from <A>
+//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
+//    key <A§§§> { [             §,             §,                  oe,                  OE ] }; // keep oe
+};
+// <-- DreymaR: Additions to xkb/symbols/<LL>
+
+// ***********************************************
+// ***   In the rules/evdev(+base).xml file    ***
+// ***   Under the <LL> layout variantList       ***
+// ***********************************************
+
+        <variant>
+          <configItem>
+            <name>cmk_ed_ks</name>
+            <description><LANGUAGE> (Colemak[eD], keep local symbols)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>cmk_ed_us</name>
+            <description><LANGUAGE> (Colemak[eD], unified symbols)</description>
+          </configItem>
+        </variant>
+
+// ***********************************************
+// ***   In the rules/evdev(+base).lst file    ***
+// ***      Under '! variant' (norm. <LL>)       ***
+// ***********************************************
+
+  cmk_ed_ks       <LL>: <LANGUAGE> (Colemak[eD], keep local symbols)
+  cmk_ed_us       <LL>: <LANGUAGE> (Colemak[eD], unified symbols)
+
+// ***********************************************
+// ***  (In the main rules/evdev(+base) file   ***
+// ***  no changes should be necessary.)       ***
+// ***********************************************
+
+//  *****************************************************************************************
+// ******                                                                               ******
+// *****           END of DreymaR's Colemak additions (Cmk[eD], National var.)           *****
+// ******                                                                               ******
+//  *****************************************************************************************

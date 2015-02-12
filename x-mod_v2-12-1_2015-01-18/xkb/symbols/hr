@@ -1,0 +1,97 @@
+default  partial alphanumeric_keys
+xkb_symbols "basic" {
+
+    include "rs(latin)"
+    name[Group1]="Croatian";
+
+    // Redefine these keys to match the XFree86 Croatian layout.
+    key <AE01> { [     1,     exclam,    asciitilde,      dead_tilde ] };
+    key <AE03> { [     3, numbersign,   asciicircum, dead_circumflex ] };
+    key <AE05> { [     5,    percent,        degree,  dead_abovering ] };
+    key <AE07> { [     7,      slash,         grave,      dead_grave ] };
+    key <AB10> { [ minus, underscore, dead_belowdot,   dead_abovedot ] };
+};
+
+partial alphanumeric_keys
+xkb_symbols "us" {
+
+    include "us"
+    name[Group1]= "Croatian (US keyboard with Croatian letters)";
+
+    key <AD01> { [  any,  any,  backslash               ] };
+    key <AD02> { [  any,  any,  bar                     ] };
+    key <AD03> { [  any,  any,  EuroSign                ] };
+    key <AD06> { [  any,  any,  z,           Z          ] };
+    key <AD11> { [  any,  any,  scaron,      Scaron     ] };
+    key <AD12> { [  any,  any,  dstroke,     Dstroke    ] };
+    key <AC04> { [  any,  any,  bracketleft             ] };
+    key <AC05> { [  any,  any,  bracketright            ] };
+    key <AC08> { [  any,  any,  lstroke                 ] };
+    key <AC09> { [  any,  any,  Lstroke                 ] };
+    key <AC10> { [  any,  any,  ccaron,      Ccaron     ] };
+    key <AC11> { [  any,  any,  cacute,      Cacute     ] };
+    key <LSGT> { [  any,  any,  bar                     ] };
+    key <AB01> { [  any,  any,  y,           Y          ] };
+    key <AB04> { [  any,  any,  at                      ] };
+    key <AB05> { [  any,  any,  braceleft               ] };
+    key <AB06> { [  any,  any,  braceright              ] };
+    key <AB07> { [  any,  any,  section                 ] };
+    key <AB08> { [  any,  any,  semicolon               ] };
+    key <AB09> { [  any,  any,  colon                   ] };
+    key <AB10> { [  any,  any,  minus,       underscore ] };
+    key <BKSL> { [  any,  any,  zcaron,      Zcaron     ] };
+
+    include "level3(ralt_switch)"
+};
+
+partial alphanumeric_keys
+xkb_symbols "alternatequotes" {
+
+    include "rs(latinalternatequotes)"
+    name[Group1]= "Croatian (with guillemets for quotes)";
+};
+
+partial alphanumeric_keys
+xkb_symbols "unicode" {
+
+    include "rs(latinunicode)"
+    name[Group1]= "Croatian (with Croatian digraphs)";
+};
+
+partial alphanumeric_keys
+xkb_symbols "unicodeus" {
+
+    include "rs(latinunicodeyz)"
+    name[Group1]= "Croatian (US keyboard with Croatian digraphs)";
+};
+
+// --> OEystein Bech "DreymaR" Gadmar, 2014-10: Additions to xkb/symbols/hr
+// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Croatian.
+// 2006-01-01 Shai Coleman, http://colemak.com/
+// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+
+// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_ks" {
+    include "hr(basic)"
+    include "colemak(cmk_ed_letters)"
+    name[Group1]= "Croatian (Colemak[eD], keep local symbols)";
+
+// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//    key <AE05> { [ NoSymbol, NoSymbol,       mu, dead_abovering ] };
+//    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, dead_abovering ] }; // 'degree' is mapped on dead_abovering
+
+    key <AD10> { [ ccaron, Ccaron, dead_acute, dead_doubleacute ] }; // from <AC10>
+};
+
+// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+// For Croatian, necessary local letters are added to designated flexible spots in the layout.
+// NOTE: - Bosnian(ba), Croatian(hr), Slovenian(si) and Serbian(sr) layouts are harmonized.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_us" {
+    include "rs(cmk_ed_us)"
+    name[Group1]= "Croatian (Colemak[eD], unified symbols)";
+};
+// <-- DreymaR: Additions to xkb/symbols/hr
