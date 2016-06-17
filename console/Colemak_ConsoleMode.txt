@@ -1,0 +1,11 @@
+From http://colemak.com/Unix
+
+Linux in text console mode
+————————————————————————————————————————
+    Download, untar/gunzip archive
+    Under Debian/Ubuntu/Knoppix/Debian derivatives type: install-keymap linux_console/colemak.iso15.kmap to install as the default layout.
+    Type: loadkeys linux_console/colemak.iso15.kmap to switch layouts.
+    To switch to a ISO8859-15 compatible font type: consolechars -f lat9v-14
+    To switch back to QWERTY type: loadkeys us
+————————————————————————————————————————
+

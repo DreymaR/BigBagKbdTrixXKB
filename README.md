@@ -1,20 +1,26 @@
 DreymaR's Big Bag of Keyboard Tricks
 ====================================
 
-For Linux (updated to XKB-data v2.12.1)
+For Linux (updated to XKB-data v2.17.1ub1, 2016-06)
 
-* New "Colemak[eD]" AltGr mappings (lv 3-4) putting dead keys on AltGr+symbol keys and reworking most other mappings
-* An Extend layer using Caps Lock for its modifier (lv 5-8; "Extend") for navigation from the home position and more
-* Angle/Wide modifications to improve wrist angles, hand spacing and right pinky stretch/load effort
-* Curl modifications to improve hand curvature
-* For several locales, a 'Unified Symbols' layout with only a few necessary locale changes from the standard Colemak[eD];
-* Also, a layout to 'Keep Local Symbols' like their default (QWERTY-type) counterparts and key cap markings for that locale
-* Access to Cyrillic, Greek and Hebrew letters using layout toggling to intuitive phonetic Colemak layouts
-* Access to a mirrored Colemak that allows one-handed typing (I haven't used it much - but if I ever break an arm...!)
-* The 4 Tarmak transitional Colemak layouts for learning Colemak in smaller steps if so desired
+* New "Colemak[eD]" AltGr mappings (lv3-4) putting dead keys on AltGr+symbol keys and reworking most other mappings
+* An "Extend" layer using Caps Lock as a modifier (lv5-8) for navigation/editing from the home position and more
+* Angle/Wide ergo modifications to improve wrist angles, hand spacing and right pinky stretch/load effort
+* Curl-DH ergo modifications to encourage natural finger curvature
+* For several locales, a 'Unified Symbols' layout with only a few necessary changes from the standard Colemak[eD];
+  Also, a layout to 'Keep Local Symbols' like their default (QWERTY-type) counterparts for that locale
+* Intuitive phonetic layouts for Cyrillic, Greek and Hebrew scripts
+* Mirrored Colemak that allows one-handed typing (if I ever break an arm...)
+* The 4 Tarmak transitional Colemak layouts for learning Colemak (or Colemak-Curl) in smaller steps if desired
+
+More info
+---------
+
+Run the install and setxkb scripts with -h (or look inside them) for more help and info about their workings!
+
 
 Links
 -----
 
-See the [DREYMAR'S (XKB) topic on the Colemak Forums](http://forum.colemak.com/viewtopic.php?id=1438) (http://forum.colemak.com)
-There are plenty of explanations and further links in there, as well as links to files
+See the [DREYMAR'S (XKB) topic on the Colemak Forums](http://forum.colemak.com/viewtopic.php?id=1438) (http://forum.colemak.com).
+There are plenty of explanations and further links in there, as well as links to files.

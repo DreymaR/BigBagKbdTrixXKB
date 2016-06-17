@@ -1,0 +1,89 @@
+// $XKeyboardConfig$
+
+//  *****************************************************************************************
+// ******                                                                               ******
+// *****        Colemak layouts - adding locale variants in a consistent fashion         *****
+// *****                    by OEystein Bech "DreymaR" Gadmar, 2012-                     *****
+// *****    (copy this template to a new file then find/replace 'Esperanto'/'epo')       *****
+// *****           ('<LL>' is usually the ISO-3166 two-letter country code)              *****
+// ******                                                                               ******
+//  *****************************************************************************************
+
+// ***********************************************
+// ***   In the symbols file for Esperanto     ***
+// ***       (its filename is 'epo')           ***
+// ***********************************************
+
+// --> OEystein Bech "DreymaR" Gadmar, 2014-01: Additions to xkb/symbols/epo
+// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Esperanto.
+// 2006-01-01 Shai Coleman, http://colemak.com/
+// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+
+// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_ks" {
+    include "colemak(cmk_ed_letters)"
+    include "colemak(cmk_ed_symbols)"
+    include "level3(ralt_switch)"
+    include "epo(colemak)" // remaps only AltGr mappings for Colemak C/G/H/J/S/U
+    name[Group1]= "Esperanto (Colemak[eD], keep local symbols)";
+};
+
+// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+// For Esperanto, necessary local letters are added to designated flexible spots in the layout.
+// For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_us" {
+    include "colemak(cmk_ed_letters)"
+    include "colemak(cmk_ed_symbols)"
+    include "level3(ralt_switch)"
+    name[Group1]= "Esperanto (Colemak[eD], unified symbols)";
+
+// NEEDED: ĈĉĜĝĤĥĴĵŜŝ, Ŭŭ
+// Esperanto letter frequencies: The accented letters add up, so allegedly 6% for the above 6 letters together
+// NOTE: Added dead_circumflex to both shifted and unshifted LBracket, so it's easy to use with shifted letters
+
+//    key <AD11> { [   bracketleft,     braceleft,     dead_circumflex,     dead_circumflex ] };
+//    key <AD12> { [  bracketright,    braceright,              ubreve,              Ubreve ] };
+    key <AD11> { [ dead_circumflex, dead_circumflex,     bracketleft,           braceleft ] }; // common accent
+    key <AD12> { [        ubreve,        Ubreve,        bracketright,          braceright ] }; // from <AC11>
+    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
+};
+// <-- DreymaR: Additions to xkb/symbols/epo
+
+// ***********************************************
+// ***   In the rules/evdev(+base).xml file    ***
+// ***   Under the epo layout variantList      ***
+// ***********************************************
+
+        <variant>
+          <configItem>
+            <name>cmk_ed_ks</name>
+            <description>Esperanto (Colemak[eD], keep local symbols)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>cmk_ed_us</name>
+            <description>Esperanto (Colemak[eD], unified symbols)</description>
+          </configItem>
+        </variant>
+
+// ***********************************************
+// ***   In the rules/evdev(+base).lst file    ***
+// ***      Under '! variant' (norm. epo)      ***
+// ***********************************************
+
+  cmk_ed_ks       epo: Esperanto (Colemak[eD], keep local symbols)
+  cmk_ed_us       epo: Esperanto (Colemak[eD], unified symbols)
+
+// ***********************************************
+// ***  (In the main rules/evdev(+base) file   ***
+// ***  no changes should be necessary.)       ***
+// ***********************************************
+
+//  *****************************************************************************************
+// ******                                                                               ******
+// *****           END of DreymaR's Colemak additions (Cmk[eD], National var.)           *****
+// ******                                                                               ******
+//  *****************************************************************************************
