@@ -27,16 +27,16 @@
 //
 // KeyPad overlay with nav block to the left (lv7-8):
 // +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |` €€€ |1     |2     |3     |4 £   |5 €   |6     |7     |8     |9     |0     |-     |=     |
+// |` €€€ |1     |2     |3     |4 £   |5 €   |6     |7  ⇖  |8  ⇑  |9  ⇗  |0     |-     |=     |
 // | Cust |  !   |  @   |  #   |  $   |  %   |  ^   | KP_7 | KP_8 | KP_9 | KP_* | KP_- | KP_= |
 // +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |Tab   |Q ### |W ### |F ### |P €€€ |G €€€ |J ### |L     |U     |Y     |;     |[ {   |] }   |
+// |Tab   |Q ### |W ### |F ### |P €€€ |G €€€ |J ### |L  ⇐  |U  ⇔  |Y  ⇒  |;     |[ {   |] }   |
 // |      | Home | Up   | End  | Del  | Esc  | PgUp | KP_4 | KP_5 | KP_6 | KP_+ |  (   |  )   |
 // +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |Caps+ |A ### |R ### |S ### |T €€€ |D     |H ### |N     |E     |I     |O     |' "   |\ |   |
-// | ++++ | Left | Down | Right| Back | K_Lck| PgDn | KP_1 | KP_2 | KP_3 | K_Ent|  '   |  \   |
+// |Caps+ |A ### |R ### |S ### |T €€€ |D     |H ### |N  ⇙  |E  ⇓  |I  ⇘  |O     |' "   |\ |   |
+// | ++++ | Left | Down | Right| Back | K_Lck| PgDn | KP_1 | KP_2 | KP_3 | K_Ent|  '   |  :   |
 // +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |_ *** |Z €€€ |X === |C === |V === |B *** |K ;   |M     |,     |.     |/     |Spc   |Entr  |
+// |_ *** |Z €€€ |X === |C === |V === |B *** |K     |M     |,  ⇕  |.     |/     |Spc   |Entr  |
 // | *MOn | Undo | Cut  | Copy | Paste| *Bt1 |  ,   | KP_0 | KP_0 | KP_. | KP_/ | Spc  | K_Ent|
 // +------+------+------+------+------+------+------+------+------+------+------+------+------+
 //
@@ -45,6 +45,10 @@
 // NOTE: If a hex pad is needed, the lv7(8?)+KBHDJG -> ABCDEF mappings are one solution
 // NOTE: There's a KP key named KP_BEGIN; it seems like a hack? Ignored for now.
 // NOTE: I've duplicated KP_0 to make it easy to hit. Maybe KP_Enter should've been helped too...?
+// TODO: Autorepeat is hurting for some. This is probably an XKB bug? What can be done about it?
+//       One fix is to run xset afterwards: 'seq -s " r " 8 255 | xargs xset r' supposedly does the trick.
+//       Add the following to key <> {} defs (before symbols[Group1]=)?
+//           repeat=true,
 
 default partial
 xkb_symbols "basic" {
@@ -153,19 +157,19 @@ xkb_symbols "lv5" {
                    NoAction()           , NoAction()           ]
                };  // 2
     key <AE03> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
-                   F3      , F3     , numbersign       , numbersign         ],  // #
+                   F3      , F3     , numbersign       , numbersign         ], // #
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
                    Redirect(key=<FK03>,clearmods=LevelFive), Redirect(key=<FK03>,clearmods=LevelFive),
                    NoAction()           , NoAction()           ]
                };  // 3
     key <AE04> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
-                   F4      , F4     , dollar           , sterling           ], // $£
+                   F4      , F4     , dollar           , sterling           ], // $ £
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
                    Redirect(key=<FK04>,clearmods=LevelFive), Redirect(key=<FK04>,clearmods=LevelFive),
                    NoAction()           , NoAction()           ]
                };  // 4
     key <AE05> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
-                   F5      , F5     , percent          , EuroSign           ], // %€
+                   F5      , F5     , percent          , EuroSign           ], // % €
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
                    Redirect(key=<FK05>,clearmods=LevelFive), Redirect(key=<FK05>,clearmods=LevelFive),
                    NoAction()           , NoAction()           ]
@@ -300,7 +304,7 @@ xkb_symbols "lv5" {
                };  // ] }
     key <BKSL> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    XF86Favorites        , XF86MyComputer        , // BrFav
-                   backslash            , bar                  ], // BKSL
+                   colon                , bar                  ], //  :
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
                    Redirect(key=<I164>,clearmods=all), Redirect(key=<I165>,clearmods=all), // <I164>/<I165>(‡‡)
                    NoAction()           , NoAction()           ]
@@ -466,13 +470,13 @@ xkb_symbols "lv5" {
    key <SPCE> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Return               , Return                , // Enter
                    space                , nobreakspace         ], // Space
-                 actions[Group1]=[NoAction(),SetMods(modifiers=Shift),NoAction(),SetMods(modifiers=Shift),
+                 actions[Group1]=[NoAction(),SetMods(mods=Shift),NoAction(),SetMods(mods=Shift),
                    Redirect(key=<RTRN>) , Redirect(key=<RTRN>)  , // <RTRN>
                    NoAction()           , NoAction()           ]
                };  // <SPCE>
 //    key <CAPS> { [ NoSymbol,NoSymbol,NoSymbol,NoSymbol ] };  // CapsLock
 
-// §§: XCV Cut/Copy/Paste seem OK in Firefox but not Gedit!? This is a GTK weakness I think.
+// §§: XCV Cut/Copy/Paste seem OK in Firefox but not Gedit!? This seems to be a GTK weakness.
 //     Some bind fiddling in ~/.gtkrc-2.0 and ~/.config/gtk-3.0/gtk.css can get this working
 // ††: 'Pointer_'mousing needs enabling! Real KP_ keys work but not the Pointer_ mousing symbols
 //    (In the Settings GUI there's a Shift+NumLock option for this, but Pointer_EnableKeys works too)
@@ -513,9 +517,7 @@ xkb_symbols "lv5" {
 
 // ==========================================================================================================
 //// An attempt at using the Overlay functionality for modifier Extend mappings.
-//// If the Extend key could both switch lv5 AND Overlay1, maybe the A/S/T modifiers would work?
-//// The idea would be to map only these as overlay keys, and the rest as lv5+
-//// NOTE: Not working. Problem: The Caps key cannot both be a lvl5_switch and overlay_switch!?
+//// NOTE: Not working. One problem: The Caps key cannot both be a lvl5_switch and overlay_switch!?
 //partial // alphanumeric_keys
 //xkb_symbols "overlay_mods" {
 ////    name[Group1]= "Extend layer";
@@ -567,23 +569,19 @@ xkb_symbols "lv5" {
 
 // An attempt at using the Overlay functionality for all Extend mappings.
 // NOTE: Apparently, any key can only have ONE overlay!
-// The Overlay1/Overlay2 bits determine which one, but for some odd reason a key can't have both defined.
+// The Overlay1/Overlay2 bits determine which one, but for some odd reason a key can't have both defined?
 // This means that the idea of several Extend layers can't be implemented easily in this way.
 // NOTE: For testing purposes, I'm only mapping some keys for now. The rest can follow if this works! :)
 //partial // alphanumeric_keys
 //xkb_symbols "overlay_full" {
 ////    name[Group1]= "Extend layer";
 
-//    key <ESC>  { overlay1 = <CAPS> };
-//    key <SCLK> { overlay1 = <CAPS> };
-//    key <TLDE> { overlay1 = <DELE> };
-//    key <AE01> { overlay1 = <FK01> };
-//    key <AE02> { overlay1 = <FK02> };
-//    key <AE03> { overlay1 = <FK03> };
-//    key <AE04> { overlay1 = <FK04> };
-//    key <AE05> { overlay1 = <FK05> };
-//    key <AE06> { overlay1 = <FK06> };
-//    key <AD01> { overlay1 = <ESC>  }; //Esc
+//    key <ESC>  { overlay1 = <CAPS> }; 
+//    key <AE01> { overlay1 = <FK01> }; 
+//    key <AE02> { overlay1 = <FK02> }; 
+//    key <AE03> { overlay1 = <FK03> }; 
+//    key <AE04> { overlay1 = <FK04> }; 
+//    key <AD01> { overlay1 = <ESC>  }; 
 //    key <AD02> { overlay1 = <I185> }; // KEY_SCROLLUP  //(††)
 //    key <AD03> { overlay1 = <I166> }; // #define KEY_BACK
 //    key <I166> { [ XF86Back    ] }; //BrBck

@@ -740,7 +740,7 @@ xkb_symbols "colemak" {
 //    key <AE01> { [               1,          exclam,           U0301                  ] }; // (U0301 Comb. acute)
 //    key <AE02> { [               2,              at,           U030B                  ] }; // (U030B Comb. doubleacute)
     key <AE03> { [               3,      numerosign,       dead_horn,      numbersign ] };
-//    key <AE04> { [               4,          dollar,   dead_currency,            cent ] };
+    key <AE04> { [               4,          dollar,   dead_currency,           U20BD ] }; // (U20BD Ruble sign. Alt. on AltGr+8)
 //    key <AE05> { [               5,         percent,        EuroSign                  ] };
 //    key <AE06> { [               6,     asciicircum,           U0306                  ] }; // (U0306 Comb. breve)
 //    key <AE07> { [               7,       ampersand,           U0307                  ] }; // (U0307 Comb. dot above)

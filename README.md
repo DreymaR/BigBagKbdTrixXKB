@@ -1,7 +1,7 @@
 DreymaR's Big Bag of Keyboard Tricks
 ====================================
 
-For Linux (updated to XKB-data v2.17.1ub1, 2016-06)
+### For Linux (updated to XKB-data v2.17.1ub1, 2016-06)
 
 * New "Colemak[eD]" AltGr mappings (lv3-4) putting dead keys on AltGr+symbol keys and reworking most other mappings
 * An "Extend" layer using Caps Lock as a modifier (lv5-8) for navigation/editing from the home position and more
@@ -24,3 +24,6 @@ Links
 
 See the [DREYMAR'S (XKB) topic on the Colemak Forums](http://forum.colemak.com/viewtopic.php?id=1438) (http://forum.colemak.com).
 There are plenty of explanations and further links in there, as well as links to files.
+
+Happy XKB hacking!
+DreymaR, 2016-10

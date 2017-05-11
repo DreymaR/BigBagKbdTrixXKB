@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ## ======================================================
-## ===  XKBSET.sh to set the XKB keyboard options     ===
+## ===  SETXKB.sh to set the XKB keyboard options     ===
 ## ===     by Øystein Bech "DreymaR" Gadmar, 2014     ===
 ## ======================================================
 
@@ -25,7 +25,6 @@ FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
 #		 Options left out of this: Too complex (replace all or add another, and if so, how?)
 
 ##-------------- init ------------------------------------------
-## NOTE: '#(-a)' means that the value can be set by a command-line argument '-a <value>'
 
 #~ MyDATE=`date +"%Y-%m-%d_%H-%M"`
 MyNAME=`basename $0`
@@ -47,8 +46,12 @@ AddCmd='no'				# (-a) Add setxkbmap cmd to file?
 AddDefault="${HOME}/.bashrc"
 AddCmdTo=${AddDefault}	# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
 SetXStr='' #'5aw no us'	# (-s) Shortcut string for setxkb - 'model locale eD-variant(sym)'
+## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args]\e[0m\n"\
+"===========================================================\n"\
+"[-#] Functionality             - 'default'  \n"\
+"===========================================================\n"\
 "[-m] <model>                   - '${XKBmodel}'\n"\
 "[-l] <layout>                  - '${XKBlayout}'\n"\
 "[-o] <option>                  - \n"\

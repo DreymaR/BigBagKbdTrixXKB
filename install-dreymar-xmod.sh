@@ -29,19 +29,18 @@ FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
 #"- With '-i <dir>', specify a directory path/name to install in.\n"\
 #"- With '-g', also install GTK 2.0/3.0 config for XF86 Cut/Copy/Paste.\n"\
 
-## NOTE: The mod directory has the form "${DModTag}<date>" with DModTag='x-mod_v<VER>_'
-##		- Unless you change the DModTag, it should be in the same dir as this script
+## NOTE: The mod directory has the form $DModTag="x-mod_v<VER>[_<DATE>]"
+##		- Unless you change this tag, it should be in the same dir as this script
 ##		- It has subdirectories like 'xkb' that are to be installed (one, some or all)
-## NOTE: This is the new preferred way instead of patching the system files:
+## NOTE: This is now the preferred way instead of patching the system files:
 ##		- Backup system xkb to dbak-xkb_<DATE> (and the same for any other subdirs)
 ##		- Copy X11/xkb to ${InstDir}/dxkb, then modify files in dxkb
 ##		- Set up setxkb.sh to run from the modified dxkb [WARNING: This may not work now!]
-##      - Optionally (-o) overwrite the system files instead
+##      - Or, (-o) overwrite the system files instead
 ## NOTE: The x-mod dir now holds x-mod*/xkb; eventually there may be a locale dir too.
 
 
 ##-------------- init ------------------------------------------
-## NOTE: '#(-a)' means that the value can be set by a command-line argument '-a <value>'
 
 MyDATE=`date +"%Y-%m-%d_%H-%M"`
 MyNAME=`basename $0`
@@ -57,7 +56,7 @@ ModDATE=''
 
 DModDir=`dirname $0`	# (-d) Path to the script (and mod?) root directory
 ToolDir="${DModDir}/dreymar-xtools"	# The location of tool scripts (like setxkb.sh)
-DModTag="x-mod_v${XVERSION}_${ModDATE}"	# (-t) Mod dir "prefix"
+DModTag="x-mod_v${XVERSION}${ModDATE:+'_'}${ModDATE}"	# (-t) Mod dir "prefix"
 DBakFix='dbak-'			# (--) Backup dir prefix
 DModFix='d'				# (--) Modded dir prefix
 InstDir="${X11DIR}"		# (-i) Path to install subfolder(s) in
@@ -69,9 +68,13 @@ SubDirs='all'			# (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale', 
 InstGTK='no'			# (-g) Whether to install the GTK 2.0/3.0 config (if not present)
 SetXMap='no'			# (-x) Whether to run the setxkb script after installing
 SetXStr='5aw us us'		# (-s) Shortcut string for setxkb - 'mmm ll vv' (model layout eD-variant)
+## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args]\e[0m\n"\
-"Run this from the directory containing the x-mod dir\n"\
+"       Run this from the directory containing the x-mod dir\n"\
+"===========================================================\n"\
+"[-#] Functionality                     - 'default'  \n"\
+"===========================================================\n"\
 "[-i] <Install path>                    - ${InstDir}\n"\
 "[-o] Override install path w/ X11      - ${WriteSys}\n"\
 "[-b] Force backup       |     location - ${X11DIR}\n"\
@@ -212,7 +215,7 @@ for That in ${SubDirs}; do
 	if [ ${Restore} != '0' ]; then	# Restore from specified backup
 		## Restore from backup. Pick a backup # by parameter, 1 being oldest; use 999 or such for the last one
 		BackIt=`find "${X11DIR}/${DBakFix}${That}"* -maxdepth 0 -type d 2>/dev/null | head -n ${Restore} | tail -n 1`
-		[ -d "${BackIt}" ] || MyError "Unable to restore from '$(basename ${BackIt})': Not found!"
+		[ -d "${BackIt}" ] || MyError "Unable to locate restore dir '$(basename "${BackIt}")'"
 		MyPoint "Restoring from backup '$(basename "${BackIt}")'"
 		${DoSudo} cp -a "${BackIt}/"* "${X11DIR}/${That}" 2>/dev/null \
 			&& MyPoint "Restore done" || MyError "Restore copy error!"
