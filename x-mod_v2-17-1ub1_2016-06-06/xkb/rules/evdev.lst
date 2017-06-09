@@ -5,10 +5,15 @@
   pc105           Generic 105-key (Intl) PC
   pc104angle-z    Generic 104-key PC Angle(Z)Ergo
   pc104wide-qu    Generic 104-key PC Wide(Quote)Ergo
-  pc104awide-zqu  Generic 104-key PC Angle(Z)Wide(Quote)Ergo
-  pc104aframe     Generic 104-key PC AngleWing(Quote)Ergo
-  pc105angle-lg   Generic 105-key (Intl) PC Angle(LSGT)Ergo
-  pc105awide-sl   Generic 105-key (Intl) PC AngleWide(/)Ergo
+  pc104aw-zqu     Generic 104-key PC Angle(Z)Wide(Quote)Ergo
+  pc104awing      Generic 104-key PC AngleWing(Quote)Ergo
+  pc104curl-z     Generic 104-key PC CurlAngle(Z)Ergo
+  pc104caw-zqu    Generic 104-key PC CurlAngle(Z)Wide(Quote)Ergo
+  pc104cawing     Generic 104-key PC CurlAngleWing(Quote)Ergo
+  pc105angle      Generic 105-key (Intl) PC Angle_Ergo
+  pc105aw-sl      Generic 105-key (Intl) PC AngleWide(/)Ergo
+  pc105curl       Generic 105-key (Intl) PC CurlAngle_Ergo
+  pc105caw-sl     Generic 105-key (Intl) PC CurlAngleWide(/)Ergo
   dell101         Dell 101-key PC
   latitude        Dell Latitude series laptop
   dellm65         Dell Precision M65
@@ -296,15 +301,13 @@
   alt-intl        us: English (US, alternative international)
   colemak         us: English (Colemak)
   cmk_ed_us       us: English (Colemak[eD] - edition DreymaR)
-  tarmak1_e       us: English (Tarmak1 - Colemak[eD] transitional)
-  tarmak1k_e      us: English (Tarmak1k - Colemak[eD] transit. w/ Curl-Hk mod)
-  tarmak2_et      us: English (Tarmak2 - Colemak[eD] transitional)
-  tarmak2bk_et    us: English (Tarmak2bk - Colemak[eD] transit. w/ Curl-DbgHk mod)
-  tarmak2vm_et    us: English (Tarmak2vm - Colemak[eD] transit. w/ Curl-DvbgHm mod)
-  tarmak3_etr     us: English (Tarmak3 - Colemak[eD] transitional)
-  tarmak4_etro    us: English (Tarmak4 - Colemak[eD] transitional)
-  cmk_ed_dvbghm   us: English (Colemak[eD], Curl-DvbgHm ergo)
-  cmk_ed_dbghk    us: English (Colemak[eD], Curl-DbgHk ergo)
+  tarmak1__e      us: English (Tarmak1 - Colemak[eD] transitional)
+  tarmak1c_e      us: English (Tarmak1C - Colemak[eD] Curl-DH transitional)
+  tarmak2__et     us: English (Tarmak2 - Colemak[eD] transitional)
+  tarmak2c_et     us: English (Tarmak2C - Colemak[eD] Curl-DH transitional)
+  tarmak3__etr    us: English (Tarmak3 - Colemak[eD] transitional)
+  tarmak4__etro   us: English (Tarmak4 - Colemak[eD] transitional)
+  cmk_ed_dh       us: English (Colemak[eD], Curl-DH ergo mod)
   cmk_ed_mirror   us: English (Colemak[eD], mirrored)
   dvorak          us: English (Dvorak)
   dvorak-intl     us: English (Dvorak, international with dead keys)
@@ -935,8 +938,7 @@
   shift:breaks_caps    Shift cancels Caps Lock
   misc:typo            Enable extra typographic characters
   misc:extend          Enable level5 Extend mappings (home position arrows etc)
-  misc:cmk_curl_dbghk  Colemak Curl ergo mod (DbgHk variant)
-  misc:cmk_curl_dvbghm Colemak Curl ergo mod (DvbgHm variant)
+  misc:cmk_curl_dh     Colemak Curl(DH) ergo mod
   shift:both_capslock  Both Shift keys together toggle Caps Lock
   shift:both_capslock_cancel Both Shift keys together activate Caps Lock, one Shift key deactivates
   shift:both_shiftlock Both Shift keys together toggle ShiftLock

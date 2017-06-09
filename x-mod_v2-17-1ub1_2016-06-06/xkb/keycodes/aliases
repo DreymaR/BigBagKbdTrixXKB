@@ -130,4 +130,36 @@ xkb_keycodes "colemak" {
    alias <LatK> = <AB06>;
    alias <LatM> = <AB07>;
 };
+
+xkb_keycodes "colemak_dh" {
+
+   alias <LatQ> = <AD01>;
+   alias <LatW> = <AD02>;
+   alias <LatF> = <AD03>;
+   alias <LatP> = <AD04>;
+   alias <LatB> = <AD05>;
+   alias <LatJ> = <AD06>;
+   alias <LatL> = <AD07>;
+   alias <LatU> = <AD08>;
+   alias <LatY> = <AD09>;
+
+   alias <LatA> = <AC01>;
+   alias <LatR> = <AC02>;
+   alias <LatS> = <AC03>;
+   alias <LatT> = <AC04>;
+   alias <LatG> = <AC05>;
+   alias <LatK> = <AC06>;
+   alias <LatN> = <AC07>;
+   alias <LatE> = <AC08>;
+   alias <LatI> = <AC09>;
+   alias <LatO> = <AC10>;
+
+   alias <LatZ> = <AB01>;
+   alias <LatX> = <AB02>;
+   alias <LatC> = <AB03>;
+   alias <LatD> = <AB04>;
+   alias <LatV> = <AB05>;
+   alias <LatM> = <AB06>;
+   alias <LatH> = <AB07>;
+};
 // <-- DreymaR: Additions to xkb/keycodes/aliases

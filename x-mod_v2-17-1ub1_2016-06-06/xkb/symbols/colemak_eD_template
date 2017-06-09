@@ -55,7 +55,7 @@ xkb_symbols "cmk_ed_us" {
 //    key <AD12> { [  bracketright,    braceright,                   §,                   § ] };
     key <AD11> { [             §,             §,         bracketleft,           braceleft ] }; // from <AD11>
     key <AD12> { [             §,             §,        bracketright,          braceright ] }; // from <AC11>
-// NOTE: The "Curl-DH" ergo mod moves H (and possibly K) which may interfere with these mappings.
+// NOTE: The Curl(DH) ergo mod moves H and K, which may interfere with these mappings.
 //    key <AB06> { [             k,             K,                   §,                   § ] }; // from <A>
 //    key <AC06> { [             h,             H,                   §,                   § ] }; // from <A>
 //    key <AD06> { [             j,             J,                   §,                   § ] }; // from <A>

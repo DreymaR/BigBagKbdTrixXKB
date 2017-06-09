@@ -289,7 +289,7 @@ xkb_symbols "cmk_ed_us" {
     key <AC03> { [             s,             S,           0x1000219,           0x1000218 ] }; // comma-s from 's'
     key <AC04> { [             t,             T,           0x100021b,           0x100021a ] }; // comma-t from 't'
     key <AC05> { [             d,             D,             dstroke,             Dstroke ] }; // from 'd'
-// NOTE: The "Curl-DH" ergo mod moves H (and possibly K) which may interfere with these mappings.
+// NOTE: The Curl(DH) ergo mod moves H and K, which may interfere with these mappings.
     key <AC06> { [             h,             H,              ssharp,             section ] }; // from Cmk[eD] 's'
     key <AB06> { [             k,             K,              ibreve,              Ibreve ] }; // Crimean Tatar
     key <AD07> { [             l,             L,             lstroke,             Lstroke ] }; // from 'l'

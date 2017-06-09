@@ -46,29 +46,64 @@
     </model>
     <model>
       <configItem>
-        <name>pc104awide-zqu</name>
+        <name>pc104aw-zqu</name>
         <description>Generic 104-key PC (Angle(Z)Wide(Quote)Ergo mod)</description>
         <vendor>Generic</vendor>
       </configItem>
     </model>
     <model>
       <configItem>
-        <name>pc104aframe</name>
+        <name>pc104awing</name>
         <description>Generic 104-key PC (AngleWing(Quote)Ergo mod)</description>
         <vendor>Generic</vendor>
       </configItem>
     </model>
     <model>
       <configItem>
-        <name>pc105angle-lg</name>
-        <description>Generic 105-key (Intl) PC (Angle(LSGT)Ergo mod)</description>
+        <name>pc104curl-z</name>
+        <description>Generic 104-key PC (CurlAngle(Z)Ergo mod)</description>
         <vendor>Generic</vendor>
       </configItem>
     </model>
     <model>
       <configItem>
-        <name>pc105awide-sl</name>
+        <name>pc104caw-zqu</name>
+        <description>Generic 104-key PC (CurlAngle(Z)Wide(Quote)Ergo mod)</description>
+        <vendor>Generic</vendor>
+      </configItem>
+    </model>
+    <model>
+      <configItem>
+        <name>pc104cawing</name>
+        <description>Generic 104-key PC (CurlAngleWing(Quote)Ergo mod)</description>
+        <vendor>Generic</vendor>
+      </configItem>
+    </model>
+    <model>
+      <configItem>
+        <name>pc105angle</name>
+        <description>Generic 105-key (Intl) PC (Angle_Ergo mod)</description>
+        <vendor>Generic</vendor>
+      </configItem>
+    </model>
+    <model>
+      <configItem>
+        <name>pc105aw-sl</name>
         <description>Generic 105-key (Intl) PC (AngleWide(/)Ergo mod)</description>
+        <vendor>Generic</vendor>
+      </configItem>
+    </model>
+    <model>
+      <configItem>
+        <name>pc105curl</name>
+        <description>Generic 105-key (Intl) PC (CurlAngle_Ergo mod)</description>
+        <vendor>Generic</vendor>
+      </configItem>
+    </model>
+    <model>
+      <configItem>
+        <name>pc105caw-sl</name>
+        <description>Generic 105-key (Intl) PC (CurlAngleWide(/)Ergo mod)</description>
         <vendor>Generic</vendor>
       </configItem>
     </model>
@@ -1407,56 +1442,44 @@
         </variant>
         <variant>
           <configItem>
-            <name>tarmak1_e</name>
+            <name>tarmak1__e</name>
             <description>English (Tarmak1 - Colemak[eD] transitional)</description>
           </configItem>
         </variant>
         <variant>
           <configItem>
-            <name>tarmak1k_e</name>
-            <description>English (Tarmak1k - Colemak[eD] transit. w/ Curl-Hk mod)</description>
+            <name>tarmak1c_e</name>
+            <description>English (Tarmak1C - Colemak[eD] Curl-DH transitional)</description>
           </configItem>
         </variant>
         <variant>
           <configItem>
-            <name>tarmak2_et</name>
+            <name>tarmak2__et</name>
             <description>English (Tarmak2 - Colemak[eD] transitional)</description>
           </configItem>
         </variant>
         <variant>
           <configItem>
-            <name>tarmak2bk_et</name>
-            <description>English (Tarmak2bk - Colemak[eD] transit. w/ Curl-DbgHk mod)</description>
+            <name>tarmak2c_et</name>
+            <description>English (Tarmak2C - Colemak[eD] Curl-DH transitional)</description>
           </configItem>
         </variant>
         <variant>
           <configItem>
-            <name>tarmak2vm_et</name>
-            <description>English (Tarmak2vm - Colemak[eD] transit. w/ Curl-DvbgHm mod)</description>
-          </configItem>
-        </variant>
-        <variant>
-          <configItem>
-            <name>tarmak3_etr</name>
+            <name>tarmak3__etr</name>
             <description>English (Tarmak3 - Colemak[eD] transitional)</description>
           </configItem>
         </variant>
         <variant>
           <configItem>
-            <name>tarmak4_etro</name>
+            <name>tarmak4__etro</name>
             <description>English (Tarmak4 - Colemak[eD] transitional)</description>
           </configItem>
         </variant>
         <variant>
           <configItem>
-            <name>cmk_ed_dvbghm</name>
-            <description>English (Colemak[eD], Curl-DvbgHm ergo)</description>
-          </configItem>
-        </variant>
-        <variant>
-          <configItem>
-            <name>cmk_ed_dbghk</name>
-            <description>English (Colemak[eD], Curl-DbgHk ergo)</description>
+            <name>cmk_ed_dh</name>
+            <description>English (Colemak[eD], Curl-DH ergo mod)</description>
           </configItem>
         </variant>
         <variant>
@@ -7253,14 +7276,8 @@
       </option>
       <option>
         <configItem>
-          <name>misc:cmk_curl_dbghk</name>
-          <description>Colemak Curl ergo mod (DbgHk variant)</description>
-        </configItem>
-      </option>
-      <option>
-        <configItem>
-          <name>misc:cmk_curl_dvbghm</name>
-          <description>Colemak Curl ergo mod (DvbgHm variant)</description>
+          <name>misc:cmk_curl_dh</name>
+          <description>Colemak Curl(DH) ergo mod</description>
         </configItem>
       </option>
       <option>

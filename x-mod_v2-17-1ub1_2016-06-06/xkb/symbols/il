@@ -323,18 +323,54 @@ xkb_symbols "biblicalSIL" {
 };
 
 // --> OEystein Bech "DreymaR" Gadmar, 2014-08: Additions to xkb/symbols/il
-// The default layout for Israel is il(basic); this is a phonetic Colemak version.
 // 2006-01-01 Shai Coleman, http://colemak.com/
 // See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
 
-// I moved the key on <AC10> to <AD10>, just like the standard Colemak does.
 partial alphanumeric_keys
 xkb_symbols "colemak" {
-    include "il(basic)"
+    include "il(phonetic)"
+// The phonetic layout for Hebrew is il(phonetic)???; this is a Colemak translation.
+// TODO: Proper implementation with more glyphs, like the SIL Biblical!?!
 // NOTE: The basic layout didn't define some keys (no Space?); I've no idea why.
 //       To compensate, I include the below which defines SPCE.
     include "nbsp(level4)"
     name[Group1]= "Hebrew (Colemak, phonetic)";
+
+    key <LatE> {	[ hebrew_pe, hebrew_finalpe	]	};
+    key <LatR> {	[ hebrew_pe, hebrew_finalpe	]	};
+    key <LatT> {	[ hebrew_gimel, hebrew_gimel	]       };
+    key <LatY> {	[ hebrew_yod, hebrew_yod	]	};
+    key <LatU> {	[ hebrew_lamed, hebrew_lamed	]       };
+    key <LatI> {	[ hebrew_waw, hebrew_waw	]       }; // vav
+    key <LatO> {	[ hebrew_ayin, hebrew_ayin	]       };
+    key <LatP> { [ hebrew_finalpe,	colon,	doublelowquotemark	] };
+
+    key <LatS> {	[ hebrew_resh, hebrew_resh	]	};
+    key <LatD> {	[ hebrew_shin, hebrew_shin	]       };
+    key <LatF> {	[ hebrew_taw, hebrew_tet	]       };
+    key <LatG> {	[ hebrew_dalet, hebrew_dalet	]       };
+    key <LatJ> {	[ hebrew_nun, hebrew_finalnun	]	};
+    key <LatK> {	[ hebrew_aleph, hebrew_aleph	]       };
+    key <LatL> {	[ hebrew_yod, hebrew_yod	]       };
+    key <AC10> {	[ hebrew_samech, hebrew_samech	]       };
+
+    key <LatN> {	[ hebrew_kaph, hebrew_finalkaph	]	};
+
+//    key <LatH> {	[ hebrew_he, hebrew_he		]       };
+//    key <LatB> {	[ hebrew_bet, hebrew_bet	]       };
+//    key <LatM> {	[ hebrew_mem, hebrew_finalmem	]	};
+};
+
+partial alphanumeric_keys
+xkb_symbols "colemak_il" {
+    include "il(basic)"
+// The default layout for Israel is il(basic); this is a Colemak translation.
+// Based on the latin letters on the keys, it's not phonetic but maybe easier for some.
+// I moved the key on <AC10> to <AD10>, just like the standard Colemak does.
+// NOTE: The basic layout didn't define some keys (no Space?); I've no idea why.
+//       To compensate, I include the below which defines SPCE.
+    include "nbsp(level4)"
+    name[Group1]= "Hebrew (Colemak, Israel)";
 
     key <AD03> { [ hebrew_kaph,	F			] };
     key <AD04> { [ hebrew_pe,	P,	U05B7	] };  // Patah

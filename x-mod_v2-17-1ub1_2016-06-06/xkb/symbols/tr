@@ -410,7 +410,7 @@ xkb_symbols "cmk_ed_us" {
     key <LSGT> { [      scedilla,      Scedilla,          odiaeresis,          Odiaeresis ] }; // from tr <AC10>/<AB08>
 //    key <LSGT> { [ dead_circumflex,  dead_tilde,          odiaeresis,          Odiaeresis ] }; // needed '^'; tr <AB08>
 //    key <AC03> { [             s,             S,            scedilla,            Scedilla ] }; // from tr <AC10>
-// NOTE: The "Curl-DH" ergo mod moves H (and possibly K) which may interfere with these mappings.
+// NOTE: The Curl(DH) ergo mod moves H and K, which may interfere with these mappings.
 //    key <AC06> { [             h,             H,              ssharp,             section ] }; // from Cmk[eD] 's'
     key <AD05> { [             g,             G,              gbreve,              Gbreve ] }; // from tr <AD11>
     key <AB06> { [             k,             K,              ibreve,              Ibreve ] }; // Crimean Turkish

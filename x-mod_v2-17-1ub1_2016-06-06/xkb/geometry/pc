@@ -1567,11 +1567,10 @@ xkb_geometry "pc104alt" {
 }; // End of "pc104alt" geometry
 
 
-// --> OEystein Bech "DreymaR" Gadmar, 2013: Additions to xkb/geometry/pc
+// --> OEystein Bech "DreymaR" Gadmar, 2017: Additions to xkb/geometry/pc
 // pc104_Angle(Z) ergonomic mod (by DreymaR, 2011)
 xkb_geometry "pc104angle-z" {
     include "pc(pc104)"
-
     description= "Generic 104 - Angle(Z)Ergo mod";
 
     section.left= 19;
@@ -1591,10 +1590,31 @@ xkb_geometry "pc104angle-z" {
     }; // End of "Alpha" section
 }; // End of "pc104angle-z" geometry
 
+// pc104_CurlAngle(Z) ergonomic mod (by DreymaR, 2017)
+xkb_geometry "pc104curl-z" {
+    include "pc(pc104)"
+    description= "Generic 104 - CurlAngle(Z)Ergo mod";
+
+    section.left= 19;
+    row.left= 1;
+    key.shape= "NORM";
+    key.gap=  1;
+    section "Alpha" {
+	top= 61;
+	row {
+	    top= 58;
+	    keys { { <LFSH>, "LFSH", color="grey20" },
+		    <AB02>, <AB03>, <AB05>, <AB04>, <AB01>, 
+		    <AB06>, <AB07>, <AB08>, <AB09>, <AB10>, 
+		    { <RTSH>, "RTSH", color="grey20" }
+	    };
+	}; // End of bottom row
+    }; // End of "Alpha" section
+}; // End of "pc104curl-z" geometry
+
 // pc104_Wide(Quote) ergonomic mod (by DreymaR, 2013)
 xkb_geometry "pc104wide-qu" {
     include "pc(pc104)"
-
     description= "Generic 104 - Wide(Quote)Ergo mod";
 
     section.left= 19;
@@ -1639,9 +1659,8 @@ xkb_geometry "pc104wide-qu" {
 }; // End of "pc104wide-qu" geometry
 
 // pc104_Angle(Z)Wide(Quote) ergonomic mod (by DreymaR, 2015)
-xkb_geometry "pc104awide-zqu" {
+xkb_geometry "pc104aw-zqu" {
     include "pc(pc104wide-qu)"
-
     description= "Generic 104 - Angle(Z)Wide(Quote)Ergo mod";
 
     section.left= 19;
@@ -1656,16 +1675,37 @@ xkb_geometry "pc104awide-zqu" {
 		    <AB02>, <AB03>, <AB04>, <AB05>, <AB01>, 
 		    <AB10>, <AB06>, <AB07>, <AB08>, <AB09>, 
 		    { <RTSH>, "RTSH", color="grey20" }
-	    }; // pc104-AngleWide-ZQu
+	    };
 	}; // End of bottom row
     }; // End of "Alpha" section
-}; // End of "pc104awide-zqu" geometry
+}; // End of "pc104aw-zqu" geometry
 
-// pc104_AngleFrame(Quote) ergonomic mod (by DreymaR, 2015)
-xkb_geometry "pc104aframe" {
+// pc104_CurlAngle(Z)Wide(Quote) ergonomic mod (by DreymaR, 2017)
+xkb_geometry "pc104caw-zqu" {
+    include "pc(pc104wide-qu)"
+    description= "Generic 104 - CurlAngle(Z)Wide(Quote)Ergo mod";
+
+    section.left= 19;
+    row.left= 1;
+    key.shape= "NORM";
+    key.gap=  1;
+    section "Alpha" {
+	top= 61;
+	row {
+	    top= 58;
+	    keys { { <LFSH>, "LFSH", color="grey20" },
+		    <AB02>, <AB03>, <AB05>, <AB04>, <AB01>, 
+		    <AB10>, <AB06>, <AB07>, <AB08>, <AB09>, 
+		    { <RTSH>, "RTSH", color="grey20" }
+	    };
+	}; // End of bottom row
+    }; // End of "Alpha" section
+}; // End of "pc104caw-zqu" geometry
+
+// pc104_AngleWing(Quote) ergonomic mod (by DreymaR, 2015)
+xkb_geometry "pc104awing" {
     include "pc(pc104)"
-
-    description= "Generic 104 - AngleFrame ergo mod";
+    description= "Generic 104 - AngleWing(Quote)Ergo mod";
 
     section.left= 19;
     row.left= 1;
@@ -1706,13 +1746,34 @@ xkb_geometry "pc104aframe" {
 	    };
 	}; // End of bottom row
     }; // End of "Alpha" section
-}; // End of "pc104aframe" geometry
+}; // End of "pc104awing" geometry
+
+// pc104_CurlAngleWing(Quote) ergonomic mod (by DreymaR, 2017)
+xkb_geometry "pc104cawing" {
+    include "pc(pc104awing)"
+    description= "Generic 104 - CurlAngleWing(Quote)Ergo mod";
+
+    section.left= 19;
+    row.left= 1;
+    key.shape= "NORM";
+    key.gap=  1;
+    section "Alpha" {
+	top= 61;
+	row {
+	    top= 58;
+	    keys { { <LFSH>, "LFSH", color="grey20" },
+		    <AB01>, <AB02>, <AB03>, <AB05>, <AB04>, 
+		    <AB10>, <AB06>, <AB07>, <AB08>, <AB09>, 
+		    { <RTSH>, "RTSH", color="grey20" }
+	    };
+	}; // End of bottom row
+    }; // End of "Alpha" section
+}; // End of "pc104caw-zqu" geometry
 
 // pc105_Angle(LSGT) ergonomic mod (by DreymaR, 2011)
-xkb_geometry "pc105angle-lg" {
+xkb_geometry "pc105angle" {
     include "pc(pc105)"
-
-    description= "Generic 105 - Angle(LSGT)Ergo mod";
+    description= "Generic 105 - Angle_Ergo mod";
 
     section.left= 19;
     row.left= 1;
@@ -1729,12 +1790,33 @@ xkb_geometry "pc105angle-lg" {
 	    };
 	}; // End of bottom row
     }; // End of "Alpha" section
-}; // End of "pc105angle-lg" geometry
+}; // End of "pc105angle" geometry
+
+// pc105_CurlAngle(LSGT) ergonomic mod (by DreymaR, 2017)
+xkb_geometry "pc105curl" {
+    include "pc(pc105)"
+    description= "Generic 105 - CurlAngle_Ergo mod";
+
+    section.left= 19;
+    row.left= 1;
+    key.shape= "NORM";
+    key.gap=  1;
+    section "Alpha" {
+	top= 61;
+	row {
+	    top= 58;
+	    keys { { <LFSH>, "LFSH", color="grey20" },
+		    <AB01>, <AB02>, <AB03>, <AB05>, <AB04>, <LSGT>, 
+		    <AB06>, <AB07>, <AB08>, <AB09>, <AB10>, 
+		    { <RTSH>, "RTSH", color="grey20" }
+	    };
+	}; // End of bottom row
+    }; // End of "Alpha" section
+}; // End of "pc105curl" geometry
 
 // pc105_AngleWide(Slash) ergonomic mod (by DreymaR, 2011)
-xkb_geometry "pc105awide-sl" {
+xkb_geometry "pc105aw-sl" {
     include "pc(pc105)"
-
     description= "Generic 105 - AngleWide(/)Ergo mod";
 
     section.left= 19;
@@ -1776,5 +1858,27 @@ xkb_geometry "pc105awide-sl" {
 	    };
 	}; // End of bottom row
     }; // End of "Alpha" section
-}; // End of "pc105awide-sl" geometry
+}; // End of "pc105aw-sl" geometry
+
+// pc105_CurlAngleWide(Slash) ergonomic mod (by DreymaR, 2017)
+xkb_geometry "pc105caw-sl" {
+    include "pc(pc105aw-sl)"
+    description= "Generic 105 - CurlAngleWide(/)Ergo mod";
+
+    section.left= 19;
+    row.left= 1;
+    key.shape= "NORM";
+    key.gap=  1;
+    section "Alpha" {
+	top= 61;
+	row {
+	    top= 58;
+	    keys { { <LFSH>, "LFSH", color="grey20" },
+		    <AB01>, <AB02>, <AB03>, <AB05>, <AB04>, <LSGT>, 
+		    <BKSL>, <AB06>, <AB07>, <AB08>, <AB09>, 
+		    { <RTSH>, "RTSH", color="grey20" }
+	    };
+	}; // End of bottom row
+    }; // End of "Alpha" section
+}; // End of "pc105caw-sl" geometry
 // <-- DreymaR: Additions to xkb/geometry/pc

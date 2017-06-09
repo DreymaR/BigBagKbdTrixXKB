@@ -7,10 +7,10 @@
 # in /etc/X11/xorg.conf.
 
 #XKBMODEL="pc105"
-XKBMODEL="pc105awide-sl"
+XKBMODEL="pc105caw-sl"
 XKBLAYOUT="no,no"
 XKBVARIANT="cmk_ed_us,"
-XKBOPTIONS="compose:menu,terminate:ctrl_alt_bksp,grp_led:scroll,lv5:caps_switch_lock,misc:extend"
+XKBOPTIONS="compose:menu,terminate:ctrl_alt_bksp,grp_led:scroll,lv5:caps_switch_lock,misc:extend,misc:cmk_curl_dh"
 
 # If you don't want to use the XKB layout on the console, you can
 # specify an alternative keymap.  Make sure it will be accessible

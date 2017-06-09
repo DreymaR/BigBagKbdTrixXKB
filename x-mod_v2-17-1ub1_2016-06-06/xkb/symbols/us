@@ -818,76 +818,62 @@ xkb_symbols "cmk_ed_us" {
 // 2012-01-01 OEystein Bech "DreymaR" Gadmar: Paving the way; 'Tarmak (transitional Colemak)'.
 // 2006-01-01 Shai Coleman, http://colemak.com/
 partial alphanumeric_keys
-xkb_symbols "tarmak1_e" {
-    include "colemak(tarmak1_e)"
-    name[Group1]= "English/Intl (Tarmak1_E - Colemak transitional)";
+xkb_symbols "tarmak1__e" {
+    include "colemak(tarmak1__e)"
+    name[Group1]= "English/Intl (Tarmak1__E - Colemak transitional)";
 };
 
 partial alphanumeric_keys
-xkb_symbols "tarmak1k_e" {
-    include "colemak(tarmak1k_e)"
-    name[Group1]= "English/Intl (Tarmak1k_E - Colemak transit. w/ Curl-Hk mod)";
+xkb_symbols "tarmak1c_e" {
+    include "colemak(tarmak1c_e)"
+    name[Group1]= "English/Intl (Tarmak1C_E - Colemak transit. w/ Curl-DH mod)";
 };
 
 partial alphanumeric_keys
-xkb_symbols "tarmak2_et" {
-    include "colemak(tarmak2_et)"
-    name[Group1]= "English/Intl (Tarmak2_ET - Colemak transitional)";
+xkb_symbols "tarmak2__et" {
+    include "colemak(tarmak2__et)"
+    name[Group1]= "English/Intl (Tarmak2__ET - Colemak transitional)";
 };
 
 partial alphanumeric_keys
-xkb_symbols "tarmak2bk_et" {
-    include "colemak(tarmak2bk_et)"
-    name[Group1]= "English/Intl (Tarmak2bk_ET - Colemak transit. w/ Curl-DbgHk mod)";
+xkb_symbols "tarmak2c_et" {
+    include "colemak(tarmak2c_et)"
+    name[Group1]= "English/Intl (Tarmak2C_ET - Colemak transit. w/ Curl-DH mod)";
 };
 
 partial alphanumeric_keys
-xkb_symbols "tarmak2vm_et" {
-    include "colemak(tarmak2vm_et)"
-    name[Group1]= "English/Intl (Tarmak2vm_ET - Colemak transit. w/ Curl-DvbgHm mod)";
+xkb_symbols "tarmak3__etr" {
+    include "colemak(tarmak3__etr)"
+    name[Group1]= "English/Intl (Tarmak3__ETR - Colemak transitional)";
 };
 
 partial alphanumeric_keys
-xkb_symbols "tarmak3_etr" {
-    include "colemak(tarmak3_etr)"
-    name[Group1]= "English/Intl (Tarmak3_ETR - Colemak transitional)";
-};
-
-partial alphanumeric_keys
-xkb_symbols "tarmak4_etro" {
-    include "colemak(tarmak4_etro)"
-    name[Group1]= "English/Intl (Tarmak4_ETRO - Colemak transitional)";
+xkb_symbols "tarmak4__etro" {
+    include "colemak(tarmak4__etro)"
+    name[Group1]= "English/Intl (Tarmak4__ETRO - Colemak transitional)";
 };
 
 //partial alphanumeric_keys
-//xkb_symbols "tarmak3_eto" {
-//    include "colemak(tarmak3_eto)"
-//    name[Group1]= "English/Intl (Tarmak3_ETO - Colemak transitional)";
+//xkb_symbols "tarmak3__eto" {
+//    include "colemak(tarmak3__eto)"
+//    name[Group1]= "English/Intl (Tarmak3__ETO - Colemak transitional)";
 //};
 
 //partial alphanumeric_keys
-//xkb_symbols "tarmak4_etoi" {
-//    include "colemak(tarmak4_etoi)"
-//    name[Group1]= "English/Intl (Tarmak4_ETOI - Colemak transitional)";
+//xkb_symbols "tarmak4__etoi" {
+//    include "colemak(tarmak4__etoi)"
+//    name[Group1]= "English/Intl (Tarmak4__ETOI - Colemak transitional)";
 //};
 
-// Colemak-Curl(D/H) symbols for xkb on X.Org Server 7.x
+// Colemak-Curl(DH) symbols for xkb on X.Org Server 7.x
 // 2015-01-18 OEystein Bech "DreymaR" Gadmar
 // 2006-01-01 Shai Coleman, http://colemak.com/
-// This is the Curl-Dvbg/Hm Colemak ergo mod by Stevep99.
+// This is the Curl-DH Colemak ergo mod by Stevep99 and DreymaR.
 partial alphanumeric_keys
-xkb_symbols "cmk_ed_dvbghm" {
+xkb_symbols "cmk_ed_dh" {
     include "colemak(cmk_ed)"
-    include "colemak(cmk_dvbg-hm_ed)"
-    name[Group1]= "English/Intl (Colemak[eD], Curl-DvbgHm ergo)";
-};
-
-// This is the Curl-Dbg/Hk Colemak ergo mod, keeping V and M in place.
-partial alphanumeric_keys
-xkb_symbols "cmk_ed_dbghk" {
-    include "colemak(cmk_ed)"
-    include "colemak(cmk_dbg-hk_ed)"
-    name[Group1]= "English/Intl (Colemak[eD], Curl-DbgHk ergo)";
+    include "colemak(cmk_ed_dh)"
+    name[Group1]= "English/Intl (Colemak[eD], Curl-DH ergo)";
 };
 
 // 2012-04-01 OEystein Bech "DreymaR" Gadmar: Mirrored Colemak[eD] for one-handed typing

@@ -19,10 +19,13 @@ FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
 #		 Need a full xkb dir then (not just the xkb-mod files)
 
 ## NOTE: I made a handy shorthand for activating simple cmk_ed model/layout combos.
-#		 Example: -s '5w no us' activates model pc105awide-sl, layout no(cmk_ed_us)
-#		 Models: 4n 4a(pc104angle-z) 4w(pc104wide-qu) 4aw(pc104awide-zqu) 4f(pc104aframe)
-#		         5n 5a(pc105angle-lg) 5w/5aw(pc105awide-sl)
-#		 Options left out of this: Too complex (replace all or add another, and if so, how?)
+#		 See the help text of this script for more info on the model-layout-variant syntax.
+#		 Example: -s '5w no us' activates model pc105aw-sl, layout no(cmk_ed_us)
+#		 Models: 4n 4a(pc104angle-z) 4w(pc104wide-qu) 4aw(pc104aw-zqu) 4f(pc104awing)
+#		         5n 5a(pc105angle) 5w/5aw(pc105aw-sl)
+#		     - Curl(DH) models with(-out) Wide use a c: 4c, 5cw etc
+#		     - Thus, the allowed model short strings are (4|5)(n|a|c)[(w|f)]
+#		 XKB options are left out of this: Too complex (e.g., replace or append?)
 
 ##-------------- init ------------------------------------------
 
@@ -33,9 +36,8 @@ MyNAME=`basename $0`
 ## @@@ The default X11 dir under some (older) distros is /usr/lib/X11 @@@
 X11DIR='/usr/share/X11'; [ -d "${X11DIR}" ] || X11DIR='/usr/lib/X11'
 
-#~ XKBmodel=pc104awide-zqu	# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
-XKBmodel=pc105awide-sl	# ISO-105 keyboard w/ AngleWide(Slash) mod
-#~ XKBmodel=pc105caw-bksl	# ISO-105 w/ Curl(DbgHk)AngleWide(Slash) mod
+#~ XKBmodel=pc104aw-zqu	# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
+XKBmodel=pc105caw-sl	# ISO-105 keyboard w/ CurlAngleWide(Slash) mod
 #~ XKBlayout='us(cmk_ed_us),gr(colemak),ru(colemak)'
 XKBlayout='no(cmk_ed_us)'	# Norwegian Colemak[eD]'Universal Symbols' layout
 XKBoption='misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu'
@@ -45,7 +47,7 @@ XKBdir="${X11DIR}/xkb"	# (-d) The xkb-type dir to run setxkbmap from
 AddCmd='no'				# (-a) Add setxkbmap cmd to file?
 AddDefault="${HOME}/.bashrc"
 AddCmdTo=${AddDefault}	# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
-SetXStr='' #'5aw no us'	# (-s) Shortcut string for setxkb - 'model locale eD-variant(sym)'
+SetXStr='' #'5cw no us'	# (-s) Shortcut string for setxkb - 'model locale eD-variant(sym)'
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args]\e[0m\n"\
@@ -64,13 +66,13 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args]\e[0m\n"\
 "[-f] <file> to add cmd to      - '${AddCmdTo}'\n"\
 "\n\e[1mShortStr notation (a space separated string defining model+layout):\e[0m\n"\
 "  1) 4/5 - ANSI-104/ISO-105 keyboard,\n"\
-"     n/a/b/v - Normal/Angle/Curl-DbgHk/Curl-DvbgHm\n"\
-"     w/f - Wide/AngleFrame (a.k.a. 'A-Wing')\n"\
+"     n/a/c - Normal/Angle/Curl-DH\n"\
+"     w/f - Wide/A-Wing (a.k.a. 'A-Frame')\n"\
 "  2) Two-letter layout code like 'us' for USA, 'gb' for UK etc\n"\
 "  3) 'us'/'ks' for 'Universal'/'Keep Local' symbol locale variants\n"\
-"  Example: '5a se us': PC105-Angle, Swedish Cmk[eD] 'UniSym'\n"\
-"           '4bf gb ks': PC104-Curl(DbgHk)AWing, Eng.(UK) Cmk[eD] 'KeepSym'\n"\
-"           '5bw': PC105-Curl(DbgHk)AngleWide (keep existing layout)\n"
+"  Examples: '5a se us': PC105-Angle, Swedish Cmk[eD] 'UniSym'\n"\
+"            '4cf gb ks': PC104-Curl(DH)AWing, Eng.(UK) Cmk[eD] 'KeepSym'\n"\
+"            '5cw': PC105-Curl(DH)AngleWide - keep current layout/variant\n"
 #~ "     (See the script's comments for more info.)"
 
 
@@ -130,14 +132,14 @@ while getopts "m:l:o:v:s:d:f:akh?" cmdarg; do
 		l)  	XKBlayout="$OPTARG"		;;
 		o)  	XKBoption="$OPTARG"		;;
 		v)  	VerboseLvl="$OPTARG"	;;
-		s)		SetXStr=($OPTARG)		;;	# Split the string
+		s)  	SetXStr=($OPTARG)		;;	# Split the string
 		d)  	XKBdir="$OPTARG"		;;
 		f)  	AddCmdTo="$OPTARG"		;;
 		a)  	AddCmd='yes'			;;
 		k)  	KeepXKM='yes'			;;
-		h)		PrintHelpAndExit 0		;;
-		\?)		PrintHelpAndExit 0		;;
-		:)		PrintHelpAndExit 1		;;
+		h)  	PrintHelpAndExit 0		;;
+		\?) 	PrintHelpAndExit 0		;;
+		:)  	PrintHelpAndExit 1		;;
 	esac
 done
 #~ pos_arg=${@:$OPTIND:1} # Get the remaining (positional) arg
@@ -147,22 +149,17 @@ if [ -n "${SetXStr}" ]; then	# Use the ShortStr notation
 		  4n)		XKBmodel='pc104'			;;	# Generic ANSI-101/104-key
 		  4a)		XKBmodel='pc104angle-z'		;;	# w/ Angle(Z) ergo mod
 		  4w)		XKBmodel='pc104wide-qu'		;;	# w/ Wide(Quote) ergo mod
-		 4aw)		XKBmodel='pc104awide-zqu'	;;	# w/ Angle(Z)Wide(Quote) ergo mod
-		 4f|4af)	XKBmodel='pc104aframe'		;;	# w/ AngleWing(Quote) ergo mod
-		  4b)		XKBmodel='pc104curla-bkz'	;;	# w/ Curl(DbgHk)Angle(Z) ergo mod
-		  4v)		XKBmodel='pc104curla-vmz'	;;	# w/ Curl(DvbgHm)Angle(Z) ergo mod
-		 4bw)		XKBmodel='pc104caw-bkzqu'	;;	# w/ Curl(DbgHk)Angle(Z)Wide(Quote) mod
-		 4vw)		XKBmodel='pc104caw-vmzqu'	;;	# w/ Curl(DvbgHm)Angle(Z)Wide(Quote) mod
-		 4bf)		XKBmodel='pc104cawing-bk'	;;	# w/ Curl(DbgHk)AngleWing(Quote) mod
-		 4vf)		XKBmodel='pc104cawing-vm'	;;	# w/ Curl(DvbgHm)AngleWing(Quote) mod
+		 4aw)		XKBmodel='pc104aw-zqu'		;;	# w/ Angle(Z)Wide(Quote) ergo mod
+		 4f|4af)	XKBmodel='pc104awing'		;;	# w/ AngleWing(Quote) ergo mod
+		  4c)		XKBmodel='pc104curl-z'		;;	# w/ Curl(DH)Angle(Z) ergo mod
+		 4cw)		XKBmodel='pc104caw-zqu'		;;	# w/ Curl(DH)Angle(Z)Wide(Quote) mod
+		 4cf)		XKBmodel='pc104cawing'		;;	# w/ Curl(DH)AngleWing(Quote) mod
 
 		  5n)		XKBmodel='pc105'			;;	# Generic ISO-102/105-key
-		  5a)		XKBmodel='pc105angle-lg'	;;	# w/ Angle(LSGT) ergo mod
-		 5w|5aw)	XKBmodel='pc105awide-sl'	;;	# w/ AngleWide(Slash) ergo mod
-		  5b)		XKBmodel='pc105curla-bk'	;;	# w/ Curl(DbgHk)Angle ergo mod
-		  5v)		XKBmodel='pc105curla-vm'	;;	# w/ Curl(DvbgHm)Angle ergo mod
-		 5bw)		XKBmodel='pc105caw-bksl'	;;	# w/ Curl(DbgHk)AngleWide(Slash) mod
-		 5vw)		XKBmodel='pc105caw-vmsl'	;;	# w/ Curl(DvbgHm)AngleWide(Slash) mod
+		  5a)		XKBmodel='pc105angle'		;;	# w/ Angle(LSGT) ergo mod
+		 5w|5aw)	XKBmodel='pc105aw-sl'		;;	# w/ AngleWide(Slash) ergo mod
+		  5c)		XKBmodel='pc105curl'		;;	# w/ Curl(DH)Angle ergo mod
+		 5cw)		XKBmodel='pc105caw-sl'		;;	# w/ Curl(DH)AngleWide(Slash) mod
 
 		  *)	MyError "ShortStr model '${SetXStr[0]}' unknown!" ;;
 	esac
@@ -170,31 +167,21 @@ if [ -n "${SetXStr}" ]; then	# Use the ShortStr notation
 	[ -n "${SetXStr[2]}" ] && XKBlayout="${SetXStr[1]}(cmk_ed_${SetXStr[2]})" \
 		|| XKBlayout=`setxkbmap -query | grep layout | awk '{print $2}'`
 fi
-## NOTE: Curl mods as models would mess up Extend, but I've kept the shortstr codes above.
-#		 So, model strings are [4|5][n|a|v|b][-|w|f]
+## TODO: Add Curl-ZXCDV angle models (pc105cawide-sl etc)
 
-## NOTE: The code below post processes Curl models into model+option, as per my implementation.
+## NOTE: The code below post processes Curl models into model+option, as per my XKB implementation.
+## TODO: The Curl keyboard models sort of negate this? Only need to set the option for all of them.
 case ${XKBmodel} in
-	pc104curla-bkz)	XKBmodel='pc104angle-z'			# PC104-Curl(DbgHk)Angle(Z)
-					XKBoption+=',misc:cmk_curl_dbghk'	;;
-	pc104curla-vmz)	XKBmodel='pc104angle-z'			# PC104-Curl(DvbgHm)Angle(Z)
-					XKBoption+=',misc:cmk_curl_dvbghm'	;;
-	pc104caw-bkzqu)	XKBmodel='pc104awide-zqu'		# PC104-Curl(DbgHk)Angle(Z)Wide(Quote)
-					XKBoption+=',misc:cmk_curl_dbghk'	;;
-	pc104caw-vmzqu)	XKBmodel='pc104awide-zqu'		# PC104-Curl(DvbgHm)Angle(Z)Wide(Quote)
-					XKBoption+=',misc:cmk_curl_dvbghm'	;;
-	pc104cawing-bk)	XKBmodel='pc104aframe'			# PC104-Curl(DbgHk)AngleWing(Quote)
-					XKBoption+=',misc:cmk_curl_dbghk'	;;
-	pc104cawing-vm)	XKBmodel='pc104aframe'			# PC104-Curl(DvbgHm)AngleWing(Quote)
-					XKBoption+=',misc:cmk_curl_dvbghm'	;;
-	pc105curla-bk)	XKBmodel='pc105angle-lg'		# PC105-Curl(DbgHk)Angle
-					XKBoption+=',misc:cmk_curl_dbghk'	;;
-	pc105curla-vm)	XKBmodel='pc105angle-lg'		# PC105-Curl(DvbgHm)Angle
-					XKBoption+=',misc:cmk_curl_dvbghm'	;;
-	pc105caw-bksl)	XKBmodel='pc105awide-sl'		# PC105-Curl(DbgHk)AngleWide(Slash)
-					XKBoption+=',misc:cmk_curl_dbghk'	;;
-	pc105caw-vmsl)	XKBmodel='pc105awide-sl'		# PC105-Curl(DvbgHm)AngleWide(Slash)
-					XKBoption+=',misc:cmk_curl_dvbghm'	;;
+	pc104curl-z)	XKBmodel='pc104angle-z'			# PC104-Curl(DH)Angle(Z)
+					XKBoption+=',misc:cmk_curl_dh'	;;
+	pc104caw-zqu)	XKBmodel='pc104aw-zqu'			# PC104-Curl(DH)Angle(Z)Wide(Quote)
+					XKBoption+=',misc:cmk_curl_dh'	;;
+	pc104cawing)	XKBmodel='pc104awing'			# PC104-Curl(DH)AngleWing(Quote)
+					XKBoption+=',misc:cmk_curl_dh'	;;
+	pc105curl)		XKBmodel='pc105angle'			# PC105-Curl(DH)Angle(LSGT)
+					XKBoption+=',misc:cmk_curl_dh'	;;
+	pc105caw-sl)	XKBmodel='pc105aw-sl'			# PC105-Curl(DH)AngleWide(Slash)
+					XKBoption+=',misc:cmk_curl_dh'	;;
 esac
 
 
@@ -272,7 +259,7 @@ exit 0
 ## Extend mappings w/ Caps switch (for both),
 ## Switch grp w/ 2xCtrl; Compose on Menu key:
 #~ setxkbmap \
-#~ -model pc105awide-sl, \
+#~ -model pc105aw-sl, \
 #~ -layout "no(cmk_ed_us),gr(colemak)", \
 #~ -option "misc:extend,lv5:caps_switch_lock,"\
 #~         "grp:rctrl_switch_ctrls_toggle,compose:menu"

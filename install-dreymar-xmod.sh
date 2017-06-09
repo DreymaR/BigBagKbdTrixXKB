@@ -8,7 +8,7 @@
 HeadStr="DreymaR's Big Bag Of Tricks install script (by GadOE, 2016-06)"
 DescStr=\
 "\e[1mShell script to apply DreymaR's changes to the X keyboard files:\e[0m\n"\
-"  - AngleWide Ergonomic keyboard models for pc104/pc105 keyboards,\n"\
+"  - CurlAngleWide Ergonomic keyboard models for pc104/pc105 keyboards,\n"\
 "  - Extend mappings as a Misc option and CapsLock as a chooser (using lv5-8),\n"\
 "  - the Colemak [edition DreymaR] layout, using my own lv3-4 mappings,\n"\
 "  - locale variants of Colemak[eD] with 'keep local' or 'unified' symbol keys,\n"\
@@ -67,7 +67,7 @@ DoBackup='ifnone'		# (-n/b) Default backup behavior is "if no backups are found"
 SubDirs='all'			# (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale', 'all')
 InstGTK='no'			# (-g) Whether to install the GTK 2.0/3.0 config (if not present)
 SetXMap='no'			# (-x) Whether to run the setxkb script after installing
-SetXStr='5aw us us'		# (-s) Shortcut string for setxkb - 'mmm ll vv' (model layout eD-variant)
+SetXStr='5cw us us'		# (-s) Shortcut string for setxkb - 'mmm ll vv' (model layout eD-variant)
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args]\e[0m\n"\

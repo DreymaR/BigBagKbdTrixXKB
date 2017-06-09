@@ -13,7 +13,9 @@
 //              ori pk ru scc sy syr tel th tj tam ua uz
 
 // PC models
-! $pcmodels = pc101 pc102 pc104 pc105 pc104angle-z pc104wide-qu pc104awide-zqu pc104aframe pc105angle-lg pc105awide-sl
+! $pcmodels = pc101 pc102 pc104 pc105 \
+              pc104angle-z pc104wide-qu pc104aw-zqu pc104awing pc105angle pc105aw-sl \
+              pc104curl-z              pc104caw-zqu pc104cawing pc105curl pc105caw-sl
 
 // Jolla devices and keyboards
 ! $jollamodels = jollasbj
@@ -100,10 +102,15 @@
   olpcm         =       evdev+olpc(olpcm)
   pc104angle-z	=	evdev(pc104angle-z)
   pc104wide-qu	=	evdev(pc104wide-qu)
-  pc104awide-zqu	=	evdev(pc104awide-zqu)
-  pc104aframe	=	evdev(pc104aframe)
-  pc105angle-lg	=	evdev(pc105angle-lg)
-  pc105awide-sl	=	evdev(pc105awide-sl)
+  pc104aw-zqu	=	evdev(pc104aw-zqu)
+  pc104awing	=	evdev(pc104awing)
+  pc104curl-z	=	evdev(pc104curl-z)
+  pc104caw-zqu	=	evdev(pc104caw-zqu)
+  pc104cawing	=	evdev(pc104cawing)
+  pc105angle	=	evdev(pc105angle)
+  pc105aw-sl	=	evdev(pc105aw-sl)
+  pc105curl		=	evdev(pc105curl)
+  pc105caw-sl	=	evdev(pc105caw-sl)
   *		=	evdev
 
 ! layout[1]	=	keycodes
@@ -938,36 +945,31 @@
   $threelevellayouts	grp:alts_toggle = +level3(ralt_switch_for_alts_toggle)
   *			misc:typo 	= +typo(base)
   *			misc:extend 	= +extend(basic)
-  *			misc:cmk_curl_dbghk	= +colemak(cmk_dbg-hk_ed)
-  *			misc:cmk_curl_dvbghm	= +colemak(cmk_dvbg-hm_ed)
+  *			misc:cmk_curl_dh	= +colemak(cmk_ed_dh)
 
 ! layout[1]	option	=	symbols
   $threelevellayouts	grp:alts_toggle = +level3(ralt_switch_for_alts_toggle):1
   *			misc:typo 	= +typo(base):1
   *			misc:extend 	= +extend(basic):1
-  *			misc:cmk_curl_dbghk	= +colemak(cmk_dbg-hk_ed):1
-  *			misc:cmk_curl_dvbghm	= +colemak(cmk_dvbg-hm_ed):1
+  *			misc:cmk_curl_dh	= +colemak(cmk_ed_dh):1
 
 ! layout[2]	option	=	symbols
   $threelevellayouts	grp:alts_toggle = +level3(ralt_switch_for_alts_toggle):2
   *			misc:typo 	= +typo(base):2
   *			misc:extend 	= +extend(basic):2
-//  *			misc:cmk_curl_dbghk	= +colemak(cmk_dbg-hk_ed):2
-//  *			misc:cmk_curl_dvbghm	= +colemak(cmk_dvbg-hm_ed):2
+//  *			misc:cmk_curl_dh	= +colemak(cmk_ed_dh):2
 
 ! layout[3]	option	=	symbols
   $threelevellayouts	grp:alts_toggle = +level3(ralt_switch_for_alts_toggle):3
   *			misc:typo 	= +typo(base):3
   *			misc:extend 	= +extend(basic):3
-//  *			misc:cmk_curl_dbghk	= +colemak(cmk_dbg-hk_ed):3
-//  *			misc:cmk_curl_dvbghm	= +colemak(cmk_dvbg-hm_ed):3
+//  *			misc:cmk_curl_dh	= +colemak(cmk_ed_dh):3
 
 ! layout[4]	option	=	symbols
   $threelevellayouts	grp:alts_toggle = +level3(ralt_switch_for_alts_toggle):4
   *			misc:typo 	= +typo(base):4
   *			misc:extend 	= +extend(basic):4
-//  *			misc:cmk_curl_dbghk	= +colemak(cmk_dbg-hk_ed):4
-//  *			misc:cmk_curl_dvbghm	= +colemak(cmk_dvbg-hm_ed):4
+//  *			misc:cmk_curl_dh	= +colemak(cmk_ed_dh):4
 
 ! option	=	symbols
   grp:shift_toggle	=	+group(shifts_toggle)
