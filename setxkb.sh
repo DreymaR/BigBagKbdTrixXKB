@@ -23,7 +23,7 @@ FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
 #		 Example: -s '5w no us' activates model pc105aw-sl, layout no(cmk_ed_us)
 #		 Models: 4n 4a(pc104angle-z) 4w(pc104wide-qu) 4aw(pc104aw-zqu) 4f(pc104awing)
 #		         5n 5a(pc105angle) 5w/5aw(pc105aw-sl)
-#		     - Curl(DH) models with(-out) Wide use a c: 4c, 5cw etc
+#		     - Curl(DH) models add a 'c', like this: 4c, 5cw etc
 #		     - Thus, the allowed model short strings are (4|5)(n|a|c)[(w|f)]
 #		 XKB options are left out of this: Too complex (e.g., replace or append?)
 
@@ -167,22 +167,16 @@ if [ -n "${SetXStr}" ]; then	# Use the ShortStr notation
 	[ -n "${SetXStr[2]}" ] && XKBlayout="${SetXStr[1]}(cmk_ed_${SetXStr[2]})" \
 		|| XKBlayout=`setxkbmap -query | grep layout | awk '{print $2}'`
 fi
-## TODO: Add Curl-ZXCDV angle models (pc105cawide-sl etc)
 
 ## NOTE: The code below post processes Curl models into model+option, as per my XKB implementation.
-## TODO: The Curl keyboard models sort of negate this? Only need to set the option for all of them.
 case ${XKBmodel} in
-	pc104curl-z)	XKBmodel='pc104angle-z'			# PC104-Curl(DH)Angle(Z)
-					XKBoption+=',misc:cmk_curl_dh'	;;
-	pc104caw-zqu)	XKBmodel='pc104aw-zqu'			# PC104-Curl(DH)Angle(Z)Wide(Quote)
-					XKBoption+=',misc:cmk_curl_dh'	;;
-	pc104cawing)	XKBmodel='pc104awing'			# PC104-Curl(DH)AngleWing(Quote)
-					XKBoption+=',misc:cmk_curl_dh'	;;
-	pc105curl)		XKBmodel='pc105angle'			# PC105-Curl(DH)Angle(LSGT)
-					XKBoption+=',misc:cmk_curl_dh'	;;
-	pc105caw-sl)	XKBmodel='pc105aw-sl'			# PC105-Curl(DH)AngleWide(Slash)
-					XKBoption+=',misc:cmk_curl_dh'	;;
+	pc104curl-z)	Curling='yes'	;;				# PC104-Curl(DH)Angle(Z)
+	pc104caw-zqu)	Curling='yes'	;;				# PC104-Curl(DH)Angle(Z)Wide(Quote)
+	pc104cawing)	Curling='yes'	;;				# PC104-Curl(DH)AngleWing(Quote)
+	pc105curl)		Curling='yes'	;;				# PC105-Curl(DH)Angle(LSGT)
+	pc105caw-sl)	Curling='yes'	;;				# PC105-Curl(DH)AngleWide(Slash)
 esac
+[ $Curling == 'yes' ] && XKBoption+=',misc:cmk_curl_dh'
 
 
 ##-------------- main ------------------------------------------
