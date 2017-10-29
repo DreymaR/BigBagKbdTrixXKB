@@ -8,20 +8,20 @@
 HeadStr="DreymaR's Big Bag Of Tricks install script (by GadOE, 2016-06)"
 DescStr=\
 "\e[1mShell script to apply DreymaR's changes to the X keyboard files:\e[0m\n"\
-"  - CurlAngleWide Ergonomic keyboard models for pc104/pc105 keyboards,\n"\
+"  - The Colemak [edition DreymaR] layout, using my own lv3-4 mappings,\n"\
+"  - Curl/Angle/Wide Ergonomic keyboard models for pc104/pc105 keyboards,\n"\
 "  - Extend mappings as a Misc option and CapsLock as a chooser (using lv5-8),\n"\
-"  - the Colemak [edition DreymaR] layout, using my own lv3-4 mappings,\n"\
 "  - locale variants of Colemak[eD] with 'keep local' or 'unified' symbol keys,\n"\
 "  - phonetic variants of Colemak for other scripts such as Greek,\n"\
-"  - mirrored Colemak[eD] for one-handed typing, (if I ever break an arm...)\n"\
-"  - and the Tarmak(1-4) transitional (step-by-step) Colemak learning layouts.\n"\
+"  - mirrored Colemak[eD] for one-handed typing (if I ever break an arm...),\n"\
+"  - and the Tarmak(1-4) transitional step-by-step Colemak learning layouts.\n"\
 "\n"\
 "- By default, this script creates a backup of the X11 files if none exist.\n"\
 "- With '-o', overwrite the system X11 files (makes the mod GUI accessible).\n"\
-"- With '-s <mdl loc sym>', specify a model/layout to activate immediately.\n"\
-"    (Shortstr format: -s '[4|5][n|a|b|v][w|f] loc [ks|us]'; 'loc'(ale) is 2-letter.\n"\
-"     Some model shortstr examples: '4n' is pc104, '5aw' is pc105AngleWide etc.\n"\
-"     E.g.: -s '5n fr us' is normal pc105 model, French Colemak[eD]'USym'.)\n"\
+"- With a ShortStr at the end, specify a model/layout to activate immediately.\n"\
+"  - ShortStr format: '[4|5][n|a|c][w|f] loc [ks|us]'; 'loc'(ale) is 2-letter.\n"\
+"  - E.g., '5n fr us' is normal pc105 model, French Cmk[eD]-'UniSym'.\n"\
+"  - See setxkb.sh help for more info on ShortStr syntax.\n"\
 "- With '-?', list further instructions and default values.\n"\
 "- See http://forum.colemak.com/viewtopic.php?id=1438 for more info\n"
 # 
@@ -67,10 +67,10 @@ DoBackup='ifnone'		# (-n/b) Default backup behavior is "if no backups are found"
 SubDirs='all'			# (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale', 'all')
 InstGTK='no'			# (-g) Whether to install the GTK 2.0/3.0 config (if not present)
 SetXMap='no'			# (-x) Whether to run the setxkb script after installing
-SetXStr='5cw us us'		# (-s) Shortcut string for setxkb - 'mmm ll vv' (model layout eD-variant)
+SetXStr='5cw us us'		# (--) Shortcut string for setxkb - 'kbd loc sym' (model layout eD-variant)
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
-HelpStr="\e[1mUsage: bash ${MyNAME} [optional args]\e[0m\n"\
+HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\
 "       Run this from the directory containing the x-mod dir\n"\
 "===========================================================\n"\
 "[-#] Functionality                     - 'default'  \n"\
@@ -83,10 +83,9 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args]\e[0m\n"\
 "[-d] <mod dir path>                    - ${DModDir}\n"\
 "[-m] <X11 subdir(s) to mod>            - ${SubDirs}\n"\
 "[-t] <mod dir prefix tag>              - ${DModTag}\n"\
-"[-g] Install GTK 2.0/3.0 edit config   - ${InstGTK}\n"\
-"[-x] Run the setxkbmap script, yes/no  - ${SetXMap}\n"\
-"[-s] Setxkb ShortStr 'mdl loc sym'     - ${SetXStr}\n"\
-"     (See setxkb help for more info on ShortStr)\n"
+"[-g] Install GTK 2.0/3.0 edit config?  - ${InstGTK}\n"\
+"[-x] Run the setxkbmap script?         - ${SetXMap}\n"\
+"[--] [Setxkb ShortStr <kbd loc sym>]   - ${SetXStr}\n"
 #~ "( - <val> : Default settings)\n"
 
 ##-------------- functions and line parser ---------------------
@@ -139,15 +138,13 @@ MyError()
 #~ }
 
 #~ if [ "$#" == 0 ]; then PrintHelpAndExit 2; fi # No args
-while getopts "obngxs:m:i:d:t:r:h?" cmdarg; do
+while getopts "obngxm:i:d:t:r:h?" cmdarg; do
 	case $cmdarg in
 		o)	WriteSys='yes'			;;
 		b)	DoBackup='yes'			;;
 		n)	DoBackup='no'			;;
 		g)	InstGTK='yes'			;;
 		x)	SetXMap='yes'			;;
-		s)	SetXStr="$OPTARG"		
-			SetXMap='yes'			;;
 		m)	SubDirs="$OPTARG"		;;
 		i)	InstDir="$OPTARG"		;;
 		d)	DModDir="$OPTARG"		;;
@@ -156,9 +153,13 @@ while getopts "obngxs:m:i:d:t:r:h?" cmdarg; do
 		h)		PrintHelpAndExit 0	;;
 		\?)		PrintHelpAndExit 0	;;
 		:)		PrintHelpAndExit 1	;;
+#		s)	SetXStr="$OPTARG"		
+#			SetXMap='yes'			;;
 	esac
 done
-#~ pos_arg=${@:$OPTIND:1} # Get the remaining (positional) arg
+#~ pos_arg=${@:$OPTIND:1}	# Get the remaining positional arg (old way)
+shift $(( $OPTIND - 1 ))		# Remove already processed args
+[[ "$@" == "" ]] || SetXStr=$@	# Don't split the ShortString here!
 
 ##-------------- main ------------------------------------------
 
@@ -257,7 +258,7 @@ fi
 if [ "${SetXMap}" != 'yes' ]; then
 	MyMsg "XKBmap activation skipped" "" '1;33;40'
 else
-	bash ./setxkb.sh -d "${XKBDir}" -s "${SetXStr}" || MyError "setxkb.sh failed!"
+	bash ./setxkb.sh -d "${XKBDir}" ${SetXStr} || MyError "setxkb.sh failed!"
 fi
 
 MyMsg "${MyNAME} finished!" "\n"
@@ -265,5 +266,5 @@ exit 0
 
 ##-------------- misc ------------------------------------------
 
-#~ MyError "Debug - run halted!"	# debug
+#~ MyWarning "'${MyNAME}' debug - exiting!"; exit 0
 #~ echo "$1 $2 $3 $4 $5"; exit 0	# debug

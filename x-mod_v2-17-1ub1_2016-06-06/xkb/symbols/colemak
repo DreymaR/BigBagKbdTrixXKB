@@ -151,6 +151,8 @@ xkb_symbols "cmk_ed_letters" {
     key <AB07> { [             m,             M,            multiply,           downarrow ] }; // QWE/Cmk M
     //  U0292/01B7 ezh/EZH
 
+//// Activating the line below will "hard" enable the Curl(DH) mod; see below.
+//    include "colemak(cmk_ed_dh)"
 //// Activating the line below will "hard" enable the old Curl(DHm) mod; see below.
 //    include "colemak(cmk_ed_dhm)"
 //// This is the old Curl(DvH) Colemak ergo mod, keeping V and M in place.

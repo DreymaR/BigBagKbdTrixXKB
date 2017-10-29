@@ -9,7 +9,7 @@ HeadStr="DreymaR's setxkbmap script (by GadOE, 2015-01)"
 DescStr=\
 "\e[1mShell script to change X.org keyboard setup\e[0m\n"\
 "  using the 'setxkbmap' command.\n"\
-"  To override system settings after logon,\n"\
+"  To make settings logon persistent,\n"\
 "  source it, e.g., in your ~/.bashrc file,\n"\
 "  or use -a to write the setxkbmap command to a file.\n"
 FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
@@ -18,9 +18,9 @@ FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
 #		 By default, setxkbmap checks ./rules first!
 #		 Need a full xkb dir then (not just the xkb-mod files)
 
-## NOTE: I made a handy shorthand for activating simple cmk_ed model/layout combos.
-#		 See the help text of this script for more info on the model-layout-variant syntax.
-#		 Example: -s '5w no us' activates model pc105aw-sl, layout no(cmk_ed_us)
+## NOTE: I made a handy shorthand for activating simple Cmk[eD] model/layout combos.
+#		 See the help text of this script for more info on the model-locale-symbols syntax.
+#		 Example: '5w no us' activates model pc105aw-sl, layout no(cmk_ed_us)
 #		 Models: 4n 4a(pc104angle-z) 4w(pc104wide-qu) 4aw(pc104aw-zqu) 4f(pc104awing)
 #		         5n 5a(pc105angle) 5w/5aw(pc105aw-sl)
 #		     - Curl(DH) models add a 'c', like this: 4c, 5cw etc
@@ -47,32 +47,33 @@ XKBdir="${X11DIR}/xkb"	# (-d) The xkb-type dir to run setxkbmap from
 AddCmd='no'				# (-a) Add setxkbmap cmd to file?
 AddDefault="${HOME}/.bashrc"
 AddCmdTo=${AddDefault}	# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
-SetXStr='' #'5cw no us'	# (-s) Shortcut string for setxkb - 'model locale eD-variant(sym)'
+SetXStr='' #'5cw no us'	# (--) Shortcut string for setxkb (model locale eD-variant)
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
-HelpStr="\e[1mUsage: bash ${MyNAME} [optional args]\e[0m\n"\
+HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\
 "===========================================================\n"\
 "[-#] Functionality             - 'default'  \n"\
 "===========================================================\n"\
 "[-m] <model>                   - '${XKBmodel}'\n"\
-"[-l] <layout>                  - '${XKBlayout}'\n"\
-"[-o] <option>                  - \n"\
-"     '${XKBoption}'\n"\
+"[-l] <layout(variant)>         - '${XKBlayout}'\n"\
+"[-o] <options>                 - \n"\
+"       '${XKBoption}'\n"\
 "[-v] <verbose level>           - '${VerboseLvl}'\n"\
-"[-s] <ShortStr> 'mod lay sym'  - '${SetXStr}'\n"\
 "[-d] Run from <directory>      - '${XKBdir}'\n"\
 "[-k] Keep old XKB server(s)    - '${KeepXKM}'\n"\
 "[-a] Add cmd line to file?     - '${AddCmd}'\n"\
-"[-f] <file> to add cmd to      - '${AddCmdTo}'\n"\
-"\n\e[1mShortStr notation (a space separated string defining model+layout):\e[0m\n"\
-"  1) 4/5 - ANSI-104/ISO-105 keyboard,\n"\
-"     n/a/c - Normal/Angle/Curl-DH\n"\
-"     w/f - Wide/A-Wing (a.k.a. 'A-Frame')\n"\
-"  2) Two-letter layout code like 'us' for USA, 'gb' for UK etc\n"\
-"  3) 'us'/'ks' for 'Universal'/'Keep Local' symbol locale variants\n"\
-"  Examples: '5a se us': PC105-Angle, Swedish Cmk[eD] 'UniSym'\n"\
+"[-f]   <file> to add cmd to    - '${AddCmdTo}'\n"\
+"[--] <ShortStr>                - '${SetXStr}'\n"\
+"\n\e[1mShortStr syntax, defining eD model+layout as a short split string:\e[0m\n"\
+"==================================================================\n"\
+"  <kbd> 4/5   - ANSI-104/ISO-105 keyboard model, then...\n"\
+"        n/a/c - Normal/Angle/Curl-DH, and optionally...\n"\
+"        w/f   - Wide/A-Wing (a.k.a. 'A-Frame')\n"\
+"  <loc> Two-letter locale layout code like 'us' for USA, 'gb' for UK etc\n"\
+"  <sym> 'us'/'ks' for 'Universal' or 'Keep Locale' symbol variants\n\n"\
+"  Examples: '5a se us': PC105-Angle, Swedish Cmk[eD] 'UnifiedSym'\n"\
 "            '4cf gb ks': PC104-Curl(DH)AWing, Eng.(UK) Cmk[eD] 'KeepSym'\n"\
-"            '5cw': PC105-Curl(DH)AngleWide - keep current layout/variant\n"
+"            '5cw': PC105-Curl(DH)AngleWide, keep current layout/variant\n"
 #~ "     (See the script's comments for more info.)"
 
 
@@ -126,13 +127,12 @@ MyCD()
 }
 
 #~ if [ "$#" == 0 ]; then PrintHelpAndExit 2; fi # No args
-while getopts "m:l:o:v:s:d:f:akh?" cmdarg; do
+while getopts "m:l:o:v:d:f:akh?" cmdarg; do
 	case $cmdarg in
 		m)  	XKBmodel="$OPTARG"		;;
 		l)  	XKBlayout="$OPTARG"		;;
 		o)  	XKBoption="$OPTARG"		;;
 		v)  	VerboseLvl="$OPTARG"	;;
-		s)  	SetXStr=($OPTARG)		;;	# Split the string
 		d)  	XKBdir="$OPTARG"		;;
 		f)  	AddCmdTo="$OPTARG"		;;
 		a)  	AddCmd='yes'			;;
@@ -140,11 +140,13 @@ while getopts "m:l:o:v:s:d:f:akh?" cmdarg; do
 		h)  	PrintHelpAndExit 0		;;
 		\?) 	PrintHelpAndExit 0		;;
 		:)  	PrintHelpAndExit 1		;;
+#		s)  	SetXStr=($OPTARG)		;;	# Split the string
 	esac
 done
-#~ pos_arg=${@:$OPTIND:1} # Get the remaining (positional) arg
+shift $(( $OPTIND - 1 ))			# Remove already processed args
+[[ "$@" == "" ]] || SetXStr=($@)	# Split the ShortString
 
-if [ -n "${SetXStr}" ]; then	# Use the ShortStr notation
+if [ -n "${SetXStr}" ]; then		# Use ShortString notation
 	case ${SetXStr[0]} in
 		  4n)		XKBmodel='pc104'			;;	# Generic ANSI-101/104-key
 		  4a)		XKBmodel='pc104angle-z'		;;	# w/ Angle(Z) ergo mod
@@ -176,7 +178,7 @@ case ${XKBmodel} in
 	pc105curl)		Curling='yes'	;;				# PC105-Curl(DH)Angle(LSGT)
 	pc105caw-sl)	Curling='yes'	;;				# PC105-Curl(DH)AngleWide(Slash)
 esac
-[ $Curling == 'yes' ] && XKBoption+=',misc:cmk_curl_dh'
+[[ $Curling == 'yes' ]] && XKBoption+=',misc:cmk_curl_dh'
 
 
 ##-------------- main ------------------------------------------
@@ -186,6 +188,7 @@ MyMsg "$HeadStr"
 if [ -n "${SetXStr}" ]; then
 	MyPoint "Using model/layout '$XKBmodel'/'$XKBlayout' from ShortStr"
 fi
+
 MyCD "${XKBdir%/}"
 #~ MyPoint "Running from `pwd`"
 
@@ -237,6 +240,7 @@ exit 0
 
 ##-------------- misc ------------------------------------------
 
+#~ MyWarning "'${MyNAME}' debug - exiting!"; exit 0
 #~ echo "'$XKBmodel' '$XKBlayout'"; for i in 0 1 2; do echo "'${SetXStr[i]}'"; done; exit 0
 
 ## US/ANSI Wide ergo mod,

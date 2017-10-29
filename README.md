@@ -4,9 +4,9 @@ DreymaR's Big Bag of Keyboard Tricks
 ### For Linux (updated to XKB-data v2.17.1ub1, 2016-06)
 
 * New "Colemak[eD]" AltGr mappings (lv3-4) putting dead keys on AltGr+symbol keys and reworking most other mappings
-* An "Extend" layer using Caps Lock as a modifier (lv5-8) for navigation/editing from the home position and more
 * Angle/Wide ergo modifications to improve wrist angles, hand spacing and right pinky stretch/load effort
 * Curl(DH) ergo modifications to encourage natural finger curvature
+* An "Extend" layer using Caps Lock as a modifier (lv5-8) for navigation/editing from the home position and more
 * For several locales, a 'Unified Symbols' layout with only a few necessary changes from the standard Colemak[eD];
   Also, a layout to 'Keep Local Symbols' like their default (QWERTY-type) counterparts for that locale
 * Intuitive phonetic layouts for Cyrillic, Greek and Hebrew scripts
