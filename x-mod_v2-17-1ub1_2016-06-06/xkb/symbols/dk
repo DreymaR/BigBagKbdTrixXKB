@@ -126,7 +126,6 @@ xkb_symbols "cmk_ed_us" {
     key <AD11> { [         aring,         Aring,         bracketleft,           braceleft ] }; // from <AD10>
     key <AD12> { [            ae,            AE,        bracketright,          braceright ] }; // from <AC10>
     key <LSGT> { [        oslash,      Ooblique,                  oe,                  OE ] }; // from <AC11>
-    key <AC01> { [             a,             A,             dstroke,         Greek_alpha ] }; // ae/AE moved
 // NOTE: The Scandinavian layouts (dk/fi/no/se) have been harmonized. This shouldn't affect typing efficiency.
 };
 // <-- DreymaR: Additions to xkb/symbols/dk

@@ -249,7 +249,6 @@ xkb_symbols "cmk_ed_us" {
     key <AD11> { [  dead_acute,      dead_grave,         bracketleft,           braceleft ] }; // from <AD12>**
     key <AD12> { [  dead_tilde, dead_circumflex,        bracketright,          braceright ] }; // from <BKSL>
     key <LSGT> { [      ccedilla,      Ccedilla,                  oe,                  OE ] }; // from <AC10>
-//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 // For ordfeminine/masculine, use AltGr+o/O which should be an easy reach.
 // ** NOTE: The pt and br layouts have been harmonized; this should not affect typing efficiency.
 //    Whether to keep the acute on br <AD11> or pt <AD12> was a bit of a choice; the acute seems logical.

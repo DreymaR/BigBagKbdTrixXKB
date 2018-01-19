@@ -563,7 +563,6 @@ xkb_symbols "cmk_ed_us" {
     key <LSGT> { [        eacute,        Eacute,                  oe,                  OE ] }; // <AE02>; oe
     key <AD11> { [dead_circumflex, dead_diaeresis,       bracketleft,           braceleft ] }; // <AD11> kept
     key <AD12> { [    dead_grave,    numerosign,        bracketright,          braceright ] }; // from usage
-//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 // NOTE: The be/ca/fr layouts have been harmonized; this should not affect typing efficiency.
 // For egrave/agrave/ugrave (from <AC11>/<BKSL>/<LSGT>) - use the dead_grave
 };

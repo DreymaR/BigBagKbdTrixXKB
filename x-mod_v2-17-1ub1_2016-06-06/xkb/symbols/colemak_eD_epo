@@ -47,7 +47,6 @@ xkb_symbols "cmk_ed_us" {
 //    key <AD12> { [  bracketright,    braceright,              ubreve,              Ubreve ] };
     key <AD11> { [ dead_circumflex, dead_circumflex,     bracketleft,           braceleft ] }; // common accent
     key <AD12> { [        ubreve,        Ubreve,        bracketright,          braceright ] }; // from <AC11>
-    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 };
 // <-- DreymaR: Additions to xkb/symbols/epo
 

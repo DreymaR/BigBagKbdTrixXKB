@@ -60,7 +60,6 @@ xkb_symbols "cmk_ed_us" {
 //    key <AC06> { [             h,             H,                   §,                   § ] }; // from <A>
 //    key <AD06> { [             j,             J,                   §,                   § ] }; // from <A>
 //    key <AD07> { [             l,             L,                   §,                   § ] }; // from <A>
-//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 //    key <A§§§> { [             §,             §,                  oe,                  OE ] }; // keep oe
 };
 // <-- DreymaR: Additions to xkb/symbols/<LL>

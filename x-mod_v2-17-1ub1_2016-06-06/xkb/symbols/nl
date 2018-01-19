@@ -181,6 +181,5 @@ xkb_symbols "cmk_ed_us" {
 
     key <AD11> { [dead_diaeresis,dead_circumflex,        bracketleft,           braceleft ] }; // <AD11> kept
     key <AD12> { [    dead_acute,     dead_grave,       bracketright,          braceright ] }; // from <AC11>
-//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 };
 // <-- DreymaR: Additions to xkb/symbols/nl

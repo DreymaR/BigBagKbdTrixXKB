@@ -320,7 +320,7 @@ xkb_symbols "cmk_ed_us" {
     key <AD11> { [         aring,         Aring,         bracketleft,           braceleft ] }; // from <AD10>
     key <AD12> { [    adiaeresis,    Adiaeresis,        bracketright,          braceright ] }; // from <AC11>
     key <LSGT> { [    odiaeresis,    Odiaeresis,              oslash,            Ooblique ] }; // from <AC10>
-//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
+//    key <AC06> { [             h,             H,                  ae,                  AE ] }; // keep æÆ
 // NOTE: The Scandinavian layouts (dk/fi/no/se) have been harmonized. This shouldn't affect typing efficiency.
 };
 // <-- DreymaR: Additions to xkb/symbols/fi

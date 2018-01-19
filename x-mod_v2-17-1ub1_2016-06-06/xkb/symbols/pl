@@ -541,7 +541,6 @@ xkb_symbols "cmk_ed_us" {
 //    key <LSGT> { [       lstroke,       Lstroke,                  oe,                  OE ] }; // QWERTZ <AC10>
 //    key <AD11> { [     zabovedot,     Zabovedot,         bracketleft,           braceleft ] }; // QWERTZ <AD11>
 //    key <AD12> { [    dead_acute,   dead_ogonek,        bracketright,          braceright ] }; // by frequency
-//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 
     key <LSGT> { [     zabovedot,     Zabovedot,                  oe,                  OE ] }; // QWERTZ <AC10>
     key <AD11> { [    dead_acute,     braceleft,         bracketleft,             dstroke ] }; // by frequency

@@ -136,11 +136,9 @@ xkb_symbols "cmk_ed_us" {
 
 // NEEDED: Cedilla Cc; diaeresis Ee
 
-//    key <LSGT> { [            oe,            OE,             dstroke,         Greek_alpha ] }; // keep đ/α
 //    key <AD11> { [   bracketleft,     braceleft,      ccedilla,   Ccedilla ] };
 //    key <AD12> { [  bracketright,    braceright,    ediaeresis, Ediaeresis ] };
     key <AD11> { [      ccedilla,      Ccedilla,         bracketleft,           braceleft ] }; // from <AD11>
     key <AD12> { [    ediaeresis,    Ediaeresis,        bracketright,          braceright ] }; // from <AC10>
-//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 };
 // <-- DreymaR: Additions to xkb/symbols/al

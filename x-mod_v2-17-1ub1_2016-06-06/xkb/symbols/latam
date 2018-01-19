@@ -160,7 +160,6 @@ xkb_symbols "cmk_ed_us" {
     key <AD11> { [   dead_acute, dead_diaeresis,         bracketleft,           braceleft ] }; // <AD11> kept
     key <AD12> { [  dead_grave, dead_circumflex,        bracketright,          braceright ] }; // es/Sun <AD11>
     key <LSGT> { [        ntilde,        Ntilde,                  oe,                  OE ] }; // from <AC10>
-//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 // Note: For ordfeminine/masculine, use AltGr+o/O
 // NOTE: The es and latam layouts have been harmonized; this should not affect typing efficiency.
 };

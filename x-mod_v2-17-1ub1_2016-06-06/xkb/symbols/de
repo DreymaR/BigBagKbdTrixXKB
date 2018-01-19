@@ -932,6 +932,8 @@ xkb_symbols "cmk_ed_us" {
     key <AD11> { [    udiaeresis,    Udiaeresis,         bracketleft,           braceleft ] }; // from <AD11>
     key <AD12> { [    adiaeresis,    Adiaeresis,        bracketright,          braceright ] }; // from <AC11>
     key <LSGT> { [    odiaeresis,    Odiaeresis,                  oe,                  OE ] }; // from <AC10>
+    key <AC01> { [             a,             A,               aring,               Aring ] }; // keep åÅ
+//    key <AC06> { [             h,             H,                  ae,                  AE ] }; // keep æÆ
 //    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 //    key <AC03> { [             s,             S,              ssharp,               U1E9E ] }; // ss/SS
 //    key <AD06> { [             j,             J,                 any,             section ] }; // from S

@@ -131,14 +131,14 @@ xkb_symbols "cmk_ed_letters" {
     key <AD09> { [             y,             Y,               U203A,      guillemotright ] }; // QWE O Cmk Y
     key <AD10> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;:
     //  U2039/203A single guillemets; U0283/01A9 esh/ESH
-    key <AC01> { [             a,             A,                  ae,                  AE ] }; // QWE/Cmk A
+    key <AC01> { [             a,             A,             dstroke,         Greek_alpha ] }; // QWE/Cmk A
     key <AC02> { [             r,             R,          registered,           trademark ] }; // QWE S Cmk R
     key <AC03> { [             s,             S,              ssharp,             section ] }; // QWE D Cmk S
     key <AC04> { [             t,             T,               thorn,               THORN ] }; // QWE F Cmk T
     key <AC05> { [             d,             D,                 eth,                 ETH ] }; // QWE G Cmk D
     key <AC06> { [             h,             H,             hstroke,             Hstroke ] }; // QWE/Cmk H
-    key <AC07> { [             n,             N,              endash,           leftarrow ] }; // QWE J Cmk N
-    key <AC08> { [             e,             E,            EuroSign,             uparrow ] }; // QWE K Cmk E
+    key <AC07> { [             n,             N,              endash,             uparrow ] }; // QWE J Cmk N
+    key <AC08> { [             e,             E,            EuroSign,           leftarrow ] }; // QWE K Cmk E
     key <AC09> { [             i,             I,              emdash,          rightarrow ] }; // QWE L Cmk I
     key <AC10> { [             o,             O,           masculine,         ordfeminine ] }; // QWE ; Cmk O
     //
@@ -177,7 +177,7 @@ xkb_symbols "cmk_ed_symbols" {
     key <AE12> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+
     //  U2248 approx equal; U2030 per mille
     key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{
-    key <AD12> { [  bracketright,    braceright,             dstroke,         Greek_alpha ] }; // ]}
+    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]}
     //
     key <AC11> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '"
     key <BKSL> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \|
@@ -279,16 +279,14 @@ hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_hmk" {
     // This is the 'Hmk' switch for the Colemak Curl-DH ergo mod
     key <AC06> { [             k,             K,            ccedilla,            Ccedilla ] }; // QWE/Cmk H
-    key <AB06> { [             m,             M,            multiply,           leftarrow ] }; // QWE N Cmk K
+    key <AB06> { [             m,             M,            multiply,           downarrow ] }; // QWE N Cmk K
     key <AB07> { [             h,             H,             hstroke,             Hstroke ] }; // QWE/Cmk M
 };
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_hm" {
     // This is the 'Hm' switch for the old Colemak Curl-DHm ergo mod, with M on the home row.
-    // N isn't changed in this mod, but the Cmk[eD] arrow symbols are rearranged into a Vim-like line!
-    key <AC06> { [             m,             M,            multiply,           leftarrow ] }; // QWE/Cmk H
-    key <AC07> { [             n,             N,              endash,           downarrow ] }; // QWE J Cmk N
+    key <AC06> { [             m,             M,            multiply,           downarrow ] }; // QWE/Cmk H
     key <AB07> { [             h,             H,             hstroke,             Hstroke ] }; // QWE/Cmk M
 };
 
@@ -437,9 +435,9 @@ xkb_symbols "tarmak4__etoi" {
 // See the first Tarmak layout above for more info. This is a QWERTY mask for the partial (F)EKNJ loop.
 hidden partial alphanumeric_keys
 xkb_symbols "tarmak_mask_fekn_to_eknj" {
-    key <AD03> { [             e,             E,            EuroSign,             uparrow ] }; // QWE E Cmk F
+    key <AD03> { [             e,             E,            EuroSign,           leftarrow ] }; // QWE E Cmk F
     key <AC08> { [             k,             K,            ccedilla,            Ccedilla ] }; // QWE K Cmk E
-    key <AB06> { [             n,             N,              endash,           leftarrow ] }; // QWE N Cmk K
+    key <AB06> { [             n,             N,              endash,             uparrow ] }; // QWE N Cmk K
     key <AC07> { [             j,             J,               U0283,               U01A9 ] }; // QWE J Cmk N
 };
 
@@ -539,14 +537,14 @@ xkb_symbols "cmk_ed_mirror_letters" {
     key <AD03> { [             u,             U,               U2039,       guillemotleft ] };
     key <AD02> { [             y,             Y,               U203A,      guillemotright ] };
     key <AD01> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] };
-    key <AC10> { [             a,             A,                  ae,                  AE ] };
+    key <AC10> { [             a,             A,             dstroke,         Greek_alpha ] };
     key <AC09> { [             r,             R,          registered,           trademark ] };
     key <AC08> { [             s,             S,              ssharp,             section ] };
     key <AC07> { [             t,             T,               thorn,               THORN ] };
     key <AC06> { [             d,             D,                 eth,                 ETH ] };
     key <AC05> { [             h,             H,             hstroke,             Hstroke ] };
-    key <AC04> { [             n,             N,              endash,           leftarrow ] };
-    key <AC03> { [             e,             E,            EuroSign,             uparrow ] };
+    key <AC04> { [             n,             N,              endash,             uparrow ] };
+    key <AC03> { [             e,             E,            EuroSign,           leftarrow ] };
     key <AC02> { [             i,             I,              emdash,          rightarrow ] };
     key <AC01> { [             o,             O,           masculine,         ordfeminine ] };
     key <AB10> { [             z,             Z,               U0292,               U01B7 ] };
@@ -576,7 +574,7 @@ xkb_symbols "cmk_ed_mirror_symbols" {
     key <AE02> { [             0,    parenright,      dead_abovering,              degree ] };
     key <AE01> { [         minus,    underscore,         dead_macron,           plusminus ] };
 //    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] };
-//    key <AD12> { [  bracketright,    braceright,             dstroke,         Greek_alpha ] };
+//    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] };
     key <AB03> { [         comma,          less,        dead_cedilla,       lessthanequal ] };
     key <AB02> { [        period,       greater,       dead_abovedot,    greaterthanequal ] };
     key <AB01> { [         slash,      question,         dead_stroke,        questiondown ] };

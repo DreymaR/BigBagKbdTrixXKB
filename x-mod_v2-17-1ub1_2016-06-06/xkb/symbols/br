@@ -345,7 +345,6 @@ xkb_symbols "cmk_ed_us" {
     key <AD11> { [  dead_acute,      dead_grave,         bracketleft,           braceleft ] }; // <AD11> kept
     key <AD12> { [  dead_tilde, dead_circumflex,        bracketright,          braceright ] }; // from <AC11>
     key <LSGT> { [      ccedilla,      Ccedilla,                  oe,                  OE ] }; // from <AC10>
-//    key <AC06> { [             h,             H,             dstroke,         Greek_alpha ] }; // keep đ/α
 // The Brazilian ABNT-2 keyboard has the special <AB11> key:
     key <AB11>	{ [  masculine,     ordfeminine,            question,        questiondown ] }; // from pt <AC11>
 // ** NOTE: The pt and br layouts have been harmonized; this should not affect typing efficiency.
