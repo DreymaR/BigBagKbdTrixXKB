@@ -45,18 +45,17 @@ FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
 MyDATE=`date +"%Y-%m-%d_%H-%M"`
 MyNAME=`basename $0`
 MyPATH=`dirname $0`
-#~ XVERSION='2-5-1-3ub2'
-#~ XVERSION='2-10-1-1'
-#~ XVERSION='2-12-1'
-XVERSION='2-17-1ub1'
 ## @@@ The default X11 dir under Debian/Ubuntu/etc is /usr/share/X11  @@@
 ## @@@ The default X11 dir under some (older) distros is /usr/lib/X11 @@@
 X11DIR='/usr/share/X11'; [ -d "${X11DIR}" ] || X11DIR='/usr/lib/X11'
+#~ XVERSION='2-17-1ub1'
+XVERSION=''
 ModDATE=''
 
 DModDir=`dirname $0`	# (-d) Path to the script (and mod?) root directory
 ToolDir="${DModDir}/dreymar-xtools"	# The location of tool scripts (like setxkb.sh)
-DModTag="x-mod_v${XVERSION}${ModDATE:+'_'}${ModDATE}"	# (-t) Mod dir "prefix"
+DMod='xkb-data_mod'		# (--) The main name of the directory with modded xkb-data files
+DModTag="${DMod}${XVERSION:+'_v'}${XVERSION}${ModDATE:+'_'}${ModDATE}"	# (-t) Mod dir "prefix"
 DBakFix='dbak-'			# (--) Backup dir prefix
 DModFix='d'				# (--) Modded dir prefix
 InstDir="${X11DIR}"		# (-i) Path to install subfolder(s) in
