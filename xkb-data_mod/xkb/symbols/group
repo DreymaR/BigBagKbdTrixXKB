@@ -45,6 +45,16 @@ xkb_symbols "rwin_switch" {
     };
 };
 
+// The right Menu key (while pressed) chooses the second keyboard group.
+// while Shift+Menu acts as Menu.
+partial modifier_keys
+xkb_symbols "menu_switch" {
+    key <MENU> {
+        symbols[Group1] = [ Mode_switch, Menu ],
+        virtualMods= AltGr
+    };
+};
+
 // The right Ctrl key (while pressed) chooses the second keyboard group.
 // (Needed mainly for the Canadian keyboard.)
 partial modifier_keys
@@ -89,8 +99,9 @@ xkb_symbols "shift_caps_switch" {
 partial modifier_keys
 xkb_symbols "win_space_toggle" {
   key <SPCE> {
-    type[Group1]="PC_SUPER_LEVEL2",
-    symbols[Group1]= [ space, ISO_Next_Group ]
+    type="PC_SUPER_LEVEL2",
+    symbols[Group1]= [ space, ISO_Next_Group ],
+    symbols[Group2]= [ space, ISO_Next_Group ]
   };
 };
 
@@ -333,7 +344,7 @@ xkb_symbols "ctrls_toggle" {
     };
 };
 
-// Pressing both Alt keys switches to the next or previous group
+// Pressing both Alt switches to the next or previous group
 // (depending on which Alt is pressed first).
 partial modifier_keys
 xkb_symbols "alts_toggle" {
@@ -447,6 +458,15 @@ xkb_symbols "lctrl_lwin_rctrl_menu" {
     };
 };
 
+// Control_L+Win_L toggles groups.
+partial modifier_keys
+xkb_symbols "lctrl_lwin_toggle" {
+    key <LWIN> {
+        type[ Group1 ]    = "PC_CONTROL_LEVEL2",
+        symbols[ Group1 ] = [ Super_L,    ISO_Next_Group ]
+    };
+};
+
 // --> OEystein Bech "DreymaR" Gadmar, 2013: Additions to xkb/symbols/group
 // The Left Ctrl key (while pressed) chooses the second group.
 // (Needed mainly for mirrored layouts.)
@@ -467,3 +487,4 @@ xkb_symbols "rctrl_switch_ctrls_toggle" {
     };
 }; // rctrl_switch_ctrls_toggle
 // <-- DreymaR: Additions to xkb/symbols/group
+

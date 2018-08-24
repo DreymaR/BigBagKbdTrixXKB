@@ -39,7 +39,7 @@ xkb_symbols "nodeadkeys" {
     include "latin(type2_nodeadkeys)"
     include "se(se)"
 
-    name[Group1]="Swedish (eliminate dead keys)";
+    name[Group1]="Swedish (no dead keys)";
 
     key <AE12>	{ [     acute,      grave,    plusminus,      notsign ]	};
 };
@@ -151,7 +151,7 @@ xkb_symbols "rus_nodeadkeys" {
     include "se(nodeadkeys)"
     include "se(rus)"
 
-    name[Group1]="Russian (Sweden, phonetic, eliminate dead keys)";
+    name[Group1]="Russian (Sweden, phonetic, no dead keys)";
 
     key <AE12> {	[ Cyrillic_hardsign, Cyrillic_HARDSIGN ]	};
 };
@@ -359,4 +359,40 @@ xkb_symbols "dvorak_a5" {
 
 };
 
+partial alphanumeric_keys
+xkb_symbols "ovd" {
+
+    // Adds combining ogonek (U0328) to the basic Swedish layout to facilitate
+    // typing of Ą ą Ę ę Į į Ų ų Y̨ y̨ Ą̊ ą̊.
+    // The character replaces <dead_diaeresis> which is considered dispensable
+    // since ä and ö have their own keys. <dead_diaeresis> is still available
+    // via <AltGr> + Å.
+
+    include "se(basic)"
+
+    name[Group1]="Elfdalian (Swedish, with combining ogonek)";
+
+    key <AD12> { [ U0328,  dead_circumflex,  dead_tilde,  dead_caron ] };
+};
+
+// us_dvorak
+// Author Thomas Lundqvist http://tlundqvist.org/sv_dvorak/
+
+partial alphanumeric_keys
+xkb_symbols "us_dvorak" {
+  include "us(dvorak-intl)"
+  name[Group1]="Swedish (based on US Intl. Dvorak)";
+
+  key <TLDE> { [ apostrophe,  asciitilde,           grave,      dead_tilde ] };
+  key <AE02> { [          2,    quotedbl,              at                  ] };
+  key <AE06> { [          6, asciicircum, dead_circumflex                  ] };
+  key <AD01> { [      aring,       Aring,      dead_acute                  ] };
+  key <AC11> { [      minus,  underscore,             bar,     dead_macron ] };
+  key <AB01> { [ adiaeresis,  Adiaeresis,      dead_grave,     dead_ogonek ] };
+  key <LSGT> { [ odiaeresis,  Odiaeresis,  dead_diaeresis,   dead_belowdot ] };
+  key <BKSL> { [  semicolon,       colon,       backslash                  ] };
+
+  include "kpdl(comma)"
+  include "level3(ralt_switch)"
+};
 

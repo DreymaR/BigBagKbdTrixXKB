@@ -31,6 +31,16 @@ xkb_symbols "ralt_switch" {
   include "level5(modifier_mapping)"
 };
 
+// The CapsLock key (while pressed) chooses the fifth shift level.
+partial modifier_keys
+xkb_symbols "caps_switch" {
+  key <CAPS> {
+    type[Group1]="ONE_LEVEL",
+    symbols[Group1] = [ ISO_Level5_Shift ]
+  };
+  include "level5(modifier_mapping)"
+};
+
 // Ensure a mapping to a real modifier for LevelFive.
 partial modifier_keys
 xkb_symbols "modifier_mapping" {
@@ -146,15 +156,15 @@ xkb_symbols "rwin_switch_lock_cancel" {
 // The Left Ctrl Level5 switches are good for Extend overlay mappings if you're using Caps as Left Ctrl
 // See "DreymaR's Big Bag of Keyboard Tricks": http://forum.colemak.com/viewtopic.php?pid=9918
 
-// The CapsLock key (while pressed) chooses the fifth shift level.
-partial modifier_keys
-xkb_symbols "caps_switch" {
-  key <CAPS> {
-    type[Group1]="ONE_LEVEL",
-    symbols[Group1] = [ ISO_Level5_Shift ]
-  };
-  include "level5(modifier_mapping)"
-};
+// The CapsLock key (while pressed) chooses the fifth shift level. Now included in xkb-data.
+//partial modifier_keys
+//xkb_symbols "caps_switch" {
+//  key <CAPS> {
+//    type[Group1]="ONE_LEVEL",
+//    symbols[Group1] = [ ISO_Level5_Shift ]
+//  };
+//  include "level5(modifier_mapping)"
+//};
 
 // CapsLock chooses 5th level, locks when pressed together with another 5th-level-chooser
 partial modifier_keys

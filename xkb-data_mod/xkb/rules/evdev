@@ -156,6 +156,7 @@
   thinkpad	=	thinkpad(intl)
   thinkpad60	=	thinkpad(60)
   thinkpadz60	=	thinkpad(60)
+  apex300	=	steelseries(apex300)
  $tmgeometries	=	typematrix(%m)
   winbook	=	winbook(XP5)
   pc98		=	nec(pc98)
@@ -899,30 +900,50 @@
   de		neo			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
   de		adnw			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
   de		koy			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
+  de		bone			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
+  de		bone_eszett_home			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
+  de		neo_qwertz			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
+  de		neo_qwerty			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
   jp        $sun_compat =   complete+japan(kana_lock)
 
 ! layout[1]	variant[1]	=	compat
   de		neo			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
   de		adnw			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
   de		koy			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
+  de		bone			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
+  de		bone_eszett_home			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
+  de		neo_qwertz			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
+  de		neo_qwerty			=	+caps(caps_lock)+misc(assign_shift_left_action)+level5(level5_lock)
   jp       $sun_compat =   complete+japan(kana_lock)
 
 ! layout[2]	variant[2]	=	compat
   de		neo			=	+caps(caps_lock):2+misc(assign_shift_left_action):2+level5(level5_lock):2
   de		adnw			=	+caps(caps_lock):2+misc(assign_shift_left_action):2+level5(level5_lock):2
   de		koy			=	+caps(caps_lock):2+misc(assign_shift_left_action):2+level5(level5_lock):2
+  de		bone			=	+caps(caps_lock):2+misc(assign_shift_left_action):2+level5(level5_lock):2
+  de		bone_eszett_home			=	+caps(caps_lock):2+misc(assign_shift_left_action):2+level5(level5_lock):2
+  de		neo_qwertz			=	+caps(caps_lock):2+misc(assign_shift_left_action):2+level5(level5_lock):2
+  de		neo_qwerty			=	+caps(caps_lock):2+misc(assign_shift_left_action):2+level5(level5_lock):2
   jp       $sun_compat  =   +complete+japan(kana_lock):2
 
 ! layout[3]	variant[3]	=	compat
   de		neo			=	+caps(caps_lock):3+misc(assign_shift_left_action):3+level5(level5_lock):3
   de		adnw			=	+caps(caps_lock):3+misc(assign_shift_left_action):3+level5(level5_lock):3
   de		koy			=	+caps(caps_lock):3+misc(assign_shift_left_action):3+level5(level5_lock):3
+  de		bone			=	+caps(caps_lock):3+misc(assign_shift_left_action):3+level5(level5_lock):3
+  de		bone_eszett_home			=	+caps(caps_lock):3+misc(assign_shift_left_action):3+level5(level5_lock):3
+  de		neo_qwertz			=	+caps(caps_lock):3+misc(assign_shift_left_action):3+level5(level5_lock):3
+  de		neo_qwerty			=	+caps(caps_lock):3+misc(assign_shift_left_action):3+level5(level5_lock):3
   jp       $sun_compat  =   +complete+japan(kana_lock):3
 
 ! layout[4]	variant[4]	=	compat
   de		neo			=	+caps(caps_lock):4+misc(assign_shift_left_action):4+level5(level5_lock):4
   de		adnw			=	+caps(caps_lock):4+misc(assign_shift_left_action):4+level5(level5_lock):4
   de		koy			=	+caps(caps_lock):4+misc(assign_shift_left_action):4+level5(level5_lock):4
+  de		bone			=	+caps(caps_lock):4+misc(assign_shift_left_action):4+level5(level5_lock):4
+  de		bone_eszett_home			=	+caps(caps_lock):4+misc(assign_shift_left_action):4+level5(level5_lock):4
+  de		neo_qwertz			=	+caps(caps_lock):4+misc(assign_shift_left_action):4+level5(level5_lock):4
+  de		neo_qwerty			=	+caps(caps_lock):4+misc(assign_shift_left_action):4+level5(level5_lock):4
   jp       $sun_compat  =   +complete+japan(kana_lock):4
 
 ! model		layout		=	compat
@@ -991,6 +1012,7 @@
   grp:win_switch	=	+group(win_switch)
   grp:lwin_switch	=	+group(lwin_switch)
   grp:rwin_switch	=	+group(rwin_switch)
+  grp:menu_switch	=	+group(menu_switch)
   grp:toggle		=	+group(toggle)
   grp:shifts_toggle	=	+group(shifts_toggle)
   grp:ctrls_toggle	=	+group(ctrls_toggle)
@@ -1029,6 +1051,7 @@
   grp:ralt_rshift_toggle	=	+group(ralt_rshift_toggle)
   grp:alt_shift_toggle	=	+group(alt_shift_toggle)
   grp:alt_shift_toggle_bidir	=	+group(alt_shift_toggle_bidir)
+  grp:lctrl_lwin_toggle	=	+group(lctrl_lwin_toggle)
   lv3:switch		=	+level3(switch)
   lv3:ralt_switch	=	+level3(ralt_switch)
   lv3:ralt_switch_multikey	=	+level3(ralt_switch_multikey)
@@ -1150,7 +1173,7 @@
   lv5:rwin_switch_lock_cancel     =       +level5(rwin_switch_lock_cancel)
   lv5:caps_switch_lock_cancel     =       +level5(caps_switch_lock_cancel)
   lv5:lctl_switch_lock_cancel     =       +level5(lctl_switch_lock_cancel)
-
+  parens:swap_brackets   =   +parens(swap_brackets)
 
 
 ! option	=	compat
