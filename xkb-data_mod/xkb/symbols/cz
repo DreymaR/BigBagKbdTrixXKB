@@ -288,7 +288,7 @@ xkb_symbols "cmk_ed_us" {
 // Uring is very rare; it's nevertheless provided for (sm)allcaps writing and referral to the letter.
 
     key <LSGT> { [         uring,         Uring,                  oe,                  OE ] }; // from <AC10>
-    key <AD11> { [    dead_acute,     braceleft,         bracketleft,             dstroke ] }; // from <AE12>
-    key <AD12> { [    dead_caron,    braceright,        bracketright,         Greek_alpha ] }; // from <AE12>
+    key <AD11> { [    dead_acute,    dead_acute,         bracketleft,           braceleft ] }; // from <AE12>
+    key <AD12> { [    dead_caron,    dead_caron,        bracketright,          braceright ] }; // from <AE12>
 };
 // <-- DreymaR: Additions to xkb/symbols/cz

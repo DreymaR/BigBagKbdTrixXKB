@@ -365,10 +365,10 @@ xkb_symbols "cmk_ed_us" {
 //       - I suggest lv1 dead_caron for the 3 caron letters, but I also provide the option for AltGr mappings.
 
     key <LSGT> { [        cacute,        Cacute,                  oe,                  OE ] }; // from <AC11>
-//    key <AD11> { [   bracketleft,     braceleft,          dead_caron,         Greek_alpha ] }; // from <AD11>
-//    key <AD12> { [  bracketright,    braceright,             dstroke,             Dstroke ] }; // on <AD12>
-    key <AD11> { [    dead_caron,   Greek_alpha,         bracketleft,           braceleft ] }; // from <AD11>++
-    key <AD12> { [       dstroke,       Dstroke,        bracketright,          braceright ] }; // on <AD12>
+//    key <AD11> { [   bracketleft,     braceleft,             dstroke,             Dstroke ] }; // on <AD12>
+//    key <AD12> { [  bracketright,    braceright,          dead_caron,          dead_caron ] }; // from <AD11>
+    key <AD11> { [       dstroke,       Dstroke,         bracketleft,           braceleft ] }; // on <AD12>
+    key <AD12> { [    dead_caron,    dead_caron,        bracketright,          braceright ] }; // from <AD11>++
 // NOTE: The Curl(DH) ergo mod moves H and K, which may interfere with these mappings.
 //    key <AB06> { [             k,             K,              ccaron,              Ccaron ] }; // from <AC10>
 //    key <AC06> { [             h,             H,              zcaron,              Zcaron ] }; // from <BKSL>

@@ -587,8 +587,8 @@ xkb_symbols "cmk_ed_us" {
 //    key <AD12> { [    dead_acute,   dead_ogonek,        bracketright,          braceright ] }; // by frequency
 
     key <LSGT> { [     zabovedot,     Zabovedot,                  oe,                  OE ] }; // QWERTZ <AC10>
-    key <AD11> { [    dead_acute,     braceleft,         bracketleft,             dstroke ] }; // by frequency
-    key <AD12> { [   dead_ogonek,    braceright,        bracketright,         Greek_alpha ] }; // QWERTZ <TLDE>
+    key <AD11> { [    dead_acute,    dead_acute,         bracketleft,           braceleft ] }; // by frequency
+    key <AD12> { [   dead_ogonek,   dead_ogonek,        bracketright,          braceright ] }; // QWERTZ <TLDE>
 // Note: I consider level1 access to the accents paramount; lstroke should be an easy reach on AltGr+l I hope?
 };
 // <-- DreymaR: Additions to xkb/symbols/pl

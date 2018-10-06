@@ -1,7 +1,7 @@
 DreymaR's Big Bag of Keyboard Tricks
 ====================================
 
-### For Linux (updated to XKB-data v2.17.1ub1, 2016-06)
+### For Linux (updated to XKB-data v2.23.1-1ubuntu1, 2018-08)
 
 * New "Colemak[eD]" AltGr mappings (lv3-4) putting dead keys on AltGr+symbol keys and reworking most other mappings
 * Angle/Wide ergo modifications to improve wrist angles, hand spacing and right pinky stretch/load effort
