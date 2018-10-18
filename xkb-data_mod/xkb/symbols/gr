@@ -208,15 +208,18 @@ partial alphanumeric_keys
 // See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
 
 // This layout is based on its basic Greek (QWERTY) counterpart maintained by V Vasaitis.
-// Note: Standard Colemak has semicolon on <AD10> while Greek(QWERTY) uses <AD01>.
-// I've moved the symbols on <AC10> to <AD10>, just like the standard Colemak does.
+// Note: Standard Colemak has semicolon on <AD10> while Greek QWERTY uses <AD01>.
+// The frequently used accents on <AC10> can move to <AD10>, like standard Colemak does.
+// However, ideally I'd like to keep ;: on <AD10> instead of on Q, for Colemak compliance.
+// Also, I'd love to have room for the two diaeresis letters ϊΪ and ϋΫ for easy typing. But how?
 partial alphanumeric_keys
 xkb_symbols "colemak" {
     include "gr(basic)"
     include "gr(colemak_gr_12)"
     include "gr(colemak_gr_34)"
+    include "gr(colemak_gr_eD)"
 // NOTE: The basic layout didn't define some keys (no Space?); I've no idea why.
-//       To compensate, I include the below which defines SPCE.
+//       To compensate just in case, I include the below which defines SPCE.
     include "nbsp(level4)"
     name[Group1]= "Greek (Colemak, phonetic)";
 };
@@ -226,37 +229,37 @@ xkb_symbols "colemak_gr_12" {
 // This is based on the gr(bare) partial; the number/symbol keys aren't changed
     name[Group1]= "Greek (Colemak levels 1-2)";
 
-//	key <AD01> { [             semicolon,          colon ] }; // ; :
-//	key <AD02> { [ Greek_finalsmallsigma,    Greek_SIGMA ] }; // ς Σ
-	key <AD03> { [             Greek_phi,      Greek_PHI ] }; // φ Φ
-	key <AD04> { [              Greek_pi,       Greek_PI ] }; // π Π
-	key <AD05> { [           Greek_gamma,    Greek_GAMMA ] }; // γ Γ
-	key <AD06> { [              Greek_xi,       Greek_XI ] }; // ξ Ξ
-	key <AD07> { [           Greek_lamda,    Greek_LAMDA ] }; // λ Λ
-	key <AD08> { [           Greek_theta,    Greek_THETA ] }; // θ Θ
-	key <AD09> { [         Greek_upsilon,  Greek_UPSILON ] }; // υ Υ
-	key <AD10> { [            dead_acute, dead_diaeresis ] }; // ´ ¨
+//	key <AD01> { [             semicolon,          colon ] }; // q - ; :
+//	key <AD02> { [ Greek_finalsmallsigma,    Greek_SIGMA ] }; // w - ς Σ
+	key <AD03> { [             Greek_phi,      Greek_PHI ] }; // f - φ Φ
+	key <AD04> { [              Greek_pi,       Greek_PI ] }; // p - π Π
+	key <AD05> { [           Greek_gamma,    Greek_GAMMA ] }; // g - γ Γ
+	key <AD06> { [              Greek_xi,       Greek_XI ] }; // j - ξ Ξ
+	key <AD07> { [           Greek_lamda,    Greek_LAMDA ] }; // l - λ Λ
+	key <AD08> { [           Greek_theta,    Greek_THETA ] }; // u - θ Θ
+	key <AD09> { [         Greek_upsilon,  Greek_UPSILON ] }; // y - υ Υ
+	key <AD10> { [            dead_acute, dead_diaeresis ] }; // ; - ´ ¨
 
-//	key <AC01> { [           Greek_alpha,    Greek_ALPHA ] }; // α Α
-	key <AC02> { [             Greek_rho,      Greek_RHO ] }; // ρ Ρ
-	key <AC03> { [           Greek_sigma,    Greek_SIGMA ] }; // σ Σ
-	key <AC04> { [             Greek_tau,      Greek_TAU ] }; // τ Τ
-	key <AC05> { [           Greek_delta,    Greek_DELTA ] }; // δ Δ
-//	key <AC06> { [             Greek_eta,      Greek_ETA ] }; // η Η
-	key <AC07> { [              Greek_nu,       Greek_NU ] }; // ν Ν
-	key <AC08> { [         Greek_epsilon,  Greek_EPSILON ] }; // ε Ε
-	key <AC09> { [            Greek_iota,     Greek_IOTA ] }; // ι Ι
-	key <AC10> { [         Greek_omicron,  Greek_OMICRON ] }; // ο Ο
+//	key <AC01> { [           Greek_alpha,    Greek_ALPHA ] }; // a - α Α
+	key <AC02> { [             Greek_rho,      Greek_RHO ] }; // r - ρ Ρ
+	key <AC03> { [           Greek_sigma,    Greek_SIGMA ] }; // s - σ Σ
+	key <AC04> { [             Greek_tau,      Greek_TAU ] }; // t - τ Τ
+	key <AC05> { [           Greek_delta,    Greek_DELTA ] }; // d - δ Δ
+//	key <AC06> { [             Greek_eta,      Greek_ETA ] }; // h - η Η
+	key <AC07> { [              Greek_nu,       Greek_NU ] }; // n - ν Ν
+	key <AC08> { [         Greek_epsilon,  Greek_EPSILON ] }; // e - ε Ε
+	key <AC09> { [            Greek_iota,     Greek_IOTA ] }; // i - ι Ι
+	key <AC10> { [         Greek_omicron,  Greek_OMICRON ] }; // o - ο Ο
 
-//	key <AB01> { [            Greek_zeta,     Greek_ZETA ] }; // ζ Ζ
-//	key <AB02> { [             Greek_chi,      Greek_CHI ] }; // χ Χ
-//	key <AB03> { [             Greek_psi,      Greek_PSI ] }; // ψ Ψ
-//	key <AB04> { [           Greek_omega,    Greek_OMEGA ] }; // ω Ω
-//	key <AB05> { [            Greek_beta,     Greek_BETA ] }; // β Β
-	key <AB06> { [           Greek_kappa,    Greek_KAPPA ] }; // κ Κ
-//	key <AB07> { [              Greek_mu,       Greek_MU ] }; // μ Μ
+//	key <AB01> { [            Greek_zeta,     Greek_ZETA ] }; // z - ζ Ζ
+//	key <AB02> { [             Greek_chi,      Greek_CHI ] }; // x - χ Χ
+//	key <AB03> { [             Greek_psi,      Greek_PSI ] }; // c - ψ Ψ
+//	key <AB04> { [           Greek_omega,    Greek_OMEGA ] }; // v - ω Ω
+//	key <AB05> { [            Greek_beta,     Greek_BETA ] }; // b - β Β
+	key <AB06> { [           Greek_kappa,    Greek_KAPPA ] }; // k - κ Κ
+//	key <AB07> { [              Greek_mu,       Greek_MU ] }; // m - μ Μ
 
-//	key <LSGT> { [         guillemotleft, guillemotright ] }; // « »
+//	key <LSGT> { [         guillemotleft, guillemotright ] }; // _ - « »
 };
 
 hidden partial alphanumeric_keys
@@ -286,5 +289,16 @@ xkb_symbols "colemak_gr_34" {
 //	key <AB05> { [       NoSymbol,       NoSymbol,          U03D0                 ] }; // b
 	key <AB06> { [       NoSymbol,       NoSymbol,          U03DF,          U03DE ] }; // k
 //	key <AB07> { [       NoSymbol,       NoSymbol,          U03FB,          U03FA ] }; // m
+};
+
+hidden partial alphanumeric_keys
+xkb_symbols "colemak_gr_eD" {
+// These definitions add DreymaR specific changes to the Greek layout, namely composing dasia/psili/iota etc.
+    name[Group1]= "Greek (Colemak ed. DreymaR extras)";
+
+//	key <????> { [          U03CB,          U03AB,              §,              § ] }; // ϋ Ϋ
+	key <LSGT> { [          U03CA,          U03AA,          U0345,          U037A ] }; // ϊ Ϊ c/p-Ypogegrammenei
+	key <AD11> { [    bracketleft,      braceleft,          U0314,          U1FFE ] }; // comb./plain Gr. Dasia
+	key <AD12> { [   bracketright,     braceright,          U0313,          U1FBF ] }; // comb./plain Gr. Psili
 };
 // <-- DreymaR: Additions to xkb/symbols/gr
