@@ -1,7 +1,7 @@
 DreymaR's Big Bag of Keyboard Tricks
 ====================================
 
-### For Linux (updated to XKB-data v2.23.1-1ubuntu1, 2018-08)
+### For Linux (updated to [XKB-data v2.23.1-1ubuntu1][XKBdat], 2018-08)
 
 * New "Colemak[eD]" AltGr mappings (lv3-4) putting dead keys on AltGr+symbol keys and reworking most other mappings
 * Angle/Wide ergo modifications to improve wrist angles, hand spacing and right pinky stretch/load effort
@@ -22,8 +22,10 @@ Run the install and setxkb scripts with -h (or look inside them) for more help a
 Links
 -----
 
-See the [DREYMAR'S (XKB) topic on the Colemak Forums](http://forum.colemak.com/viewtopic.php?id=1438) (http://forum.colemak.com).
+See [DREYMAR'S XKB topic on the Colemak Forums](http://forum.colemak.com/viewtopic.php?id=1438) (http://forum.colemak.com).
 There are plenty of explanations and further links in there, as well as links to files.
 
 Happy XKB hacking!
-DreymaR, 2017-06
+DreymaR, 2018-08
+
+[XKBdat]: https://ubuntu.pkgs.org/18.04/ubuntu-main-amd64/xkb-data_2.23.1-1ubuntu1_all.deb.html (xkb-data download page)

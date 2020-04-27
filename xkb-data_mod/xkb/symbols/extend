@@ -6,39 +6,39 @@
 // - <FK##> mapped as XF86 Multimedia keys; shifted versions were not implemented in WinPKL
 //
 // These keys are modified/transposed by holding down the 'extend key' (CapsLock by default):
-// +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |Esc + |F1 <> |F2 << |F3 >> |F4 <> |F5 <> |F6 << |F7 >> |F8 <> |F9 <> |F10<> |F11<> |F12<> |
-// |      | Pause| Rew  | Fwd  | Eject| Refr | Bri- | Bri+ | Sleep| WWW  | Mail | App1 | App2 |
-// | Caps | Play | Prev | Next | Stop | Mute | Vol- | Vol+ | Media| Home | Srch | File | Calc |
-// +======+======+======+======+======+======+======+======+======+======+======+======+======+
-// |` €€€ |1     |2     |3     |4     |5     |6     |7     |8     |9     |0     |-     |=     |
-// | Cust | F1   | F2   | F3   | F4   | F5   | F6   | F7   | F8   | F9   | F10  | F11  | F12  |
-// +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |Tab   |Q €€€ |W *** |F <<> |P <>> |G *** |J ### |L ### |U ### |Y ### |; €€€ |[ €€€ |] €€€ |
-// |      | Esc  | *WhUp| BrBck| BrFwd| *MUp | PgUp | Home | Up   | End  | Del  | Esc  | Ins  |
-// +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |Caps+ |A +++ |R *** |S +++ |T +++ |D *** |H ### |N ### |E ### |I ### |O €€€ |' €€€ |\ ><> |
-// | ++++ | Alt  | *WhDn| Shift| Ctrl | *MDn | PgDn | Left | Down | Right| Back | Menu | BrFav|
-// +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |_ *** |Z €€€ |X === |C === |V === |B *** |K *** |M *** |, *** |. *** |/ €€€ |Spc € |Entr€ |
-// | *MOn | Undo | Cut  | Copy | Paste| *Bt1 | *Bt2 | *Bt3 | *MLe | *MRi | Multi| Enter| PrtSc|
-// +------+------+------+------+------+------+------+------+------+------+------+-------------+
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
+// |Esc +  |F1 <>  |F2 <<  |F3 >>  |F4 <>  |F5 <>  |F6 <<  |F7 >>  |F8 <>  |F9 <>  |F10<>  |F11<>  |F12<>  |
+// |       | Pause | Rew   | Fwd   | Eject | Refr  | Bri-  | Bri+  | Sleep | WWW   | Mail  | App1  | App2  |
+// | Caps  | Play  | Prev  | Next  | Stop  | Mute  | Vol-  | Vol+  | Media | Home  | Srch  | File  | Calc  |
+// +=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+=======+
+// |` €€€  |1      |2      |3      |4      |5      |6      |7      |8      |9      |0      |-      |=      |
+// | Cust  | F1    | F2    | F3    | F4    | F5    | F6    | F7    | F8    | F9    | F10   | F11   | F12   |
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
+// |Tab    |Q €€€  |W ***  |F <<>  |P <>>  |G ***  |J ###  |L ###  |U ###  |Y ###  |; €€€  |[ €€€  |] €€€  |
+// |       | Esc   | *WhUp | BrBck | BrFwd | *MUp  | PgUp  | Home  | Up    | End   | Del   | Esc   | Ins   |
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
+// |Caps+  |A +++  |R ***  |S +++  |T +++  |D ***  |H ###  |N ###  |E ###  |I ###  |O €€€  |' €€€  |\ ><>  |
+// | ++++  | Alt   | *WhDn | Shift | Ctrl  | *MDn  | PgDn  | Left  | Down  | Right | Back  | Menu  | BrFav |
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
+// |_ ***  |Z €€€  |X ===  |C ===  |V ===  |B ***  |K ***  |M ***  |, ***  |. ***  |/ €€€  |Spc €  |Entr€  |
+// | *MOn  | Undo  | Cut   | Copy  | Paste | *Bt1  | *Bt2  | *Bt3  | *MLe  | *MRi  | Multi | Enter | PrtSc |
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
 // Legend: # Movement; + Modifiers; = GUI edit; * Mouse; <> MultiMedia; € Various commands.
 //
 // KeyPad overlay with nav block to the left (lv7-8):
-// +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |` €€€ |1     |2     |3     |4 £   |5 €   |6     |7  ⇖  |8  ⇑  |9  ⇗  |0     |-     |=     |
-// | Cust |  !   |  @   |  #   |  $   |  %   |  ^   | KP_7 | KP_8 | KP_9 | KP_* | KP_- | KP_= |
-// +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |Tab   |Q ### |W ### |F ### |P €€€ |G €€€ |J ### |L  ⇐  |U  ⇔  |Y  ⇒  |;     |[ {   |] }   |
-// |      | Home | Up   | End  | Del  | Esc  | PgUp | KP_4 | KP_5 | KP_6 | KP_+ |  (   |  )   |
-// +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |Caps+ |A ### |R ### |S ### |T €€€ |D     |H ### |N  ⇙  |E  ⇓  |I  ⇘  |O     |' "   |\ |   |
-// | ++++ | Left | Down | Right| Back | K_Lck| PgDn | KP_1 | KP_2 | KP_3 | K_Ent|  '   |  :   |
-// +------+------+------+------+------+------+------+------+------+------+------+------+------+
-// |_ *** |Z €€€ |X === |C === |V === |B *** |K     |M     |,  ⇕  |.     |/     |Spc   |Entr  |
-// | *MOn | Undo | Cut  | Copy | Paste| *Bt1 |  ,   | KP_0 | KP_0 | KP_. | KP_/ | Spc  | K_Ent|
-// +------+------+------+------+------+------+------+------+------+------+------+------+------+
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
+// |` €€€  |1      |2      |3      |4 £    |5 €    |6      |7  ⇖   |8  ⇑   |9  ⇗   |0      |-      |=      |
+// | Cust  |  !    |  @    |  #    |  $    |  %    |  ^    | KP_7  | KP_8  | KP_9  | KP_*  | KP_-  | KP_=  |
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
+// |Tab    |Q ###  |W ###  |F ###  |P €€€  |G €€€  |J ###  |L  ⇐   |U  ⇔   |Y  ⇒   |;      |[ {    |] }    |
+// |       | Home  | Up    | End   | Del   | Esc   | PgUp  | KP_4  | KP_5  | KP_6  | KP_+  |  (    |  )    |
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
+// |Caps+  |A ###  |R ###  |S ###  |T €€€  |D      |H ###  |N  ⇙   |E  ⇓   |I  ⇘   |O      |' "    |\  |   |
+// | ++++  | Left  | Down  | Right | Back  | K_Lck | PgDn  | KP_1  | KP_2  | KP_3  | K_Ent |  '    |  :    |
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
+// |_ ***  |Z €€€  |X ===  |C ===  |V ===  |B ***  |K      |M      |,  ⇕   |.      |/      |Spc    |Entr   |
+// | *MOn  | Undo  | Cut   | Copy  | Paste | *Bt1  |  ,    | KP_0  | KP_0  | KP_.  | KP_/  | Spc   | K_Ent |
+// +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
 //
 // NOTE: A lv7 (Level5+Level3) modifier might be necessary to use the KeyPad level sensibly
 //       One idea is to use AltGr+Caps as a lv7_lock (Caps+AltGr is already lv7_switch)
@@ -49,6 +49,9 @@
 //       One fix is to run xset afterwards: 'seq -s " r " 8 255 | xargs xset r' supposedly does the trick.
 //       Add the following to key <> {} defs (before symbols[Group1]=)?
 //           repeat=true,
+// TODO: A lv7 modifier to reach the second Extend layer directly.
+//       Test out this:
+//       key <RCTL> { [ ISO_Level5_Shift ], actions[Group1] = [ SetMods(mods=LevelThree+LevelFive) ] };
 
 default partial
 xkb_symbols "basic" {
@@ -226,11 +229,11 @@ xkb_symbols "lv5" {
                    Redirect(key=<HOME>) , Redirect(key=<HOME>) ]  // <HOME>
                };  // Cmk Q
     key <AD02> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
-                   XF86ScrollUp         , XF86ScrollRight       , // ScrollUp(††)
+                   XF86ScrollUp         , XF86ScrollUp          , // ScrollUp(††)
                    Up                   , KP_Up                ], //  ↑
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   PtrBtn(button=4)     , PtrBtn(button=6)      , // PtrWhBtUp/Ri
-                   NoAction()           , NoAction()           ]
+                   PtrBtn(button=4)     , PtrBtn(button=4)      , // PtrWhBtUp/Ri
+                   NoAction()           , NoAction()           ]  // (ScrollRight/Left & button 6/7 may cause crashes now?!)
                };  // Cmk W
     key <AD03> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    XF86Back             , XF86Back              , // BrBck
@@ -318,11 +321,11 @@ xkb_symbols "lv5" {
                    NoAction()           , NoAction()           ]
                };  // Cmk A
     key <AC02> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
-                   Down                 , XF86ScrollDown        , // ScrollDown(††)
+                   XF86ScrollDown       , XF86ScrollDown        , // ScrollDown(††)
                    Down                 , KP_Down              ], //  ↓
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   PtrBtn(button=5)     , PtrBtn(button=7)      , // PtrWhBtDn/Le
-                   NoAction()           , NoAction()           ]
+                   PtrBtn(button=5)     , PtrBtn(button=5)      , // PtrWhBtDn/Le
+                   NoAction()           , NoAction()           ]  // (ScrollRight/Left & button 6/7 may cause crashes now?!)
                };  // Cmk R
     key <AC03> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Shift_L              , Shift_L               , // Shift

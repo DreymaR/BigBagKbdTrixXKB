@@ -604,23 +604,55 @@ key.type[Group1]="FOUR_LEVEL_SEMIALPHABETIC";
 
 	    };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2013: Additions to xkb/symbols/group
-// The Left Ctrl key (while pressed) chooses the second group.
-// (Needed mainly for mirrored layouts.)
-partial modifier_keys
-xkb_symbols "lctrl_switch" {
-    key <LCTL>  {
-        symbols[Group1]= [ Mode_switch ]
-    };
-}; // lctrl_switch
+// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/hu
+// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Hungarian.
+// 2006-01-01 Shai Coleman, http://colemak.com/
+// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
 
-// The Right Control key (while pressed) chooses the next group.
-// Control_L+Control_R toggles groups.
-partial modifier_keys
-xkb_symbols "rctrl_switch_ctrls_toggle" {
-    key <RCTL> {
-        type[ Group1 ]    = "PC_CONTROL_LEVEL2",
-        symbols[ Group1 ] = [ Mode_switch, ISO_Next_Group ]
-    };
-}; // rctrl_switch_ctrls_toggle
-// <-- DreymaR: Additions to xkb/symbols/group
+// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_ks" {
+    include "hu(basic)"
+    include "colemak(cmk_ed_letters)"
+    name[Group1]= "Hungarian (Colemak[eD], keep local symbols)";
+
+// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//    key <AE05> { [ NoSymbol, NoSymbol,       mu, degree ] };
+//    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, degree ] }; // dead_abovering is lost
+
+    key <AD10>	{ [ eacute, Eacute, dollar, cent ] }; // from <AC10>
+};
+
+// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+// For Hungarian, necessary local letters are added to designated flexible spots in the layout.
+// For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_us" {
+    include "colemak(cmk_ed_letters)"
+    include "colemak(cmk_ed_symbols)"
+    include "level3(ralt_switch)"
+    name[Group1]= "Hungarian (Colemak[eD], unified symbols)";
+
+// In Hungarian, á/é/ö are common (Furedi/Kelemen(1989) frequencies: eatlnskomzrigáéydbvhjöfupőócüíúűxw)
+// Acute accent is used a lot (áéóíú); umlaut (öü) and doubleacute (őű) some; accessible dead keys would be nice
+// From frequencies alone it seems x and w should go instead but that's unwise in an international world!
+
+//    key <AD11> { [   bracketleft,     braceleft,          dead_acute,    dead_doubleacute ] };
+//    key <AD12> { [  bracketright,    braceright,    dead_doubleacute,      dead_diaeresis ] };
+    key <AD11> { [ dead_acute, dead_doubleacute,         bracketleft,           braceleft ] }; // easier accents
+    key <AD12> { [ dead_doubleacute, dead_diaeresis,    bracketright,          braceright ] }; // easier accents
+    key <LSGT> { [    odiaeresis,    Odiaeresis,          udiaeresis,          Udiaeresis ] }; // from <AE10>/<AE11>
+
+//// One alternative is to provide áéó, öü and őű on AltGr mappings:
+//    key <AD11> { [        eacute,        Eacute,         bracketleft,           braceleft ] }; // from <AC10>
+//    key <AD12> { [    odiaeresis,    Odiaeresis,        bracketright,          braceright ] }; // from <AE10>
+//    key <LSGT> { [        aacute,        Aacute,                  oe,                  OE ] }; // from <AC11>
+// NOTE: The Curl(DH) ergo mod moves H and K, which may interfere with these mappings.
+//    key <AB06> { [             k,             K,        odoubleacute,        Odoubleacute ] }; // from <AD11>
+//    key <AC06> { [             h,             H,              oacute,              Oacute ] }; // from <AE12>
+//    key <AD06> { [             j,             J,          udiaeresis,          Udiaeresis ] }; // from <AE11>
+//    key <AD07> { [             l,             L,        udoubleacute,        Udoubleacute ] }; // from <BKSL>
+};
+// <-- DreymaR: Additions to xkb/symbols/hu
