@@ -1083,14 +1083,15 @@ xkb_symbols "cmk_ed_ks" {
     include "fr(basic)"
     include "colemak(cmk_ed_letters)"
     name[Group1]= "French (Colemak[eD], keep local symbols)";
+    key <AB08> { [         comma,      question,          dead_acute,    dead_doubleacute ] }; // <AB07>
+    key <AD10> { [     semicolon,        period,      horizconnector,            multiply ] }; // <AB08>
+//    key <AD10> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // Colemak[eD] <AD10>
 
 // NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
 // EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
 // Colemak[eD] has EuroSign on 'E' and mu on '5'.
 //    key <AE05> { [ NoSymbol, NoSymbol, NoSymbol,       mu ] };
 //    key <AE05> { [ NoSymbol, NoSymbol, NoSymbol, EuroSign ] }; // EuroSign added on lv4 to keep bracketleft
-
-    key <AD10> { [ semicolon, colon, dead_diaeresis, ellipsis ] }; // Colemak[eD] <AD10>
 };
 
 // The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
