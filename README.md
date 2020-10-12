@@ -28,4 +28,13 @@ There are plenty of explanations and further links in there, as well as links to
 Happy XKB hacking!
 DreymaR, 2018-08
 
+TODO:
+-----
+* Migrate from `~/.bashrc` to `~/.xprofile`? The latter is more appropriate, but which setups source it and which ones don't?
+* Note: It may be necessary to select "Use system defaults" if you have changed anything in the OS GUI layout settings.
+* The Curl(DH) model implementation may have to go as it may mess w/ QWERTY, and instead I should use two Extend variants?
+* Could use an <EXT> key code alias defined in keycodes/evdev (alias <EXT> = <CAPS>), instead of the <CAPS> code?
+* Choose another default layout for the setxkb.sh script than Norwegian! But which one? I want to diffferentiate between the US locale and the US variant (Universal Symbols).
+
+
 [XKBdat]: https://ubuntu.pkgs.org/18.04/ubuntu-main-amd64/xkb-data_2.23.1-1ubuntu1_all.deb.html (xkb-data download page)
