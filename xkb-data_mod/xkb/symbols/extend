@@ -393,7 +393,7 @@ xkb_symbols "lv5" {
 
     key <LSGT> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Delete               , Delete                , // User customizeable key (Del for now)
-                   Delete               , Delete                , // --"--
+                   Delete               , Delete               ], // --"--
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
                    Redirect(key=<DELE>) , Redirect(key=<DELE>)  , // <DELE>
                    Redirect(key=<DELE>) , Redirect(key=<DELE>) ]  // <DELE>

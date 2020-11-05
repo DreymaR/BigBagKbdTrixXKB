@@ -151,10 +151,10 @@ xkb_symbols "cmk_ed_letters" {
     key <AB07> { [             m,             M,            multiply,           downarrow ] }; // QWE/Cmk M
     //  U0292/01B7 ezh/EZH
 
-//// Activating the line below will "hard" enable the Curl(DH) mod; see below.
+//// Activating the line below will "hard" enable the Cmk-DH = Curl(DHm) mod; see below.
 //    include "colemak(cmk_ed_dh)"
-//// Activating the line below will "hard" enable the old Curl(DHm) mod; see below.
-//    include "colemak(cmk_ed_dhm)"
+//// Activating the line below will "hard" enable the old Curl(DHk) mod; see below.
+//    include "colemak(cmk_ed_dhk)"
 //// This is the old Curl(DvH) Colemak ergo mod, keeping V and M in place.
 //    include "colemak(cmk_ed_dvh)"
 };
@@ -230,30 +230,31 @@ xkb_symbols "cmk_ed_symbols" {
 // This is the Colemak Curl(DH) ergo mod, bringing D and H down to comfortable lower row positions.
 // See http://colemakmods.github.io/mod-dh/ and http://forum.colemak.com/viewtopic.php?id=1942 for more info.
 // • Curl(DH) is implemented both as an US English variant (cmk_ed_dh) and an option (misc:cmk_curl_dh).
-// • There is now one unified Curl(DH) mod; it moves zxc Dbg Hmk (ZXC are moved in the CurlAngle mod).
+// • There is now one unified Curl(DH) mod; it moves zxc Dbg Hm (ZXC are moved in the CurlAngle mod).
 //   For this mod to work as intended, a CurlAngle mod (such as the pc105cawide-sl model) is necessary.
-// • Stevep99's old Curl-DHm(DvbgHm) mod gave D a good bottom-row place (<AB04>) at the cost of V and B, and
-//                                       gave H a good bottom-row position at the cost of M.
+// • DH = Stevep99's Curl-DHm(DvbgHm) mod gives D a good bottom-row place (<AB04>) at the cost of V and B, and
+//                                        gives H a good bottom-row position at the cost of M.
 // • DreymaR's old Curl-DvH(DbgHk) mod avoided splitting ZXCV by replacing B with D in the full Angle mod, and
 //                                     avoided moving M, swapping H and K instead.
-// • Some may prefer the old Curl-DHm mod to keep M on the home row; rename cmk_ed_[dh/dhm] below for that.
-// • The mod causes lv3-4 trouble with Cmk[eD] locales that remap H (and in some cases, D/G/K).
+// • Some may prefer the 2014-2017 Curl-DHk mod to keep M in the "pocket"; rename cmk_ed_[dh/dhk] below then.
+// • The mod causes lv3-4 trouble with Cmk[eD] locales that remap H (and in some cases, D/G and for DHk, K).
 //   To use Curl-DH, any H in symbols/locale 'cmk_ed_us' sections should change from <AC06> to <AB06>/<AB07>.
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_dh" {
-    // This is the Curl(DH) ergo mod for Colemak
-    // D is moved inside V by one of the CurlAngle mods (to affect Extend)
-    include "colemak(cmk_ed_dbg)"
-    include "colemak(cmk_ed_hmk)"
-};
-
-hidden partial alphanumeric_keys
-xkb_symbols "cmk_ed_dhm" {
-    // This is the old Curl(DHm/DvbgHm) ergo mod for Colemak, with M on the home row
+    // Standard Colemak-DH from Oct 2020- is Colemak-DH(m)
+    // This is the original Curl(DHm/DvbgHm) ergo mod for Colemak, with M on the home row
     // In the new implementation, D is moved inside V by one of the CurlAngle mods
     include "colemak(cmk_ed_dbg)"
     include "colemak(cmk_ed_hm)"
+};
+
+hidden partial alphanumeric_keys
+xkb_symbols "cmk_ed_dhk" {
+    // This is the Curl(DHk) ergo mod for Colemak, DH standard 2017-2020
+    // D is moved inside V by one of the CurlAngle mods (to affect Extend)
+    include "colemak(cmk_ed_dbg)"
+    include "colemak(cmk_ed_hmk)"
 };
 
 hidden partial alphanumeric_keys
