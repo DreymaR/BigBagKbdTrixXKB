@@ -978,19 +978,16 @@
   $threelevellayouts	grp:alts_toggle = +level3(ralt_switch_for_alts_toggle):2
   *			misc:typo 	= +typo(base):2
   *			misc:extend 	= +extend(basic):2
-//  *			misc:cmk_curl_dh	= +colemak(cmk_ed_dh):2
 
 ! layout[3]	option	=	symbols
   $threelevellayouts	grp:alts_toggle = +level3(ralt_switch_for_alts_toggle):3
   *			misc:typo 	= +typo(base):3
   *			misc:extend 	= +extend(basic):3
-//  *			misc:cmk_curl_dh	= +colemak(cmk_ed_dh):3
 
 ! layout[4]	option	=	symbols
   $threelevellayouts	grp:alts_toggle = +level3(ralt_switch_for_alts_toggle):4
   *			misc:typo 	= +typo(base):4
   *			misc:extend 	= +extend(basic):4
-//  *			misc:cmk_curl_dh	= +colemak(cmk_ed_dh):4
 
 ! option	=	symbols
   grp:shift_toggle	=	+group(shifts_toggle)

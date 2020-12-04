@@ -66,7 +66,7 @@ DoBackup='ifnone'		# (-n/b) Default backup behavior is "if no backups are found"
 SubDirs='all'			# (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale', 'all')
 InstGTK='no'			# (-g) Whether to install the GTK 2.0/3.0 config (if not present)
 SetXMap='no'			# (-x) Whether to run the setxkb script after installing
-SetXStr='5cw us us'		# (--) Shortcut string for setxkb - 'kbd loc sym' (model layout eD-variant)
+SetXStr='5caw us us'	# (--) Shortcut string for setxkb - 'kbd loc sym' (model layout eD-variant)
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\

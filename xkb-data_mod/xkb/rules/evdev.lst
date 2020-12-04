@@ -7,13 +7,8 @@
   pc104wide-qu    Generic 104-key PC Wide(Quote)Ergo
   pc104aw-zqu     Generic 104-key PC Angle(Z)Wide(Quote)Ergo
   pc104awing      Generic 104-key PC AngleWing(Quote)Ergo
-  pc104curl-z     Generic 104-key PC CurlAngle(Z)Ergo
-  pc104caw-zqu    Generic 104-key PC CurlAngle(Z)Wide(Quote)Ergo
-  pc104cawing     Generic 104-key PC CurlAngleWing(Quote)Ergo
   pc105angle      Generic 105-key PC (intl.) Angle_Ergo
   pc105aw-sl      Generic 105-key PC (intl.) AngleWide(/)Ergo
-  pc105curl       Generic 105-key PC (intl.) CurlAngle_Ergo
-  pc105caw-sl     Generic 105-key PC (intl.) CurlAngleWide(/)Ergo
   dell101         Dell 101-key PC
   latitude        Dell Latitude laptop
   dellm65         Dell Precision M65 laptop

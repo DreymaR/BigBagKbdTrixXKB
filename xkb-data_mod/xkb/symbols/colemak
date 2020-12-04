@@ -267,18 +267,16 @@ xkb_symbols "cmk_ed_dvh" {
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_dbg" {
-    // This is the 'Dbg' loop for the Colemak Curl-DH ergo mod.
-    // In the new implementation, D is moved inside V by one of the CurlAngle mods (to affect Extend)
+    // This is the 'Dbg' loop for the Colemak Curl-DH ergo mod. D is moved inside V (Extend is unaffected).
     key <AD05> { [             b,             B,  enfilledcircbullet,          Greek_beta ] }; // QWE T Cmk G
     key <AC05> { [             g,             G,                 eng,                 ENG ] }; // QWE G Cmk D
-    key <AB05> { [             d,             D,                 eth,                 ETH ] }; // QWE/Cmk B
-//    key <AB04> { [             d,             D,                 eth,                 ETH ] }; // QWE/Cmk V
-//    key <AB05> { [             v,             V,            division,         Greek_gamma ] }; // QWE/Cmk B
+    key <AB04> { [             d,             D,                 eth,                 ETH ] }; // QWE/Cmk V
+    key <AB05> { [             v,             V,            division,         Greek_gamma ] }; // QWE/Cmk B
 };
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_hmk" {
-    // This is the 'Hmk' switch for the Colemak Curl-DH ergo mod
+    // This is the 'Hmk' switch for the Colemak Curl-DHk ergo mod with K on the home row.
     key <AC06> { [             k,             K,            ccedilla,            Ccedilla ] }; // QWE/Cmk H
     key <AB06> { [             m,             M,            multiply,           downarrow ] }; // QWE N Cmk K
     key <AB07> { [             h,             H,             hstroke,             Hstroke ] }; // QWE/Cmk M
@@ -286,7 +284,7 @@ xkb_symbols "cmk_ed_hmk" {
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_hm" {
-    // This is the 'Hm' switch for the old Colemak Curl-DHm ergo mod, with M on the home row.
+    // This is the 'Hm' switch for the original/standard Colemak Curl-DHm ergo mod.
     key <AC06> { [             m,             M,            multiply,           downarrow ] }; // QWE/Cmk H
     key <AB07> { [             h,             H,             hstroke,             Hstroke ] }; // QWE/Cmk M
 };
@@ -361,15 +359,14 @@ xkb_symbols "tarmak2c_et" {
     include "colemak(tarmak_mask_prs_to_rsd)"
     include "colemak(tarmak_mask_jyoc_to_yocp)"
     include "colemak(tarmak_mask_lui_to_uil)"
-// TODO: Make this go away, implementing proper CurlAngle models in its stead.
-////       For the old Curl(DvbgHm) mod, activating the right-hand HM switch is still optional.
+////       For Curl(DHm), activating the right-hand HM switch is still optional.
 //    include "colemak(cmk_ed_dbg)"
 //    include "colemak(cmk_ed_dbghm)"
 //// NOTE: The below is for DBG/DVBG mods (VJ/JV on <AB04>/<AB05> respectively)
 ////       For the Curl-DH mod, both sides are activated at this point forward. (Activate it normally for step 3–4.)
     include "colemak(cmk_ed_dbghk)"
-    key <AB04> { [             v,             V,            division,         Greek_gamma ] }; // QWE/Cmk V
-    key <AB05> { [             j,             J,               U0283,               U01A9 ] }; // QWE/Cmk B - stray J
+    key <AB04> { [             j,             J,               U0283,               U01A9 ] }; // QWE/Cmk B - stray J
+    key <AB05> { [             v,             V,            division,         Greek_gamma ] }; // QWE/Cmk V
     name[Group1]= "English/Intl (Tarmak2c_ET - Colemak Curl-DH transitional)";
 };
 

@@ -5,7 +5,7 @@
 ## ===     by Øystein Bech "DreymaR" Gadmar, 2014     ===
 ## ======================================================
 
-HeadStr="DreymaR's setxkbmap script (by GadOE, 2015-01)"
+HeadStr="DreymaR's setxkbmap script (by GadOE, 2020-12)"
 DescStr=\
 "\e[1mShell script to change X.org keyboard setup\e[0m\n"\
 "  using the 'setxkbmap' command.\n"\
@@ -23,8 +23,8 @@ FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
 #		 Example: '5w no us' activates model pc105aw-sl, layout no(cmk_ed_us)
 #		 Models: 4n 4a(pc104angle-z) 4w(pc104wide-qu) 4aw(pc104aw-zqu) 4f(pc104awing)
 #		         5n 5a(pc105angle) 5w/5aw(pc105aw-sl)
-#		     - Curl(DH) models add a 'c', like this: 4c, 5cw etc
-#		     - Thus, the allowed model short strings are (4|5)(n|a|c)[(w|f)]
+#		     - Curl(DH) "models" add a 'c', like this: 4c, 5caw etc
+#		     - Thus, the allowed model short strings are (4|5)(n|a|c|ca)[(w|f)]
 #		 XKB options are left out of this: Too complex (e.g., replace or append?)
 
 ##-------------- init ------------------------------------------
@@ -36,18 +36,18 @@ MyNAME=`basename $0`
 ## @@@ The default X11 dir under some (older) distros is /usr/lib/X11 @@@
 X11DIR='/usr/share/X11'; [ -d "${X11DIR}" ] || X11DIR='/usr/lib/X11'
 
-#~ XKBmodel=pc104aw-zqu	# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
-XKBmodel=pc105caw-sl	# ISO-105 keyboard w/ CurlAngleWide(Slash) mod
-#~ XKBlayout='us(cmk_ed_us),gr(colemak),ru(colemak)'
-XKBlayout='no(cmk_ed_us)'	# Norwegian Colemak[eD]'Universal Symbols' layout
+#~ XKBmodel=pc104aw-zqu		# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
+XKBmodel=pc105aw-sl			# ISO-105 keyboard w/ CurlAngleWide(Slash) mod
+#~ XKBlayout='us(cmk_ed_us),gr(colemak),ru(colemak)'	# Multiple layouts
+XKBlayout='us(cmk_ed_us)'	# US English Colemak[eD]'Universal Symbols' layout
 XKBoption='misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu'
-VerboseLvl=9			# (-v) How much info should setxkbmap print out?
-KeepXKM='no'			# (-k) Retain old /var/lib/xkb/server-*.xkm files?
-XKBdir="${X11DIR}/xkb"	# (-d) The xkb-type dir to run setxkbmap from
-AddCmd='no'				# (-a) Add setxkbmap cmd to file?
+VerboseLvl=9				# (-v) How much info should setxkbmap print out?
+KeepXKM='no'				# (-k) Retain old /var/lib/xkb/server-*.xkm files?
+XKBdir="${X11DIR}/xkb"		# (-d) The xkb-type dir to run setxkbmap from
+AddCmd='no'					# (-a) Add setxkbmap cmd to file?
 AddDefault="${HOME}/.bashrc"
-AddCmdTo=${AddDefault}	# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
-SetXStr='' #'5cw no us'	# (--) Shortcut string for setxkb (model locale eD-variant)
+AddCmdTo=${AddDefault}		# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
+SetXStr='' #'5caw us us'	# (--) Shortcut string for setxkb (model locale eD-variant)
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\
@@ -72,8 +72,8 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 "  <loc> Two-letter locale layout code like 'us' for USA, 'gb' for UK etc\n"\
 "  <sym> 'us'/'ks' for 'Universal' or 'Keep Locale' symbol variants\n\n"\
 "  Examples: '5a se us': PC105-Angle, Swedish Cmk[eD] 'UnifiedSym'\n"\
-"            '4cf gb ks': PC104-Curl(DH)AWing, Eng.(UK) Cmk[eD] 'KeepSym'\n"\
-"            '5cw': PC105-Curl(DH)AngleWide, keep current layout/variant\n"
+"            '4ca gb ks': PC104-Curl(DH)Angle, Eng.(UK) Cmk[eD] 'KeepSym'\n"\
+"            '5caw': PC105-Curl(DH)AngleWide, keep current layout/variant\n"
 #~ "     (See the script's comments for more info.)"
 
 
@@ -148,20 +148,15 @@ shift $(( $OPTIND - 1 ))			# Remove already processed args
 
 if [ -n "${SetXStr}" ]; then		# Use ShortString notation
 	case ${SetXStr[0]} in
-		  4n)		XKBmodel='pc104'			;;	# Generic ANSI-101/104-key
-		  4a)		XKBmodel='pc104angle-z'		;;	# w/ Angle(Z) ergo mod
-		  4w)		XKBmodel='pc104wide-qu'		;;	# w/ Wide(Quote) ergo mod
-		 4aw)		XKBmodel='pc104aw-zqu'		;;	# w/ Angle(Z)Wide(Quote) ergo mod
-		 4f|4af)	XKBmodel='pc104awing'		;;	# w/ AngleWing(Quote) ergo mod
-		  4c)		XKBmodel='pc104curl-z'		;;	# w/ Curl(DH)Angle(Z) ergo mod
-		 4cw)		XKBmodel='pc104caw-zqu'		;;	# w/ Curl(DH)Angle(Z)Wide(Quote) mod
-		 4cf)		XKBmodel='pc104cawing'		;;	# w/ Curl(DH)AngleWing(Quote) mod
+		 4n|4c)       XKBmodel='pc104'			;;	# Generic ANSI-101/104-key
+		 4a|4ca)      XKBmodel='pc104angle-z'	;;	# w/ Angle(Z) ergo mod
+		 4w|4cw)      XKBmodel='pc104wide-qu'	;;	# w/ Wide(Quote) ergo mod
+		 4aw|4caw)    XKBmodel='pc104aw-zqu'	;;	# w/ Angle(Z)Wide(Quote) ergo mod
+		 4f|4af|4cf)  XKBmodel='pc104awing'		;;	# w/ AngleWing(Quote) ergo mod
 
-		  5n)		XKBmodel='pc105'			;;	# Generic ISO-102/105-key
-		  5a)		XKBmodel='pc105angle'		;;	# w/ Angle(LSGT) ergo mod
-		 5w|5aw)	XKBmodel='pc105aw-sl'		;;	# w/ AngleWide(Slash) ergo mod
-		  5c)		XKBmodel='pc105curl'		;;	# w/ Curl(DH)Angle ergo mod
-		 5cw)		XKBmodel='pc105caw-sl'		;;	# w/ Curl(DH)AngleWide(Slash) mod
+		 5n|5c)       XKBmodel='pc105'			;;	# Generic ISO-102/105-key
+		 5a|5ca)      XKBmodel='pc105angle'		;;	# w/ Angle(LSGT) ergo mod
+		 5w|5aw|5caw) XKBmodel='pc105aw-sl'		;;	# w/ AngleWide(Slash) ergo mod
 
 		  *)	MyError "ShortStr model '${SetXStr[0]}' unknown!" ;;
 	esac
@@ -171,14 +166,7 @@ if [ -n "${SetXStr}" ]; then		# Use ShortString notation
 fi
 
 ## NOTE: The code below post processes Curl models into model+option, as per my XKB implementation.
-case ${XKBmodel} in
-	pc104curl-z)	Curling='yes'	;;				# PC104-Curl(DH)Angle(Z)
-	pc104caw-zqu)	Curling='yes'	;;				# PC104-Curl(DH)Angle(Z)Wide(Quote)
-	pc104cawing)	Curling='yes'	;;				# PC104-Curl(DH)AngleWing(Quote)
-	pc105curl)		Curling='yes'	;;				# PC105-Curl(DH)Angle(LSGT)
-	pc105caw-sl)	Curling='yes'	;;				# PC105-Curl(DH)AngleWide(Slash)
-esac
-[[ $Curling == 'yes' ]] && XKBoption+=',misc:cmk_curl_dh'
+[[ ${SetXStr[0]} =~ "c" ]] && XKBoption+=',misc:cmk_curl_dh'
 
 
 ##-------------- main ------------------------------------------

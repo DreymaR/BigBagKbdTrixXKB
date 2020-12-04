@@ -327,18 +327,6 @@ xkb_keycodes "pc104angle-z" {
     augment "evdev(evdev)"
 };
 
-// pc104_CurlAngle(Z) ergonomic mod (by DreymaR, 2017)
-xkb_keycodes "pc104curl-z" {
-
-    <AB02> =  52;	// X	<  Z
-    <AB03> =  53;	// C	<  X
-    <AB05> =  54;	// B	<  C
-    <AB04> =  55;	// V	<  V
-    <AB01> =  56;	// Z	<  B
-
-    augment "evdev(evdev)"
-};
-
 // pc104_Wide(Quote) ergonomic mod (by DreymaR, 2013)
 xkb_keycodes "pc104wide-qu" {
 
@@ -361,23 +349,6 @@ xkb_keycodes "pc104awing" {
     include "evdev(pc104wide-rightpart)"
     include "evdev(pc104awing-leftpart)"
     augment "evdev(evdev)"
-};
-
-// pc104_CurlAngle(Z)Wide(Quote) ergonomic mod (by DreymaR, 2017)
-xkb_keycodes "pc104caw-zqu" {
-
-    include "evdev(pc104wide-rightpart)"
-    include "evdev(pc104wide-midpart)"
-    augment "evdev(pc104curl-z)"
-};
-
-// pc104_CurlAngleWing(Quote) ergonomic mod (by DreymaR, 2017)
-xkb_keycodes "pc104cawing" {
-
-    <AB05> =  55;	// B	<  V
-    <AB04> =  56;	// V	<  B
-
-    augment "evdev(pc104awing)"
 };
 
 // pc104_Wide partial ergonomic mod (by DreymaR, 2013)
@@ -460,31 +431,11 @@ xkb_keycodes "pc105angle" {
     augment "evdev(evdev)"
 };
 
-// pc105_CurlAngle(LSGT) ergonomic mod (by DreymaR, 2017)
-xkb_keycodes "pc105curl" {
-
-    <AB01> =  94;	// Z	<  LG
-    <AB02> =  52;	// X	<  Z
-    <AB03> =  53;	// C	<  X
-    <AB05> =  54;	// B	<  C
-    <AB04> =  55;	// V	<  V
-    <LSGT> =  56;	// LG	<  B
-
-    augment "evdev(evdev)"
-};
-
 // pc105_AngleWide(Slash) ergonomic mod (by DreymaR, 2011)
 xkb_keycodes "pc105aw-sl" {
 
     include "evdev(pc105wide-rightpart)"
     augment "evdev(pc105angle)"
-};
-
-// pc105_CurlAngleWide(Slash) ergonomic mod (by DreymaR, 2017)
-xkb_keycodes "pc105caw-sl" {
-
-    include "evdev(pc105wide-rightpart)"
-    augment "evdev(pc105curl)"
 };
 
 // pc105_Wide(Slash) partial ergonomic mod (by DreymaR, 2011)

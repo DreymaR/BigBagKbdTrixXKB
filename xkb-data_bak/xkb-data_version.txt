@@ -2,4 +2,4 @@ XKB data for DreymaR's Big Bag of Keyboard Tricks
 =================================================
 
 xkb-data version: 2-23-1-1ub1
-My starting date: 2018-02-02
+Deb archive date: 2018-02-02

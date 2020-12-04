@@ -60,27 +60,6 @@
     </model>
     <model>
       <configItem>
-        <name>pc104curl-z</name>
-        <description>Generic 104-key PC (CurlAngle(Z)Ergo mod)</description>
-        <vendor>Generic</vendor>
-      </configItem>
-    </model>
-    <model>
-      <configItem>
-        <name>pc104caw-zqu</name>
-        <description>Generic 104-key PC (CurlAngle(Z)Wide(Quote)Ergo mod)</description>
-        <vendor>Generic</vendor>
-      </configItem>
-    </model>
-    <model>
-      <configItem>
-        <name>pc104cawing</name>
-        <description>Generic 104-key PC (CurlAngleWing(Quote)Ergo mod)</description>
-        <vendor>Generic</vendor>
-      </configItem>
-    </model>
-    <model>
-      <configItem>
         <name>pc105angle</name>
         <description>Generic 105-key PC (intl.) (Angle_Ergo mod)</description>
         <vendor>Generic</vendor>
@@ -90,20 +69,6 @@
       <configItem>
         <name>pc105aw-sl</name>
         <description>Generic 105-key PC (intl.) (AngleWide(/)Ergo mod)</description>
-        <vendor>Generic</vendor>
-      </configItem>
-    </model>
-    <model>
-      <configItem>
-        <name>pc105curl</name>
-        <description>Generic 105-key PC (intl.) (CurlAngle_Ergo mod)</description>
-        <vendor>Generic</vendor>
-      </configItem>
-    </model>
-    <model>
-      <configItem>
-        <name>pc105caw-sl</name>
-        <description>Generic 105-key PC (intl.) (CurlAngleWide(/)Ergo mod)</description>
         <vendor>Generic</vendor>
       </configItem>
     </model>
