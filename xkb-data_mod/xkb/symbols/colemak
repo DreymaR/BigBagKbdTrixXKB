@@ -120,35 +120,35 @@ xkb_symbols "cmk_ed" {
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_letters" {
     //  Alphanumeric section (letter keys and semicolon)
-    key <AD01> { [             q,             Q,  singlelowquotemark,  doublelowquotemark ] }; // QWE/Cmk Q
-    key <AD02> { [             w,             W, leftsinglequotemark, leftdoublequotemark ] }; // QWE/Cmk W
-    key <AD03> { [             f,             F,rightsinglequotemark,rightdoublequotemark ] }; // QWE E Cmk F
-    key <AD04> { [             p,             P,            Greek_pi,           paragraph ] }; // QWE R Cmk P
-    key <AD05> { [             g,             G,                 eng,                 ENG ] }; // QWE T Cmk G
-    key <AD06> { [             j,             J,               U0283,               U01A9 ] }; // QWE Y Cmk J
-    key <AD07> { [             l,             L,             lstroke,             Lstroke ] }; // QWE U Cmk L
-    key <AD08> { [             u,             U,               U2039,       guillemotleft ] }; // QWE I Cmk U
-    key <AD09> { [             y,             Y,               U203A,      guillemotright ] }; // QWE O Cmk Y
-    key <AD10> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;:
+    key <AD01> { [             q,             Q,  singlelowquotemark,  doublelowquotemark ] }; // QWE Q Cmk qQ ‚„
+    key <AD02> { [             w,             W, leftsinglequotemark, leftdoublequotemark ] }; // QWE W Cmk wW ‘“
+    key <AD03> { [             f,             F,rightsinglequotemark,rightdoublequotemark ] }; // QWE E Cmk fF ’”
+    key <AD04> { [             p,             P,            Greek_pi,           paragraph ] }; // QWE R Cmk pP π¶
+    key <AD05> { [             g,             G,                 eng,                 ENG ] }; // QWE T Cmk gG ŋŊ
+    key <AD06> { [             j,             J,               U0283,               U01A9 ] }; // QWE Y Cmk jJ ʃƩ
+    key <AD07> { [             l,             L,             lstroke,             Lstroke ] }; // QWE U Cmk lL łŁ
+    key <AD08> { [             u,             U,               U2039,       guillemotleft ] }; // QWE I Cmk uU ‹«
+    key <AD09> { [             y,             Y,               U203A,      guillemotright ] }; // QWE O Cmk yY ›»
+    key <AD10> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;: ¨…
     //  U2039/203A single guillemets; U0283/01A9 esh/ESH
-    key <AC01> { [             a,             A,             dstroke,         Greek_alpha ] }; // QWE/Cmk A
-    key <AC02> { [             r,             R,          registered,           trademark ] }; // QWE S Cmk R
-    key <AC03> { [             s,             S,              ssharp,             section ] }; // QWE D Cmk S
-    key <AC04> { [             t,             T,               thorn,               THORN ] }; // QWE F Cmk T
-    key <AC05> { [             d,             D,                 eth,                 ETH ] }; // QWE G Cmk D
-    key <AC06> { [             h,             H,             hstroke,             Hstroke ] }; // QWE/Cmk H
-    key <AC07> { [             n,             N,              endash,             uparrow ] }; // QWE J Cmk N
-    key <AC08> { [             e,             E,            EuroSign,           leftarrow ] }; // QWE K Cmk E
-    key <AC09> { [             i,             I,              emdash,          rightarrow ] }; // QWE L Cmk I
-    key <AC10> { [             o,             O,           masculine,         ordfeminine ] }; // QWE ; Cmk O
+    key <AC01> { [             a,             A,             dstroke,         Greek_alpha ] }; // QWE A Cmk aA đα
+    key <AC02> { [             r,             R,          registered,           trademark ] }; // QWE S Cmk rR ®™
+    key <AC03> { [             s,             S,              ssharp,             section ] }; // QWE D Cmk sS ß§
+    key <AC04> { [             t,             T,               thorn,               THORN ] }; // QWE F Cmk tT þÞ
+    key <AC05> { [             d,             D,                 eth,                 ETH ] }; // QWE G Cmk dD ðÐ
+    key <AC06> { [             h,             H,             hstroke,             Hstroke ] }; // QWE H Cmk hH ħĦ
+    key <AC07> { [             n,             N,              endash,             uparrow ] }; // QWE J Cmk nN –↑
+    key <AC08> { [             e,             E,            EuroSign,           leftarrow ] }; // QWE K Cmk eE €←
+    key <AC09> { [             i,             I,              emdash,          rightarrow ] }; // QWE L Cmk iI —→
+    key <AC10> { [             o,             O,           masculine,         ordfeminine ] }; // QWE ; Cmk oO ºª
     //
-    key <AB01> { [             z,             Z,               U0292,               U01B7 ] }; // QWE/Cmk Z
-    key <AB02> { [             x,             X,              dagger,        doubledagger ] }; // QWE/Cmk X
-    key <AB03> { [             c,             C,           copyright,                cent ] }; // QWE/Cmk C
-    key <AB04> { [             v,             V,            division,         Greek_gamma ] }; // QWE/Cmk V
-    key <AB05> { [             b,             B,  enfilledcircbullet,          Greek_beta ] }; // QWE/Cmk B
-    key <AB06> { [             k,             K,            ccedilla,            Ccedilla ] }; // QWE N Cmk K
-    key <AB07> { [             m,             M,            multiply,           downarrow ] }; // QWE/Cmk M
+    key <AB01> { [             z,             Z,               U0292,               U01B7 ] }; // QWE Z Cmk zZ ʒƷ
+    key <AB02> { [             x,             X,              dagger,        doubledagger ] }; // QWE X Cmk xX †‡
+    key <AB03> { [             c,             C,           copyright,                cent ] }; // QWE C Cmk cC ©¢
+    key <AB04> { [             v,             V,            division,         Greek_gamma ] }; // QWE V Cmk vV ÷γ
+    key <AB05> { [             b,             B,  enfilledcircbullet,          Greek_beta ] }; // QWE B Cmk bB •β
+    key <AB06> { [             k,             K,            ccedilla,            Ccedilla ] }; // QWE N Cmk kK çÇ
+    key <AB07> { [             m,             M,            multiply,           downarrow ] }; // QWE M Cmk mM ×↓
     //  U0292/01B7 ezh/EZH
 
 //// Activating the line below will "hard" enable the Cmk-DH = Curl(DHm) mod; see below.
@@ -162,34 +162,34 @@ xkb_symbols "cmk_ed_letters" {
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_symbols" {
     //  Alphanumeric section (number/symbol keys)
-    key <TLDE> { [         grave,    asciitilde,          dead_tilde,               U2248 ] }; // `~
-    key <AE01> { [             1,        exclam,       dead_belowdot,          exclamdown ] }; // 1
-    key <AE02> { [             2,            at,           dead_hook,         twosuperior ] }; // 2
-    key <AE03> { [             3,    numbersign,           dead_horn,       threesuperior ] }; // 3
-    key <AE04> { [             4,        dollar,       dead_currency,            sterling ] }; // 4
-    key <AE05> { [             5,       percent,                  mu,               U2030 ] }; // 5
-    key <AE06> { [             6,   asciicircum,     dead_circumflex,   partialderivative ] }; // 6
-    key <AE07> { [             7,     ampersand,          dead_caron,             notsign ] }; // 7
-    key <AE08> { [             8,      asterisk,         dead_ogonek,            infinity ] }; // 8
-    key <AE09> { [             9,     parenleft,          dead_breve,      periodcentered ] }; // 9
-    key <AE10> { [             0,    parenright,      dead_abovering,              degree ] }; // 0
-    key <AE11> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_
-    key <AE12> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+
+    key <TLDE> { [         grave,    asciitilde,          dead_tilde,               U2248 ] }; // `~ _≈
+    key <AE01> { [             1,        exclam,       dead_belowdot,          exclamdown ] }; // 1! _¡
+    key <AE02> { [             2,            at,           dead_hook,         twosuperior ] }; // 2@ _²
+    key <AE03> { [             3,    numbersign,           dead_horn,       threesuperior ] }; // 3# _³
+    key <AE04> { [             4,        dollar,       dead_currency,            sterling ] }; // 4$ _£
+    key <AE05> { [             5,       percent,                  mu,               U2030 ] }; // 5% µ‰
+    key <AE06> { [             6,   asciicircum,     dead_circumflex,   partialderivative ] }; // 6^ _∂
+    key <AE07> { [             7,     ampersand,          dead_caron,             notsign ] }; // 7& _¬
+    key <AE08> { [             8,      asterisk,         dead_ogonek,            infinity ] }; // 8* _∞
+    key <AE09> { [             9,     parenleft,          dead_breve,      periodcentered ] }; // 9( _·
+    key <AE10> { [             0,    parenright,      dead_abovering,              degree ] }; // 0) _°
+    key <AE11> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
+    key <AE12> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
     //  U2248 approx equal; U2030 per mille
-    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{
-    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]}
+    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
+    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
     //
-    key <AC11> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '"
-    key <BKSL> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \|
+    key <AC11> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
+    key <BKSL> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \| _¦
     // U2032 prime
-    key <LSGT> { [            oe,            OE,              oslash,            Ooblique ] }; // <>
-    key <AB08> { [         comma,          less,        dead_cedilla,       lessthanequal ] }; // ,
-    key <AB09> { [        period,       greater,       dead_abovedot,    greaterthanequal ] }; // .
-    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /?
+    key <LSGT> { [            oe,            OE,              oslash,            Ooblique ] }; // œŒ øØ
+    key <AB08> { [         comma,          less,        dead_cedilla,       lessthanequal ] }; // ,< _≤
+    key <AB09> { [        period,       greater,       dead_abovedot,    greaterthanequal ] }; // .> _≥
+    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
     //
-    key <SPCE> { [         space,         space,        nobreakspace,        nobreakspace ] };
+    key <SPCE> { [         space,         space,        nobreakspace,        nobreakspace ] }; // Space
 // NOTE: In Linux, CapsLock is tweaked in the Keyboard settings (for freedom of choice etc.)
-//    key <CAPS> { [     BackSpace,     BackSpace,           Caps_Lock,           Caps_Lock ] };
+//    key <CAPS> { [     BackSpace,     BackSpace,           Caps_Lock,           Caps_Lock ] }; // Caps/Back
 };
 
 // NOTE:

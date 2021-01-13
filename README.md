@@ -38,11 +38,14 @@ There are plenty of explanations and further links in there.
   
   
 Happy XKB hacking!
-DreymaR, 2020-11
+DreymaR, 2021-01
   
   
 TODO:
 -----
+* Is there a way to use clearmods=LevelFive on all the Extend mappings by default? Or just be more careful with each RedirectKey(). Example: Q -> Esc -> Caps.
+* From Daniele at the Cmk Discord: Try out localectl?
+	- E.g., 'localectl set-x11-keymap us pc105aw-sl cmk_ed_dh lv5:caps_switch_lock,misc:extend' should work to make changes persistent?
 * The Curl(DH) model implementation have to go as it may mess w/ QWERTY. Instead, I should use two Extend variants.
 	- It also seems very hard for some newcomers to understand. So yes, I should have the Angle mod only and not CurlAngle models.
 	- Also, matrix users want the V-D swap without an Angle mod! Another nail in the coffin for the Curl models.
@@ -53,12 +56,30 @@ TODO:
 * Find out how to change the rules component properly to allow compiling and eventually merging to the main repo?
 * Migrate from `~/.bashrc` to `~/.xprofile`? The latter is more appropriate, but which setups source it and which ones don't?
 * Could use an <XTND> key code alias defined in keycodes/evdev (alias <XTND> = <CAPS>), instead of the <CAPS> code?
+
+For an EsAlt variant as in EPKL:
+```
+    key <AE04> { [             4,        dollar,       dead_currency,            EuroSign ] }; // 4
+    key <AD07> { [             l,             L,               U2039,       guillemotleft ] }; // QWE U Cmk L
+    key <AD08> { [             u,             U,                   ú,                   Ú ] }; // QWE I Cmk U - EsAlt
+    key <AC01> { [             a,             A,                   á,                   Á ] }; // QWE A Cmk A - EsAlt
+    key <AC06> { [             h,             H,           leftarrow,          rightarrow ] }; // QWE H Cmk H
+//    key <AC07> { [             n,             N,                   ñ,                   Ñ ] }; // QWE J Cmk N - EsAlt ANSI
+    key <AC08> { [             e,             E,                   é,                   É ] }; // QWE K Cmk E - EsAlt
+    key <AC09> { [             i,             I,                   í,                   Í ] }; // QWE L Cmk I - EsAlt
+    key <AC10> { [             o,             O,                   ó,                   Ó ] }; // QWE ; Cmk O - EsAlt
+    key <LSGT> { [             ñ,             Ñ,                  oe,                  OE ] }; // <>          - EsAlt ISO
+//    key <AB06> { [             k,             K,              endash,             uparrow ] }; // QWE N Cmk K - ANSI
+    key <AD11> { [   bracketleft,     braceleft,           masculine,         ordfeminine ] }; // [{
+```
   
   
 DONE:
 -----
 * 2020-11-05: Switched to the new DH = DHm standard (was DH = DHk)
-* Changed the default layout for the setxkb.sh script to US (UniSym): In my experience, most uneducated users want US English.
+* Changed the default layout for the setxkb.sh script to US (UniSym): In my experience, most users that struggle with the setup want US English.
+* To get back to your old layout/model, use `setxkb 4n/5n [loc]`. You may also specify `mod loc [var]`; omit `var` for the default (basic) variant.
+* Separated out the F# key block in the extend file: People complain that their TTY shortcuts aren't working because of it. Ext+AltGr+F# works though.
 
 
 [XKB-conf]: https://www.freedesktop.org/wiki/Software/XKeyboardConfig/ (XKeyboard Config page)
