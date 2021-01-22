@@ -238,7 +238,7 @@ xkb_symbols "lv5" {
                    Escape               , Escape                , // Esc
                    Home                 , KP_Home              ], // Home
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   Redirect(key=<ESC>)  , Redirect(key=<ESC>)   , // <ESC>
+                   Redirect(key=<ESC>,clearmods=LevelFive), Redirect(key=<ESC>,clearmods=LevelFive), // <ESC>
                    Redirect(key=<HOME>) , Redirect(key=<HOME>) ]  // <HOME>
                };  // Q
     key <AD02> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
@@ -267,7 +267,7 @@ xkb_symbols "lv5" {
                    Escape               , Escape               ], // Esc
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
                    MovePtr(x=+0,y=-8)   , MovePtr(x=+0,y=-8)    , // PtrUp(††)
-                   Redirect(key=<ESC>)  , Redirect(key=<ESC>)  ]  // <ESC>
+                   Redirect(key=<ESC>,clearmods=LevelFive), Redirect(key=<ESC>,clearmods=LevelFive) ] // <ESC>
                };  // QWE T, Cmk G
     key <AD06> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Page_Up              , Page_Up               , // PgUp
@@ -308,7 +308,7 @@ xkb_symbols "lv5" {
                    Escape               , Escape                , // Esc
                    parenleft            , braceleft            ], //  (
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   Redirect(key=<ESC>,clearmods=LevelFive)  , Redirect(key=<ESC>,clearmods=LevelFive)   , // <ESC>
+                   Redirect(key=<ESC>,clearmods=LevelFive), Redirect(key=<ESC>,clearmods=LevelFive), // <ESC>
                    NoAction()           , NoAction()           ]
                };  // [ {
     key <AD12> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,

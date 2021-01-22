@@ -43,7 +43,13 @@ DreymaR, 2021-01
   
 TODO:
 -----
-* Is there a way to use clearmods=LevelFive on all the Extend mappings by default? Or just be more careful with each RedirectKey(). Example: Q -> Esc -> Caps.
+* Is there a way to clear the LevelFive mod on all the Extend mappings by default? Or must I be more careful with each RedirectKey()?
+	- Example: `Q -> Esc -> Caps` caused people trouble, as Ext+Q would act as Esc+Caps.
+	- Possibly, finally make a new key type EIGHT_LEVEL_EXTEND with the action clearmods=LevelFive added to state 5-8? No, no actions.
+	- In xkb/types/level5 under EIGHT_LEVEL_SEMIALPHABETIC I used `preserve[Shift] = Shift;`. We need the opposite here, to discard lvl5.
+	- See for instance https://www.x.org/releases/X11R7.5/doc/input/XKB-Enhancing.html
+	- "Usually, all modifiers introduced in 'modifiers=<list of modifiers>' list are used for shift level calculation and then discarded."
+	- Does this mean that LevelFive should've been discarded but isn't? Is it an XKB bug?
 * From Daniele at the Cmk Discord: Try out localectl?
 	- E.g., 'localectl set-x11-keymap us pc105aw-sl cmk_ed_dh lv5:caps_switch_lock,misc:extend' should work to make changes persistent?
 * The Curl(DH) model implementation have to go as it may mess w/ QWERTY. Instead, I should use two Extend variants.
@@ -56,8 +62,11 @@ TODO:
 * Find out how to change the rules component properly to allow compiling and eventually merging to the main repo?
 * Migrate from `~/.bashrc` to `~/.xprofile`? The latter is more appropriate, but which setups source it and which ones don't?
 * Could use an <XTND> key code alias defined in keycodes/evdev (alias <XTND> = <CAPS>), instead of the <CAPS> code?
-
-For an EsAlt variant as in EPKL:
+* Test this method for using a local dir: 
+	- Copy the `xkb-data_mod/xkb` dir to, say, `/usr/local/bigbag/xkb` and `setenv MYXKB <dir>` (setenv not necessary, just for here)
+	- `setxkbmap <parameters> -print | xkbcomp -I -I$MYXKB -I/usr/share/X11/xkb - $DISPLAY`
+	- See https://github.com/DreymaR/BigBagKbdTrixXKB/issues/14
+* For an EsAlt variant as in EPKL:
 ```
     key <AE04> { [             4,        dollar,       dead_currency,            EuroSign ] }; // 4
     key <AD07> { [             l,             L,               U2039,       guillemotleft ] }; // QWE U Cmk L
