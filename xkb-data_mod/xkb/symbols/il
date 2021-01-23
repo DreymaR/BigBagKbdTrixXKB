@@ -361,6 +361,64 @@ xkb_symbols "colemak" {
 //    key <LatM> {	[ hebrew_mem, hebrew_finalmem	]	};
 };
 
+
+partial alphanumeric_keys
+xkb_symbols "hebmak" {
+
+// Montdor's Hebmak layout.
+// This literally replaces those letters that have equivalents in Hebrew and English, and takes some cues from the phonetic layout (e.g. w for shin since their shapes are similiar.)
+// Note that final letters (e.g. kaph, nun, etc.) are typed by 'shift+<letter>'
+
+    include "il(basic)"
+
+    name[Group1]= "Hebrew (Hebmak)";
+
+    // Implements the phonetic layout from the old Slackware 'il.map' file.
+
+    key <AE09> {	[	  9,	parenleft	]	};
+    key <AE10> {	[	  0,	parenright	]	};
+    key <TLDE> {	[     grave,	asciitilde	]	};
+
+    key <AD11> {	[ bracketleft,	braceleft	]	};
+    key <AD12> {	[ bracketright,	braceright	]	};
+    key <AC10> {	[ hebrew_waw,	hebrew_waw		]	};
+    key <AC11> {	[ apostrophe,	quotedbl	]	};
+    key <AB08> {	[     comma,	less		]	};
+    key <AB09> {	[    period,	greater		]	};
+    key <AB10> {	[     slash,	question	]	};
+    key <BKSL> {	[ backslash,         bar	]	};
+
+    key <LatQ> {	[ hebrew_qoph, hebrew_qoph	]	};
+    key <LatW> {	[ hebrew_shin, hebrew_shin	]	};
+    key <LatE> {	[ hebrew_pe, hebrew_finalpe	]       };
+    key <LatR> {	[ hebrew_pe, hebrew_finalpe	]	};
+    key <LatT> {	[ hebrew_gimel, hebrew_gimel	]       };
+    key <LatY> {	[ hebrew_yod, hebrew_yod	]       };
+    key <LatU> {	[ hebrew_lamed, hebrew_lamed	]       };
+    key <LatI> {	[ hebrew_waw, hebrew_waw	]       };
+    key <LatO> {	[ hebrew_yod, hebrew_yod	]       };
+    key <LatP> {	[ semicolon, colon	]	};
+
+    key <LatA> {	[ hebrew_aleph, hebrew_aleph	]	};
+    key <LatS> {	[ hebrew_resh, hebrew_resh	]       };
+    key <LatD> {	[ hebrew_samech, hebrew_samech	]       };
+    key <LatF> {	[ hebrew_taw, hebrew_tet	]	};
+    key <LatG> {	[ hebrew_dalet, hebrew_dalet	]       };
+    key <LatH> {	[ hebrew_he, hebrew_he		]       };
+    key <LatJ> {	[ hebrew_nun, hebrew_finalnun	]	};
+    key <LatK> {	[ hebrew_ayin, hebrew_ayin	]	};
+    key <LatL> {	[ hebrew_yod, hebrew_yod	]       };
+
+    key <LatZ> {	[ hebrew_zain, hebrew_zain	]       };
+    key <LatX> {	[ hebrew_chet, hebrew_chet	]       };
+    key <LatC> {	[ hebrew_zade, hebrew_finalzade	]       };
+    key <LatV> {	[ hebrew_waw, hebrew_waw	]       };
+    key <LatB> {	[ hebrew_bet, hebrew_bet	]       };
+    key <LatN> {	[ hebrew_kaph, hebrew_finalkaph	]	};
+    key <LatM> {	[ hebrew_mem, hebrew_finalmem	]	};
+};
+// End of montdor's layout addition
+
 partial alphanumeric_keys
 xkb_symbols "colemak_il" {
     include "il(basic)"
