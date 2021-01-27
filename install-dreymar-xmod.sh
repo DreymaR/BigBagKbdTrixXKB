@@ -75,6 +75,7 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 "[-#] Functionality                     - 'default'  \n"\
 "===========================================================\n"\
 "[-i] <Install path>                    - ${InstDir}\n"\
+"[-c] Change path to X11                - ${X11DIR}\n"\
 "[-o] Override install path w/ X11      - ${WriteSys}\n"\
 "[-b] Force backup       |     location - ${X11DIR}\n"\
 "[-n] Force no backup    |      default - ${DoBackup}\n"\
@@ -137,7 +138,7 @@ MyError()
 #~ }
 
 #~ if [ "$#" == 0 ]; then PrintHelpAndExit 2; fi # No args
-while getopts "obngxm:i:d:t:r:h?" cmdarg; do
+while getopts "obngxm:i:c:d:t:r:h?" cmdarg; do
 	case $cmdarg in
 		o)	WriteSys='yes'			;;
 		b)	DoBackup='yes'			;;
@@ -146,6 +147,7 @@ while getopts "obngxm:i:d:t:r:h?" cmdarg; do
 		x)	SetXMap='yes'			;;
 		m)	SubDirs="$OPTARG"		;;
 		i)	InstDir="$OPTARG"		;;
+		c)  X11DIR="$OPTARG"        ;;
 		d)	DModDir="$OPTARG"		;;
 		t)	DModTag="$OPTARG"		;;
 		r)	Restore="$OPTARG"		;;
