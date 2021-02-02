@@ -52,22 +52,22 @@ X11DIR='/usr/share/X11'; [ -d "${X11DIR}" ] || X11DIR='/usr/lib/X11'
 XVERSION=''
 ModDATE=''
 
-DModDir=`dirname $0`	# (-d) Path to the script (and mod?) root directory
-ToolDir="${DModDir}/dreymar-xtools"	# The location of tool scripts (like setxkb.sh)
-DMod='xkb-data_mod'		# (--) The main name of the directory with modded xkb-data files
-DModTag="${DMod}${XVERSION:+'_v'}${XVERSION}${ModDATE:+'_'}${ModDATE}"	# (-t) Mod dir "prefix"
-DBakFix='dbak-'			# (--) Backup dir prefix
-DModFix='d'				# (--) Modded dir prefix
-InstDir="${X11DIR}"		# (-i) Path to install subfolder(s) in
-#~ InstDir="${HOME}/drey-xmod"	# (-i) Path to install subfolder(s) in
-WriteSys='no'			# (-o) Overwrite the original xkb dir with the modded one
-Restore='0'				# (-r) Reverse: Restore from backup # instead of installing
-DoBackup='ifnone'		# (-n/b) Default backup behavior is "if no backups are found"
-SubDirs='all'			# (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale', 'all')
-InstGTK='no'			# (-g) Whether to install the GTK 2.0/3.0 config (if not present)
-NoSudo='no'				# (-s) Do not use sudo. Helpful for local dir installation.
-SetXMap='no'			# (-x) Whether to run the setxkb script after installing
-SetXStr='5caw us us'	# (--) Shortcut string for setxkb - 'kbd loc sym' (model layout eD-variant)
+DModDir=`dirname $0` 	# (-d) Path to the script (and mod?) root directory
+ToolDir="${DModDir}/dreymar-xtools" 	# The loc. of tool scripts (like setxkb.sh)
+DMod='xkb-data_xmod' 	# (--) The main name of the directory with modded xkb-data files
+DModTag="${DMod}${XVERSION:+'_v'}${XVERSION}${ModDATE:+'_'}${ModDATE}" 	# (-t) Mod dir "prefix"
+DBakFix='dbak-' 		# (--) Backup dir prefix
+DModFix='d' 			# (--) Modded dir prefix
+InstDir="${X11DIR}" 	# (-i) Path to install subfolder(s) in
+#~ InstDir="${HOME}/drey-xmod" 	# (-i) Path to install subfolder(s) in
+WriteSys='no' 			# (-o) Overwrite the original xkb dir with the modded one
+Restore='0' 			# (-r) Reverse: Restore from backup # instead of installing
+DoBackup='ifnone' 		# (-n/b) Default backup behavior is "if no backups are found"
+SubDirs='all' 			# (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale', 'all')
+InstGTK='no' 			# (-g) Whether to install the GTK 2.0/3.0 config (if not present)
+NoSudo='no' 			# (-s) Do not use sudo. Helpful for local dir installation.
+SetXMap='no' 			# (-x) Whether to run the setxkb script after installing
+SetXStr='5caw us us' 	# (--) Shortcut string for setxkb - 'kbd loc sym' (model layout eD-variant)
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\

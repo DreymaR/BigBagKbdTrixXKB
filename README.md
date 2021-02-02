@@ -52,7 +52,7 @@ TODO:
 	- Does this mean that LevelFive should've been discarded but isn't? Is it an XKB bug?
 * From Daniele at the Cmk Discord: Try out localectl?
 	- E.g., 'localectl set-x11-keymap us pc105aw-sl cmk_ed_dh lv5:caps_switch_lock,misc:extend' should work to make changes persistent?
-* The Curl(DH) model implementation have to go as it may mess w/ QWERTY. Instead, I should use two Extend variants.
+* The Curl(DH) model implementation has to go as it may mess w/ QWERTY. Instead, I should use two Extend variants.
 	- It also seems very hard for some newcomers to understand. So yes, I should have the Angle mod only and not CurlAngle models.
 	- Also, matrix users want the V-D swap without an Angle mod! Another nail in the coffin for the Curl models.
 	- Actually, should I make a NoModel CurlAngle layout for the model impaired? Vanilla, Curl(DH) and Curl(DH)Angle then.
@@ -62,10 +62,12 @@ TODO:
 * Find out how to change the rules component properly to allow compiling and eventually merging to the main repo?
 * Migrate from `~/.bashrc` to `~/.xprofile`? The latter is more appropriate, but which setups source it and which ones don't?
 * Could use an <XTND> key code alias defined in keycodes/evdev (alias <XTND> = <CAPS>), instead of the <CAPS> code?
-* Test this method for using a local dir: 
+* Test this method for using a local dir, by Bjørnar "zkf" Hansen: 
 	- Copy the `xkb-data_mod/xkb` dir to, say, `/usr/local/bigbag/xkb` and `setenv MYXKB <dir>` (setenv not necessary, just for here)
 	- `setxkbmap <parameters> -print | xkbcomp -I -I$MYXKB -I/usr/share/X11/xkb - $DISPLAY`
 	- See https://github.com/DreymaR/BigBagKbdTrixXKB/issues/14
+	- More useful info in this comment: https://github.com/DreymaR/BigBagKbdTrixXKB/issues/14#issuecomment-767590722
+	- "-I/usr/local/share/X11/xkb can be written more succinctly as -I. if you first cd into this directory."
 * For an EsAlt variant as in EPKL:
 ```
     key <AE04> { [             4,        dollar,       dead_currency,            EuroSign ] }; // 4
@@ -89,6 +91,8 @@ DONE:
 * Changed the default layout for the setxkb.sh script to US (UniSym): In my experience, most users that struggle with the setup want US English.
 * To get back to your old layout/model, use `setxkb 4n/5n [loc]`. You may also specify `mod loc [var]`; omit `var` for the default (basic) variant.
 * Separated out the F# key block in the extend file: People complain that their TTY shortcuts aren't working because of it. Ext+AltGr+F# works though.
+* Relieve the sudo requirement. And add an option to change the X11 dir since Nix uses another place. Pulled from fufexan@github.
+	- https://github.com/DreymaR/BigBagKbdTrixXKB/issues/15#issuecomment-769431139
 
 
 [XKB-conf]: https://www.freedesktop.org/wiki/Software/XKeyboardConfig/ (XKeyboard Config page)
