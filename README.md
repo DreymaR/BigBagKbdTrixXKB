@@ -68,6 +68,11 @@ TODO:
 	- See https://github.com/DreymaR/BigBagKbdTrixXKB/issues/14
 	- More useful info in this comment: https://github.com/DreymaR/BigBagKbdTrixXKB/issues/14#issuecomment-767590722
 	- "-I/usr/local/share/X11/xkb can be written more succinctly as -I. if you first cd into this directory."
+* An earlier comment on the local dir subject, by neeasade@github:
+	- https://github.com/DreymaR/BigBagKbdTrixXKB/issues/1#issuecomment-462952051
+	- https://unix.stackexchange.com/questions/397716/custom-keyboard-layout-without-root
+	- `setxkbmap -I $MYXKB <params> -print | xkbcomp -I $MYXKB - "$DISPLAY"
+	- "I made that tweak to setxkb and some small changes to use a hardcoded $HOME dir path, and it appears good."
 * For an EsAlt variant as in EPKL:
 ```
     key <AE04> { [             4,        dollar,       dead_currency,            EuroSign ] }; // 4

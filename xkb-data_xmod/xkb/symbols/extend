@@ -40,20 +40,23 @@
 // | Cust  | Undo  | Cut   | Copy  | Paste | *Bt1  |  ,    | KP_0  | KP_0  | KP_.  | KP_/  | Spc   | K_Ent |
 // +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
 //
-// NOTE: A lv7 (Level5+Level3) modifier might be necessary to use the KeyPad level sensibly
-//       One idea is to use AltGr+Caps as a lv7_lock (Caps+AltGr is already lv7_switch)
-// NOTE: If a hex pad is needed, the lv7(8?)+KBHDJG -> ABCDEF mappings are one solution
-// NOTE: There's a KP key named KP_BEGIN; it seems like a hack? Ignored for now.
-// NOTE: I've duplicated KP_0 to make it easy to hit. Useful for bigrams with 0.
-// TODO: Autorepeat is hurting for some. This is probably an XKB bug? What can be done about it?
-//       One fix is to run xset afterwards: 'seq -s " r " 8 255 | xargs xset r' supposedly does the trick.
-//       Add the following to key <> {} defs (before symbols[Group1]=)?
-//           repeat=true,
-// TODO: A lv7 modifier to reach the second Extend layer directly.
-//       Test out this:
-//       key <RCTL> { [ ISO_Level5_Shift ], actions[Group1] = [ SetMods(mods=LevelThree+LevelFive) ] };
-//
-// NOTE: The Big Bag image has the PointerEnable key on LSGT, but ANSI users don't have it. Moved it to TLDE.
+//  TODO: Autorepeat is hurting for some. This is probably an XKB bug? What can be done about it?
+//      One fix is to run xset afterwards: 'seq -s " r " 8 255 | xargs xset r' supposedly does the trick.
+//      Add the following to key <> {} defs (before symbols[Group1]=)?
+//          repeat=true,
+//  TODO: A lv7 modifier to reach the second Extend layer directly.
+//      Test out this:
+//      key <RCTL> { [ ISO_Level5_Shift ], actions[Group1] = [ SetMods(mods=LevelThree+LevelFive) ] };
+//  
+//  NOTE: A lv7 (Level5+Level3) modifier might be necessary to use the KeyPad level sensibly
+//      One idea is to use AltGr+Caps as a lv7_lock (Caps+AltGr is already lv7_switch)
+//  NOTE: If a hex pad is needed, the lv7(8?)+KBHDJG -> ABCDEF mappings are one solution
+//  NOTE: There's a KP key named KP_BEGIN; it seems like a hack? Ignored for now.
+//  NOTE: I've duplicated KP_0 to make it easy to hit. Useful for bigrams with 0.
+//  
+//  NOTE: The Big Bag image has the PointerEnable key on LSGT, but ANSI users don't have it. Moved it to TLDE.
+//  NOTE: The lv5 mod should be eaten up by xkb but isn't. Must manually clearmod it from all necessary keys.
+
 
 default partial
 xkb_symbols "basic" {
@@ -238,8 +241,8 @@ xkb_symbols "lv5" {
                    Escape               , Escape                , // Esc
                    Home                 , KP_Home              ], // Home
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   Redirect(key=<ESC>,clearmods=LevelFive), Redirect(key=<ESC>,clearmods=LevelFive), // <ESC>
-                   Redirect(key=<HOME>) , Redirect(key=<HOME>) ]  // <HOME>
+                   Redirect(key=<ESC>,clearmods=LevelFive) , Redirect(key=<ESC>,clearmods=LevelFive)  , // <ESC>
+                   Redirect(key=<HOME>,clearmods=LevelFive), Redirect(key=<HOME>,clearmods=LevelFive) ] // <HOME>
                };  // Q
     key <AD02> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    XF86ScrollUp         , XF86ScrollUp          , // ScrollUp(††)
@@ -252,14 +255,14 @@ xkb_symbols "lv5" {
                    XF86Back             , XF86Back              , // BrBck
                    End                  , KP_End               ], // End
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   Redirect(key=<I166>) , Redirect(key=<I166>)  , // <I166>(‡‡)
+                   Redirect(key=<I166>,clearmods=LevelFive), Redirect(key=<I166>,clearmods=LevelFive),  // <I166>(‡‡)
                    NoAction()           , NoAction()           ]
                };  // QWE E, Cmk F
     key <AD04> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    XF86Forward          , XF86Forward           , // BrFwd
                    Delete               , KP_Delete            ], // Del
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   Redirect(key=<I167>) , Redirect(key=<I167>)  , // <I167>(‡‡)
+                   Redirect(key=<I167>,clearmods=LevelFive), Redirect(key=<I167>,clearmods=LevelFive),  // <I167>(‡‡)
                    NoAction()           , NoAction()           ]
                };  // QWE R, Cmk P
     key <AD05> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
@@ -267,7 +270,7 @@ xkb_symbols "lv5" {
                    Escape               , Escape               ], // Esc
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
                    MovePtr(x=+0,y=-8)   , MovePtr(x=+0,y=-8)    , // PtrUp(††)
-                   Redirect(key=<ESC>,clearmods=LevelFive), Redirect(key=<ESC>,clearmods=LevelFive) ] // <ESC>
+                   Redirect(key=<ESC>,clearmods=LevelFive) , Redirect(key=<ESC>,clearmods=LevelFive)  ] // <ESC>
                };  // QWE T, Cmk G
     key <AD06> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Page_Up              , Page_Up               , // PgUp
@@ -308,7 +311,7 @@ xkb_symbols "lv5" {
                    Escape               , Escape                , // Esc
                    parenleft            , braceleft            ], //  (
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   Redirect(key=<ESC>,clearmods=LevelFive), Redirect(key=<ESC>,clearmods=LevelFive), // <ESC>
+                   Redirect(key=<ESC>,clearmods=LevelFive) , Redirect(key=<ESC>,clearmods=LevelFive)  , // <ESC>
                    NoAction()           , NoAction()           ]
                };  // [ {
     key <AD12> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
@@ -400,7 +403,7 @@ xkb_symbols "lv5" {
                    Menu                 , Menu                  , // Menu
                    apostrophe           , quotedbl             ], // ' "
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   Redirect(key=<MENU>) , Redirect(key=<MENU>)  , // <MENU>/<COMP>
+                   Redirect(key=<MENU>,clearmods=LevelFive), Redirect(key=<MENU>,clearmods=LevelFive) , // <MENU>/<COMP>
                    NoAction()           , NoAction()           ]
                };  // ' "
 
