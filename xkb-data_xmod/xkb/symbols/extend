@@ -137,7 +137,7 @@ xkb_symbols "lv5_fk" {
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),  // (in inet, XF86Launch3 is <I210>)
                    Redirect(key=<I152>,clearmods=all), Redirect(key=<I156>,clearmods=all), // <I152>/<I156>(‡‡)
                    SwitchScreen(screen=11,!same), NoAction()   ]            };
-    key <FK11> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,  // F11
+    key <FK12> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,  // F12
                    XF86Calculator       , XF86Launch2           ,               // Calculator / App2
                    XF86_Switch_VT_12    , XF86LogWindowTree    ],               // Virtual Terminal 12 / Debug
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),  // (in inet, XF86Launch4 is <I211>)
