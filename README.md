@@ -51,7 +51,7 @@ TODO:
 	- "Usually, all modifiers introduced in 'modifiers=<list of modifiers>' list are used for shift level calculation and then discarded."
 	- Does this mean that LevelFive should've been discarded but isn't? Is it an XKB bug?
 * From Daniele at the Cmk Discord: Try out localectl?
-	- E.g., 'localectl set-x11-keymap us pc105aw-sl cmk_ed_dh lv5:caps_switch_lock,misc:extend' should work to make changes persistent?
+	- E.g., `localectl --no-convert set-x11-keymap us pc105aw-sl cmk_ed_dh lv5:caps_switch_lock,misc:extend` should work to make changes persistent?
 * The Curl(DH) model implementation has to go as it may mess w/ QWERTY. Instead, I should use two Extend variants.
 	- It also seems very hard for some newcomers to understand. So yes, I should have the Angle mod only and not CurlAngle models.
 	- Also, matrix users want the V-D swap without an Angle mod! Another nail in the coffin for the Curl models.
