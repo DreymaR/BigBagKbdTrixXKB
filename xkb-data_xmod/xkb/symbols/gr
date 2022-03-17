@@ -208,10 +208,10 @@ partial alphanumeric_keys
 // See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
 
 // This layout is based on its basic Greek (QWERTY) counterpart maintained by V Vasaitis.
-// Note: Standard Colemak has semicolon on <AD10> while Greek QWERTY uses <AD01>.
-// The frequently used accents on <AC10> can move to <AD10>, like standard Colemak does.
-// However, ideally I'd like to keep ;: on <AD10> instead of on Q, for Colemak compliance.
-// Also, I'd love to have room for the two diaeresis letters ϊΪ and ϋΫ for easy typing. But how?
+// Note: Standard Colemak has semicolon on <AD10> while Greek QWERTY uses <AD01> (the Q).
+// The frequently used accents on <AC10> could move to <AD10>, like standard Colemak does.
+// However, we should keep ;: on <AD10> instead of on Q, for Colemak compliance. ( =^･ω･^=)丿
+// I thought to include the diaeresis letters ϊΪ and ϋΫ for easy typing, but they're rare?
 partial alphanumeric_keys
 xkb_symbols "colemak" {
     include "gr(basic)"
@@ -229,7 +229,7 @@ xkb_symbols "colemak_gr_12" {
 // This is based on the gr(bare) partial; the number/symbol keys aren't changed
     name[Group1]= "Greek (Colemak levels 1-2)";
 
-//	key <AD01> { [             semicolon,          colon ] }; // q - ; :
+	key <AD01> { [            dead_acute, dead_diaeresis ] }; // q - ´ ¨
 //	key <AD02> { [ Greek_finalsmallsigma,    Greek_SIGMA ] }; // w - ς Σ
 	key <AD03> { [             Greek_phi,      Greek_PHI ] }; // f - φ Φ
 	key <AD04> { [              Greek_pi,       Greek_PI ] }; // p - π Π
@@ -238,7 +238,7 @@ xkb_symbols "colemak_gr_12" {
 	key <AD07> { [           Greek_lamda,    Greek_LAMDA ] }; // l - λ Λ
 	key <AD08> { [           Greek_theta,    Greek_THETA ] }; // u - θ Θ
 	key <AD09> { [         Greek_upsilon,  Greek_UPSILON ] }; // y - υ Υ
-	key <AD10> { [            dead_acute, dead_diaeresis ] }; // ; - ´ ¨
+	key <AD10> { [             semicolon,          colon ] }; // ; - ; :
 
 //	key <AC01> { [           Greek_alpha,    Greek_ALPHA ] }; // a - α Α
 	key <AC02> { [             Greek_rho,      Greek_RHO ] }; // r - ρ Ρ
@@ -267,7 +267,7 @@ xkb_symbols "colemak_gr_34" {
 // The gr(basic) layout includes lv1-2 and then specifies lv3-4 separately like this
     name[Group1]= "Greek (Colemak levels 3-4)";
 
-//	key <AD01> { [       NoSymbol,       NoSymbol, periodcentered                 ] }; // q
+	key <AD01> { [       NoSymbol,       NoSymbol,     dead_acute,     dead_psili ] }; // q
 //	key <AD02> { [       NoSymbol,       NoSymbol,          U03DB,          U03DA ] }; // w
 	key <AD03> { [       NoSymbol,       NoSymbol,          U03D5                 ] }; // f
 	key <AD04> { [       NoSymbol,       NoSymbol,          U03E1,          U03E0 ] }; // p
@@ -275,7 +275,7 @@ xkb_symbols "colemak_gr_34" {
 	key <AD06> { [       NoSymbol,       NoSymbol,          U037C,          U03FE ] }; // j
 	key <AD07> { [       NoSymbol,       NoSymbol,          U03F2,          U03F9 ] }; // l
 	key <AD08> { [       NoSymbol,       NoSymbol,          U03D1,          U03F4 ] }; // u
-	key <AD10> { [       NoSymbol,       NoSymbol,     dead_acute,     dead_psili ] }; // ;
+	key <AD10> { [       NoSymbol,       NoSymbol, periodcentered                 ] }; // ;
 
 	key <AC02> { [       NoSymbol,       NoSymbol,     registered,          U03F1 ] }; // r
 	key <AC05> { [       NoSymbol,       NoSymbol,      downarrow,        uparrow ] }; // d
