@@ -1,9 +1,9 @@
-// Extend mode symbols for xkb on X.Org Server 7.x
-// 2014-2021 OEystein Bech "DreymaR" Gadmar
-// See "DreymaR's Big Bag of Keyboard Tricks": http://forum.colemak.com/viewtopic.php?pid=9918
+// Extend mode symbols for xkb on X.Org Server 7.x+
+// 2014-2022 OEystein Bech "DreymaR" Gadmar
+// See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org
 // A modular Extend mapping layer like the one I have in Portable Keyboard Layout for Windows
 // - Key names are in /usr/include/X11/keysymdef.h and XF86keysym.h (Removing the XK_ prefix)
-// - <FK##> mapped as XF86 Multimedia keys; shifted versions were not implemented in WinPKL
+// - <FK##> mapped as XF86 Multimedia keys; shifted versions were not implemented in EPKL for Windows
 //
 // These keys are modified/transposed by holding down the 'extend key' (CapsLock by default):
 // +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
@@ -70,6 +70,9 @@ partial alphanumeric_keys modifier_keys
 xkb_symbols "lv5_fk" {
     key.type[group1]="EIGHT_LEVEL"; // (Caps)Lock state not used on these keys
 
+//  +=======+==============================+=======+
+//  |=======|            F1-F12            |=======|
+//  +=======+==============================+=======+
 //  NOTE: Many use Ctrl+Alt+<FK##> for TTY server control keys. With Extend, use Ext+AltGr+<FK##> instead.
     key <FK01> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,  // F01
                    XF86AudioPlay        , XF86AudioPause        ,               // Audio Play/Pause
@@ -150,8 +153,11 @@ xkb_symbols "lv5" {
 //    name[Group1]= "Extend layer";
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC"; // Lock affects lv1/5 but not lv3/7 - a bit inflexible but OK I guess
 
-// NOTE: Earlier, if I set lv5-6 of Esc to Caps_Lock, lv1-4 would be CapsLock PLUS Esc! Is this fixed now?
-//       If not, I might not have to send the Caps_Lock keysymbol as long as the LockMods action is there?
+//  +=======+==============================+=======+
+//  |=======|          Number Row          |=======|
+//  +=======+==============================+=======+
+//  NOTE: Earlier, if I set lv5-6 of Esc to Caps_Lock, lv1-4 would be CapsLock PLUS Esc! Is this fixed now?
+//    - If not, I might not have to send the Caps_Lock keysymbol as long as the LockMods action is there?
     key <ESC>  { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Caps_Lock            , Caps_Lock             , // Caps_Lock
                    Caps_Lock            , Caps_Lock            ], // Caps_Lock
@@ -235,8 +241,17 @@ xkb_symbols "lv5" {
                    Redirect(key=<FK12>,clearmods=LevelFive), Redirect(key=<FK12>,clearmods=LevelFive),
                    NoAction()           , NoAction()           ]
                };  // = +
-//    key <BACK> {};  // BackSpace
+    key <BACK> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Pause                , Pause                 , // Pause/Break (<BRK> "Break" is special)
+                   Pause                , Pause                ], // Pause/Break
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<PAUS>,clearmods=LevelFive), Redirect(key=<PAUS>,clearmods=LevelFive) , // <PAUS>
+                   NoAction()           , NoAction()           ]
+               };  // BackSpace
 
+//  +=======+==============================+=======+
+//  |=======|          Upper Row           |=======|
+//  +=======+==============================+=======+
     key <AD01> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Escape               , Escape                , // Esc
                    Home                 , KP_Home              ], // Home
@@ -329,6 +344,9 @@ xkb_symbols "lv5" {
                    NoAction()           , NoAction()           ]
                };  // \ |
 
+//  +=======+==============================+=======+
+//  |=======|          Middle Row          |=======|
+//  +=======+==============================+=======+
     key <AC01> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Alt_L                , Alt_L                 , // Alt
                    Left                 , KP_Left              ], //  ←
@@ -403,10 +421,20 @@ xkb_symbols "lv5" {
                    Menu                 , Menu                  , // Menu
                    apostrophe           , quotedbl             ], // ' "
                  actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   Redirect(key=<MENU>,clearmods=LevelFive), Redirect(key=<MENU>,clearmods=LevelFive) , // <MENU>/<COMP>
+                   Redirect(key=<COMP>,clearmods=LevelFive), Redirect(key=<COMP>,clearmods=LevelFive) , // <MENU>/<COMP>
                    NoAction()           , NoAction()           ]
                };  // ' "
+    key <RTRN> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+                   Print                , Print                 , // PrtScr
+                   Print                , Print                ], // PrtScr
+                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+                   Redirect(key=<PRSC>,clearmods=LevelFive), Redirect(key=<PRSC>,clearmods=LevelFive) , // <PRSC>
+                   NoAction()           , NoAction()           ]
+               };  // Return/Enter
 
+//  +=======+==============================+=======+
+//  |=======|          Lower Row           |=======|
+//  +=======+==============================+=======+
     key <LSGT> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Delete               , Delete                , // User customizeable key (Del for now)
                    Delete               , Delete               ], // --"--
@@ -486,53 +514,55 @@ xkb_symbols "lv5" {
                    KP_Divide            , KP_Divide            ]  // KP_/
                };  // / ?
 
-// NOTE: The Space key should preserve the Shift state; it's special because both levels have the same symbol.
-//       One might use a key type that has the 'preserve[Shift] = Shift;' property. However, I fix it directly.
-   key <SPCE> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+//  NOTE: The Space key should preserve the Shift state; it's special because both levels have the same symbol.
+//    - One might use a key type that has the 'preserve[Shift] = Shift;' property. However, I fix it directly.
+    key <SPCE> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
                    Return               , Return                , // Enter
                    space                , nobreakspace         ], // Space
                  actions[Group1]=[NoAction(),SetMods(mods=Shift),NoAction(),SetMods(mods=Shift),
                    Redirect(key=<RTRN>) , Redirect(key=<RTRN>)  , // <RTRN>
                    NoAction()           , NoAction()           ]
                };  // <SPCE>
-//    key <CAPS> { [ NoSymbol,NoSymbol,NoSymbol,NoSymbol ] };  // CapsLock
 
-// §§: XCV Cut/Copy/Paste seem OK in Firefox but not Gedit!? This seems to be a GTK weakness.
-//     Some bind fiddling in ~/.gtkrc-2.0 and ~/.config/gtk-3.0/gtk.css can get this working
-// ††: 'Pointer_'mousing needs enabling! Real KP_ keys work but not the Pointer_ mousing symbols
+//    key <CAPS> { [ NoSymbol,NoSymbol,NoSymbol,NoSymbol ] };  // CapsLock (Ext key def. is in the level5 file)
+
+//  §§: XCV Cut/Copy/Paste seem OK in Firefox but not Gedit!? This seems to be a GTK weakness.
+//    - Some bind fiddling in ~/.gtkrc-2.0 and ~/.config/gtk-3.0/gtk.css can get this working
+//  ††: 'Pointer_'mousing needs enabling! Real KP_ keys work but not the Pointer_ mousing symbols
 //    (In the Settings GUI there's a Shift+NumLock option for this, but Pointer_EnableKeys works too)
-// ‡‡: Multimedia keys are in symbols/inet(evdev); this should be enabled (base rules usually handle it)
-// NOTE: RedirectKey alone doesn't work for the #->FK keys; they then act as the remapped FK## (Multimedia)
+//  ‡‡: Multimedia keys are in symbols/inet(evdev); this should be enabled (base rules usually handle it)
+//  NOTE: RedirectKey alone doesn't work for the #->FK keys; they then act as the remapped FK## (Multimedia)
 
-// NOTE: I'm not mapping the CAPS key to lv5_switch here, as that should be done separately.
-//       Leave it to the layout/options to decide which key(s) to use as switches.
+//  NOTE: I'm not mapping the CAPS key to lv5_switch here, as that should be done separately.
+//    - Leave it to the layout/options to decide which key(s) to use as switches.
 //  key <CAPS> { [ ISO_Level5_Shift , BackSpace , Caps_Lock , Caps_Lock , NoSymbol ] };
 //  modifier_map Mod3   { ISO_Level5_Shift };
 //    include "level3(ralt_switch)"
 //    include "level5(caps_switch)"
 };
 
-// NOTE: Alt worked with just the symbol, Shift/Ctrl not. Shift/Control are "real" mods; Alt a "virtual" one.
-//       Adding SetMods() actions to the Shift/Ctrl keys, they work as they should.
+//  NOTE: Alt worked with just the symbol, Shift/Ctrl not. Shift/Control are "real" mods; Alt a "virtual" one.
+//    - Adding SetMods() actions to the Shift/Ctrl keys, they now work as they should.
 
-// NOTE: Lv5+S+T+N (Shift+Ctrl+Left) is too much at once; letting go of S but not T lets the arrows work.
-//       Using one physical modifier and the other Extend mapped (Lv5+S+<LCTL>+N) functions as expected!
-//       It's the same for Lv5+A+T+<PGDN> for tab switching; works only with physical either Ctrl or Alt.
+//  NOTE: Lv5+S+T+N (Shift+Ctrl+Left) is too much at once; letting go of S but not T lets the arrows work.
+//    - Using one physical modifier and the other Extend mapped (Lv5+S+<LCTL>+N) functions as expected!
+//    - It's the same for Lv5+A+T+<PGDN> for tab switching; works only with physical either Ctrl or Alt.
 
-// NOTE:  See the ALT_NAV keys in http://osdir.com/ml/xfree86.internationalization/2004-04/msg00010.html
-// key <AC06> { type="ALT_NAV", // Here, the D key is mapped to Home using Alt as a modifier:
-// [ d, D, Home ], actions[Group1]=[NoAction(), NoAction(), Redirect(key=<HOME>, clearmods=Alt)] };
+//  NOTE:  See the ALT_NAV keys in http://osdir.com/ml/xfree86.internationalization/2004-04/msg00010.html
+//    key <AC06> { type="ALT_NAV", // Here, the D key is mapped to Home using Alt as a modifier:
+//    [ d, D, Home ], actions[Group1]=[NoAction(), NoAction(), Redirect(key=<HOME>, clearmods=Alt)] };
 
-// NOTE: Are modifier mappings necessary? Don't think so; they're set right in compat already
+//  NOTE: Are modifier mappings necessary? Don't think so; they're set right in compat already
 //    modifier_map Shift   { Shift_L   , Shift_R   };
 //    modifier_map Lock    { Caps_Lock , ISO_Lock  };
 //    modifier_map Control { Control_L , Control_R };
 //    modifier_map Control { Control_L, <LCTL>, Control_R, <RCTL> };
 
-// NOTE: Maybe one could use the capslock(groupshift) functionality for Extend layers?
+
+//  NOTE: Maybe one could use the capslock(groupshift) functionality for Extend layers?
 //    key <CAPS> { [ Mode_switch , BackSpace , Caps_Lock , Caps_Lock , NoSymbol ] };
 //    // The capslock(groupshift) switch defines the <CAPS> ground state as a Mode_switch key.
-// But: The 4 groups are really meant for different locales/scripts/layouts that some people (me!) need.
+//  But: The 4 groups are really meant for different locales/scripts/layouts that people need. So no.
 
 
 // ==========================================================================================================
@@ -548,12 +578,12 @@ xkb_symbols "lv5" {
 //    key <AC04> { overlay1 = <LCTL> }; //Ctrl
 ////    key <CAPS> { [ Overlay1_Enable ], overlay1 = <CAPS> };
 //
-//// NOTE: The standard OverlayEnable key a is a lock, not a switch key. A compat addition would be needed.
-////       Or could it all be done by 'action' commands, like in symbols/level5 ('lock'!?) and group etc?
-////           actions[Group1] = [ SetMods(mods=LevelFive), SetControls(controls=Overlay1) ]
-//// Look into a variation of this to enable both with one key (in compat?):
-////  interpret Pointer_EnableKeys { action= LockControls(controls=MouseKeys+Overlay1); };
-//// NOTE: LevelFive is a *modifier*, Overlay1 a *control*; need to use both SetMods and SetControls then!?
+////  NOTE: The standard OverlayEnable key a is a lock, not a switch key. A compat addition would be needed.
+////    Or could it all be done by 'action' commands, like in symbols/level5 ('lock'!?) and group etc?
+////      actions[Group1] = [ SetMods(mods=LevelFive), SetControls(controls=Overlay1) ]
+////  Look into a variation of this to enable both with one key (in compat?):
+////    interpret Pointer_EnableKeys { action= LockControls(controls=MouseKeys+Overlay1); };
+////  NOTE: LevelFive is a *modifier*, Overlay1 a *control*; need to use both SetMods and SetControls then!?
 //};
 
 // --> OEystein Bech "DreymaR" Gadmar, 2013-09: Additions to xkb/compat/level5
@@ -588,25 +618,15 @@ xkb_symbols "lv5" {
 //};
 // <-- DreymaR: Additions to xkb/symbols/level5
 
-// An attempt at using the Overlay functionality for all Extend mappings.
-// NOTE: Apparently, any key can only have ONE overlay!
-// The Overlay1/Overlay2 bits determine which one, but for some odd reason a key can't have both defined?
-// This means that the idea of several Extend layers can't be implemented easily in this way.
-// NOTE: For testing purposes, I'm only mapping some keys for now. The rest can follow if this works! :)
+//  An attempt at using the Overlay functionality for all Extend mappings.
+//    - Apparently, any key can only have ONE overlay!
+//    - The Overlay1/Overlay2 bits determine which one, but for some odd reason a key can't have both defined?
+//    - This means that the idea of several Extend layers can't be implemented easily in this way.
+//    - For testing purposes, I'm only mapping some keys for now. The rest can follow if this ever works...!
 //partial // alphanumeric_keys
 //xkb_symbols "overlay_full" {
 ////    name[Group1]= "Extend layer";
 
-//    key <ESC>  { overlay1 = <CAPS> }; 
-//    key <AE01> { overlay1 = <FK01> }; 
-//    key <AE02> { overlay1 = <FK02> }; 
-//    key <AE03> { overlay1 = <FK03> }; 
-//    key <AE04> { overlay1 = <FK04> }; 
-//    key <AD01> { overlay1 = <ESC>  }; 
-//    key <AD02> { overlay1 = <I185> }; // KEY_SCROLLUP  //(††)
-//    key <AD03> { overlay1 = <I166> }; // #define KEY_BACK
-//    key <I166> { [ XF86Back    ] }; //BrBck
-//    key <AD04> { overlay1 = <I167> }; // #define KEY_FORWARD
 //    key <AD06> { overlay1 = <PGUP> }; //PgUp
 //    key <AD07> { overlay1 = <HOME> }; //Home
 //    key <AD08> { overlay1 = <UP>   }; // ↑
@@ -615,7 +635,6 @@ xkb_symbols "lv5" {
 //    key <AD11> { overlay1 = <ESC>  }; //Esc
 //    key <AD12> { overlay1 = <INS>  }; //Ins
 //    key <AC01> { overlay1 = <LALT> }; //Alt
-//    key <AC02> { overlay1 = <I186> }; // KEY_SCROLLDOWN //(††)
 //    key <AC03> { overlay1 = <LFSH> }; //Shift
 //    key <AC04> { overlay1 = <LCTL> }; //Ctrl
 //    key <AC06> { overlay1 = <PGDN> }; //PgDn

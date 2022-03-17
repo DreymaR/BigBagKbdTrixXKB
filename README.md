@@ -84,7 +84,8 @@ TODO:
 	- Include both? Or, people can just enter the file names.
 * Could use an <XTND> key code alias defined in keycodes/evdev (alias <XTND> = <CAPS>), instead of the <CAPS> code?
 * Test this method for using a local dir, by Bjørnar "zkf" Hansen: 
-	- Copy the `xkb-data_mod/xkb` dir to, say, `/usr/local/bigbag/xkb` and `setenv MYXKB <dir>` (setenv not necessary, just for here)
+	- Copy the `xkb-data_mod/xkb` dir to, say, `/usr/local/bigbag/xkb` if desired.
+	- Set `setenv MYXKB <dir>` or `export MYKXB=<dir>` as appropriate (not necessary for this, just practical here).
 	- `setxkbmap -rules evdev -option '' <parameters> -print | xkbcomp -I -I$MYXKB -I/usr/share/X11/xkb - $DISPLAY`
 	- See https://github.com/DreymaR/BigBagKbdTrixXKB/issues/14
 	- More useful info in this comment: https://github.com/DreymaR/BigBagKbdTrixXKB/issues/14#issuecomment-767590722
@@ -112,6 +113,8 @@ TODO:
 //    key <AB06> { [             k,             K,              endash,             uparrow ] }; // QWE N Cmk K - ANSI
     key <AD11> { [   bracketleft,     braceleft,           masculine,         ordfeminine ] }; // [{
 ```
+* To change the logon keyboard layout:
+	- `sudo dpkg-reconfigure keyboard-configuration`
 <br>
 
 DONE:
