@@ -424,13 +424,13 @@ xkb_symbols "lv5" {
                    Redirect(key=<COMP>,clearmods=LevelFive), Redirect(key=<COMP>,clearmods=LevelFive) , // <MENU>/<COMP>
                    NoAction()           , NoAction()           ]
                };  // ' "
-    key <RTRN> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
-                   Print                , Print                 , // PrtScr
-                   Print                , Print                ], // PrtScr
-                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
-                   Redirect(key=<PRSC>,clearmods=LevelFive), Redirect(key=<PRSC>,clearmods=LevelFive) , // <PRSC>
-                   NoAction()           , NoAction()           ]
-               };  // Return/Enter
+//    key <RTRN> { symbols[Group1]=[ NoSymbol , NoSymbol , NoSymbol , NoSymbol ,
+//                   Print                , Print                 , // PrtScr
+//                   Print                , Print                ], // PrtScr
+//                 actions[Group1]=[NoAction(),NoAction(),NoAction(),NoAction(),
+//                   Redirect(key=<PRSC>,clearmods=LevelFive), Redirect(key=<PRSC>,clearmods=LevelFive) , // <PRSC>
+//                   NoAction()           , NoAction()           ]
+//               };  // Return/Enter                                // This mapping breaks the Enter key for some? Not sure why.
 
 //  +=======+==============================+=======+
 //  |=======|          Lower Row           |=======|

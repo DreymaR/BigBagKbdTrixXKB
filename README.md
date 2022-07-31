@@ -43,7 +43,7 @@ DreymaR, 2021-10
 
 TODO:
 -----
-* Rename setxkb --> setkb ?
+* Rename setxkb --> setkb? It's easier to type! Would have to update all docs including the Forum topic.
 * Make a restore to default layout shortcut? It's only an alias for `setxkb 4n/5n`. Maybe `resetxkb 4/5`?
 * To get Extend with the currently active layout, use `setxkbmap -v 9 -option "" -option "misc:extend,lv5:caps_switch_lock,compose:menu"`.
 * Add lv5:lalt_switch_lock for LALT-Extend.
@@ -59,7 +59,15 @@ TODO:
 
 * A purge option in addition to restore for the install script? So backup dirs etc are removed and the xkb dir restored to original state.
 
-* Update xkb-data and start testing on a Wayland system!
+* Update xkb-data and start testing on a Wayland system! Use the GitLab repo as that's the freshest there is.
+
+* A clarification by Peter Hutterer on the mystic .part files in the rules component:
+	- https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/issues/327#note_1436334
+	- The parts are numbered to get their sequence in the resulting files right. Only when there are differences, they start with base/evdev.
+	- There are RMLVO (user interface) and KcCSGST (actual XKB) letter codes. The naming of those .part files is 1234-rmlvo-kccgst.part...
+	- but with only the relevant bits. So, e.g., `0009-m_g.part` is the model to group mapping of the final rules file. `ml_s.part` is model + layout to symbols.
+	- It seems that you can make layout commits by editing only the rules/base.xml (and symbols) file(s) though?
+
 * Echo the setxkbmap command when using setxkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping?
 * Add a model-less Colemak-CAWS for people who want to switch to QWERTY? Or instructions on how to setxkb it? That's better, I think.
 * Problem: Using Google Spreadsheets, hitting Caps Lock (which is mapped to ISO_Level5_Shift) clears the current spreadsheet cell.

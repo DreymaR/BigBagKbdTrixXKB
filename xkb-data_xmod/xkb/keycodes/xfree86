@@ -45,6 +45,7 @@ xkb_keycodes "basic" {
     <RTRN> =  36;
 
     <CAPS> =  66;
+    alias <EXT> = <CAPS>;	// DreymaR: The Extend modifier is usually on the Caps key
     <AC01> =  38;
     <AC02> =  39;
     <AC03> =  40;

@@ -148,7 +148,7 @@ xkb_keycodes "colemak_dh" {
    alias <LatS> = <AC03>;
    alias <LatT> = <AC04>;
    alias <LatG> = <AC05>;
-   alias <LatK> = <AC06>;
+   alias <LatM> = <AC06>;
    alias <LatN> = <AC07>;
    alias <LatE> = <AC08>;
    alias <LatI> = <AC09>;
@@ -159,7 +159,7 @@ xkb_keycodes "colemak_dh" {
    alias <LatC> = <AB03>;
    alias <LatD> = <AB04>;
    alias <LatV> = <AB05>;
-   alias <LatM> = <AB06>;
+   alias <LatK> = <AB06>;
    alias <LatH> = <AB07>;
 };
 // <-- DreymaR: Additions to xkb/keycodes/aliases
