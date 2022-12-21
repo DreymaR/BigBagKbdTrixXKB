@@ -31,10 +31,21 @@ The xkb-data package is very consistent between distros. I use the [Debian xkb-d
 The .deb packages may be opened using `dpkg -x` or `ar -xv` (from `binutils`) on Linux, and for instance PeaZip on Windows.
 <br>
 
+Tips
+----
+* If you use Extend and want the `Ctrl+Alt+F#` TTY shortcuts back, disable F#-key Extend mappings in the `symbols/extend` file.
+    - This is achieved easily by commenting out the [include "extend(lv5_fk)"][BB-ExtFK] bit (with two trailing slashes).
+    - If you had already installed the BigBag you must either edit the file in its target X11 directory, or edit and then reinstall the files.
+    - In theory, we could make such shortcuts part of Extend so you can have both them and the Multimedia key shortcuts. I'll think about it.
+<br>
+
 Links
 -----
 See [DREYMAR'S BigBag XKB topic on the Colemak Forums][BigBag4X].
 There are plenty of explanations and further links in there.
+<br>
+
+One good source of info on the `xkb-data` package is the [xkeyboard-config][XKB-conf] repository itself, and its `docs` folder.
 <br>
 
 Happy XKB hacking!
@@ -43,6 +54,8 @@ DreymaR, 2021-10
 
 TODO:
 -----
+* Add colemak-dh to the colemak symbols file? Both ISO and ANSI?
+* Ensure a consistent Space key implementation for `_ks` layouts. Many layouts are sloppy about that. Maybe make a `common` include w/ Space+Enter?
 * Rename setxkb --> setkb? It's easier to type! Would have to update all docs including the Forum topic.
 * Make a restore to default layout shortcut? It's only an alias for `setxkb 4n/5n`. Maybe `resetxkb 4/5`?
 * To get Extend with the currently active layout, use `setxkbmap -v 9 -option "" -option "misc:extend,lv5:caps_switch_lock,compose:menu"`.
@@ -140,4 +153,6 @@ DONE:
 [XKB-pkgs]: https://pkgs.org/download/xkb-data (pkgs.org xkb-data page)
 [XKB-DebS]: https://packages.debian.org/sid/xkb-data (Debian Sid xkb-data download)
 [XKB-Ub18]: https://ubuntu.pkgs.org/18.04/ubuntu-main-amd64/xkb-data_2.23.1-1ubuntu1_all.deb.html (Ubuntu 18.04 LTS xkb-data page)
+[XKB-Ub22]: https://ubuntu.pkgs.org/22.04/ubuntu-main-amd64/xkb-data_2.33-1_all.deb.html (Ubuntu 22.04 LTS xkb-data page)
 [BigBag4X]: http://forum.colemak.com/viewtopic.php?id=1438 (DreymaR's BigBag for Linux/XKB on the Colemak Forum)
+[BB-ExtFK]: https://github.com/DreymaR/BigBagKbdTrixXKB/blob/a8db6e705e78721a1f2d82c54fcebfe304b4d66a/xkb-data_xmod/xkb/symbols/extend#L64 (BigBag – FK include in symbol/extend)

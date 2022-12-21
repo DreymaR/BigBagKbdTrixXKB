@@ -2,10 +2,10 @@
 
 ##  ======================================================
 ##  ===  SETXKB.sh to set the XKB keyboard options     ===
-##  ===     by Øystein Bech "DreymaR" Gadmar, 2014     ===
+##  ===     by Øystein Bech "DreymaR" Gadmar, 2014-    ===
 ##  ======================================================
 
-HeadStr="DreymaR's setxkbmap script (by GadOE, 2020-12)"
+HeadStr="DreymaR's setxkbmap script (by GadOE, 2022-10)"
 DescStr=\
 "\e[1mShell script to change X.org keyboard setup\e[0m\n"\
 "  using the 'setxkbmap' command.\n"\
@@ -35,19 +35,21 @@ MyNAME=`basename $0`
 ##  @@@ The default X11 dir under Debian/Ubuntu/etc is /usr/share/X11  @@@
 ##  @@@ The default X11 dir under some (older) distros is /usr/lib/X11 @@@
 X11DIR='/usr/share/X11'; [ -d "${X11DIR}" ] || X11DIR='/usr/lib/X11'
+XKBDIR="${X11DIR}/xkb"  		# The default X11 xkb dir
+XKBLOC="./xkb-data_xmod/xkb"  	# The default local xkb dir in this repo
 
-#~ XKBmodel=pc104aw-zqu			# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
-XKBmodel=pc105aw-sl				# ISO-105 keyboard w/ CurlAngleWide(Slash) mod
+#~ XKBmodel=pc104aw-zqu  		# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
+XKBmodel=pc105aw-sl 			# ISO-105 keyboard w/ CurlAngleWide(Slash) mod
 #~ XKBlayout='us(cmk_ed_us),gr(colemak),ru(colemak)'	# Multiple layouts
-XKBlayout='us(cmk_ed_us)'		# US English Colemak[eD]'Universal Symbols' layout
+XKBlayout='us(cmk_ed_us)' 		# US English Colemak[eD]'Universal Symbols' layout
 XKBoption='misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu'
-VerboseLvl=9					# (-v) How much info should setxkbmap print out?
-KeepXKM='no'					# (-k) Retain old /var/lib/xkb/server-*.xkm files?
-XKBdir="${X11DIR}/xkb"			# (-d) The xkb-type dir to run setxkbmap from
-AddCmd='no'						# (-a) Add setxkbmap cmd to file?
+Verbosity=9 					# (-v) How much info should setxkbmap print out?
+KeepXKM='no' 					# (-k) Retain old /var/lib/xkb/server-*.xkm files?
+XRunDir=${XKBDIR}   			# (-d) The xkb-type dir to run setxkbmap from
+AddCmdYN='no'   				# (-a) Add setxkbmap cmd to file?
 AddDefault="${HOME}/.bashrc"
-AddCmdTo=${AddDefault}			# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
-SetXStr='' #'5caw us us'		# (--) Shortcut string for setxkb (model locale eD-variant)
+AddCmdTo=${AddDefault}  		# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
+SetXStr='' #'5caw us us' 		# (--) Shortcut string for setxkb (model locale eD-variant)
 ##  NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\
@@ -57,13 +59,14 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 "[-m] <model>                   - '${XKBmodel}'\n"\
 "[-l] <layout(variant)>         - '${XKBlayout}'\n"\
 "[-o] <options>                 - \n"\
-"       '${XKBoption}'\n"\
-"[-v] <verbose level>           - '${VerboseLvl}'\n"\
-"[-d] Run from <directory>      - '${XKBdir}'\n"\
-"[-k] Keep old XKB server(s)    - '${KeepXKM}'\n"\
-"[-a] Add cmd line to file?     - '${AddCmd}'\n"\
+"     '${XKBoption}'\n"\
+"[-v] <verbose level>           - '${Verbosity}'\n"\
+"[-d] Run from <directory>      - '${XRunDir}'\n"\
+"[-k] Keep old XKB server(s)    - '${KeepXKM}' [toggle, no arg.]\n"\
+"[-a] Add cmd line to file?     - '${AddCmdYN}' [toggle, no arg.]\n"\
 "[-f]   <file> to add cmd to    - '${AddCmdTo}'\n"\
 "[--] <ShortStr>                - '${SetXStr}'\n"\
+"\nSpecify '-d-' to run from the local repo directory w/o installing.\n"\
 "\n\e[1mShortStr syntax, defining eD model+layout as a short split string:\e[0m\n"\
 "==================================================================\n"\
 "  <kbd> 4/5   - ANSI-104/ISO-105 keyboard model, then...\n"\
@@ -71,9 +74,9 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 "        w/f   - Wide/A-Wing (a.k.a. 'A-Frame')\n"\
 "  <loc> Two-letter locale layout code like 'us' for USA, 'gb' for UK etc\n"\
 "  <sym> 'us'/'ks' for 'Universal' or 'Keep Locale' symbol variants\n\n"\
-"  Examples: '5a se us': PC105-Angle, Swedish Cmk[eD] 'UnifiedSym'\n"\
-"            '4ca gb ks': PC104-Curl(DH)Angle, Eng.(UK) Cmk[eD] 'KeepSym'\n"\
-"            '5caw': PC105-Curl(DH)AngleWide, keep current layout/variant\n"
+"  Examples: '5a  se us': Angle-ISO, Swedish Cmk[eD] 'UnifiedSym'\n"\
+"            '4ca gb ks': Curl(DH)Angle-ANSI, Eng.(UK) Cmk[eD] 'KeepSym'\n"\
+"            '5caw': Curl(DH)AngleWide-ISO, keep current layout/variant\n"
 #~ "     (See the script's comments for more info.)"
 
 
@@ -84,15 +87,6 @@ MyMsg()	# Formatted output: last arg is printf 'style[;fgcolor[;bgcolor]]'
 	# Style: 0-Off, 1-Bold, 4-Underscore, 5-Blink, 7-Reverse, 8-Concealed
 	# Color: (3#/4# FG/BG): 0-Black, 1-Red, 2-Green, 3-Yellow, 4-Blue, 5-Magenta, 6-Cyan, 7-White
 	printf "\n\e[${3:-1;32;40}m@@@ $1 @@@\e[0m\n$2"	# default: Bold green on black
-}
-
-PrintHelpAndExit()
-{
-	MyMsg "${HeadStr}" "\n"
-	printf "${DescStr}\n"
-	printf "${HelpStr}"
-	MyMsg "${FootStr}" "\n"
-	exit $1
 }
 
 MyEcho()
@@ -118,6 +112,15 @@ MyError()
 	exit 1
 }
 
+PrintHelpAndExit()
+{
+	MyMsg "${HeadStr}" "\n"
+	printf "${DescStr}\n"
+	printf "${HelpStr}"
+	MyMsg "${FootStr}" "\n"
+	exit $1
+}
+
 MyCD()
 {
 	OldDir=`pwd`
@@ -126,70 +129,75 @@ MyCD()
 		&& MyPoint "Changed dir to '${NewDir}'" || MyError "Change to '${NewDir}' failed"
 }
 
-#~ if [ "$#" == 0 ]; then PrintHelpAndExit 2; fi # No args
+#~ if [ "$#" == 0 ]; then PrintHelpAndExit 2; fi 	# No args
 while getopts "m:l:o:v:d:f:akh?" cmdarg; do
 	case $cmdarg in
-		m)  	XKBmodel="$OPTARG"		;;
-		l)  	XKBlayout="$OPTARG"		;;
-		o)  	XKBoption="$OPTARG"		;;
-		v)  	VerboseLvl="$OPTARG"	;;
-		d)  	XKBdir="$OPTARG"		;;
-		f)  	AddCmdTo="$OPTARG"		;;
-		a)  	AddCmd='yes'			;;
-		k)  	KeepXKM='yes'			;;
-		h)  	PrintHelpAndExit 0		;;
-		\?) 	PrintHelpAndExit 0		;;
-		:)  	PrintHelpAndExit 1		;;
-#		s)  	SetXStr=($OPTARG)		;;		# Split the string
+		m)  	XKBmodel="$OPTARG"  	;;
+		l)  	XKBlayout="$OPTARG" 	;;
+		o)  	XKBoption="$OPTARG" 	;;
+		v)  	Verbosity="$OPTARG" 	;;
+		d)  	XRunDir="$OPTARG"   	;;
+		f)  	AddCmdTo="$OPTARG"  	;;
+		a)  	AddCmdYN='yes'  		;;
+		k)  	KeepXKM='yes'   		;;
+		h)  	PrintHelpAndExit 0  	;;
+		\?) 	PrintHelpAndExit 0  	;;
+		:)  	PrintHelpAndExit 1  	;;
+#		s)  	SetXStr=($OPTARG)   	;;  		# Split the string
 	esac
 done
-shift $(( $OPTIND - 1 ))						# Remove already processed args
-[[ "$@" == "" ]] || SetXStr=($@)				# Split the ShortString
+shift $(( $OPTIND - 1 ))							# Remove already processed args
+[[ "$@" == "" ]] || SetXStr=($@)					# Split the ShortString
 
-if [ -n "${SetXStr}" ]; then 					# Use ShortString notation
+[[ "${XRunDir}" == '-' ]] && XRunDir="${XKBLOC}"    # Use the default local dir
+
+if [ -n "${SetXStr}" ]; then 						# Use ShortString notation
 	case ${SetXStr[0]} in
-		 4n|4c)       XKBmodel='pc104' 			;;	# Generic ANSI-101/104-key
+		 4n|4c)       XKBmodel='pc104'  		;;	# Generic ANSI-101/104-key
 		 4a|4ca)      XKBmodel='pc104angle-z' 	;;	# w/ Angle(Z) ergo mod
 		 4w|4cw)      XKBmodel='pc104wide-qu' 	;;	# w/ Wide(Quote) ergo mod
 		 4aw|4caw)    XKBmodel='pc104aw-zqu' 	;;	# w/ Angle(Z)Wide(Quote) ergo mod
 		 4f|4af|4cf)  XKBmodel='pc104awing' 	;;	# w/ AngleWing(Quote) ergo mod
 
-		 5n|5c)       XKBmodel='pc105' 			;;	# Generic ISO-102/105-key
+		 5n|5c)       XKBmodel='pc105'  		;;	# Generic ISO-102/105-key
 		 5a|5ca)      XKBmodel='pc105angle' 	;;	# w/ Angle(LSGT) ergo mod
 		 5w|5aw|5caw) XKBmodel='pc105aw-sl' 	;;	# w/ AngleWide(Slash) ergo mod
 
 		  *)	MyError "ShortStr model '${SetXStr[0]}' unknown!" ;;
 	esac
-	if [ -n "${SetXStr[2]}" ]; then 			# If there are three parts, ...
-		case ${SetXStr[2]} in 					# ...determine the layout variant.
-			  us)   XKBvar='cmk_ed_us' 			;;	# Cmk-eD Unified Symbols variant
-			  ks)   XKBvar='cmk_ed_ks' 			;;	# Cmk-eD Keep Locale Symbols variant
+	##case ${SetXStr[0]} in # eD WIP: Check for Sym mods, add as option. Can we do a search for s in the string?
+	##  Also double the model checks above.
+	##  Can we lop of 4/5 first, and make a model string 'pc10#' based on that, to simplify the above?
+	##  Can we search for c and s separately in the string? The c will be first after 4/5, and s at the end.
+	if [ -n "${SetXStr[2]}" ]; then 				# If there are three parts, ...
+		case ${SetXStr[2]} in   					# ...determine the layout variant.
+			  us)   XKBvar='cmk_ed_us'  		;;	# Cmk-eD Unified Symbols variant
+			  ks)   XKBvar='cmk_ed_ks'  		;;	# Cmk-eD Keep Locale Symbols variant
 			   *)   XKBvar=${SetXStr[2]} 		;;	# Use specified variant
 		esac
 	else
-		            XKBvar='basic' 					# Default variant
+		            XKBvar='basic'  				# Default variant
 	fi
-	if [ -n "${SetXStr[1]}" ]; then 			# If there are two or more parts, ...
-		XKBlayout="${SetXStr[1]}($XKBvar)" 		# ...use the lay(var) string. 
-	else 										# Otherwise, use existing layout.
+	if [ -n "${SetXStr[1]}" ]; then 				# If there are two or more parts, ...
+		XKBlayout="${SetXStr[1]}($XKBvar)"  		# ...use the lay(var) string. 
+	else 											# Otherwise, use existing layout.
 		XKBlayout=`setxkbmap -query | grep layout | awk '{print $2}'`
 	fi
 fi
 
 ##  NOTE: The code below post processes Curl models into model+option, as per my XKB implementation.
 [[ ${SetXStr[0]} =~ "c" ]] && XKBoption+=',misc:cmk_curl_dh'
-
+##  [[ ${SetXStr[0]} =~ "s" ]] && XKBoption+=',misc:ed_sym-w'  	# TODO: Implement Sym, for both Wide and non-Wide configs
 
 ##-------------- main ------------------------------------------
 
 MyMsg "$HeadStr"
-#~ MyCD "${XKBpath%/}/${XKBdir%/}"
+#~ MyCD "${XKBpath%/}/${XRunDir%/}"
 if [ -n "${SetXStr}" ]; then
 	MyPoint "Using model/layout '$XKBmodel'/'$XKBlayout' from ShortStr"
 fi
 
-MyCD "${XKBdir%/}"
-#~ MyPoint "Running from `pwd`"
+MyCD "${XRunDir%/}"  								# Change to the xkb dir first
 
 ##  Check for root privileges (if not root, needs the sudo command)
 DoSudo=''
@@ -198,7 +206,7 @@ if [ "$EUID" -ne 0 ]; then # or [ `whoami` = 'root' ]; not root, so test for sud
     DoSudo='sudo'
 fi
 
-##  Purge the old xkb server files
+##  Purge the old xkb server files (usually desirable)
 if [ ${KeepXKM} == 'no' ]; then
 	MyPoint "Looking for and removing any old .xkm server files"
 	${DoSudo} rm -f /var/lib/xkb/server-*.xkm || MyPoint "No .xkm files removed"
@@ -208,19 +216,25 @@ fi
 setxkbmap -option ''
 
 ##  Run the actual setxkbmap command
-MySetXKB="-model ${XKBmodel} -layout ${XKBlayout} -option ${XKBoption} -v ${VerboseLvl}"
-MyPoint "Running setxkbmap:\n"
-setxkbmap $MySetXKB
+SetXKB="-model ${XKBmodel} -layout ${XKBlayout} -option ${XKBoption}"
+if [ ${XRunDir} == ${XKBDIR} ]; then
+	MyPoint "Running setxkbmap with the system XKB dir:\n"
+	OptXKB="-v ${Verbosity}"  	# Note: Verbosity doesn't work well with -print
+else
+	MyPoint "Running setxkbmap with a local XKB dir:\n"  	# . is the local dir
+	OptXKB="-print | xkbcomp -I -I. -I${XKBDIR} $DISPLAY 2>/dev/null"   # Wasn't there a hyphen before $DISPLAY?
+fi
+setxkbmap $SetXKB $OptXKB
 MyEcho ""
 
-##  Add the setxkbmap command to a file, if specified (Note the special format for MySetXKB!)
-MySetXKB="-model '${XKBmodel}' -layout '${XKBlayout}' -option '${XKBoption}'"
-if [ ${AddCmd} == 'yes' ] || [ ${AddCmdTo} != ${AddDefault} ]; then
+##  Add the setxkbmap command to a file, if specified. Note the quotes necessary for FileXKB.
+if [ ${AddCmdYN} == 'yes' ] || [ ${AddCmdTo} != ${AddDefault} ]; then
+	FileXKB="-model '${XKBmodel}' -layout '${XKBlayout}' -option '${XKBoption}'"
 	MyPoint "Adding setxkbmap cmd to ${AddCmdTo}\n"
 	[ -w ${AddCmdTo} ] || MyError "Writing to '${AddCmdTo}' failed"
 	printf "\n%s\n%s\n%s\n" \
 		"##-> DreymaR's SetXKB.sh: Activate layout" \
-		"setxkbmap ${MySetXKB}" \
+		"setxkbmap ${FileXKB} ${OptXKB}" \
 		"##<- DreymaR's SetXKB.sh" \
 		>> ${AddCmdTo}
 fi
