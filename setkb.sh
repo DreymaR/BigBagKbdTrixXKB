@@ -1,18 +1,18 @@
 #!/bin/bash
 
-##  ======================================================
-##  ===  SETXKB.sh to set the XKB keyboard options     ===
-##  ===     by Øystein Bech "DreymaR" Gadmar, 2014-    ===
-##  ======================================================
+##  =================================================================
+##  ===         SETKB.sh to set the XKB keyboard options          ===
+##  ===          by Øystein "DreymaR" Bech-Aase, 2014-            ===
+##  =================================================================
 
-HeadStr="DreymaR's setxkbmap script (by GadOE, 2022-10)"
+HeadStr="DreymaR's setxkbmap script (by OeBeAa, 2022-10)"
 DescStr=\
 "\e[1mShell script to change X.org keyboard setup\e[0m\n"\
 "  using the 'setxkbmap' command.\n"\
 "  To make settings logon persistent,\n"\
 "  source it, e.g., in your ~/.bashrc file,\n"\
 "  or use -a to write the setxkbmap command to a file.\n"
-FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
+FootStr="Happy xkb-hacking! ~ Øystein 'DreymaR' Bech-Aase"
 
 ##  NOTE: It now works with local xkb(-mod) dir
 ##  	 By default, setxkbmap checks ./rules first!
@@ -49,7 +49,7 @@ XRunDir=${XKBDIR}   			# (-d) The xkb-type dir to run setxkbmap from
 AddCmdYN='no'   				# (-a) Add setxkbmap cmd to file?
 AddDefault="${HOME}/.bashrc"
 AddCmdTo=${AddDefault}  		# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
-SetXStr='' #'5caw us us' 		# (--) Shortcut string for setxkb (model locale eD-variant)
+SetXStr='' #'5caw us us' 		# (--) Shortcut string for setkb (model locale eD-variant)
 ##  NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\

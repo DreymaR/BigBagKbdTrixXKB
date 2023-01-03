@@ -1,11 +1,11 @@
 #!/bin/bash
 
-## =================================================================
-## ===  INSTALL-DREYMAR-XMOD.sh for DreymaR's XKB modifications  ===
-## ===         by Øystein Bech "DreymaR" Gadmar, -2016           ===
-## =================================================================
+##  =================================================================
+##  ===  INSTALL-DREYMAR-XMOD.sh for DreymaR's XKB modifications  ===
+##  ===           by Øystein "DreymaR" Bech-Aase, 2016-           ===
+##  =================================================================
 # 
-HeadStr="DreymaR's Big Bag Of Tricks install script (by GadOE, 2016-06)"
+HeadStr="DreymaR's Big Bag Of Tricks install script (by OeBeAa, 2016-)"
 DescStr=\
 "\e[1mShell script to apply DreymaR's changes to the X keyboard files:\e[0m\n"\
 "  - The Colemak [edition DreymaR] layout, using my own lv3-4 mappings,\n"\
@@ -21,11 +21,11 @@ DescStr=\
 "- With a ShortStr at the end, specify a model/layout to activate immediately.\n"\
 "  - ShortStr format: '[4|5][n|a|c][w|f] loc [ks|us]'; 'loc'(ale) is 2-letter.\n"\
 "  - E.g., '5n fr us' is normal pc105 model, French Cmk[eD]-'UniSym'.\n"\
-"  - See setxkb.sh help for more info on ShortStr syntax.\n"\
+"  - See setkb.sh help for more info on ShortStr syntax.\n"\
 "- With '-?', list further instructions and default values.\n"\
 "- See http://forum.colemak.com/viewtopic.php?id=1438 for more info\n"
 # 
-FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
+FootStr="Happy xkb-hacking! ~ Øystein 'DreymaR' Bech-Aase"
 #"- With '-i <dir>', specify a directory path/name to install in.\n"\
 #"- With '-g', also install GTK 2.0/3.0 config for XF86 Cut/Copy/Paste.\n"\
 
@@ -35,7 +35,7 @@ FootStr="Happy xkb-hacking! ~ Øystein Bech 'DreymaR' Gadmar"
 ## NOTE: This is now the preferred way instead of patching the system files:
 ##		- Backup system xkb to dbak-xkb_<DATE> (and the same for any other subdirs)
 ##		- Copy X11/xkb to ${InstDir}/dxkb, then modify files in dxkb
-##		- Set up setxkb.sh to run from the modified dxkb [WARNING: This may not work now!]
+##		- Set up setkb.sh to run from the modified dxkb [WARNING: This may not work now!]
 ##      - Or, (-o) overwrite the system files instead
 ## NOTE: The x-mod dir now holds x-mod*/xkb; eventually there may be a locale dir too.
 
@@ -53,7 +53,7 @@ XVERSION=''
 ModDATE=''
 
 DModDir=`dirname $0` 	# (-d) Path to the script (and mod?) root directory
-ToolDir="${DModDir}/dreymar-xtools" 	# The loc. of tool scripts (like setxkb.sh)
+ToolDir="${DModDir}/dreymar-xtools" 	# The loc. of tool scripts (like setkb.sh)
 DMod='xkb-data_xmod' 	# (--) The main name of the directory with modded xkb-data files
 DModTag="${DMod}${XVERSION:+'_v'}${XVERSION}${ModDATE:+'_'}${ModDATE}" 	# (-t) Mod dir "prefix"
 DBakFix='dbak-' 		# (--) Backup dir prefix
@@ -66,8 +66,8 @@ DoBackup='ifnone' 		# (-n/b) Default backup behavior is "if no backups are found
 SubDirs='all' 			# (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale', 'all')
 InstGTK='no' 			# (-g) Whether to install the GTK 2.0/3.0 config (if not present)
 NoSudo='no' 			# (-s) Do not use sudo. Helpful for local dir installation.
-SetXMap='no' 			# (-x) Whether to run the setxkb script after installing
-SetXStr='5caw us us' 	# (--) Shortcut string for setxkb - 'kbd loc sym' (model layout eD-variant)
+SetXMap='no' 			# (-x) Whether to run the setkb script after installing
+SetXStr='5caw us us' 	# (--) Shortcut string for setkb - 'kbd loc sym' (model layout eD-variant)
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\
@@ -246,7 +246,7 @@ for That in ${SubDirs}; do
 		${DoSudo} cp -a "${DModDir}/${That}/"* "${MyDir}" 2>/dev/null \
 			&& MyPoint "Local install done" || MyError "Local files copy error!"
 		XKBDir="${InstDir%/}/${DModFix}xkb"	# Prepare for setxkbmap
-		cp -a setxkb.sh ${InstDir}	# Copy over the setxkb.sh script to the new dir
+		cp -a setkb.sh ${InstDir}	# Copy over the setkb.sh script to the new dir
 	fi
 done
 
@@ -266,7 +266,7 @@ fi
 if [ "${SetXMap}" != 'yes' ]; then
 	MyMsg "XKBmap activation skipped" "" '1;33;40'
 else
-	bash ./setxkb.sh -d "${XKBDir}" ${SetXStr} || MyError "setxkb.sh failed!"
+	bash ./setkb.sh -d "${XKBDir}" ${SetXStr} || MyError "setkb.sh failed!"
 fi
 
 MyMsg "${MyNAME} finished!" "\n"

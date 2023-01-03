@@ -30,13 +30,13 @@ You can now probably use the system's layout settings to choose a setup. For inf
 
 However, some layout settings won't let you set the model component that I use for some ergo mods.
 
-The setxkb script activates a Big Bag layout setup (model, layout and option components) using a `setxkbmap` command.
+The setkb script activates a Big Bag layout setup (model, layout and option components) using a `setxkbmap` command.
 
-The setxkb script can write its command to a file that gets sourced at startup, like `~/.bashrc`; check your distro for which file(s) to use.
+The setkb script can write its command to a file that gets sourced at startup, like `~/.bashrc`; check your distro for which file(s) to use.
 
-Run the install and setxkb scripts with -h (or look inside them) for more help and info about their workings!
+Run the install and setkb scripts with -h (or look inside them) for more help and info about their workings!
 
-Learn about `setxkb.sh "model locale variant"` shortstring syntax in the [BigBag][BigBag4X].
+Learn about `setkb.sh "model locale variant"` shortstring syntax in the [BigBag][BigBag4X].
 The default is `"5caw us us"`: PC105(ISO) board with Curl(DH)AngleWide mods, US locale, Cmk-eD UniversalSymbols variant.
 To switch to, say, an ANSI board without ergo mods, that's `4n` instead of `5caw`. Look in the scripts.
 
@@ -46,7 +46,7 @@ NOTE: It may be necessary to select "Use system defaults" if you have changed an
 Tips
 ----
 * Before trying out the BigBag, you may want to find out what your current XKB settings are. One way of seeing what you use is `setxkbmap -v 9`.
-	- To get the standard default layout back, you can use `setxkb 4n` for ANSI keyboards (`5n` for ISO). This depends on your locale though.
+	- To get the standard default layout back, you can use `setkb 4n` for ANSI keyboards (`5n` for ISO). This depends on your locale though.
 * The 'Keep Symbols' layouts are intended for those who don't want to give up their symbol mappings. The 'Unified' variants are usually much better, and 'ks' may be missing symbols.
 * If you use Extend and want the `Ctrl+Alt+F#` TTY shortcuts back, disable F#-key Extend mappings in the `symbols/extend` file.
     - This is achieved easily by commenting out the [include "extend(lv5_fk)"][BB-ExtFK] bit (with two trailing slashes).
@@ -71,15 +71,15 @@ _DreymaR, 2023-01_
 
 TODO:
 -----
-* Not all distros source `~/.bashrc` by default. Seems that `~/.xinitrc` is only used by xinit?
+* Add colemak-dh to the colemak symbols file and the US locale? Both ISO, ANSI and Ortho.
+* Not all distros source `~/.bashrc` by default. Seems that `~/.xinitrc` is mostly used by xinit and not generally sourced?
 	- But `~/.Xresources` seems like a good option (and is sourced by xinitrc too)?
 	- Its format is different though. And it doesn't list keyboard layout as one of its intended purposes.
 * Add some easy way of returning to the old xkbmap setup? But how? Can't unset settings, so we'd have to store it somehow? Or just let them go to us/us?
-	- Make a restore to default layout shortcut instead? It's only an alias for `setxkb 4n/5n`. Maybe `resetxkb 4/5`?
+	- Make a restore to default layout shortcut instead? It's only an alias for `setkb 4n/5n`. Maybe `resetkb 4/5`?
 * Transition many ###.xml changes to ###.extras.xml? Other Colemak locale variants reside there. But it's a mess: Many (such as Norwegian) are in the main file!
-* Add colemak-dh to the colemak symbols file? Both ISO and ANSI?
 * Ensure a consistent Space key implementation for `_ks` layouts. Many layouts are sloppy about that. Maybe make a `common` include w/ Space+Enter?
-* Rename setxkb --> setkb? It's easier to type! Would have to update all docs including the Forum topic.
+* Rename setkb --> setkb? It's easier to type! Would have to update all docs including the Forum topic.
 * To get Extend with the currently active layout, use `setxkbmap -v 9 -option "" -option "misc:extend,lv5:caps_switch_lock,compose:menu"`.
 * Add lv5:lalt_switch_lock for LALT-Extend.
 * Add compose:102? Inconsistent between ISO and ANSI, just add a pro-tip.
@@ -105,8 +105,8 @@ TODO:
 	- but with only the relevant bits. So, e.g., `0009-m_g.part` is the model to group mapping of the final rules file. `ml_s.part` is model + layout to symbols.
 	- It seems that you can make layout commits by editing only the rules/base.xml (and symbols) file(s) though?
 
-* Echo the setxkbmap command when using setxkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping?
-* Add a model-less Colemak-CAWS for people who want to switch to QWERTY? Or instructions on how to setxkb it? That's better, I think.
+* Echo the setxkbmap command when using setkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping?
+* Add a model-less Colemak-CAWS for people who want to switch to QWERTY? Or instructions on how to setkb it? That's better, I think.
 * Problem: Using Google Spreadsheets, hitting Caps Lock (which is mapped to ISO_Level5_Shift) clears the current spreadsheet cell.
 	- https://forum.colemak.com/topic/1438-dreymars-big-bag-of-keyboard-tricks-linuxxkb-files-included/p15/#p23838
 	- This solves it by convincing Google Sheets that the Caps key is a Win key: `sudo setkeycodes 0x3a 125`
@@ -140,7 +140,7 @@ TODO:
 	- https://github.com/DreymaR/BigBagKbdTrixXKB/issues/1#issuecomment-462952051
 	- https://unix.stackexchange.com/questions/397716/custom-keyboard-layout-without-root
 	- `setxkbmap -I $MYXKB -rules evdev <params> -print | xkbcomp -I $MYXKB - "$DISPLAY"
-	- "I made that tweak to setxkb and some small changes to use a hardcoded $HOME dir path, and it appears good."
+	- "I made that tweak to setkb and some small changes to use a hardcoded $HOME dir path, and it appears good."
 	- Another attempt by birdspider, with some tripups and solutions:
 		https://github.com/DreymaR/BigBagKbdTrixXKB/issues/1#issuecomment-818880299
 * For an EsAlt variant as in EPKL:
@@ -165,8 +165,8 @@ TODO:
 DONE:
 -----
 * 2020-11-05: Switched to the new DH = DHm standard (was DH = DHk)
-* Changed the default layout for the setxkb.sh script to US (UniSym): In my experience, most users that struggle with the setup want US English.
-* To get back to your old layout/model, use `setxkb 4n/5n [loc]`. You may also specify `mod loc [var]`; omit `var` for the default (basic) variant.
+* Changed the default layout for the setkb.sh script to US (UniSym): In my experience, most users that struggle with the setup want US English.
+* To get back to your old layout/model, use `setkb 4n/5n [loc]`. You may also specify `mod loc [var]`; omit `var` for the default (basic) variant.
 * Separated out the F# key block in the extend file: People complain that their TTY shortcuts aren't working because of it. Ext+AltGr+F# works though.
 * Relieve the sudo requirement. And add an option to change the X11 dir since Nix uses another place. Pulled from fufexan@github.
 	- https://github.com/DreymaR/BigBagKbdTrixXKB/issues/15#issuecomment-769431139
