@@ -149,6 +149,8 @@ xkb_symbols "cmk_ed_letters" {
     key <AB05> { [             b,             B,  enfilledcircbullet,          Greek_beta ] }; // QWE B Cmk bB •β
     key <AB06> { [             k,             K,            ccedilla,            Ccedilla ] }; // QWE N Cmk kK çÇ
     key <AB07> { [             m,             M,            multiply,           downarrow ] }; // QWE M Cmk mM ×↓
+    //
+    key <SPCE> { [         space,         space,        nobreakspace,        nobreakspace ] }; // Space
     //  U0292/01B7 ezh/EZH
 
 //// Activating the line below will "hard" enable the Cmk-DH = Curl(DHm) mod; see below.
@@ -187,7 +189,6 @@ xkb_symbols "cmk_ed_symbols" {
     key <AB09> { [        period,       greater,       dead_abovedot,    greaterthanequal ] }; // .> _≥
     key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
     //
-    key <SPCE> { [         space,         space,        nobreakspace,        nobreakspace ] }; // Space
 // NOTE: In Linux, CapsLock is tweaked in the Keyboard settings (for freedom of choice etc.)
 //    key <CAPS> { [     BackSpace,     BackSpace,           Caps_Lock,           Caps_Lock ] }; // Caps/Back
 };

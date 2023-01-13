@@ -4,27 +4,28 @@ DreymaR's Big Bag of Keyboard Tricks
 
 ### For Linux using XKB
 
-* New "Colemak[eD]" AltGr mappings (lv3-4), placing dead keys on AltGr+symbol keys
-* An Extend layer using Caps Lock as a lv5 modifier for navigation/editing from the home position and more!
-* Angle/Wide ergo modifications to improve wrist angles(!), hand spacing and right pinky movement+load
+* Improved "Colemak[eD]" AltGr mappings (lv3-4), placing dead keys on AltGr+symbol keys
+* Powerful Extend layers using Caps Lock as a lv5 modifier for navigation/editing from the home position and more!
+* Comfy Angle/Wide ergo modifications to improve wrist angles(!), hand spacing and right pinky movement+load
 * The Curl-DH ergo mod to allow a more natural finger curvature and avoid lateral stretches
-* Note: The Sym ergo mod to improve access to often-used symbol keys is planned to be implemented soon
+    - The Colemak-DH layout is a combination of the Curl-DH and Angle mods, on normal row-staggered keyboards
+* WIP: The Sym ergo mod to improve access to often-used symbol keys is planned to be implemented soon
 * For several locales, a 'Unified Symbols' layout with only a few necessary changes from the standard Colemak[eD]
 * Also, a layout to 'Keep Local Symbols' like their default (QWERTY-type) counterparts for that locale
 * Intuitive phonetic layouts for Cyrillic, Greek and Hebrew scripts
-* Mirrored Colemak that allows one-handed typing (if I ever break an arm...)
+* Mirrored Colemak that allows one-handed typing with practically no re-learning (if I ever break an arm...)
 * The 4 Tarmak transitional Colemak layouts for learning Colemak(-DH) in smaller steps if so desired
 <br>
 
 The main Big Bag pages are found at [https://dreymar.colemak.org/][BigBag]. To see XKB info boxes there, select the Tux platform icon.
 
-These [xkeyboard-config][XKBgitHb] files are updated to [XKB-data v2.23.1-1ubuntu1][XKB-Ub18], 2018. They work fine with many other versions though.
+These [xkeyboard-config][XKBgitHb] files are updated to [XKB-data v2.23.1-1ubuntu1][XKB-Ub18], 2018. They work fine with other versions though, in nearly all cases.
 <br>
 
 Some info
 ---------
 
-First, run the install script. This copies my modified files into the system X11 directory. The old one are backed up by default.
+First, run the install script. This copies my modified files into the system X11 directory. Original files are backed up by default.
 
 You can now probably use the system's layout settings to choose a setup. For info on what the choices are, consult the [Big Bag][BigBag].
 
@@ -46,12 +47,13 @@ NOTE: It may be necessary to select "Use system defaults" if you have changed an
 Tips
 ----
 * Before trying out the BigBag, you may want to find out what your current XKB settings are. One way of seeing what you use is `setxkbmap -v 9`.
-	- To get the standard default layout back, you can use `setkb 4n` for ANSI keyboards (`5n` for ISO). This depends on your locale though.
-* The 'Keep Symbols' layouts are intended for those who don't want to give up their symbol mappings. The 'Unified' variants are usually much better, and 'ks' may be missing symbols.
-* If you use Extend and want the `Ctrl+Alt+F#` TTY shortcuts back, disable F#-key Extend mappings in the `symbols/extend` file.
-    - This is achieved easily by commenting out the [include "extend(lv5_fk)"][BB-ExtFK] bit (with two trailing slashes).
+	- To get the standard default layout back, you can use `setkb 4n` for ANSI keyboards (`5n` for ISO). What you want depends on your locale though.
+* Due to complaints from new users that Extend on F# keys interferes with `Ctrl+Alt+F#` TTY shortcuts, FK Extend is now disabled by default.
+    - You can enable FK Extend by activating the [include "extend(lv5_fk)"][BB-ExtFK] bit (delete the trailing slashes) in the `symbols/extend` file.
     - If you had already installed the BigBag you must either edit the file in its target X11 directory, or edit and then reinstall the files.
     - In theory, we could make such shortcuts part of Extend so you can have both them and the Multimedia key shortcuts. I'll think about it.
+* The 'Keep Symbols' layouts are intended for those who aren't ready to give up their symbol mappings. Not the best option, but "training wheels".
+    - The Unified 'us' variants are usually much better. The 'ks' ones will miss out on some symbols and many dead keys.
 * The `xkb-data` package is very consistent between distros. I've use [Debian xkb-data][XKB-DebS], sometimes with some Ubuntu updates.
 * Any .deb package may be opened using `dpkg -x` or `ar -xv` (from `binutils`) on Linux, and any decent zip manager such as PeaZip on Windows.
 <br>
@@ -71,20 +73,21 @@ _DreymaR, 2023-01_
 
 TODO:
 -----
+* Non-Fn-key Extend is now the default. Add a separate option for FK Extend? Many new users struggled with this, or have weird FK setups.
 * Add colemak-dh to the colemak symbols file and the US locale? Both ISO, ANSI and Ortho.
 * Not all distros source `~/.bashrc` by default. Seems that `~/.xinitrc` is mostly used by xinit and not generally sourced?
+	- What about `~/.xsession` or `~/.profile`? Seems to be mostly legacy; used by `startx`? It's messy.
+	- Look in `/etc/X11/Xsession` to see how thing are run at startup?
 	- But `~/.Xresources` seems like a good option (and is sourced by xinitrc too)?
 	- Its format is different though. And it doesn't list keyboard layout as one of its intended purposes.
 * Add some easy way of returning to the old xkbmap setup? But how? Can't unset settings, so we'd have to store it somehow? Or just let them go to us/us?
 	- Make a restore to default layout shortcut instead? It's only an alias for `setkb 4n/5n`. Maybe `resetkb 4/5`?
 * Transition many ###.xml changes to ###.extras.xml? Other Colemak locale variants reside there. But it's a mess: Many (such as Norwegian) are in the main file!
-* Ensure a consistent Space key implementation for `_ks` layouts. Many layouts are sloppy about that. Maybe make a `common` include w/ Space+Enter?
-* Rename setkb --> setkb? It's easier to type! Would have to update all docs including the Forum topic.
 * To get Extend with the currently active layout, use `setxkbmap -v 9 -option "" -option "misc:extend,lv5:caps_switch_lock,compose:menu"`.
 * Add lv5:lalt_switch_lock for LALT-Extend.
 * Add compose:102? Inconsistent between ISO and ANSI, just add a pro-tip.
 * The Curl(DH) model implementation has to go as it may mess w/ QWERTY. Instead, I should use two Extend variants.
-	- It also seems very hard for some newcomers to understand. So yes, I should have the Angle mod only and not CurlAngle models.
+	- It also seems very hard for some newcomers to understand. So yes, I should have the Angle mod only and not CurlAngle models?
 	- Also, matrix users want the V-D swap without an Angle mod! Another nail in the coffin for the Curl models.
 	- Actually, should I make a NoModel CurlAngle layout for the model impaired? Vanilla, Curl(DH) and Curl(DH)Angle then. ... No?
 	- First, just make Curl with D-V swap built in. Let the Extend Paste function be where it falls for now.
@@ -164,6 +167,8 @@ TODO:
 
 DONE:
 -----
+* Moved Space to the "letters" block to ensure a consistent Space key implementation for `_ks` layouts etc. Many xkb layouts are sloppy about that.
+* 2023-01-03: Renamed setkb --> setkb: It's easier to type. Updated all docs including the Forum topic.
 * 2020-11-05: Switched to the new DH = DHm standard (was DH = DHk)
 * Changed the default layout for the setkb.sh script to US (UniSym): In my experience, most users that struggle with the setup want US English.
 * To get back to your old layout/model, use `setkb 4n/5n [loc]`. You may also specify `mod loc [var]`; omit `var` for the default (basic) variant.

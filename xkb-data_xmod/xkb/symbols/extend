@@ -61,7 +61,7 @@
 default partial
 xkb_symbols "basic" {
 //    name[Group1]= "Extend layer";
-    include "extend(lv5_fk)"    // The F# key block. Some may want to exclude this as it affects TTY shortcuts.
+//    include "extend(lv5_fk)"    // The F# key block. Some may want to exclude this as it affects TTY shortcuts.
     include "extend(lv5)"       // Extend mappings for all other keys
 };
 
