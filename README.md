@@ -47,15 +47,48 @@ NOTE: It may be necessary to select "Use system defaults" if you have changed an
 Tips
 ----
 * Before trying out the BigBag, you may want to find out what your current XKB settings are. One way of seeing what you use is `setxkbmap -v 9`.
-	- To get the standard default layout back, you can use `setkb 4n` for ANSI keyboards (`5n` for ISO). What you want depends on your locale though.
-* Due to complaints from new users that Extend on F# keys interferes with `Ctrl+Alt+F#` TTY shortcuts, FK Extend is now disabled by default.
-    - You can enable FK Extend by activating the [include "extend(lv5_fk)"][BB-ExtFK] bit (delete the trailing slashes) in the `symbols/extend` file.
+	- To get the standard US default layout back, you can use `setkb 4n` for ANSI keyboards (`5n` for ISO). What you want may depend on your locale.
+* Due to complaints from new users that Extend on F# keys interferes with `Ctrl+Alt+F#` TTY shortcuts, FKey Extend is now disabled by default.
+    - You can enable FKey Extend by activating the [include "extend(lv5_fk)"][BB-ExtFK] bit (delete the trailing slashes) in the `symbols/extend` file.
     - If you had already installed the BigBag you must either edit the file in its target X11 directory, or edit and then reinstall the files.
     - In theory, we could make such shortcuts part of Extend so you can have both them and the Multimedia key shortcuts. I'll think about it.
 * The 'Keep Symbols' layouts are intended for those who aren't ready to give up their symbol mappings. Not the best option, but "training wheels".
     - The Unified 'us' variants are usually much better. The 'ks' ones will miss out on some symbols and many dead keys.
 * The `xkb-data` package is very consistent between distros. I've use [Debian xkb-data][XKB-DebS], sometimes with some Ubuntu updates.
 * Any .deb package may be opened using `dpkg -x` or `ar -xv` (from `binutils`) on Linux, and any decent zip manager such as PeaZip on Windows.
+<br>
+
+localectl
+---------
+* You can use the `localectl set-x11-keymap` command to make changes persistent; you may have to run it with `sudo` privileges
+* Syntax: `[sudo] localectl [--no-convert] set-x11-keymap layout [model [variant [options]]]`
+* Example: `sudo localectl set-x11-keymap us pc105aw-sl cmk_ed_us "lv5:caps_switch_lock,misc:extend"`
+* For `layout` and `[variant]`, you can use for instance `"us,us"` and `"cmk_ed_us,"` to switch between Cmk-eD and the default us layout
+* Unfortunately, you can't switch between multiple models nor options this way – so your QWERTY may have the Angle (and Curl!) mods...
+* Add `--no-convert` to not convert between closest matching console and X11 keyboard mappings; this precludes applying as system console mapping
+* Note that XKB options may be overridden by the settings tools used with desktop environments like GNOME and KDE
+* More info on setting keyboard layouts is found in the Arch Manual and Wiki, at: 
+	https://man.archlinux.org/man/localectl.1
+	https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_localectl
+	https://wiki.archlinux.org/title/Linux_console/Keyboard_configuration#Persistent_configuration
+* Thanks to: Daniele, i-c-u-p, Flomza and others at the Cmk Discord for helping find this out
+<br>
+
+Wayland & Friends
+-----------------
+Wayland has a different tack: It uses xkb-data files, but not an X server. So the setkb script won't work there, but the BigBag as such will.
+
+It depends on which Wayland Compositor you're using. See its docs?
+
+For the Sway compositor, add a piece like this example to your `~/.config/sway/config` file:
+```
+input * {
+  xkb_model     pc105
+  xkb_layout    us
+  xkb_variant   cmk_ed_us
+  xkb_options   lv5:caps_switch_lock,misc:extend,compose:menu
+}
+```
 <br>
 
 Links
@@ -67,13 +100,32 @@ There are plenty of explanations and further links in there.
 One good source of info on the `xkb-data` package is the [xkeyboard-config][XKB-conf] repository itself, and its `docs` folder. The repo is found both on [GitHub][XKBgitHb] and [GitLab][XKBgitLb].
 <br>
 
+Ivan Pascal is a grandmaster of XKB; to learn it you should definitely consult his pages. They're a bit incomplete for us who don't speak Russian, but well worth it nonetheless.
+http://pascal.tsu.ru/en/xkb
+http://pascal.tsu.ru/en/xkb/gram-symbols.html
+<br>
+
 Happy XKB hacking!
 _DreymaR, 2023-01_
 <br><br>
 
 TODO:
 -----
-* Non-Fn-key Extend is now the default. Add a separate option for FK Extend? Many new users struggled with this, or have weird FK setups.
+* Update all forum.colemak.com links with new BigBag links: Locale topic (id=1458) -> https://dreymar.colemak.org/variants.html#locales etc.
+* Fix key repetition with Extend, particularly vis-a-vis Wayland.
+	- Seems we have to add `repeat=yes` after the key actions to all keys that have actions.
+	- https://discord.com/channels/409502982246236160/1066499260322943006/1080488398403424256
+	- http://web.archive.org/web/20190320180541/http://pascal.tsu.ru/en/xkb/gram-symbols.html
+	- I couldn't devise a way to do this once and for instead of by-key (looked at compat but no?).
+* Better instructions for Wayland
+	- Depends on your Wayland Compositor (Sway is common?)
+		https://wiki.archlinux.org/title/wayland#Compositors
+	- Didn't we have some good ones at the Colemak Discord? Where?
+		https://discord.com/channels/409502982246236160/1059814838408319026/1059866421066203257
+* Lockable lv5 modifier, for users who want Extend-lock. Maybe Shift+Extend to lock it, or something?
+	- It's possible today to have two switch-or-lock lv5 modifiers. But it seems wasteful to use up two keys.
+* Non-Fn-key Extend is now the default. Add a separate option for FKey Extend? Many new users struggled with this, or have weird FKey setups.
+	- Add a FKey Extend option to misc? So people can activate `misc:extend` and `misc:extend_fk` separately.
 * Add colemak-dh to the colemak symbols file and the US locale? Both ISO, ANSI and Ortho.
 * Not all distros source `~/.bashrc` by default. Seems that `~/.xinitrc` is mostly used by xinit and not generally sourced?
 	- What about `~/.xsession` or `~/.profile`? Seems to be mostly legacy; used by `startx`? It's messy.
@@ -83,7 +135,9 @@ TODO:
 * Add some easy way of returning to the old xkbmap setup? But how? Can't unset settings, so we'd have to store it somehow? Or just let them go to us/us?
 	- Make a restore to default layout shortcut instead? It's only an alias for `setkb 4n/5n`. Maybe `resetkb 4/5`?
 * Transition many ###.xml changes to ###.extras.xml? Other Colemak locale variants reside there. But it's a mess: Many (such as Norwegian) are in the main file!
+	- It might be nice to keep all the BigBag locales in one place though? Or not?
 * To get Extend with the currently active layout, use `setxkbmap -v 9 -option "" -option "misc:extend,lv5:caps_switch_lock,compose:menu"`.
+	- The first `-option ""` clears any existing option settings, while the one with non-empty arguments add to existing options.
 * Add lv5:lalt_switch_lock for LALT-Extend.
 * Add compose:102? Inconsistent between ISO and ANSI, just add a pro-tip.
 * The Curl(DH) model implementation has to go as it may mess w/ QWERTY. Instead, I should use two Extend variants.
@@ -91,7 +145,7 @@ TODO:
 	- Also, matrix users want the V-D swap without an Angle mod! Another nail in the coffin for the Curl models.
 	- Actually, should I make a NoModel CurlAngle layout for the model impaired? Vanilla, Curl(DH) and Curl(DH)Angle then. ... No?
 	- First, just make Curl with D-V swap built in. Let the Extend Paste function be where it falls for now.
-	- Separate Angle mods for Curl and non-Curl?
+	- Separate Angle mods for Curl and non-Curl? Probably not, as it'll still get silly when using both QWERTY and Cmk-eD.
 * Check out the compose:102 option. This would be similar to what I've used in EPKL for Windows! It's also present in some other layouts.
 
 * Problems with Super+<letter> shortcuts: https://github.com/DreymaR/BigBagKbdTrixXKB/issues/23#issuecomment-1027839924
@@ -121,11 +175,6 @@ TODO:
 	- See for instance https://www.x.org/releases/X11R7.5/doc/input/XKB-Enhancing.html
 	- "Usually, all modifiers introduced in 'modifiers=<list of modifiers>' list are used for shift level calculation and then discarded."
 	- Does this mean that LevelFive should've been discarded but isn't? Is it an XKB bug?
-* From Daniele at the Cmk Discord: Try out localectl?
-	- E.g., `localectl --no-convert set-x11-keymap us pc105aw-sl cmk_ed_dh lv5:caps_switch_lock,misc:extend` should work to make changes persistent
-	- Tips from i-c-u-p: https://wiki.archlinux.org/title/Xorg/Keyboard_configuration#Using_localectl
-		- https://wiki.archlinux.org/title/Linux_console/Keyboard_configuration#Persistent_configuration
-	- The syntax is: `localectl [--no-convert] set-x11-keymap layout [model [variant [options]]]` where you can use for instance `us,us` then `,cmk_ed_us`
 * Update to the latest xkb-data: https://ubuntu.pkgs.org/20.04/ubuntu-main-amd64/xkb-data_2.29-2_all.deb.html
 * Find out how to change the rules component properly to allow compiling and eventually merging to the main repo?
 * Migrate from `~/.bashrc` to `~/.xprofile`? The latter is more appropriate, but which setups source it and which ones don't?
