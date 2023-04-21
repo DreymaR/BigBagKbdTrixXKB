@@ -47,7 +47,7 @@ NOTE: It may be necessary to select "Use system defaults" if you have changed an
 Tips
 ----
 * Before trying out the BigBag, you may want to find out what your current XKB settings are. One way of seeing what you use is `setxkbmap -v 9`.
-	- To get the standard US default layout back, you can use `setkb 4n` for ANSI keyboards (`5n` for ISO). What you want may depend on your locale.
+	- To get the standard US default layout back, you can use `setkb 4n` for ANSI keyboards; `5n` for ISO. What you want depends on your locale.
 * Due to complaints from new users that Extend on F# keys interferes with `Ctrl+Alt+F#` TTY shortcuts, FKey Extend is now disabled by default.
     - You can enable FKey Extend by activating the [include "extend(lv5_fk)"][BB-ExtFK] bit (delete the trailing slashes) in the `symbols/extend` file.
     - If you had already installed the BigBag you must either edit the file in its target X11 directory, or edit and then reinstall the files.
@@ -76,11 +76,11 @@ localectl
 
 Wayland & Friends
 -----------------
-Wayland has a different tack: It uses xkb-data files, but not an X server. So the setkb script won't work there, but the BigBag as such will.
+Wayland has a somewhat different tack: It uses xkb-data files, but not an X server. So the setkb script won't work there, but the BigBag as such will.
 
-It depends on which Wayland Compositor you're using. See its docs?
+It depends on which Wayland Compositor you're using. See its docs for more info?
 
-For the Sway compositor, add a piece like this example to your `~/.config/sway/config` file:
+For the popular Sway compositor, add a piece like this example to your `~/.config/sway/config` file:
 ```
 input * {
   xkb_model     pc105
@@ -89,6 +89,8 @@ input * {
   xkb_options   lv5:caps_switch_lock,misc:extend,compose:menu
 }
 ```
+
+I suspect the solution will be quite similar for other compositors, but I don't know more at the moment.
 <br>
 
 Links
@@ -100,24 +102,28 @@ There are plenty of explanations and further links in there.
 One good source of info on the `xkb-data` package is the [xkeyboard-config][XKB-conf] repository itself, and its `docs` folder. The repo is found both on [GitHub][XKBgitHb] and [GitLab][XKBgitLb].
 <br>
 
-Ivan Pascal is a grandmaster of XKB; to learn it you should definitely consult his pages. They're a bit incomplete for us who don't speak Russian, but well worth it nonetheless.
+Or, have a look in the X.Org Wiki.
+https://www.x.org/wiki/XKB/
+<br>
+
+Arch has good documentation on all things XKB.
+https://wiki.archlinux.org/title/X_keyboard_extension
+https://wiki.archlinux.org/title/Xorg/Keyboard_configuration
+<br>
+
+Ivan Pascal is a grandmaster of XKB; to learn it better you should definitely consult his site. Though maybe a bit less complete for us who can't read Russian, it's well worth it.
 http://pascal.tsu.ru/en/xkb
 http://pascal.tsu.ru/en/xkb/gram-symbols.html
 <br>
 
 Happy XKB hacking!
-_DreymaR, 2023-01_
+_DreymaR_
 <br><br>
 
 TODO:
 -----
 * Update all forum.colemak.com links with new BigBag links: Locale topic (id=1458) -> https://dreymar.colemak.org/variants.html#locales etc.
-* Fix key repetition with Extend, particularly vis-a-vis Wayland.
-	- Seems we have to add `repeat=yes` after the key actions to all keys that have actions.
-	- https://discord.com/channels/409502982246236160/1066499260322943006/1080488398403424256
-	- http://web.archive.org/web/20190320180541/http://pascal.tsu.ru/en/xkb/gram-symbols.html
-	- I couldn't devise a way to do this once and for instead of by-key (looked at compat but no?).
-* Better instructions for Wayland
+* Better instructions for Wayland?
 	- Depends on your Wayland Compositor (Sway is common?)
 		https://wiki.archlinux.org/title/wayland#Compositors
 	- Didn't we have some good ones at the Colemak Discord? Where?
@@ -127,12 +133,15 @@ TODO:
 * Non-Fn-key Extend is now the default. Add a separate option for FKey Extend? Many new users struggled with this, or have weird FKey setups.
 	- Add a FKey Extend option to misc? So people can activate `misc:extend` and `misc:extend_fk` separately.
 * Add colemak-dh to the colemak symbols file and the US locale? Both ISO, ANSI and Ortho.
+	- Would it be "allowable" to actually move both default and dh colemak _into_ the symbols/colemak file now?
+	- If so, edit rules components accordingly, and consider editing all locale variants to include them
 * Not all distros source `~/.bashrc` by default. Seems that `~/.xinitrc` is mostly used by xinit and not generally sourced?
 	- What about `~/.xsession` or `~/.profile`? Seems to be mostly legacy; used by `startx`? It's messy.
 	- Look in `/etc/X11/Xsession` to see how thing are run at startup?
 	- But `~/.Xresources` seems like a good option (and is sourced by xinitrc too)?
 	- Its format is different though. And it doesn't list keyboard layout as one of its intended purposes.
 * Add some easy way of returning to the old xkbmap setup? But how? Can't unset settings, so we'd have to store it somehow? Or just let them go to us/us?
+	- Could write setxkbmap output to a file. Check it isn't overwritten, like the normal backup.
 	- Make a restore to default layout shortcut instead? It's only an alias for `setkb 4n/5n`. Maybe `resetkb 4/5`?
 * Transition many ###.xml changes to ###.extras.xml? Other Colemak locale variants reside there. But it's a mess: Many (such as Norwegian) are in the main file!
 	- It might be nice to keep all the BigBag locales in one place though? Or not?
@@ -147,6 +156,8 @@ TODO:
 	- First, just make Curl with D-V swap built in. Let the Extend Paste function be where it falls for now.
 	- Separate Angle mods for Curl and non-Curl? Probably not, as it'll still get silly when using both QWERTY and Cmk-eD.
 * Check out the compose:102 option. This would be similar to what I've used in EPKL for Windows! It's also present in some other layouts.
+* Echo the setxkbmap command when using setkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping?
+* Add a localectl option to setkb.sh? So people can choose that or setxkbmap. Eventually, even more variants such as Sway?
 
 * Problems with Super+<letter> shortcuts: https://github.com/DreymaR/BigBagKbdTrixXKB/issues/23#issuecomment-1027839924
 
@@ -162,7 +173,6 @@ TODO:
 	- but with only the relevant bits. So, e.g., `0009-m_g.part` is the model to group mapping of the final rules file. `ml_s.part` is model + layout to symbols.
 	- It seems that you can make layout commits by editing only the rules/base.xml (and symbols) file(s) though?
 
-* Echo the setxkbmap command when using setkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping?
 * Add a model-less Colemak-CAWS for people who want to switch to QWERTY? Or instructions on how to setkb it? That's better, I think.
 * Problem: Using Google Spreadsheets, hitting Caps Lock (which is mapped to ISO_Level5_Shift) clears the current spreadsheet cell.
 	- https://forum.colemak.com/topic/1438-dreymars-big-bag-of-keyboard-tricks-linuxxkb-files-included/p15/#p23838
@@ -216,6 +226,11 @@ TODO:
 
 DONE:
 -----
+* Fixed key repetition with Extend, particularly vis-a-vis Wayland.
+	- Added `repeat=yes` after the key actions, to all keys that have actions.
+	- https://discord.com/channels/409502982246236160/1066499260322943006/1080488398403424256
+	- http://web.archive.org/web/20190320180541/http://pascal.tsu.ru/en/xkb/gram-symbols.html
+	- I couldn't devise a way to do this once and for instead of by-key (looked at compat but no?).
 * Moved Space to the "letters" block to ensure a consistent Space key implementation for `_ks` layouts etc. Many xkb layouts are sloppy about that.
 * 2023-01-03: Renamed setkb --> setkb: It's easier to type. Updated all docs including the Forum topic.
 * 2020-11-05: Switched to the new DH = DHm standard (was DH = DHk)
