@@ -118,6 +118,7 @@ xkb_symbols "lv5_fk" {
                     Redirect(key=<VOL->,clearmods=all), Redirect(key=<I232>,clearmods=all), // <VOL->/<I232>(‡‡)
                     SwitchScreen(screen=6,!same)        , NoAction()            ] ,
                  repeat=yes     };
+    key <FK07> { symbols[Group1]=[NoSymbol  , NoSymbol  , NoSymbol  , NoSymbol  ,   // F07
                     XF86AudioRaiseVolume        , XF86MonBrightnessUp           ,   // Audio Vol+ / Brightness+
                     XF86_Switch_VT_7            , NoSymbol                      ] , // Virtual Terminal 7
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
