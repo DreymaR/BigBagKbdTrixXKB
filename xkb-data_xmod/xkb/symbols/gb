@@ -204,12 +204,12 @@ partial alphanumeric_keys
 	include "sun_vndr/gb(sun_type6)"
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/gb
-// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for English (UK).
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/gb
+//  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for English (UK).
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
 
-// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+//  The 'keep local symbols' variant keeps the national symbol and special letter setup.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_ks" {
     include "gb(basic)"
@@ -217,11 +217,11 @@ xkb_symbols "cmk_ed_ks" {
     name[Group1]= "English (UK, Colemak[eD], keep local symbols)";
 };
 
-// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
-// It is the same as us(cmk_ed_us), but added for completeness and ease of language setting.
+//  The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+//  It is the same as us(cmk_ed_us), but added for completeness and ease of language setting.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "colemak(cmk_ed)"
     name[Group1]= "English (UK, Colemak[eD], unified symbols)";
 };
-// <-- DreymaR: Additions to xkb/symbols/gb
+//  <-- DreymaR: Additions to xkb/symbols/gb

@@ -1072,12 +1072,12 @@ xkb_symbols "azerty" {
     key <AB10>	{ [	exclam,		section					] };
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/fr
-// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for French.
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/fr
+//  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for French.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
 
-// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+//  The 'keep local symbols' variant keeps the national symbol and special letter setup.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_ks" {
     include "fr(basic)"
@@ -1087,15 +1087,15 @@ xkb_symbols "cmk_ed_ks" {
     key <AD10> { [     semicolon,        period,      horizconnector,            multiply ] }; // <AB08>
 //    key <AD10> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // Colemak[eD] <AD10>
 
-// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
-// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
-// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//  NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+//  EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+//  Colemak[eD] has EuroSign on 'E' and mu on '5'.
 //    key <AE05> { [ NoSymbol, NoSymbol, NoSymbol,       mu ] };
 //    key <AE05> { [ NoSymbol, NoSymbol, NoSymbol, EuroSign ] }; // EuroSign added on lv4 to keep bracketleft
 };
 
-// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
-// For French, necessary local letters are added to designated flexible spots in the layout.
+//  The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+//  For French, necessary local letters are added to designated flexible spots in the layout.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "colemak(cmk_ed_letters)"
@@ -1110,6 +1110,6 @@ xkb_symbols "cmk_ed_us" {
     key <LSGT> { [        eacute,        Eacute,                  oe,                  OE ] }; // <AE02>; oe
     key <AD11> { [dead_circumflex, dead_diaeresis,       bracketleft,           braceleft ] }; // <AD11> kept
     key <AD12> { [    dead_grave,    numerosign,        bracketright,          braceright ] }; // from usage
-// NOTE: The be/ca/fr layouts have been harmonized; this should not affect typing efficiency.
+//  NOTE: The be/ca/fr layouts have been harmonized; this should not affect typing efficiency.
 };
-// <-- DreymaR: Additions to xkb/symbols/fr
+//  <-- DreymaR: Additions to xkb/symbols/fr

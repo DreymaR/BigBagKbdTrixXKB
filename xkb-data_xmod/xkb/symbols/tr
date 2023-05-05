@@ -355,33 +355,33 @@ partial alphanumeric_keys
 	include "sun_vndr/tr(sun_type6)"
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/tr
-// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Turkish.
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/tr
+//  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Turkish.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
 
-// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+//  The 'keep local symbols' variant keeps the national symbol and special letter setup.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_ks" {
     include "tr(basic)"
     include "colemak(cmk_ed_letters)"
     name[Group1]= "Turkish (Colemak[eD], keep local symbols)";
 
-// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
-// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
-// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//  NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+//  EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+//  Colemak[eD] has EuroSign on 'E' and mu on '5'.
 //    key <AE05> { [ NoSymbol, NoSymbol,       mu, onehalf ] };
 //    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, onehalf ] }; // onehalf is moved, threeeights is lost
 
-// NOTE: The Turkish layout has idotless where QWERTY has i; this has been added here.
+//  NOTE: The Turkish layout has idotless where QWERTY has i; this has been added here.
     key <AC09>  { [ idotless, I, any, any ] };
 
     key <AD10>	{ [ scedilla, Scedilla, acute, dead_acute ] }; // from <AC10>
 };
 
-// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
-// For Turkish, necessary local letters are added to designated flexible spots in the layout.
-// For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
+//  The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+//  For Turkish, necessary local letters are added to designated flexible spots in the layout.
+//  For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "colemak(cmk_ed_letters)"
@@ -389,17 +389,17 @@ xkb_symbols "cmk_ed_us" {
     include "level3(ralt_switch)"
     name[Group1]= "Turkish (Colemak[eD], unified symbols)";
 
-// - Turkish doesn't use QWX and J is rare, but they need to be kept in place because of English etc!
-// - ıİ (3.9%) üÜ (1.8%) şŞ (1.6%) çÇ (1.4%) ğĞ (0.9%) öÖ (0.7%) are needed
-// - The 'I' key holds ıI and <AC11> iİ in the 'tr' layout
-// - âÂ îÎ ôÔ are on lv3-4 of 'AIO'
-// - êÊ îÎ ûÛ are needed for Kurdish; íÍ (on 'F') ĭĬ (on 'J') ñÑ (on 'N') for Crimean Tatar
-// - üÜ on '[{' is consistent with other locales (e.g., de); however, the tr layout has it on ']}'!
-// - Putting ıI on 'I', iİ goes to <LSGT> or ']}'?
-// - I already have çÇ on 'K'; this should suffice as it's an easy enough reach (even 1-handed, using a Wide mod)?
-// - Similarly, ğĞ isn't so common that it can't be on 'G' (and ĭĬ on 'J')
-// - I feel that öÖ is easy to write with the dead_diaeresis key on ';:' - but maybe not sufficiently?
-// - There should be a lv1-2 dead_circumflex?!? It's not easy to reach on AltGr+6.
+//  - Turkish doesn't use QWX and J is rare, but they need to be kept in place because of English etc!
+//  - ıİ (3.9%) üÜ (1.8%) şŞ (1.6%) çÇ (1.4%) ğĞ (0.9%) öÖ (0.7%) are needed
+//  - The 'I' key holds ıI and <AC11> iİ in the 'tr' layout
+//  - âÂ îÎ ôÔ are on lv3-4 of 'AIO'
+//  - êÊ îÎ ûÛ are needed for Kurdish; íÍ (on 'F') ĭĬ (on 'J') ñÑ (on 'N') for Crimean Tatar
+//  - üÜ on '[{' is consistent with other locales (e.g., de); however, the tr layout has it on ']}'!
+//  - Putting ıI on 'I', iİ goes to <LSGT> or ']}'?
+//  - I already have çÇ on 'K'; this should suffice as it's an easy enough reach (even 1-handed, using a Wide mod)?
+//  - Similarly, ğĞ isn't so common that it can't be on 'G' (and ĭĬ on 'J')
+//  - I feel that öÖ is easy to write with the dead_diaeresis key on ';:' - but maybe not sufficiently?
+//  - There should be a lv1-2 dead_circumflex?!? It's not easy to reach on AltGr+6.
 
 //    key <AD11> { [   bracketleft,     braceleft,                   i,           Iabovedot ] };
 //    key <AD12> { [  bracketright,    braceright,          udiaeresis,          Udiaeresis ] };
@@ -410,9 +410,9 @@ xkb_symbols "cmk_ed_us" {
     key <LSGT> { [      scedilla,      Scedilla,          odiaeresis,          Odiaeresis ] }; // from tr <AC10>/<AB08>
 //    key <LSGT> { [ dead_circumflex,  dead_tilde,          odiaeresis,          Odiaeresis ] }; // needed '^'; tr <AB08>
 //    key <AC03> { [             s,             S,            scedilla,            Scedilla ] }; // from tr <AC10>
-// NOTE: The Curl(DH) ergo mod moves H and K, which may interfere with these mappings.
+//  NOTE: The Curl(DH) ergo mod moves H and K, which may interfere with these mappings.
 //    key <AC06> { [             h,             H,              ssharp,             section ] }; // from Cmk[eD] 's'
     key <AD05> { [             g,             G,              gbreve,              Gbreve ] }; // from tr <AD11>
     key <AB06> { [             k,             K,              ibreve,              Ibreve ] }; // Crimean Turkish
 };
-// <-- DreymaR: Additions to xkb/symbols/tr
+//  <-- DreymaR: Additions to xkb/symbols/tr

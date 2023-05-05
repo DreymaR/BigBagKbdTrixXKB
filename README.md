@@ -114,7 +114,7 @@ There are plenty of explanations and further links in there.
 TODO/DONE for this repo are found in the [xmod folder README][xmREADME].
 <br>
 
-One good source of info on the `xkb-data` package is the [xkeyboard-config][XKB-conf] repository itself, and its `docs` folder. The repo is found both on [GitHub][XKBgitHb] and [GitLab][XKBgitLb].
+One good source of info on the `xkb-data` package is the [xkeyboard-config][XKB-conf] repository itself, and its `docs` folder. The repo is found at [GitLab][XKBgitLb].
 <br>
 
 Or, have a look in the X.Org Wiki.
@@ -137,7 +137,6 @@ _DreymaR_
 
 
 [XKB-conf]: https://www.freedesktop.org/wiki/Software/XKeyboardConfig/ (XKeyboard Config page)
-[XKBgitHb]: https://github.com/freedesktop/xkeyboard-config (XKB-config on GitHub)
 [XKBgitLb]: https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config (XKB-config on GitLab)
 [XKB-pkgs]: https://pkgs.org/download/xkb-data (pkgs.org xkb-data page)
 [XKB-DebS]: https://packages.debian.org/sid/xkb-data (Debian Sid xkb-data download)

@@ -32,24 +32,24 @@ xkb_symbols "sundeadkeys" {
     name[Group1]="German (Austria, with Sun dead keys)";
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2014-01: Additions to xkb/symbols/at
-// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for German (Austria).
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2014-01: Additions to xkb/symbols/at
+//  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for German (Austria).
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
 
-// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+//  The 'keep local symbols' variant keeps the national symbol and special letter setup.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_ks" {
     include "de(cmk_ed_ks)"
     name[Group1]= "German (Austria, Colemak[eD], keep local symbols)";
 };
 
-// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
-// For German (Austria), necessary local letters are added to designated flexible spots in the layout.
-// NOTE: - German(de) and German(at) layouts are harmonized.
+//  The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+//  For German (Austria), necessary local letters are added to designated flexible spots in the layout.
+//  NOTE: German(de) and German(at) layouts are harmonized.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "de(cmk_ed_us)"
     name[Group1]= "German (Austria, Colemak[eD], unified symbols)";
 };
-// <-- DreymaR: Additions to xkb/symbols/at
+//  <-- DreymaR: Additions to xkb/symbols/at

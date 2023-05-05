@@ -10,7 +10,7 @@
 # Usage: 'sh [scriptpath]' or
 #        allow executing file then run in a term window
 #
-# Happy xkb-hacking! Øystein Bech Gadmar (2014)
+# Happy xkb-hacking!
 
 #---------- init --------------------------------------
 SETXKB='setxkbmap -print -v 7'

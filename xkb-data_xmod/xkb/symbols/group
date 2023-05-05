@@ -467,24 +467,24 @@ xkb_symbols "lctrl_lwin_toggle" {
     };
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2013: Additions to xkb/symbols/group
-// The Left Ctrl key (while pressed) chooses the second group.
-// (Needed mainly for mirrored layouts.)
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2013: Additions to xkb/symbols/group
+//  The Left Ctrl key (while pressed) chooses the second group.
+//  (Needed mainly for mirrored layouts.)
 partial modifier_keys
 xkb_symbols "lctrl_switch" {
     key <LCTL>  {
         symbols[Group1]= [ Mode_switch ]
     };
-}; // lctrl_switch
+};  // lctrl_switch
 
-// The Right Control key (while pressed) chooses the next group.
-// Control_L+Control_R toggles groups.
+//  The Right Control key (while pressed) chooses the next group.
+//  Control_L+Control_R toggles groups.
 partial modifier_keys
 xkb_symbols "rctrl_switch_ctrls_toggle" {
     key <RCTL> {
         type[ Group1 ]    = "PC_CONTROL_LEVEL2",
         symbols[ Group1 ] = [ Mode_switch, ISO_Next_Group ]
     };
-}; // rctrl_switch_ctrls_toggle
-// <-- DreymaR: Additions to xkb/symbols/group
+};  // rctrl_switch_ctrls_toggle
+//  <-- DreymaR: Additions to xkb/symbols/group
 

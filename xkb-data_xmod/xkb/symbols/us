@@ -802,24 +802,24 @@ xkb_symbols "colemak" {
     include "level3(ralt_switch)"
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/us
-// See "DreymaR's Big Bag of Keyboard Tricks": http://forum.colemak.com/viewtopic.php?pid=9918
-
-// 'Colemak - edition DreymaR'/'Cmk[eD]' symbols for xkb on X.Org Server 7.x
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// 2012-01-01 OEystein Bech "DreymaR" Gadmar: New shift levels 3-4.
-
-// DreymaR's design goals for tweaking the standard Colemak:
-// - Keeping level 1-2 of Colemak intact! This is what I think of as the Colemak layout per se.
-// - Dead keys easily accessible as unshifted AltGr+symbol keys; common ones in good positions.
-// - Added symbols/greek (similar to, e.g., the Mac ones) allowing common math/tech/etc typing.
-// - Added letters/quotes allowing many of the major latin scripts to be written correctly.
-// - The positions of added letters and symbols should as far as possible be easy to remember.
-// - A modular system allows flexible layout definition using different modifier keys and symbols
-//     * The symbol keys including the number row may be kept unchanged (national variant setups)
-//     * Due to the nature of the layout, this does not extend to the semicolon key!
-// - The brackets (lvl3-4) and the LSGT key hold the most common locale-specific letter glyphs.
-//     * See the colemak_template symbols file for more info on local Colemak[eD] variants.
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/us
+//  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org
+//  
+//  'Colemak - edition DreymaR (Cmk-eD)' symbols, for the XKeyboardConfig xkb-data package
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  2012-01-01  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : New shift levels 3-4.
+//  
+//  DreymaR's design goals for tweaking the standard Colemak:
+//  - Keeping level 1-2 of Colemak intact! This is what I think of as the Colemak layout per se.
+//  - Dead keys easily accessible as unshifted AltGr+symbol keys; common ones in good positions.
+//  - Added symbols/greek (similar to, e.g., the Mac ones) allowing common math/tech/etc typing.
+//  - Added letters/quotes allowing many of the major latin scripts to be written correctly.
+//  - The positions of added letters and symbols should as far as possible be easy to remember.
+//  - A modular system allows flexible layout definition using different modifier keys and symbols
+//      * The symbol keys including the number row may be kept unchanged (national variant setups)
+//      * Due to the nature of the layout, this does not extend to the semicolon key!
+//  - The brackets (lvl3-4) and the LSGT key hold the most common locale-specific letter glyphs.
+//      * See the colemak_template symbols file for more info on local Colemak[eD] variants.
 
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
@@ -827,9 +827,10 @@ xkb_symbols "cmk_ed_us" {
     name[Group1]= "English/Intl (Colemak, edition DreymaR)";
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// 2012-01-01 OEystein Bech "DreymaR" Gadmar: Paving the way; 'Tarmak (transitional Colemak)'.
-// 2006-01-01 Shai Coleman, http://colemak.com/
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  2012-01-01  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : Tarmak (transitional Colemak) layouts.
+
 partial alphanumeric_keys
 xkb_symbols "tarmak1__e" {
     include "colemak(tarmak1__e)"
@@ -878,10 +879,11 @@ xkb_symbols "tarmak4__etro" {
 //    name[Group1]= "English/Intl (Tarmak4__ETOI - Colemak transitional)";
 //};
 
-// Colemak-Curl(DH) symbols for xkb on X.Org Server 7.x
-// 2015-01-18 OEystein Bech "DreymaR" Gadmar
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// This is the Curl-DH Colemak ergo mod by Stevep99 and DreymaR.
+//  Colemak-Curl(DH) symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  2014-10-25  "SteveP"     https://colemakmods.github.io/mod-dh/  : The Colemak-DH Curl modded layout variant.
+//  2015-01-18  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : Colemak[eD] Curl-DH implementations.
+
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_dh" {
     include "colemak(cmk_ed)"
@@ -889,15 +891,17 @@ xkb_symbols "cmk_ed_dh" {
     name[Group1]= "English/Intl (Colemak[eD], Curl-DH ergo)";
 };
 
-// 2012-04-01 OEystein Bech "DreymaR" Gadmar: Mirrored Colemak[eD] for one-handed typing
-// NOTE: For use with the AWide-Slash keyboard mod only, as a second Group with a switch key.
-// 2006-01-01 Shai Coleman, http://colemak.com/
+//  Mirrored Colemak (one-handed typing) symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  2012-04-01  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : Mirrored Colemak layouts.
+//  NOTE: For use with the AngleWide keyboard model, as a second Group with a switch modifier.
+
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_mirror" {
     include "colemak(cmk_ed_mirror)"
     name[Group1]= "English/Intl (Colemak[eD], mirrored)";
 };
-// <-- DreymaR: Additions to xkb/symbols/us
+//  <-- DreymaR: Additions to xkb/symbols/us
 
 // I do NOT like dead-keys - the International keyboard as defined by Microsoft
 // does not fit my needs. Why use two keystrokes for all simple characters (eg '

@@ -194,12 +194,12 @@ partial default xkb_types "default" {
 	map[Lock+LevelThree+LevelFive] =  Level7;
 	map[Lock+Shift+LevelThree+LevelFive] = Level8;
 
-// --> OEystein Bech "DreymaR" Gadmar, 2015-09: Additions to xkb/types/level5
-// Space+Shift would consume the Shift which is bad for hotkeys; added a preserve[Shift] line
-// See "DreymaR's Big Bag of Keyboard Tricks": http://forum.colemak.com/viewtopic.php?pid=9918
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2015-09: Additions to xkb/types/level5
+//  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org
+//  Space+Shift would consume the Shift which is bad for hotkeys; added a preserve[Shift] line
 	preserve[Shift] = Shift;
 	preserve[Shift+LevelFive] = Shift;
-// <-- DreymaR: Additions to xkb/types/level5
+//  <-- DreymaR: Additions to xkb/types/level5
 	preserve[Lock+LevelThree] = Lock;
 	preserve[Lock+Shift+LevelThree] = Lock;
 	preserve[Lock+LevelFive] = Lock;

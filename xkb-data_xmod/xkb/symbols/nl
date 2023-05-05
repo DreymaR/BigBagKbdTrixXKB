@@ -149,29 +149,29 @@ partial alphanumeric_keys
 	include "sun_vndr/nl(sun_type6)"
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/nl
-// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Dutch.
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/nl
+//  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Dutch.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
 
-// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+//  The 'keep local symbols' variant keeps the national symbol and special letter setup.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_ks" {
     include "nl(basic)"
     include "colemak(cmk_ed_letters)"
     name[Group1]= "Dutch (Colemak[eD], keep local symbols)";
 
-// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
-// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
-// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//  NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+//  EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+//  Colemak[eD] has EuroSign on 'E' and mu on '5'.
 //    key <AE05> { [ NoSymbol, NoSymbol,       mu, onehalf ] };
 //    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, onehalf ] }; // onehalf is moved, threeeights is lost
 
     key <AD10>	{ [ plus, plusminus, dead_acute, dead_doubleacute ] }; // from <AC10>
 };
 
-// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
-// For Dutch, necessary local letters are added to designated flexible spots in the layout.
+//  The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+//  For Dutch, necessary local letters are added to designated flexible spots in the layout.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "colemak(cmk_ed_letters)"
@@ -182,4 +182,4 @@ xkb_symbols "cmk_ed_us" {
     key <AD11> { [dead_diaeresis,dead_circumflex,        bracketleft,           braceleft ] }; // <AD11> kept
     key <AD12> { [    dead_acute,     dead_grave,       bracketright,          braceright ] }; // from <AC11>
 };
-// <-- DreymaR: Additions to xkb/symbols/nl
+//  <-- DreymaR: Additions to xkb/symbols/nl

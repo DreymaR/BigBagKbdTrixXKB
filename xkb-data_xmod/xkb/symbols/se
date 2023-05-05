@@ -396,30 +396,30 @@ xkb_symbols "us_dvorak" {
   include "level3(ralt_switch)"
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/se
-// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Swedish.
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/se
+//  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Swedish.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
 
-// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+//  The 'keep local symbols' variant keeps the national symbol and special letter setup.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_ks" {
     include "se(basic)"
     include "colemak(cmk_ed_letters)"
     name[Group1]= "Swedish (Colemak[eD], keep local symbols)";
 
-// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
-// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
-// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//  NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+//  EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+//  Colemak[eD] has EuroSign on 'E' and mu on '5'.
 //    key <AE05> { [ NoSymbol, NoSymbol,       mu, NoSymbol ] };
 //    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, NoSymbol ] }; // The se(basic) layout has EuroSign on '5'
 
     key <AD10>	{ [odiaeresis, Odiaeresis, oslash, Ooblique ] }; // from <AC10>
 };
 
-// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
-// For Swedish, necessary local letters are added to designated flexible spots in the layout.
-// For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
+//  The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+//  For Swedish, necessary local letters are added to designated flexible spots in the layout.
+//  For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "colemak(cmk_ed_letters)"
@@ -436,6 +436,6 @@ xkb_symbols "cmk_ed_us" {
     key <AD12> { [    adiaeresis,    Adiaeresis,        bracketright,          braceright ] }; // from <AC11>
     key <LSGT> { [    odiaeresis,    Odiaeresis,              oslash,            Ooblique ] }; // from <AC10>
 //    key <AC06> { [             h,             H,                  ae,                  AE ] }; // keep æÆ
-// NOTE: The Scandinavian layouts (dk/fi/no/se) have been harmonized. This shouldn't affect typing efficiency.
+//  NOTE: The Scandinavian layouts (dk/fi/no/se) have been harmonized. This shouldn't affect typing efficiency.
 };
-// <-- DreymaR: Additions to xkb/symbols/se
+//  <-- DreymaR: Additions to xkb/symbols/se

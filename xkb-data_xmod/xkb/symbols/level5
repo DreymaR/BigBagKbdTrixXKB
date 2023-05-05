@@ -151,12 +151,12 @@ xkb_symbols "rwin_switch_lock_cancel" {
   };
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2011-05: Additions to xkb/symbols/level5
-// The CapsLock Level5 switches are good for Extend overlay mappings using Caps as an Extend modifier
-// The Left Ctrl Level5 switches are good for Extend overlay mappings if you're using Caps as Left Ctrl
-// See "DreymaR's Big Bag of Keyboard Tricks": http://forum.colemak.com/viewtopic.php?pid=9918
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2011-05: Additions to xkb/symbols/level5
+//  The CapsLock Level5 switches are good for Extend overlay mappings using Caps as an Extend modifier
+//  The Left Ctrl Level5 switches are good for Extend overlay mappings if you're using Caps as Left Ctrl
+//  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org/layers-extend.html
 
-// The CapsLock key (while pressed) chooses the fifth shift level. Now included in xkb-data.
+//  The CapsLock key (while pressed) chooses the fifth shift level. Now included in xkb-data.
 //partial modifier_keys
 //xkb_symbols "caps_switch" {
 //  key <CAPS> {
@@ -166,7 +166,7 @@ xkb_symbols "rwin_switch_lock_cancel" {
 //  include "level5(modifier_mapping)"
 //};
 
-// CapsLock chooses 5th level, locks when pressed together with another 5th-level-chooser
+//  CapsLock chooses 5th level, locks when pressed together with another 5th-level-chooser
 partial modifier_keys
 xkb_symbols "caps_switch_lock" {
   include "level5(lock)"
@@ -177,7 +177,7 @@ xkb_symbols "caps_switch_lock" {
   };
 };
 
-// CapsLock chooses 5th level, latches (temp lock) when pressed with another 5th-level-chooser
+//  CapsLock chooses 5th level, latches (temp lock) when pressed with another 5th-level-chooser
 partial modifier_keys
 xkb_symbols "caps_switch_lock_cancel" {
   include "level5(lock)"
@@ -188,7 +188,7 @@ xkb_symbols "caps_switch_lock_cancel" {
   };
 };
 
-// The Left Ctrl key (while pressed) chooses the fifth shift level.
+//  The Left Ctrl key (while pressed) chooses the fifth shift level.
 partial modifier_keys
 xkb_symbols "lctl_switch" {
   key <LCTL> {
@@ -198,7 +198,7 @@ xkb_symbols "lctl_switch" {
   include "level5(modifier_mapping)"
 };
 
-// Left Ctrl chooses 5th level, locks when pressed together with another 5th-level-chooser
+//  Left Ctrl chooses 5th level, locks when pressed together with another 5th-level-chooser
 partial modifier_keys
 xkb_symbols "lctl_switch_lock" {
   include "level5(lock)"
@@ -209,7 +209,7 @@ xkb_symbols "lctl_switch_lock" {
   };
 };
 
-// Left Ctrl chooses 5th level, latches (temp lock) when pressed with another 5th-level-chooser
+//  Left Ctrl chooses 5th level, latches (temp lock) when pressed with another 5th-level-chooser
 partial modifier_keys
 xkb_symbols "lctl_switch_lock_cancel" {
   include "level5(lock)"
@@ -219,4 +219,4 @@ xkb_symbols "lctl_switch_lock_cancel" {
                         ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock ]
   };
 };
-// <-- DreymaR: Additions to xkb/symbols/level5
+//  <-- DreymaR: Additions to xkb/symbols/level5

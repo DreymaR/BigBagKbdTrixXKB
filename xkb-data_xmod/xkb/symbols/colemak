@@ -1,11 +1,11 @@
 // $XKeyboardConfig$
 
-//  *****************************************************************************************
-// ******                                                                               ******
-// *****       Colemak layouts - additions, locales and learning steps as variants       *****
-// *****                    by OEystein Bech "DreymaR" Gadmar, 2011-2015                 *****
-// *****                     (The Colemak layout: Shai Coleman, 2006)                    *****
-// ******                                                                               ******
+//   *****************************************************************************************
+//  ******                                                                               ******
+//  *****       Colemak layouts - additions, locales and learning steps as variants       *****
+//  *****           by OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2011-         *****
+//  *****                     (The Colemak layout: Shai Coleman, 2006)                    *****
+//  ******                                                                               ******
 //  *****************************************************************************************
 
 default
@@ -77,38 +77,38 @@ xkb_symbols "cmk_standard" {
 };
 
 
-//  *****************************************************************************************
-// ******                                                                               ******
-// *****    START of DreymaR's Colemak addons (Cmk[eD], Curl-DH, Tarmak1-4, Mirrored)    *****
-// ******                                                                               ******
-//  *****************************************************************************************
+//   *****************************************************************************************
+//  ******                                                                               ******
+//  *****    START of DreymaR's Colemak addons (Cmk[eD], Curl-DH, Tarmak1-4, Mirrored)    *****
+//  ******                                                                               ******
+//   *****************************************************************************************
 
 
-//    ******************************************************
-//    *****      DreymaR: Colemak - edition DreymaR    *****
-//    ******************************************************
+//      ******************************************************
+//      *****      DreymaR: Colemak - edition DreymaR    *****
+//      ******************************************************
 
-// 'Colemak - edition DreymaR' symbols for xkb on X.Org Server 7.x
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// 2012-01-01 OEystein Bech "DreymaR" Gadmar: New shift levels 3-4.
-// See "DreymaR's Big Bag of Keyboard Tricks": http://forum.colemak.com/viewtopic.php?pid=9918
+//  'Colemak - edition DreymaR (Cmk-eD)' symbols, for the XKeyboardConfig xkb-data package
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  2012-01-01  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : New shift levels 3-4.
+//  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org/layers-colemaked.html
 
-// NOTE: DreymaR's design goals for tweaking the standard Colemak:
-// - Keeping level 1-2 of Colemak intact! This is what I think of as the Colemak layout per se.
-// - Dead keys easily accessible as unshifted AltGr+symbol keys; common ones in good positions.
-// - Added symbols/glyphs similar to, e.g., Mac ones - allowing common math/tech/etc typing.
-// - Added letters/quotes allowing many of the major latin scripts to be written correctly.
-// - The positions of added letters and symbols should as far as possible be easy to remember!
-// - Modularity allows flexible layout definition using different modifier keys and symbols
-//     * The symbol keys and number row may be kept unchanged in national variant setups
-//     * Since Colemak moves the semicolon key it has to go in the letter block though.
-// - The brackets (lvl3-4) and the LSGT key may hold the most common locale-specific keys.
-//     * The letters on LBr/RBr/LSGT may well be replaced; these should also be on dead keys.
-//     * Also, keys with non-essential mappings (like h/j/k/l) are up for grabs if need be.
-//     * See the colemak_template symbols file for more info on local Colemak[eD] variants.
+//  NOTE: DreymaR's design goals for tweaking the standard Colemak:
+//  - Keeping level 1-2 of Colemak intact! This is what I think of as the Colemak layout per se.
+//  - Dead keys easily accessible as unshifted AltGr+symbol keys; common ones in good positions.
+//  - Added symbols/glyphs similar to, e.g., Mac ones - allowing common math/tech/etc typing.
+//  - Added letters/quotes allowing many of the major latin scripts to be written correctly.
+//  - The positions of added letters and symbols should as far as possible be easy to remember!
+//  - Modularity allows flexible layout definition using different modifier keys and symbols
+//      * The symbol keys and number row may be kept unchanged in national variant setups
+//      * Since Colemak moves the semicolon key it has to go in the letter block though.
+//  - The brackets (lvl3-4) and the LSGT key may hold the most common locale-specific keys.
+//      * The letters on LBr/RBr/LSGT may well be replaced; these should also be on dead keys.
+//      * Also, keys with non-essential mappings (like h/j/k/l) are up for grabs if need be.
+//      * See the colemak_template symbols file for more info on local Colemak[eD] variants.
 
-// TODO: All mapped keys lose their repeat behavior; this needs to be fixed!
-//       It appears to be independent of layout (and extend) mappings though?
+//  TODO: All mapped keys lose their repeat behavior; this needs to be fixed!
+//        It appears to be independent of layout (and extend) mappings though?
 partial alphanumeric_keys
 xkb_symbols "cmk_ed" {
     include "colemak(cmk_ed_letters)"
@@ -153,12 +153,12 @@ xkb_symbols "cmk_ed_letters" {
     key <SPCE> { [         space,         space,        nobreakspace,        nobreakspace ] }; // Space
     //  U0292/01B7 ezh/EZH
 
-//// Activating the line below will "hard" enable the Cmk-DH = Curl(DHm) mod; see below.
-//    include "colemak(cmk_ed_dh)"
-//// Activating the line below will "hard" enable the old Curl(DHk) mod; see below.
-//    include "colemak(cmk_ed_dhk)"
-//// This is the old Curl(DvH) Colemak ergo mod, keeping V and M in place.
-//    include "colemak(cmk_ed_dvh)"
+////  Activating the line below will "hard" enable the Cmk-DH = Curl(DHm) mod; see below.
+//     include "colemak(cmk_ed_dh)"
+////  Activating the line below will "hard" enable the old Curl(DHk) mod; see below.
+//     include "colemak(cmk_ed_dhk)"
+////  This is the old Curl(DvH) Colemak ergo mod, keeping V and M in place.
+//     include "colemak(cmk_ed_dvh)"
 };
 
 hidden partial alphanumeric_keys
@@ -189,86 +189,90 @@ xkb_symbols "cmk_ed_symbols" {
     key <AB09> { [        period,       greater,       dead_abovedot,    greaterthanequal ] }; // .> _≥
     key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
     //
-// NOTE: In Linux, CapsLock is tweaked in the Keyboard settings (for freedom of choice etc.)
-//    key <CAPS> { [     BackSpace,     BackSpace,           Caps_Lock,           Caps_Lock ] }; // Caps/Back
+//  NOTE: In Linux, CapsLock is tweaked in the Keyboard settings (for freedom of choice etc.)
+//     key <CAPS> { [     BackSpace,     BackSpace,           Caps_Lock,           Caps_Lock ] }; // Caps/Back
 };
 
-// NOTE:
-// - Missing: U017F long s; chevrons; horizconnector; wynn/yogh; some African
-//      d-tail; turned Cc/Ee++; latin epsilon/gamma (Berber); italic v;
-// - Rare/dropped: U25CA lozenge (Mac; rare); kra (deprecated Inuktitut & IPA);
-//      union/intersection/includedin; integral (need a science/math deadkey; use esh in a pinch);
-//      numerosign (mostly Cyrillic; use N + masc.); squareroot (unworkable); function (use hook-f);
-//      U1E9E Capital German SS (disputed); U2033/U2032 double-/prime (cheat w/ acute/doubleacute?!)
-//      U2639/U263A/U27E8/27E9 sadface/smilingface/brackets (poorly implemented)
-// - Oddly placed?: 'notsign'/'division' (placed by shape/association)?
-// TODO: Compose/deadkeys: ligatures (fi/fl/ij); fractions/superior/subscripts; latin/IPA/currencies
-// - For Currency: U2044 solidus/shilling; yen
-// - For IPA/Latin: U026A/028F SmCap-I/Y; U0251/0252 script-a/turned-script-a; U0283 esh
-//      U028A lat-upsilon; U027E r-flap; U0294 glottal stop;  U025C turned open e
-// TODO: Make dead_stroke (for d/g/h/l/i/u) work!? Missing in compose files?
-//       Also, l-tilde, s/c/j/z/schwa hook?
-// TODO: Unused dead_keys: iota, voiced_sound, semivoiced_sound
-//       (could enhance them like Colemak user 'ghen' suggests, for keys 3/4/5?):
-// TODO: A Maths/science dead key? Latin/IPA? Greek? (Currency exists)
-// TODO: Add superior/subscript # to dead_acute/grave; fractions to slash/stroke!?
-//     NB: This happens in the compose files under X11/locale, of which there are legion. :(
-//     Can one get away with changing only the various iso8859-# ones? Or just en_US.UTF-8 ?
-//     Since this lies outside the xkb folder, I might just post the code and where to paste it?
-// TODO: For extra dead key mappings, could dead_abovering and dead_doubleacute be augmented?
-//     Make sure dead_hook has rhotic hooks for schwa and turned epsilon!
-//     Similarly with smallcap letters and their turned counterparts?
-// TODO: Add IPA (broad English?) somewhere. Too few free slots, so it'll have to be by dead_keys.
-// TODO: Phonetic 'colemak_curl' layouts with Curl-DH (it's best to rewire the whole layout in this case).
-// DONE: Add Greek, Kyrillic and Hebrew phonetic Colemak layouts (nice for group 'switch' layout).
-// DONE: Update the Tarmak and Mirrored layouts when Colemak[eD] is changed, using search-replace.
+//  NOTE:
+//  - Missing: U017F long s; chevrons; horizconnector; wynn/yogh; some African
+//       d-tail; turned Cc/Ee++; latin epsilon/gamma (Berber); italic v;
+//  - Rare/dropped: U25CA lozenge (Mac; rare); kra (deprecated Inuktitut & IPA);
+//       union/intersection/includedin; integral (need a science/math deadkey; use esh in a pinch);
+//       numerosign (mostly Cyrillic; use N + masc.); squareroot (unworkable); function (use hook-f);
+//       U1E9E Capital German SS (disputed); U2033/U2032 double-/prime (cheat w/ acute/doubleacute?!)
+//       U2639/U263A/U27E8/27E9 sadface/smilingface/brackets (poorly implemented)
+//  - Oddly placed?: 'notsign'/'division' (placed by shape/association)?
+//  TODO: Compose/deadkeys: ligatures (fi/fl/ij); fractions/superior/subscripts; latin/IPA/currencies
+//  - For Currency: U2044 solidus/shilling; yen
+//  - For IPA/Latin: U026A/028F SmCap-I/Y; U0251/0252 script-a/turned-script-a; U0283 esh
+//       U028A lat-upsilon; U027E r-flap; U0294 glottal stop;  U025C turned open e
+//  TODO: Make dead_stroke (for d/g/h/l/i/u) work!? Missing in compose files?
+//        Also, l-tilde, s/c/j/z/schwa hook?
+//  TODO: Unused dead_keys: iota, voiced_sound, semivoiced_sound
+//        (could enhance them like Colemak user 'ghen' suggests, for keys 3/4/5?):
+//  TODO: A Maths/science dead key? Latin/IPA? Greek? (Currency exists)
+//  TODO: Add superior/subscript # to dead_acute/grave; fractions to slash/stroke!?
+//      NB: This happens in the compose files under X11/locale, of which there are legion. :(
+//      Can one get away with changing only the various iso8859-# ones? Or just en_US.UTF-8 ?
+//      Since this lies outside the xkb folder, I might just post the code and where to paste it?
+//  TODO: For extra dead key mappings, could dead_abovering and dead_doubleacute be augmented?
+//      Make sure dead_hook has rhotic hooks for schwa and turned epsilon!
+//      Similarly with smallcap letters and their turned counterparts?
+//  TODO: Add IPA (broad English?) somewhere. Too few free slots, so it'll have to be by dead_keys.
+//  TODO: Phonetic 'colemak_curl' layouts with Curl-DH (it's best to rewire the whole layout in this case).
+//  DONE: Add Greek, Kyrillic and Hebrew phonetic Colemak layouts (nice for group 'switch' layout).
+//  DONE: Update the Tarmak and Mirrored layouts when Colemak[eD] is changed, using search-replace.
 
 
-//    ******************************************************
-//    *****  Stevep99/DreymaR: Curl(DH) ergonomic mods *****
-//    ******************************************************
+//      ******************************************************
+//      *****  Stevep99/DreymaR: Curl(DH) ergonomic mods *****
+//      ******************************************************
 
-// This is the Colemak Curl(DH) ergo mod, bringing D and H down to comfortable lower row positions.
-// See http://colemakmods.github.io/mod-dh/ and http://forum.colemak.com/viewtopic.php?id=1942 for more info.
-// • Curl(DH) is implemented both as an US English variant (cmk_ed_dh) and an option (misc:cmk_curl_dh).
-// • There is now one unified Curl(DH) mod; it moves zxc Dbg Hm (ZXC are moved in the CurlAngle mod).
-//   For this mod to work as intended, a CurlAngle mod (such as the pc105cawide-sl model) is necessary.
-// • DH = Stevep99's Curl-DHm(DvbgHm) mod gives D a good bottom-row place (<AB04>) at the cost of V and B, and
-//                                        gives H a good bottom-row position at the cost of M.
-// • DreymaR's old Curl-DvH(DbgHk) mod avoided splitting ZXCV by replacing B with D in the full Angle mod, and
-//                                     avoided moving M, swapping H and K instead.
-// • Some may prefer the 2014-2017 Curl-DHk mod to keep M in the "pocket"; rename cmk_ed_[dh/dhk] below then.
-// • The mod causes lv3-4 trouble with Cmk[eD] locales that remap H (and in some cases, D/G and for DHk, K).
-//   To use Curl-DH, any H in symbols/locale 'cmk_ed_us' sections should change from <AC06> to <AB06>/<AB07>.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  2014-10-25  "SteveP"     https://colemakmods.github.io/mod-dh/  : The Colemak-DH Curl modded layout variant.
+//  2015-01-18  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : Colemak[eD] Curl-DH implementations.
+
+//  This is the Colemak Curl(DH) ergo mod, bringing D and H down to comfortable lower row positions.
+//  See http://colemakmods.github.io/mod-dh/ and https://dreymar.colemak.org/ergo-mods.html#CurlDH for more info.
+//  • Curl(DH) is implemented both as an US English variant (cmk_ed_dh) and an option (misc:cmk_curl_dh).
+//  • There is now one unified Curl(DH) mod; it moves zxc Dbg Hm (ZXC are moved in the CurlAngle mod).
+//    For this mod to work as intended, a CurlAngle mod (such as the pc105cawide-sl model) is necessary.
+//  • DH = Stevep99's Curl-DHm(DvbgHm) mod gives D a good bottom-row place (<AB04>) at the cost of V and B, and
+//                                         gives H a good bottom-row position at the cost of M.
+//  • DreymaR's old Curl-DvH(DbgHk) mod avoided splitting ZXCV by replacing B with D in the full Angle mod, and
+//                                      avoided moving M, swapping H and K instead.
+//  • Some may prefer the 2014-2017 Curl-DHk mod to keep M in the "pocket"; rename cmk_ed_[dh/dhk] below then.
+//  • The mod causes lv3-4 trouble with Cmk[eD] locales that remap H (and in some cases, D/G and for DHk, K).
+//    To use Curl-DH, any H in symbols/locale 'cmk_ed_us' sections should change from <AC06> to <AB06>/<AB07>.
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_dh" {
-    // Standard Colemak-DH from Oct 2020- is Colemak-DH(m)
-    // This is the original Curl(DHm/DvbgHm) ergo mod for Colemak, with M on the home row
-    // In the new implementation, D is moved inside V by one of the CurlAngle mods
+    //  Standard Colemak-DH from Oct 2020- is Colemak-DH(m)
+    //  This is the original Curl(DHm/DvbgHm) ergo mod for Colemak, with M on the home row
+    //  In the new implementation, D is moved inside V by one of the CurlAngle mods
     include "colemak(cmk_ed_dbg)"
     include "colemak(cmk_ed_hm)"
 };
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_dhk" {
-    // This is the Curl(DHk) ergo mod for Colemak, DH standard 2017-2020
-    // D is moved inside V by one of the CurlAngle mods (to affect Extend)
+    //  This is the Curl(DHk) ergo mod for Colemak, DH standard 2017-2020
+    //  D is moved inside V by one of the CurlAngle mods (to affect Extend)
     include "colemak(cmk_ed_dbg)"
     include "colemak(cmk_ed_hmk)"
 };
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_dvh" {
-    // This is the old Curl(DvH/DbgHk) ergo mod for Colemak, keeping V and M in place
-    // By default, it doesn't use a CurlAngle(Wide) model but just an Angle(Wide) one
+    //  This is the old Curl(DvH/DbgHk) ergo mod for Colemak, keeping V and M in place
+    //  By default, it doesn't use a CurlAngle(Wide) model but just an Angle(Wide) one
     include "colemak(cmk_ed_dbg)"
     include "colemak(cmk_ed_hk)"
 };
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_dbg" {
-    // This is the 'Dbg' loop for the Colemak Curl-DH ergo mod. D is moved inside V (Extend is unaffected).
+    //  This is the 'Dbg' loop for the Colemak Curl-DH ergo mod. D is moved inside V (Extend is unaffected).
     key <AD05> { [             b,             B,  enfilledcircbullet,          Greek_beta ] }; // QWE T Cmk G
     key <AC05> { [             g,             G,                 eng,                 ENG ] }; // QWE G Cmk D
     key <AB04> { [             d,             D,                 eth,                 ETH ] }; // QWE/Cmk V
@@ -277,7 +281,7 @@ xkb_symbols "cmk_ed_dbg" {
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_hmk" {
-    // This is the 'Hmk' switch for the Colemak Curl-DHk ergo mod with K on the home row.
+    //  This is the 'Hmk' switch for the Colemak Curl-DHk ergo mod with K on the home row.
     key <AC06> { [             k,             K,            ccedilla,            Ccedilla ] }; // QWE/Cmk H
     key <AB06> { [             m,             M,            multiply,           downarrow ] }; // QWE N Cmk K
     key <AB07> { [             h,             H,             hstroke,             Hstroke ] }; // QWE/Cmk M
@@ -285,34 +289,34 @@ xkb_symbols "cmk_ed_hmk" {
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_hm" {
-    // This is the 'Hm' switch for the original/standard Colemak Curl-DHm ergo mod.
+    //  This is the 'Hm' switch for the original/standard Colemak Curl-DHm ergo mod.
     key <AC06> { [             m,             M,            multiply,           downarrow ] }; // QWE/Cmk H
     key <AB07> { [             h,             H,             hstroke,             Hstroke ] }; // QWE/Cmk M
 };
 
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_hk" {
-    // This is the 'Hk' switch for the old Colemak Curl-DvH ergo mod, leaving M in place.
+    //  This is the 'Hk' switch for the old Colemak Curl-DvH ergo mod, leaving M in place.
     key <AC06> { [             k,             K,            ccedilla,            Ccedilla ] }; // QWE/Cmk H
     key <AB06> { [             h,             H,             hstroke,             Hstroke ] }; // QWE N Cmk K
 };
 
 
-//    ******************************************************
-//    *****   DreymaR: Tarmak - Transitional Colemak   *****
-//    ******************************************************
+//      ******************************************************
+//      *****   DreymaR: Tarmak - Transitional Colemak   *****
+//      ******************************************************
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// 2012-01-01 OEystein Bech "DreymaR" Gadmar: Paving the way; 'Tarmak (transitional Colemak)'.
-// See "DreymaR's Big Bag of Keyboard Tricks": http://forum.colemak.com/viewtopic.php?pid=9918
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// This section defines the differences between a full Colemak[eD] and the first Tarmak layout step.
-// The Tarmak1(E) step moves the E>K>N keys to their Colemak positions, leaving the J at QWERTY 'E'.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  2012-01-01  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : Tarmak (transitional Colemak) layouts.
+//  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org/tarmak-intro.html
+//  This section defines the differences between a full Colemak[eD] and the first Tarmak layout step.
+//  The Tarmak1(E) step moves the E>K>N keys to their Colemak positions, leaving the J at QWERTY 'E'.
 partial alphanumeric_keys
 xkb_symbols "tarmak1__e" {
     include "colemak(cmk_ed)"
-    // To exclude the initial (F)EKNJ loop in this step, include its mask and comment out the F-J line below
-    // (This would only be useful if you want to learn the LUI loop as a warmup; if so, comment out that too)
+    //  To exclude the initial (F)EKNJ loop in this step, include its mask and comment out the F-J line below
+    //  (This would only be useful if you want to learn the LUI loop as a warmup; if so, comment out that too)
     //include "colemak(tarmak_mask_fekn_to_eknj)"
     include "colemak(tarmak_mask_dgt_to_gtf)"
     include "colemak(tarmak_mask_prs_to_rsd)"
@@ -322,8 +326,8 @@ xkb_symbols "tarmak1__e" {
     name[Group1]= "English/Intl (Tarmak1_E - Colemak transitional)";
 };
 
-// This is the first Tarmak step for those who want to learn the Curl(DH) mod, including the HMK switch.
-// The old Curl(Hm) mod doesn't affect the first Tarmak step, so it can use the unmodded Tarmak1__e.
+//  This is the first Tarmak step for those who want to learn the Curl(DH) mod, including the HMK switch.
+//  The old Curl(Hm) mod doesn't affect the first Tarmak step, so it can use the unmodded Tarmak1__e.
 partial alphanumeric_keys
 xkb_symbols "tarmak1c_e" {
     include "colemak(cmk_ed)"
@@ -333,15 +337,15 @@ xkb_symbols "tarmak1c_e" {
     include "colemak(tarmak_mask_lui_to_uil)"
     include "colemak(cmk_ed_hk)"
     key <AD03> { [             j,             J,               U0283,               U01A9 ] }; // Cmk F - stray J
-    // NOTE: Re-enforcing of the V and B keys as below is only necessary when running a DBG/DVBG mod (see above)
+    //  NOTE: Re-enforcing of the V and B keys as below is only necessary when running a DBG/DVBG mod (see above)
     key <AB04> { [             v,             V,            division,         Greek_gamma ] }; // QWE/Cmk V
     key <AB05> { [             b,             B,  enfilledcircbullet,          Greek_beta ] }; // QWE/Cmk B
     name[Group1]= "English/Intl (Tarmak1c_E - Colemak Curl-DH transitional)";
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
-// The Tarmak2(ET) step moves the G>T>F keys to their Colemak positions, leaving the J at QWERTY 'G'.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
+//  The Tarmak2(ET) step moves the G>T>F keys to their Colemak positions, leaving the J at QWERTY 'G'.
 partial alphanumeric_keys
 xkb_symbols "tarmak2__et" {
     include "colemak(cmk_ed)"
@@ -352,42 +356,42 @@ xkb_symbols "tarmak2__et" {
     name[Group1]= "English/Intl (Tarmak2_ET - Colemak transitional)";
 };
 
-// The Tarmak2c(ET) step moves the B>T>F keys to their Colemak-Curl(DH) positions, leaving the J at QWERTY 'B'.
-// NOTE: The standard Curl(DH) mod requires activating a CurlAngle model to work. (My old variant only used Angle.)
+//  The Tarmak2c(ET) step moves the B>T>F keys to their Colemak-Curl(DH) positions, leaving the J at QWERTY 'B'.
+//  NOTE: The standard Curl(DH) mod requires activating a CurlAngle model to work. (My old variant only used Angle.)
 partial alphanumeric_keys
 xkb_symbols "tarmak2c_et" {
     include "colemak(cmk_ed)"
     include "colemak(tarmak_mask_prs_to_rsd)"
     include "colemak(tarmak_mask_jyoc_to_yocp)"
     include "colemak(tarmak_mask_lui_to_uil)"
-////       For Curl(DHm), activating the right-hand HM switch is still optional.
-//    include "colemak(cmk_ed_dbg)"
-//    include "colemak(cmk_ed_dbghm)"
-//// NOTE: The below is for DBG/DVBG mods (VJ/JV on <AB04>/<AB05> respectively)
-////       For the Curl-DH mod, both sides are activated at this point forward. (Activate it normally for step 3–4.)
+////        For Curl(DHm), activating the right-hand HM switch is still optional.
+//     include "colemak(cmk_ed_dbg)"
+//     include "colemak(cmk_ed_dbghm)"
+////  NOTE: The below is for DBG/DVBG mods (VJ/JV on <AB04>/<AB05> respectively)
+////        For the Curl-DH mod, both sides are activated at this point forward. (Activate it normally for step 3–4.)
     include "colemak(cmk_ed_dbghk)"
     key <AB04> { [             j,             J,               U0283,               U01A9 ] }; // QWE/Cmk B - stray J
     key <AB05> { [             v,             V,            division,         Greek_gamma ] }; // QWE/Cmk V
     name[Group1]= "English/Intl (Tarmak2c_ET - Colemak Curl-DH transitional)";
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
-// The Tarmak3(ETR) step moves the R>S>D keys to their Colemak positions, leaving the J at QWERTY 'R'.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
+//  The Tarmak3(ETR) step moves the R>S>D keys to their Colemak positions, leaving the J at QWERTY 'R'.
 partial alphanumeric_keys
 xkb_symbols "tarmak3__etr" {
     include "colemak(cmk_ed)"
     include "colemak(tarmak_mask_jyoc_to_yocp)"
-	// To include the standalone LUI loop in this or any step, comment out its mask (below)
+    //  To include the standalone LUI loop in this or any step, comment out its mask (below)
     include "colemak(tarmak_mask_lui_to_uil)"
     key <AD04> { [             j,             J,               U0283,               U01A9 ] }; // Cmk P - stray J
     name[Group1]= "English/Intl (Tarmak3_ETR - Colemak transitional)";
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
-// The Tarmak4(ETRO) step moves the L>U>I keys to their Colemak positions, finalizing the big loop.
-// This is the 4th step of the Tarmak(ETROI) and (ETORI) variants, leaving only the LUI loop.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
+//  The Tarmak4(ETRO) step moves the L>U>I keys to their Colemak positions, finalizing the big loop.
+//  This is the 4th step of the Tarmak(ETROI) and (ETORI) variants, leaving only the LUI loop.
 partial alphanumeric_keys
 xkb_symbols "tarmak4__etro" {
     include "colemak(cmk_ed)"
@@ -395,43 +399,43 @@ xkb_symbols "tarmak4__etro" {
     name[Group1]= "English/Intl (Tarmak4_ETRO - Colemak transitional)";
 };
 
-// NOTE: The Tarmak(ETO) and (ETOI) steps below are the old versions. They won't show up in the menus anymore.
-//       A quick way of getting them back would be to edit the xkb_symbols names of steps 3 and 4 here.
-//       A more proper way would be to edit the rules/evdev.xml and evdev.lst files,
-//       replacing 'tarmak3__etr' with 'tarmak3__eto' and likewise for '4__etro'/'4__etoi',
-//       and finally editing the corresponding entries in the 'us' symbols file.
+//  NOTE: The Tarmak(ETO) and (ETOI) steps below are the old versions. They won't show up in the menus anymore.
+//        A quick way of getting them back would be to edit the xkb_symbols names of steps 3 and 4 here.
+//        A more proper way would be to edit the rules/evdev.xml and evdev.lst files,
+//        replacing 'tarmak3__etr' with 'tarmak3__eto' and likewise for '4__etro'/'4__etoi',
+//        and finally editing the corresponding entries in the 'us' symbols file.
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
-// The Tarmak3(ETO) step moves the J>Y>O keys to their Colemak positions, leaving the ; at QWERTY 'G'.
-// This is the 3rd step of the Tarmak(ETOIR) and (ETORI) variants, performing the JYO loop earlier.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
+//  The Tarmak3(ETO) step moves the J>Y>O keys to their Colemak positions, leaving the ; at QWERTY 'G'.
+//  This is the 3rd step of the Tarmak(ETOIR) and (ETORI) variants, performing the JYO loop earlier.
 partial alphanumeric_keys
 xkb_symbols "tarmak3__eto" {
     include "colemak(cmk_ed)"
     include "colemak(tarmak_mask_prs_to_rsd)"
-	// To include the standalone LUI loop in this step, comment out its mask below
+    //  To include the standalone LUI loop in this step, comment out its mask below
     include "colemak(tarmak_mask_lui_to_uil)"
     key <AD10> { [             p,             P,            Greek_pi,           paragraph ] }; // Cmk ;:
     key <AC05> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // Cmk D - stray ;:
     name[Group1]= "English/Intl (Tarmak3_ETO - Colemak transitional)";
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
-// The Tarmak4(ETOI) step moves the L>U>I keys to their Colemak positions, stranding the ; at QWERTY 'G'.
-// This is the 4th step of the Tarmak(ETOIR) variant, performing the LUI loop earlier.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for one Tarmak step.
+//  The Tarmak4(ETOI) step moves the L>U>I keys to their Colemak positions, stranding the ; at QWERTY 'G'.
+//  This is the 4th step of the Tarmak(ETOIR) variant, performing the LUI loop earlier.
 partial alphanumeric_keys
 xkb_symbols "tarmak4__etoi" {
     include "colemak(cmk_ed)"
     include "colemak(tarmak_mask_prs_to_rsd)"
-	// The standalone LUI loop is included in this step; if unwanted here, include its mask instead
+    //  The standalone LUI loop is included in this step; if unwanted here, include its mask instead
     key <AD10> { [             p,             P,            Greek_pi,           paragraph ] }; // Cmk ;:
     key <AC05> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // Cmk D - stray ;:
     name[Group1]= "English/Intl (Tarmak4_ETOI - Colemak transitional)";
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for the partial (F)EKNJ loop.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for the partial (F)EKNJ loop.
 hidden partial alphanumeric_keys
 xkb_symbols "tarmak_mask_fekn_to_eknj" {
     key <AD03> { [             e,             E,            EuroSign,           leftarrow ] }; // QWE E Cmk F
@@ -440,8 +444,8 @@ xkb_symbols "tarmak_mask_fekn_to_eknj" {
     key <AC07> { [             j,             J,               U0283,               U01A9 ] }; // QWE J Cmk N
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for the partial (D)GTF loop.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for the partial (D)GTF loop.
 hidden partial alphanumeric_keys
 xkb_symbols "tarmak_mask_dgt_to_gtf" {
     key <AC05> { [             g,             G,                 eng,                 ENG ] }; // QWE G Cmk D
@@ -449,8 +453,8 @@ xkb_symbols "tarmak_mask_dgt_to_gtf" {
     key <AC04> { [             f,             F,rightsinglequotemark,rightdoublequotemark ] }; // QWE F Cmk T
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for the partial (P)RSD loop.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for the partial (P)RSD loop.
 hidden partial alphanumeric_keys
 xkb_symbols "tarmak_mask_prs_to_rsd" {
     key <AD04> { [             r,             R,          registered,           trademark ] }; // QWE R Cmk P
@@ -458,8 +462,8 @@ xkb_symbols "tarmak_mask_prs_to_rsd" {
     key <AC03> { [             d,             D,                 eth,                 ETH ] }; // QWE D Cmk S
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for the partial (J)YO;P loop.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for the partial (J)YO;P loop.
 hidden partial alphanumeric_keys
 xkb_symbols "tarmak_mask_jyoc_to_yocp" {
     key <AD06> { [             y,             Y,               U203A,      guillemotright ] }; // QWE Y Cmk J
@@ -468,8 +472,8 @@ xkb_symbols "tarmak_mask_jyoc_to_yocp" {
     key <AD10> { [             p,             P,            Greek_pi,           paragraph ] }; // QWE P Cmk ;
 };
 
-// Tarmak symbols for xkb on X.Org Server 7.x
-// See the first Tarmak layout above for more info. This is a QWERTY mask for the standalone LUI loop.
+//  Tarmak symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  See the first Tarmak layout above for more info. This is a QWERTY mask for the standalone LUI loop.
 hidden partial alphanumeric_keys
 xkb_symbols "tarmak_mask_lui_to_uil" {
     key <AD07> { [             u,             U,               U2039,       guillemotleft ] }; // QWE U Cmk L
@@ -478,36 +482,37 @@ xkb_symbols "tarmak_mask_lui_to_uil" {
 };
 
 
-//    ******************************************************
-//    *****     DreymaR: Mirrored Colemak (Symbols)    *****
-//    ******************************************************
+//      ******************************************************
+//      *****     DreymaR: Mirrored Colemak (Symbols)    *****
+//      ******************************************************
 
-// Mirrored Colemak[eD] symbols for xkb on X.Org Server 7.x
-// 2012-03-01 OEystein Bech "DreymaR" Gadmar: Mirrored Colemak layouts for single-handed typing.
-// See "DreymaR's Big Bag of Keyboard Tricks": http://forum.colemak.com/viewtopic.php?pid=9918
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// NOTE: Some adventurous souls might want to try the mirrored Colemak as a main layout?
-//     (They say it's more similar to Dvorak that way.) However, it's meant for one-handed typing.
-//     To use it as a standalone layout, you'll want to take out the remapping of special keys.
-//     Ideally, mirrored keyboarding ought to be done in the keyboard setup (Keylayout) component.
-//     That way it'd be independent on the chosen symbols layout, like my Angle/Wide mods.
-//     However, single-handed typing requires the use of a chooser key (like with the Extend mod).
-//     This is ttbomk currently only supported by the Symbols xkb component.
-//     Within this limitation, looks like an Overlay should be the best option?
-//     However (again!), ttbomk this isn't all that well implemented in xkb?
-// Using a Group setup, just add the mirrored Colemak[eD] as your next layout (usually Group 2).
-//     Then you may choose between a slew of "key(s) to change layout (while pressed)" options!
-//     This does compromise your group options a bit (if you need to use non-latin layouts etc).
-//     If that bothers you, consider using both 'next' and 'last' layout groups with chooser keys.
-//     See for instance the Canadian(Multilingual) layout for an example; they choose with RCtrl.
-// NOTE: This is made for the AWide-Slash (Wide35) keyboard mod (for bracket key access etc).
-//     Using it with another keyboard will be messy! I couldn't separate mirroring from the rest.
-// The backslash is provided both on the <LSGT> key and on <ESC> (for ANSI keyboards).
-// Included are pre-made options for RAlt and LAlt choosing. Use either one or set a key yourself.
-//     The below implementations are silly since they show how to choose AWAY the cmk_ed_mirror!
-//     Use Ubuntu: 'Keyboard Layout'->'Options'->'key(s) to change layout (while pressed)'.
+//  Mirrored Colemak[eD] symbols by DreymaR, for the XKeyboardConfig xkb-data package.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  2012-04-01  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : Mirrored Colemak layouts.
+//  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org/variants.html#mirror
+//  
+//  NOTE: Some adventurous souls might want to try the mirrored Colemak as a main layout?
+//      (They say it's more similar to Dvorak that way.) However, it's meant for one-handed typing.
+//      To use it as a standalone layout, you'll want to take out the remapping of special keys.
+//      Ideally, mirrored keyboarding ought to be done in the keyboard setup (Keylayout) component.
+//      That way it'd be independent on the chosen symbols layout, like my Angle/Wide mods.
+//      However, single-handed typing requires the use of a chooser key (like with the Extend mod).
+//      This is ttbomk currently only supported by the Symbols xkb component.
+//      Within this limitation, looks like an Overlay should be the best option?
+//      However (again!), ttbomk this isn't all that well implemented in xkb?
+//  Using a Group setup, just add the mirrored Colemak[eD] as your next layout (usually Group 2).
+//      Then you may choose between a slew of "key(s) to change layout (while pressed)" options!
+//      This does compromise your group options a bit (if you need to use non-latin layouts etc).
+//      If that bothers you, consider using both 'next' and 'last' layout groups with chooser keys.
+//      See for instance the Canadian(Multilingual) layout for an example; they choose with RCtrl.
+//  NOTE: This is made for the AWide-Slash (Wide35) keyboard mod (for bracket key access etc).
+//      Using it with another keyboard will be messy! I couldn't separate mirroring from the rest.
+//  The backslash is provided both on the <LSGT> key and on <ESC> (for ANSI keyboards).
+//  Included are pre-made options for RAlt and LAlt choosing. Use either one or set a key yourself.
+//      The below implementations are silly since they show how to choose AWAY the cmk_ed_mirror!
+//      Use Ubuntu: 'Keyboard Layout'->'Options'->'key(s) to change layout (while pressed)'.
 
-// Using the group(switch) map, the right alt key temporarily chooses next group until released.
+//  Using the group(switch) map, the right alt key temporarily chooses next group until released.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_mirror_ralt" {
     include "colemak(cmk_ed_mirror)"
@@ -558,7 +563,7 @@ xkb_symbols "cmk_ed_mirror_letters" {
 hidden partial alphanumeric_keys
 xkb_symbols "cmk_ed_mirror_symbols" {
     //  Alphanumeric section (number/symbol keys)
-// TODO: Make the <BSKP> 4-level for this mod; others?
+//  TODO: Make the <BSKP> 4-level for this mod; others?
     key <BKSP> { [         grave,    asciitilde,          dead_tilde,               U2248 ] };
     key <AE12> { [         equal,          plus,    dead_doubleacute,            notequal ] };
     key <AE11> { [             1,        exclam,       dead_belowdot,          exclamdown ] };
@@ -593,8 +598,8 @@ xkb_symbols "cmk_ed_mirror_special" {
     key <AD11> { [ Escape            ] }; // Esc is often mapped to <AD11> (usually with Crtl)
     key <AD12> { [ Caps_Lock         ] };
     key <RTRN> { [ Tab, ISO_Left_Tab ] };
-//    key <ALT> { [ ISO_Right_Alt     ] }; //NOTE: If this doesn't work, add SetMods
-//    key <RALT> { [ Alt_L            ] }; //NOTE: If this doesn't work, add SetMods
+//    key <ALT> { [ ISO_Right_Alt     ] }; // NOTE: If this doesn't work, add SetMods
+//    key <RALT> { [ Alt_L            ] }; // NOTE: If this doesn't work, add SetMods
     key <FK01> { [ F12 ] };
     key <FK02> { [ F11 ] };
     key <FK03> { [ F10 ] };
@@ -610,15 +615,15 @@ xkb_symbols "cmk_ed_mirror_special" {
 };
 
 
-//    ******************************************************
-//    *****  DreymaR: Colemak[eD] - National variants  *****
-//    *****  are in colemak_template - copy to a new   *****
-//    *****  file and find/replace <LANGUAGE>/<LL>     *****
-//    ******************************************************
+//      ******************************************************
+//      *****  DreymaR: Colemak[eD] - National variants  *****
+//      *****  are in colemak_template - copy to a new   *****
+//      *****  file and find/replace <LANGUAGE>/<LL>     *****
+//      ******************************************************
 
 
-//  *****************************************************************************************
-// ******                                                                               ******
-// *****     END of DreymaR's Colemak addons (Cmk[eD], Curl-DH, Tarmak1-4, Mirrored)     *****
-// ******                                                                               ******
-//  *****************************************************************************************
+//   *****************************************************************************************
+//  ******                                                                               ******
+//  *****     END of DreymaR's Colemak addons (Cmk[eD], Curl-DH, Tarmak1-4, Mirrored)     *****
+//  ******                                                                               ******
+//   *****************************************************************************************

@@ -202,31 +202,31 @@ partial alphanumeric_keys
 	include "sun_vndr/gr(sun_type6)"
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/gr
-// Phonetic Colemak variant for Greek.
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/gr
+//  Phonetic Colemak variant for Greek.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
 
-// This layout is based on its basic Greek (QWERTY) counterpart maintained by V Vasaitis.
-// Note: Standard Colemak has semicolon on <AD10> while Greek QWERTY uses <AD01> (the Q).
-// The frequently used accents on <AC10> could move to <AD10>, like standard Colemak does.
-// However, we should keep ;: on <AD10> instead of on Q, for Colemak compliance. ( =^･ω･^=)丿
-// I thought to include the diaeresis letters ϊΪ and ϋΫ for easy typing, but they're rare?
+//  This layout is based on its basic Greek (QWERTY) counterpart maintained by V Vasaitis.
+//  Note: Standard Colemak has semicolon on <AD10> while Greek QWERTY uses <AD01> (the Q).
+//  The frequently used accents on <AC10> could move to <AD10>, like standard Colemak does.
+//  However, we should keep ;: on <AD10> instead of on Q, for Colemak compliance. ( =^･ω･^=)丿
+//  I thought to include the diaeresis letters ϊΪ and ϋΫ for easy typing, but they're rare?
 partial alphanumeric_keys
 xkb_symbols "colemak" {
     include "gr(basic)"
     include "gr(colemak_gr_12)"
     include "gr(colemak_gr_34)"
     include "gr(colemak_gr_eD)"
-// NOTE: The basic layout didn't define some keys (no Space?); I've no idea why.
-//       To compensate just in case, I include the below which defines SPCE.
+//  NOTE: The basic layout didn't define some keys (no Space?); I've no idea why.
+//        To compensate just in case, I include the below which defines SPCE.
     include "nbsp(level4)"
     name[Group1]= "Greek (Colemak, phonetic)";
 };
 
 hidden partial alphanumeric_keys
 xkb_symbols "colemak_gr_12" {
-// This is based on the gr(bare) partial; the number/symbol keys aren't changed
+//  This is based on the gr(bare) partial; the number/symbol keys aren't changed
     name[Group1]= "Greek (Colemak levels 1-2)";
 
 	key <AD01> { [            dead_acute, dead_diaeresis ] }; // q - ´ ¨
@@ -264,7 +264,7 @@ xkb_symbols "colemak_gr_12" {
 
 hidden partial alphanumeric_keys
 xkb_symbols "colemak_gr_34" {
-// The gr(basic) layout includes lv1-2 and then specifies lv3-4 separately like this
+//  The gr(basic) layout includes lv1-2 and then specifies lv3-4 separately like this
     name[Group1]= "Greek (Colemak levels 3-4)";
 
 	key <AD01> { [       NoSymbol,       NoSymbol,     dead_acute,     dead_psili ] }; // q
@@ -293,7 +293,7 @@ xkb_symbols "colemak_gr_34" {
 
 hidden partial alphanumeric_keys
 xkb_symbols "colemak_gr_eD" {
-// These definitions add DreymaR specific changes to the Greek layout, namely composing dasia/psili/iota etc.
+//  These definitions add DreymaR specific changes to the Greek layout, namely composing dasia/psili/iota etc.
     name[Group1]= "Greek (Colemak ed. DreymaR extras)";
 
 //	key <????> { [          U03CB,          U03AB,              §,              § ] }; // ϋ Ϋ
@@ -301,4 +301,4 @@ xkb_symbols "colemak_gr_eD" {
 	key <AD11> { [    bracketleft,      braceleft,          U0314,          U1FFE ] }; // comb./plain Gr. Dasia
 	key <AD12> { [   bracketright,     braceright,          U0313,          U1FBF ] }; // comb./plain Gr. Psili
 };
-// <-- DreymaR: Additions to xkb/symbols/gr
+//  <-- DreymaR: Additions to xkb/symbols/gr

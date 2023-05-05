@@ -1,7 +1,19 @@
 XKB data for DreymaR's Big Bag of Keyboard Tricks
 =================================================
 
-This readme holds version info, and also TODO and DONE lists for the BigBag-4-XKB repo.
+VERSION:
+--------
+	File description: Modified xkb-data files for DreymaR's Big Bag of Keyboard Tricks (Linux/XKB)
+	Files found here: https://github.com/DreymaR/BigBagKbdTrixXKB
+	xkb-data version: 2-23-1-1ub1, edition DreymaR
+	XKB archive date: 2018-02-02
+	My starting date: 2018-08-21
+<br>
+
+
+INTRO:
+------
+This readme holds version info, TODO and DONE lists for the BigBag-4-XKB repo.
 
 For more general info, see the [main repo README][BBREADME].
 
@@ -11,45 +23,71 @@ They work fine with other versions though, in nearly all cases.
 <br>
 
 
-VERSION:
---------
-	File description: Modified xkb-data files for DreymaR's Big Bag of Keyboard Tricks (Linux/XKB)
-	Files found here: https://github.com/DreymaR/BigBagKbdTrixXKB
-	xkb-data version: 2-23-1-1ub1, edition DreymaR
-	XKB archive date: 2018-02-02
-	My starting date: 2018-08-21
-
-
 TODO:
 -----
+* Move the ks variants out of the official sortiment? They're rather bad anyway, and may confuse newcomers?
+	- Leave them to be added by a simple modding, could have links to them as commented-out lines in the symbols/colemak file or something.
+
+* Check out Space key implementation now
+	- `NOTE: The basic layout didn't define some keys (no Space?); I've no idea why.` is found in some locales, which then add a space def.
+	- This should be handled universally in the colemak file now, though? Shouldn't it? Maybe not for phonetic variants?
+
+* Update xkb-data
+	- 2.35.1.1 as of 2023-05
+	- Use the [freedesktop.org GitLab repo][XKBgitLb] as that's the freshest there is? But it has the rules in raw/uncompiled format.
+
+* Test the XKB BigBag on a Wayland system?
+
+* Sym mod implementation
+	- Should the Sym mod be implemented as hard (model)? No, it should not rearrange Extend.
+	- Better to make a new symbols/symbols file, and put everything in there.
+	- Then select sym mod according to wide status, as an option.
+	- Update setkb.sh to handle all that.
+
 * Make a patch file of the mod dir.
-* Update all forum.colemak.com links with new BigBag links: Locale topic (id=1458) -> https://dreymar.colemak.org/variants.html#locales etc.
+
+* Update most forum.colemak.com links with new BigBag links: Locale topic (id=1458) -> https://dreymar.colemak.org/variants.html#locales etc.
+	- Also, fix the attributions like this:
+		//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  :  The Colemak keyboard layout.
+		//  2012-01-01  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  :  New shift levels 3-4.
+	- And fix the `for xkb on X.Org Server 7.x` bits, to `for the XKeyboardConfig xkb-data package`. Only fix mine, not Shai/Bucao/Norman's.
+
 * Better instructions for Wayland?
 	- Depends on your Wayland Compositor (Sway is common?)
 		https://wiki.archlinux.org/title/wayland#Compositors
 	- Didn't we have some good ones at the Colemak Discord? Where?
 		https://discord.com/channels/409502982246236160/1059814838408319026/1059866421066203257
+
 * Lockable lv5 modifier, for users who want Extend-lock. Maybe Shift+Extend to lock it, or something?
 	- It's possible today to have two switch-or-lock lv5 modifiers. But it seems wasteful to use up two keys.
+
 * Non-Fn-key Extend is now the default. Add a separate option for FKey Extend? Many new users struggled with this, or have weird FKey setups.
 	- Add a FKey Extend option to misc? So people can activate `misc:extend` and `misc:extend_fk` separately.
+
 * Add colemak-dh to the colemak symbols file and the US locale? Both ISO, ANSI and Ortho.
 	- Would it be "allowable" to actually move both default and dh colemak _into_ the symbols/colemak file now?
 	- If so, edit rules components accordingly, and consider editing all locale variants to include them
+
 * Not all distros source `~/.bashrc` by default. Seems that `~/.xinitrc` is mostly used by xinit and not generally sourced?
 	- What about `~/.xsession` or `~/.profile`? Seems to be mostly legacy; used by `startx`? It's messy.
 	- Look in `/etc/X11/Xsession` to see how thing are run at startup?
 	- But `~/.Xresources` seems like a good option (and is sourced by xinitrc too)?
 	- Its format is different though. And it doesn't list keyboard layout as one of its intended purposes.
+
 * Add some easy way of returning to the old xkbmap setup? But how? Can't unset settings, so we'd have to store it somehow? Or just let them go to us/us?
 	- Could write setxkbmap output to a file. Check it isn't overwritten, like the normal backup.
 	- Make a restore to default layout shortcut instead? It's only an alias for `setkb 4n/5n`. Maybe `resetkb 4/5`?
+
 * Transition many ###.xml changes to ###.extras.xml? Other Colemak locale variants reside there. But it's a mess: Many (such as Norwegian) are in the main file!
 	- It might be nice to keep all the BigBag locales in one place though? Or not?
+
 * To get Extend with the currently active layout, use `setxkbmap -v 9 -option "" -option "misc:extend,lv5:caps_switch_lock,compose:menu"`.
 	- The first `-option ""` clears any existing option settings, while the one with non-empty arguments add to existing options.
+
 * Add lv5:lalt_switch_lock for LALT-Extend.
+
 * Add compose:102? Inconsistent between ISO and ANSI, just add a pro-tip.
+
 * The Curl(DH) model implementation has to go as it may mess w/ QWERTY. Instead, I should use two Extend variants.
 	- It also seems very hard for some newcomers to understand. So yes, I should have the Angle mod only and not CurlAngle models?
 	- Also, matrix users want the V-D swap without an Angle mod! Another nail in the coffin for the Curl models.
@@ -58,29 +96,33 @@ TODO:
 	- First, just make Curl with D-V swap built in. Let the Extend Paste function be where it falls for now?
 	- Separate Angle mods for Curl and non-Curl? Probably not, as it'll still get silly when using both QWERTY and Cmk-eD.
 	- Separate Extend-Angle includes! Similar to how EPKL handles this problem.
+
 * Check out the compose:102 option. This would be similar to what I've used in EPKL for Windows! It's also present in some other layouts.
-* Echo the setxkbmap command when using setkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping?
+
+* Echo the setxkbmap command when using setkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping.
+
 * Add a localectl option to setkb.sh? So people can choose that or setxkbmap. Eventually, even more variants such as Sway?
 
 * Problems with Super+<letter> shortcuts: https://github.com/DreymaR/BigBagKbdTrixXKB/issues/23#issuecomment-1027839924
 
 * A purge option in addition to restore for the install script? So backup dirs etc are removed and the xkb dir restored to original state.
 
-* Update xkb-data and then start testing on a Wayland system!
-	- Use the [GitLab][XKBgitLb]/[GitHub][XKBgitHb] repo as that's the freshest there is.
-
-* A clarification by Peter Hutterer on the mystic .part files in the rules component:
+* Find out how to change the rules component properly to allow compiling and eventually merging to the main repo?
+	- A clarification by Peter Hutterer on the mystic .part files in the rules component:
 	- https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/issues/327#note_1436334
 	- The parts are numbered to get their sequence in the resulting files right. Only when there are differences, they start with base/evdev.
 	- There are RMLVO (user interface) and KcCSGST (actual XKB) letter codes. The naming of those .part files is 1234-rmlvo-kccgst.part...
 	- but with only the relevant bits. So, e.g., `0009-m_g.part` is the model to group mapping of the final rules file. `ml_s.part` is model + layout to symbols.
-	- It seems that you can make layout commits by editing only the rules/base.xml (and symbols) file(s) though?
+	- It seems that you can make simple layout commits by editing only the rules/base.xml (and symbols) file(s) though?
+	- We may need to provide both the uncompiled and compiled files (or a patch thereof) for different purposes.
 
 * Add a model-less Colemak-CAWS for people who want to switch to QWERTY? Or instructions on how to setkb it? That's better, I think.
+
 * Problem: Using Google Spreadsheets, hitting Caps Lock (which is mapped to ISO_Level5_Shift) clears the current spreadsheet cell.
 	- https://forum.colemak.com/topic/1438-dreymars-big-bag-of-keyboard-tricks-linuxxkb-files-included/p15/#p23838
 	- This solves it by convincing Google Sheets that the Caps key is a Win key: `sudo setkeycodes 0x3a 125`
 	- But it only works for built-in laptop keyboards and not USB/Bluetooth ones? 
+
 * Is there a way to clear the LevelFive mod on all the Extend mappings by default? Or must I be more careful with each RedirectKey()?
 	- Example: `Q -> Esc -> Caps` caused people trouble, as Ext+Q would act as Esc+Caps.
 	- Possibly, finally make a new key type EIGHT_LEVEL_EXTEND with the action clearmods=LevelFive added to state 5-8? No, no actions.
@@ -88,11 +130,12 @@ TODO:
 	- See for instance https://www.x.org/releases/X11R7.5/doc/input/XKB-Enhancing.html
 	- "Usually, all modifiers introduced in 'modifiers=<list of modifiers>' list are used for shift level calculation and then discarded."
 	- Does this mean that LevelFive should've been discarded but isn't? Is it an XKB bug?
-* Update to the latest xkb-data: https://ubuntu.pkgs.org/20.04/ubuntu-main-amd64/xkb-data_2.29-2_all.deb.html
-* Find out how to change the rules component properly to allow compiling and eventually merging to the main repo?
+
 * Migrate from `~/.bashrc` to `~/.xprofile`? The latter is more appropriate, but which setups source it and which ones don't?
 	- Include both? Or, people can just enter the file names.
+
 * Could use an <XTND> key code alias defined in keycodes/evdev (alias <XTND> = <CAPS>), instead of the <CAPS> code?
+
 * Test this method for using a local dir, by Bjørnar "zkf" Hansen: 
 	- Copy the `xkb-data_mod/xkb` dir to, say, `/usr/local/bigbag/xkb` if desired.
 	- Set `setenv MYXKB <dir>` or `export MYKXB=<dir>` as appropriate (not necessary for this, just practical here).
@@ -108,6 +151,10 @@ TODO:
 	- "I made that tweak to setkb and some small changes to use a hardcoded $HOME dir path, and it appears good."
 	- Another attempt by birdspider, with some tripups and solutions:
 		https://github.com/DreymaR/BigBagKbdTrixXKB/issues/1#issuecomment-818880299
+* Is something wrong with Rulemak? It's there with the bg (Bulmak) locale, but the ru one seems to sport Polish for some odd reason?!?
+	- The deal is that Rulemak has its own entry by default now, from GHen himself.
+	- I think someone asked for that Polish entry under Ru? Not sure why, though...
+
 * For an EsAlt variant as in EPKL:
 ```
     key <AE04> { [             4,        dollar,       dead_currency,            EuroSign ] }; // 4
@@ -125,6 +172,11 @@ TODO:
 ```
 <br>
 
+HOLD:
+-----
+* Is `any` equivalent to `NoSymbol` in the definitions? If so, we could make symbols/extend tidier!
+	- Doesn't seem that way. There are more compact forms of notation, like leaving out symbols entirely, but those are less clear.
+<br>
 
 DONE:
 -----
@@ -142,7 +194,6 @@ DONE:
 
 
 [XKB-conf]: https://www.freedesktop.org/wiki/Software/XKeyboardConfig/ (XKeyboard Config page)
-[XKBgitHb]: https://github.com/freedesktop/xkeyboard-config (XKB-config on GitHub)
 [XKBgitLb]: https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config (XKB-config on GitLab)
 [XKB-pkgs]: https://pkgs.org/download/xkb-data (pkgs.org xkb-data page)
 [XKB-DebS]: https://packages.debian.org/sid/xkb-data (Debian Sid xkb-data download)

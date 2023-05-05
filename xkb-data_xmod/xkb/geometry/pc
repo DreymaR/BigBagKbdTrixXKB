@@ -1567,8 +1567,10 @@ xkb_geometry "pc104alt" {
 }; // End of "pc104alt" geometry
 
 
-// --> OEystein Bech "DreymaR" Gadmar, 2017: Additions to xkb/geometry/pc
-// pc104_Angle(Z) ergonomic mod (by DreymaR, 2011)
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2017: Additions to xkb/geometry/pc
+//  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org/ergo-mods.html
+//  
+//  pc104_Angle(Z) ergonomic mod (by DreymaR, 2011)
 xkb_geometry "pc104angle-z" {
     include "pc(pc104)"
     description= "Generic 104 - Angle(Z)Ergo mod";
@@ -1586,11 +1588,11 @@ xkb_geometry "pc104angle-z" {
 		    <AB06>, <AB07>, <AB08>, <AB09>, <AB10>, 
 		    { <RTSH>, "RTSH", color="grey20" }
 	    };
-	}; // End of bottom row
-    }; // End of "Alpha" section
-}; // End of "pc104angle-z" geometry
+	};  // End of bottom row
+    };  // End of "Alpha" section
+};  // End of "pc104angle-z" geometry
 
-// pc104_Wide(Quote) ergonomic mod (by DreymaR, 2013)
+//  pc104_Wide(Quote) ergonomic mod (by DreymaR, 2013)
 xkb_geometry "pc104wide-qu" {
     include "pc(pc104)"
     description= "Generic 104 - Wide(Quote)Ergo mod";
@@ -1608,7 +1610,7 @@ xkb_geometry "pc104wide-qu" {
 		   <AE09>, <AE10>, <AE11>,
 		   { <BKSP>, "BKSP", color="grey20" }
 	    };
-	}; // End of number row
+	};  // End of number row
 	row {
 	    top= 20;
 	    keys { { <TAB>, "TABK", color="grey20" },
@@ -1616,7 +1618,7 @@ xkb_geometry "pc104wide-qu" {
 		   <AD11>, <AD06>, <AD07>, <AD08>, <AD09>, 
 		   <AD10>, <AC11>, { <BKSL>, "BKSL" }
 	    };
-	}; // End of top row
+	};  // End of top row
 	row {
 	    top= 39;
 	    keys { { <CAPS>, "CAPS", color="grey20" },
@@ -1624,7 +1626,7 @@ xkb_geometry "pc104wide-qu" {
 		   <AD12>, <AC06>, <AC07>, <AC08>, <AC09>, 
 		   <AC10>, { <RTRN>, "RTRN", color="grey20" }
 	    };
-	}; // End of home row
+	};  // End of home row
 	row {
 	    top= 58;
 	    keys { { <LFSH>, "LFSH", color="grey20" },
@@ -1632,11 +1634,11 @@ xkb_geometry "pc104wide-qu" {
 		    <AB10>, <AB06>, <AB07>, <AB08>, <AB09>, 
 		    { <RTSH>, "RTSH", color="grey20" }
 	    };
-	}; // End of bottom row
-    }; // End of "Alpha" section
-}; // End of "pc104wide-qu" geometry
+	};  // End of bottom row
+    };  // End of "Alpha" section
+};  // End of "pc104wide-qu" geometry
 
-// pc104_Angle(Z)Wide(Quote) ergonomic mod (by DreymaR, 2015)
+//  pc104_Angle(Z)Wide(Quote) ergonomic mod (by DreymaR, 2015)
 xkb_geometry "pc104aw-zqu" {
     include "pc(pc104wide-qu)"
     description= "Generic 104 - Angle(Z)Wide(Quote)Ergo mod";
@@ -1654,11 +1656,11 @@ xkb_geometry "pc104aw-zqu" {
 		    <AB10>, <AB06>, <AB07>, <AB08>, <AB09>, 
 		    { <RTSH>, "RTSH", color="grey20" }
 	    };
-	}; // End of bottom row
-    }; // End of "Alpha" section
-}; // End of "pc104aw-zqu" geometry
+	};  // End of bottom row
+    };  // End of "Alpha" section
+};  // End of "pc104aw-zqu" geometry
 
-// pc104_AngleWing(Quote) ergonomic mod (by DreymaR, 2015)
+//  pc104_AngleWing(Quote) ergonomic mod (by DreymaR, 2015)
 xkb_geometry "pc104awing" {
     include "pc(pc104)"
     description= "Generic 104 - AngleWing(Quote)Ergo mod";
@@ -1676,7 +1678,7 @@ xkb_geometry "pc104awing" {
 		   <AE09>, <AE10>, <AE11>, 
 		   { <BKSP>, "BKSP", color="grey20" }
 	    };
-	}; // End of number row
+	};  // End of number row
 	row {
 	    top= 20;
 	    keys { { <TAB>, "TABK", color="grey20" },
@@ -1684,7 +1686,7 @@ xkb_geometry "pc104awing" {
 		    <AD05>, <AD06>, <AD07>, <AD08>, <AD09>, 
 		   <AD10>, <AC11>, { <BKSL>, "BKSL" }
 	    };
-	}; // End of top row
+	};  // End of top row
 	row {
 	    top= 39;
 	    keys { { <CAPS>, "CAPS", color="grey20" },
@@ -1692,7 +1694,7 @@ xkb_geometry "pc104awing" {
 		   <AC05>, <AC06>, <AC07>, <AC08>, <AC09>, 
 		   <AC10>, { <RTRN>, "RTRN", color="grey20" }
 	    };
-	}; // End of home row
+	};  // End of home row
 	row {
 	    top= 58;
 	    keys { { <LFSH>, "LFSH", color="grey20" },
@@ -1700,11 +1702,11 @@ xkb_geometry "pc104awing" {
 		    <AB10>, <AB06>, <AB07>, <AB08>, <AB09>, 
 		    { <RTSH>, "RTSH", color="grey20" }
 	    };
-	}; // End of bottom row
-    }; // End of "Alpha" section
-}; // End of "pc104awing" geometry
+	};  // End of bottom row
+    };  // End of "Alpha" section
+};  // End of "pc104awing" geometry
 
-// pc105_Angle(LSGT) ergonomic mod (by DreymaR, 2011)
+//  pc105_Angle(LSGT) ergonomic mod (by DreymaR, 2011)
 xkb_geometry "pc105angle" {
     include "pc(pc105)"
     description= "Generic 105 - Angle_Ergo mod";
@@ -1722,11 +1724,11 @@ xkb_geometry "pc105angle" {
 		    <AB06>, <AB07>, <AB08>, <AB09>, <AB10>, 
 		    { <RTSH>, "RTSH", color="grey20" }
 	    };
-	}; // End of bottom row
-    }; // End of "Alpha" section
-}; // End of "pc105angle" geometry
+	};  // End of bottom row
+    };  // End of "Alpha" section
+};  // End of "pc105angle" geometry
 
-// pc105_CurlAngle(LSGT) ergonomic mod (by DreymaR, 2017)
+//  pc105_CurlAngle(LSGT) ergonomic mod (by DreymaR, 2017)
 xkb_geometry "pc105curl" {
     include "pc(pc105)"
     description= "Generic 105 - CurlAngle_Ergo mod";
@@ -1744,11 +1746,11 @@ xkb_geometry "pc105curl" {
 		    <AB06>, <AB07>, <AB08>, <AB09>, <AB10>, 
 		    { <RTSH>, "RTSH", color="grey20" }
 	    };
-	}; // End of bottom row
-    }; // End of "Alpha" section
-}; // End of "pc105curl" geometry
+	};  // End of bottom row
+    };  // End of "Alpha" section
+};  // End of "pc105curl" geometry
 
-// pc105_AngleWide(Slash) ergonomic mod (by DreymaR, 2011)
+//  pc105_AngleWide(Slash) ergonomic mod (by DreymaR, 2011)
 xkb_geometry "pc105aw-sl" {
     include "pc(pc105)"
     description= "Generic 105 - AngleWide(/)Ergo mod";
@@ -1766,7 +1768,7 @@ xkb_geometry "pc105aw-sl" {
 		   <AE09>, <AE10>, <AE11>,
 		   { <BKSP>, "BKSP", color="grey20" }
 	    };
-	}; // End of number row
+	};  // End of number row
 	row {
 	    top= 20;
 	    keys { { <TAB>, "TABK", color="grey20" },
@@ -1774,7 +1776,7 @@ xkb_geometry "pc105aw-sl" {
 		   <AD11>, <AD06>, <AD07>, <AD08>, <AD09>, 
 		   <AD10>, <AB10>, { <RTRN>, "RTRN", color="grey20" }
 	    };
-	}; // End of top row
+	};  // End of top row
 	row {
 	    top= 39;
 	    keys { { <CAPS>, "CAPS", color="grey20" },
@@ -1782,7 +1784,7 @@ xkb_geometry "pc105aw-sl" {
 		   <AD12>, <AC06>, <AC07>, <AC08>, <AC09>, 
 		   <AC10>, <AC11>
 	    };
-	}; // End of home row
+	};  // End of home row
 	row {
 	    top= 58;
 	    keys { { <LFSH>, "LFSH", color="grey20" },
@@ -1790,7 +1792,7 @@ xkb_geometry "pc105aw-sl" {
 		    <BKSL>, <AB06>, <AB07>, <AB08>, <AB09>, 
 		    { <RTSH>, "RTSH", color="grey20" }
 	    };
-	}; // End of bottom row
-    }; // End of "Alpha" section
-}; // End of "pc105aw-sl" geometry
-// <-- DreymaR: Additions to xkb/geometry/pc
+	};  // End of bottom row
+    };  // End of "Alpha" section
+};  // End of "pc105aw-sl" geometry
+//  <-- DreymaR: Additions to xkb/geometry/pc

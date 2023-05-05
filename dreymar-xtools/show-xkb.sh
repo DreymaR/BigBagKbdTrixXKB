@@ -10,7 +10,7 @@
 # Usage: 'sudo sh [scriptpath]' or
 #        allow executing file then run in a term window
 #
-# Happy xkb-hacking! Øystein Bech Gadmar (2012)
+# Happy xkb-hacking!
 
 HeadStr="DreymaR's Show XKB info script (by GadOE, 2014)"
 

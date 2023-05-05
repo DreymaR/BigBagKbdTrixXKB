@@ -420,30 +420,30 @@ partial alphanumeric_keys
     key <BKSL> { [ uacute,     section,      ugrave,      dead_breve ] };
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/it
-// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Italian.
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/it
+//  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Italian.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
 
-// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+//  The 'keep local symbols' variant keeps the national symbol and special letter setup.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_ks" {
     include "it(basic)"
     include "colemak(cmk_ed_letters)"
     name[Group1]= "Italian (Colemak[eD], keep local symbols)";
 
-// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
-// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
-// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//  NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+//  EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+//  Colemak[eD] has EuroSign on 'E' and mu on '5'.
 //    key <AE05> { [ NoSymbol, NoSymbol,       mu, onehalf ] };
 //    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, onehalf ] }; // onehalf is moved, threeeights is lost
 
     key <AD10>	{ [ ograve, ccedilla, at, dead_cedilla ] }; // from <AC10>
 };
 
-// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
-// For Italian, necessary local letters are added to designated flexible spots in the layout.
-// For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
+//  The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+//  For Italian, necessary local letters are added to designated flexible spots in the layout.
+//  For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "colemak(cmk_ed_letters)"
@@ -451,10 +451,10 @@ xkb_symbols "cmk_ed_us" {
     include "level3(ralt_switch)"
     name[Group1]= "Italian (Colemak[eD], unified symbols)";
 
-// NEEDED: Grave eauoi (0.42-0.09% but on Wikipedia àèù 0.64-0.17%; ìò 0.03-0.002%); é (0.06%)
-// Also ç (Ligurian); ł (Venetian). In it(basic), these are on lv1-2 mappings (but ł isn't there).
-// In it(basic), ñÑ are on nN lv3-4. I optionally provide ñ but for Ñ use the dead_tilde.
-// NOTE: Also consider the es/latam cmk_ed_us layouts for a strong deadkey-based approach (better, in my opinion).
+//  NEEDED: Grave eauoi (0.42-0.09% but on Wikipedia àèù 0.64-0.17%; ìò 0.03-0.002%); é (0.06%)
+//  Also ç (Ligurian); ł (Venetian). In it(basic), these are on lv1-2 mappings (but ł isn't there).
+//  In it(basic), ñÑ are on nN lv3-4. I optionally provide ñ but for Ñ use the dead_tilde.
+//  NOTE: Also consider the es/latam cmk_ed_us layouts for a strong deadkey-based approach (better, in my opinion).
 
 //    key <AD11> { [   bracketleft,     braceleft,              egrave,              eacute ] };
 //    key <AD12> { [  bracketright,    braceright,              agrave,              ograve ] };
@@ -463,4 +463,4 @@ xkb_symbols "cmk_ed_us" {
     key <LSGT> { [        ugrave,        igrave,                  oe,                  OE ] }; // <BKSL>/<AE12>
 //    key <AB06> { [             k,             K,            ccedilla,              ntilde ] }; // <AC10>/<AB06>
 };
-// <-- DreymaR: Additions to xkb/symbols/it
+//  <-- DreymaR: Additions to xkb/symbols/it

@@ -283,30 +283,30 @@ xkb_symbols "dvorak" {
     include "level3(ralt_switch)"
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2012-01: Additions to xkb/symbols/is
-// Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Icelandic.
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/is
+//  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Icelandic.
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
 
-// The 'keep local symbols' variant keeps the national symbol and special letter setup.
+//  The 'keep local symbols' variant keeps the national symbol and special letter setup.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_ks" {
     include "is(basic)"
     include "colemak(cmk_ed_letters)"
     name[Group1]= "Icelandic (Colemak[eD], keep local symbols)";
 
-// NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
-// EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
-// Colemak[eD] has EuroSign on 'E' and mu on '5'.
+//  NOTE: Symbols on letter keys may be lost in cmk_ed_ks if they are not on Colemak[eD] letter keys.
+//  EuroSign is often on 'E'. The latin(intl) and locale(winkeys) layout variants use '5'.
+//  Colemak[eD] has EuroSign on 'E' and mu on '5'.
 //    key <AE05> { [ NoSymbol, NoSymbol,       mu, onehalf ] };
 //    key <AE05> { [ NoSymbol, NoSymbol, EuroSign, onehalf ] }; // onehalf is moved, threeeights is lost
 
     key <AD10>	{ [ ae, AE, asciicircum, dead_doubleacute ] }; // from <AC10>
 };
 
-// The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
-// For Icelandic, necessary local letters are added to designated flexible spots in the layout.
-// For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
+//  The 'us' variant uses the US-type symbol key setup (recommended!) as it is nearly an intl. standard.
+//  For Icelandic, necessary local letters are added to designated flexible spots in the layout.
+//  For "writing" and "coding" subvariants, move the brackets between lv1-2 and lv3-4 as shown.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "colemak(cmk_ed_letters)"
@@ -314,8 +314,8 @@ xkb_symbols "cmk_ed_us" {
     include "level3(ralt_switch)"
     name[Group1]= "Icelandic (Colemak[eD], unified symbols)";
 
-// Icelandic letters: Áá/Íí/Óó/Éé/Úú/Ýý 5.9% (1.8/1.6/1.0/0.7/0.6/0.2); Ðð 4.4%; Þþ 1.5%; Ææ 0.9%; Öö 0.8%.
-// Need a good dead_acute. Keep Ææ on AltGr+Aa; Þþ on AltGr+Tt may be replaced with Öö.
+//  Icelandic letters: Áá/Íí/Óó/Éé/Úú/Ýý 5.9% (1.8/1.6/1.0/0.7/0.6/0.2); Ðð 4.4%; Þþ 1.5%; Ææ 0.9%; Öö 0.8%.
+//  Need a good dead_acute. Keep Ææ on AltGr+Aa; Þþ on AltGr+Tt may be replaced with Öö.
 
 //    key <AD12> { [    dead_acute, dead_circumflex,      bracketright,          braceright ] }; //from <AC11>
 //    key <LSGT> { [    odiaeresis,    Odiaeresis,              oslash,            Ooblique ] }; //from <AE11>
@@ -329,4 +329,4 @@ xkb_symbols "cmk_ed_us" {
     key <AC05> { [             d,             D,               aring,               Aring ] }; // keep Åå
 //    key <AC06> { [             h,             H,                  ae,                  AE ] }; // keep æÆ
 };
-// <-- DreymaR: Additions to xkb/symbols/is
+//  <-- DreymaR: Additions to xkb/symbols/is

@@ -250,12 +250,12 @@ xkb_symbols "latin" {
   key <KPDL> { type[Group1] = "KEYPAD",             [ KP_Delete,         KP_Decimal          ]};
 };
 
-// --> OEystein Bech "DreymaR" Gadmar, 2016-04: Additions to xkb/symbols/bg
+//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2016-04: Additions to xkb/symbols/bg
 //     "Bulmak[eD]" (Phonetic Colemak variant for Bulgarian Cyrillic script)
-// 2006-01-01 Shai Coleman, http://colemak.com/
-// Bulmak: 2009-2016 Ivan "Ghoul" Haralamov, using transliteration and "common sense".
-// See the Colemak forum topic on Cmk[eD] locales: http://forum.colemak.com/viewtopic.php?id=1458
-// Also, the Colemak forum topic on Kyrillic layouts: http://forum.colemak.com/viewtopic.php?id=519
+//  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
+//  Bulmak: 2009-2016 Ivan "Ghoul" Haralamov, using transliteration and "common sense".
+//  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
+//  Also, the Colemak forum topic on Kyrillic layouts: http://forum.colemak.com/viewtopic.php?id=519
 
 partial alphanumeric_keys
 xkb_symbols "colemak" {
@@ -317,11 +317,11 @@ xkb_symbols "colemak" {
 //    key <AB09> { [          period,           colon,         greater,greaterthanequal ] };
 //    key <AB10> { [           slash,        question                                   ] };
 
-// NOTE: In Linux, CapsLock is tweaked in the Keyboard settings (freedom of choice)
+//  NOTE: In Linux, CapsLock is tweaked in the Keyboard settings (freedom of choice)
 //    key <CAPS> { [       BackSpace,       BackSpace,       BackSpace,       BackSpace ] };
     key <LSGT> { [           U0300,  dead_diaeresis,      dead_acute,      dead_grave ] }; // (U0300 Comb. grave)
 //    key <SPCE> { [           space,           space,           space,    nobreakspace ] };
 
     include "level3(ralt_switch)"
 };
-// <-- DreymaR: Additions to xkb/symbols/bg
+//  <-- DreymaR: Additions to xkb/symbols/bg

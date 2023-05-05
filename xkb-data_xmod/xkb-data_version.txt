@@ -1,8 +1,0 @@
-XKB data for DreymaR's Big Bag of Keyboard Tricks
-=================================================
-
-File description: Modified xkb-data files for DreymaR's Big Bag of Keyboard Tricks (Linux/XKB)
-Files found here: https://github.com/DreymaR/BigBagKbdTrixXKB
-xkb-data version: 2-23-1-1ub1, edition DreymaR
-XKB archive date: 2018-02-02
-My starting date: 2018-08-21
