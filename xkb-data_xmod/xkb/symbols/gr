@@ -218,8 +218,8 @@ xkb_symbols "colemak" {
     include "gr(colemak_gr_12)"
     include "gr(colemak_gr_34)"
     include "gr(colemak_gr_eD)"
-//  NOTE: The basic layout didn't define some keys (no Space?); I've no idea why.
-//        To compensate just in case, I include the below which defines SPCE.
+//  NOTE: Some basic layouts don't define some keys (no Space?!); I've no idea why.
+//        To compensate, I include the below which defines SPCE also for non-Latin scripts.
     include "nbsp(level4)"
     name[Group1]= "Greek (Colemak, phonetic)";
 };

@@ -331,8 +331,9 @@ xkb_symbols "colemak" {
     include "il(phonetic)"
 //  The phonetic layout for Hebrew is il(phonetic)???; this is a Colemak translation.
 //  TODO: Proper implementation with more glyphs, like the SIL Biblical!?!
-//  NOTE: The basic layout didn't define some keys (no Space?); I've no idea why.
-//       To compensate, I include the below which defines SPCE.
+//        The EPKL program for Windows has an implementation, using dead keys for niqqudot.
+//  NOTE: Some basic layouts don't define some keys (no Space?!); I've no idea why.
+//        To compensate, I include the below which defines SPCE also for non-Latin scripts.
     include "nbsp(level4)"
     name[Group1]= "Hebrew (Colemak, phonetic)";
 
@@ -367,8 +368,8 @@ xkb_symbols "colemak_il" {
 //  The default layout for Israel is il(basic); this is a Colemak translation.
 //  Based on the latin letters on the keys, it's not phonetic but maybe easier for some.
 //  I moved the key on <AC10> to <AD10>, just like the standard Colemak does.
-//  NOTE: The basic layout didn't define some keys (no Space?); I've no idea why.
-//        To compensate, I include the below which defines SPCE.
+//  NOTE: Some basic layouts don't define some keys (no Space?!); I've no idea why.
+//        To compensate, I include the below which defines SPCE also for non-Latin scripts.
     include "nbsp(level4)"
     name[Group1]= "Hebrew (Colemak, Israel)";
 

@@ -45,6 +45,8 @@ Tips
 	- You can enable FKey Extend by activating the [include "extend(lv5_fk)"][BB-ExtFK] bit (delete the trailing slashes) in the `symbols/extend` file.
 	- If you had already installed the BigBag you must either edit the file in its target X11 directory, or edit and then reinstall the files.
 	- In theory, we could make such shortcuts part of Extend so you can have both them and the Multimedia key shortcuts. I'll think about it.
+* To just get Extend with the currently active layout, use `setxkbmap -v 9 -option "" -option "misc:extend,lv5:caps_switch_lock,compose:menu"`.
+	- The first `-option ""` clears any existing option settings, while the one with non-empty arguments add to existing options.
 * The 'Keep Symbols' layouts are intended for those who aren't ready to give up their symbol mappings. Not the best option, but "training wheels".
 	- The Unified 'us' variants are usually much better. The 'ks' ones will miss out on some symbols and many dead keys.
 * The `xkb-data` package is very consistent between distros. I've use [Debian xkb-data][XKB-DebS], sometimes with some Ubuntu updates.
@@ -140,11 +142,10 @@ _DreymaR_
 [XKBgitLb]: https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config (XKB-config on GitLab)
 [XKB-pkgs]: https://pkgs.org/download/xkb-data (pkgs.org xkb-data page)
 [XKB-DebS]: https://packages.debian.org/sid/xkb-data (Debian Sid xkb-data download)
-[XKB-Ub18]: https://ubuntu.pkgs.org/18.04/ubuntu-main-amd64/xkb-data_2.23.1-1ubuntu1_all.deb.html (Ubuntu 18.04 LTS xkb-data page)
-[XKB-Ub22]: https://ubuntu.pkgs.org/22.04/ubuntu-main-amd64/xkb-data_2.33-1_all.deb.html (Ubuntu 22.04 LTS xkb-data page)
-[XKB-2351]: https://debian.pkgs.org/sid/debian-main-amd64/xkb-data_2.35.1-1_all.deb.html (Debian Sid xkb-data page, 2022-12)
 [BigBag]:   https://dreymar.colemak.org/ (DreymaR's Big Bag of Keyboard Tricks)
 [BigBag4X]: http://forum.colemak.com/viewtopic.php?id=1438 (DreymaR's old BigBag for Linux/XKB on the Colemak Forum)
-[BB-ExtFK]: /xkb-data_xmod/xkb/symbols/extend#L66   (BigBag4XKB – FKkey include in symbol/extend file)
 [BBREADME]: README.md                               (main BigBag4XKB README)
 [xmREADME]: /xkb-data_xmod/README.md                (xmod BigBag4XKB README)
+
+[XKB-2351]: https://debian.pkgs.org/sid/debian-main-amd64/xkb-data_2.35.1-1_all.deb.html (Debian Sid xkb-data page, 2022-12)
+[BB-ExtFK]: /xkb-data_xmod/xkb/symbols/extend#L66   (BigBag4XKB – FKkey include in symbol/extend file)

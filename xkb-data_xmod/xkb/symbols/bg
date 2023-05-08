@@ -260,7 +260,9 @@ xkb_symbols "latin" {
 partial alphanumeric_keys
 xkb_symbols "colemak" {
     include "colemak(cmk_ed_symbols)"
-
+//  NOTE: Some basic layouts don't define some keys (no Space?!); I've no idea why.
+//        To compensate, I include the below which defines SPCE also for non-Latin scripts.
+//    include "nbsp(level4)"
     name[Group1]= "Bulgarian (Colemak, phonetic S-Slavic)";
 
     key <TLDE> { [ Cyrillic_softsign, Cyrillic_SOFTSIGN,    dead_tilde,      asciitilde ] }; // Bulmak. (U0300 Comb. grave)
