@@ -26,16 +26,23 @@ They work fine with other versions though, in nearly all cases.
 TODO:
 -----
 * Update xkb-data
-	- 2.35.1.1 as of 2023-05
+	- 2.35.1.1 as of 2023-05-24 (2022-04-05)
 	- Use the [freedesktop.org GitLab repo][XKBgitLb] as that's the freshest there is? But it has the rules in raw/uncompiled format.
+	- So, instead use the [Debian Sid xkb-data package][XKB-DebS] which is the most updated one in use.
+	- Add the patch that fixes the hobbled Colemak (LatAm, Colemak for Gaming) variant
+		- Commit bc927671 "symbols/latam: remove a hobbled Colemak variant" by Benno Schulenberg 2022-07-04
+		- https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/commit/bc927671
+
+* Is `any` equivalent to `NoSymbol` in the definitions? If so, we could make symbols/extend tidier!
+	- Maybe? There are some compact forms of notation, like leaving out symbols entirely, but those are less clear.
+	- In the repo, I've seen `NoSymbol` been replaced with `any`, and `VoidSymbol` with `none`. This may be the new syntax.
+	- Is it implemented everywhere yet, though? Hard to find good docs on it, methinks.
 
 * Sym mod implementation
-	- Should the Sym mod be implemented as hard (model)? No, it should not rearrange Extend.
-	- Better to make a new symbols/symbolkeys file, and put everything in there.
+	- The Sym mod should not be implemented as hard/model; it must not rearrange Extend.
+	- Better to make a new symbols/symbolkeys file, and put all symbol key definitions in there.
 	- Then select sym mod according to wide status, as an option.
 	- Update setkb.sh to handle all that.
-
-* Make a patch file of the mod dir.
 
 * Better instructions for Wayland?
 	- Depends on your Wayland Compositor (Sway is common?)
@@ -148,13 +155,16 @@ TODO:
 
 HOLD:
 -----
+* Make a patch file of the mod dir?
+	- WinMerge doesn't support patch generation. So it'd have to be by CLI.
+	- It's a little cumbersome to have to update both the files and the patch file for each commit. So no, for now?
+
 * Move the ks (Keep Local Symbols) variants out of the official sortiment? They're rather bad anyway, and may confuse newcomers?
 	- Could leave them in so as to be addable by a simple modding: Links as commented-out lines in the symbols/colemak file or something.
 
-* Is `any` equivalent to `NoSymbol` in the definitions? If so, we could make symbols/extend tidier!
-	- Doesn't seem that way. There are some compact forms of notation, like leaving out symbols entirely, but those are less clear.
-
-* Transition many ###.xml changes to ###.extras.xml? Other Colemak locale variants reside there. But it's a mess: Many (such as Norwegian) are in the main file!
+* Transition ###.xml changes to ###.extras.xml? 
+	- Some other Colemak locale variants reside there, like Latvian/Polish/Greek/Portuguese Colemak and Russian Rulemak.
+	- But it's a mess: Others (such as Norwegian, Latam and Filipino) are in the main file!
 	- It might be nice to keep all the BigBag locales in one place though? Or not?
 
 * Rulemak (ru) has its own entry now, by its creator GHen (Geert Hendrickx). Bulmak (bg) is still provided in the BigBag.

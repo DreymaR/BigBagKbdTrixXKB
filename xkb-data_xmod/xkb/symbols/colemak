@@ -233,7 +233,7 @@ xkb_symbols "cmk_ed_symbols" {
 //  2015-01-18  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : Colemak[eD] Curl-DH implementations.
 
 //  This is the Colemak Curl(DH) ergo mod, bringing D and H down to comfortable lower row positions.
-//  See http://colemakmods.github.io/mod-dh/ and https://dreymar.colemak.org/ergo-mods.html#CurlDH for more info.
+//  See http://colemakmods.github.io/mod-dh/ and https://dreymar.colemak.org/ergo-mods.html#curl-dh for more info.
 //  • Curl(DH) is implemented both as an US English variant (cmk_ed_dh) and an option (misc:cmk_curl_dh).
 //  • There is now one unified Curl(DH) mod; it moves zxc Dbg Hm (ZXC are moved in the CurlAngle mod).
 //    For this mod to work as intended, a CurlAngle mod (such as the pc105cawide-sl model) is necessary.
