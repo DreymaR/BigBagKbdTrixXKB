@@ -20,6 +20,8 @@ For more general info, see the [main repo README][BBREADME].
 The [xkeyboard-config][XKBgitHb] files in this folder are updated to [XKB-data v2.23.1-1ubuntu1][XKB-Ub18], 2018. 
 
 They work fine with other versions though, in nearly all cases.
+
+Note that the `base` and `evdev` rules are compiled slightly differently, so I provide both. Their `.lst` and `.xml` counterparts are identical/aliases.
 <br>
 
 
@@ -33,9 +35,13 @@ TODO:
 		- Commit bc927671 "symbols/latam: remove a hobbled Colemak variant" by Benno Schulenberg 2022-07-04
 		- https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/commit/bc927671
 
+* Add <!-- DreymaR's BigBag --> comments in evdev.xml? There are some now, typically like `<!-- Keyboard indicator for <locale> layouts -->`.
+	- Change my arrow format: Using `-->` arrows is confusing vis-a-vis html/xml. Use `»->`/`<-«`? That causes encoding trouble. So, `>>-->`/`<--<<`.
+
 * Is `any` equivalent to `NoSymbol` in the definitions? If so, we could make symbols/extend tidier!
-	- Maybe? There are some compact forms of notation, like leaving out symbols entirely, but those are less clear.
-	- In the repo, I've seen `NoSymbol` been replaced with `any`, and `VoidSymbol` with `none`. This may be the new syntax.
+	- According to Benno Schulenberg, yes, but there's little documentation for it.
+	- There are some other compact forms of notation, like leaving out symbols entirely, but those are less clear.
+	- In the repo, I've seen `NoSymbol` been replaced with `any`, and `VoidSymbol` with `none`.
 	- Is it implemented everywhere yet, though? Hard to find good docs on it, methinks.
 
 * Sym mod implementation
