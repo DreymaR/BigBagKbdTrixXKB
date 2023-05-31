@@ -4,17 +4,17 @@
 //  ******                                                                               ******
 //  *****        Colemak layouts - adding locale variants in a consistent fashion         *****
 //  *****           by OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-         *****
-//  *****    (copy this template to a new file then find/replace 'Esperanto'/'epo')       *****
-//  *****           ('epo' is usually the ISO-3166 two-letter country code)               *****
+//  *****    (copy this template to a new file then find/replace '<LANGUAGE>'/'<LL>')     *****
+//  *****           ('<LL>' is usually the ISO-3166 two-letter country code)              *****
 //  ******                                                                               ******
 //   *****************************************************************************************
 
 //  ***********************************************
-//  ***   In the symbols file for Esperanto      ***
-//  ***       (its filename is 'epo')            ***
+//  ***   In the symbols file for Esperanto     ***
+//  ***       (its filename is 'epo')           ***
 //  ***********************************************
 
-//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2014-01: Additions to xkb/symbols/epo
+//  >>--> DreymaR (OEystein Bech-Aase, formerly Bech Gadmar), 2014-01: Additions to xkb/symbols/epo
 //  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Esperanto.
 //  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
 //  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
@@ -39,7 +39,7 @@ xkb_symbols "cmk_ed_us" {
     include "level3(ralt_switch)"
     name[Group1]= "Esperanto (Colemak[eD], unified symbols)";
 
-//  NEEDED: ĈĉĜĝĤĥĴĵŜŝ, Ŭŭ
+//  NEEDED: circumflex cghjs (ĈĉĜĝĤĥĴĵŜŝ), ubreve (Ŭŭ)
 //  Esperanto letter frequencies: The accented letters add up, so allegedly 6% for the above 6 letters together.
 //  NOTE: Added dead_circumflex to both shifted and unshifted LBracket, so it's easy to use with shifted letters.
 
@@ -48,7 +48,7 @@ xkb_symbols "cmk_ed_us" {
     key <AD11> { [ dead_circumflex, dead_circumflex,     bracketleft,           braceleft ] }; // common accent
     key <AD12> { [        ubreve,        Ubreve,        bracketright,          braceright ] }; // from <AC11>
 };
-//  <-- DreymaR: Additions to xkb/symbols/epo
+//  <--<< DreymaR: Additions to xkb/symbols/epo
 
 //  ***********************************************
 //  ***   In the rules/evdev(+base).xml file    ***

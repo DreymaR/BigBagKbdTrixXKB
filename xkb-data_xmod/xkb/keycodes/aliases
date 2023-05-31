@@ -98,7 +98,7 @@ xkb_keycodes "qwertz" {
    alias <LatM> = <AB07>;
 };
 
-//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2013: Additions to xkb/keycodes/aliases
+//  >>--> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2013: Additions to xkb/keycodes/aliases
 xkb_keycodes "colemak" {
 
    alias <LatQ> = <AD01>;
@@ -162,4 +162,4 @@ xkb_keycodes "colemak_dh" {
    alias <LatK> = <AB06>;
    alias <LatH> = <AB07>;
 };
-//  <-- DreymaR: Additions to xkb/keycodes/aliases
+//  <--<< DreymaR: Additions to xkb/keycodes/aliases

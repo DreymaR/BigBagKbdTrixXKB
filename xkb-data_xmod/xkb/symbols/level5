@@ -151,7 +151,7 @@ xkb_symbols "rwin_switch_lock_cancel" {
   };
 };
 
-//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2011-05: Additions to xkb/symbols/level5
+//  >>--> DreymaR (OEystein Bech-Aase, formerly Bech Gadmar), 2011-05: Additions to xkb/symbols/level5
 //  The CapsLock Level5 switches are good for Extend overlay mappings using Caps as an Extend modifier
 //  The Left Ctrl Level5 switches are good for Extend overlay mappings if you're using Caps as Left Ctrl
 //  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org/layers-extend.html
@@ -219,4 +219,4 @@ xkb_symbols "lctl_switch_lock_cancel" {
                         ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock, ISO_Level5_Lock ]
   };
 };
-//  <-- DreymaR: Additions to xkb/symbols/level5
+//  <--<< DreymaR: Additions to xkb/symbols/level5

@@ -19,7 +19,7 @@ xkb_symbols "abnt2" {
 
     key <AD01> { [            q,              Q,         slash,           slash ] };
     key <AD02> { [            w,              W,      question,        question ] };
-    key <AD03> { [            e,              E,      EuroSign,        EuroSign ] };
+    key <AD03> { [            e,              E,        degree,          degree ] };
     key <AD04> { [            r,              R,    registered,      registered ] };
     key <AD11> { [   dead_acute,     dead_grave,         acute,           grave ] };
     key <AD12> { [  bracketleft,      braceleft,   ordfeminine,     dead_macron ] };
@@ -28,15 +28,13 @@ xkb_symbols "abnt2" {
     key <AC10> { [     ccedilla,       Ccedilla,    dead_acute,dead_doubleacute ] };
     key <AC11> { [   dead_tilde,dead_circumflex,    asciitilde,     asciicircum ] };
 
-    key <LSGT> { [    backslash,            bar,     masculine,      dead_breve ] };
+    key <LSGT> { [    backslash,            bar,    dead_caron,      dead_breve ] };
     key <AB03> { [            c,              C,     copyright,       copyright ] };
     key <AB07> { [            m,              M,            mu,              mu ] };
     key <AB10> { [    semicolon,          colon, dead_belowdot,   dead_abovedot ] };
 
     // The ABNT-2 keyboard has this special key:
     key <AB11> { [        slash,       question,        degree,    questiondown ] };
-
-    modifier_map Mod3   { Scroll_Lock };
 
     include "kpdl(comma)"
 
@@ -72,7 +70,7 @@ xkb_symbols "thinkpad" {
 
 partial alphanumeric_keys
 xkb_symbols "olpc" {
-
+    // #HW-SPECIFIC
     include "us(basic)"
     name[Group1]="Portuguese (Brazil)";
 
@@ -158,7 +156,7 @@ xkb_symbols "dvorak" {
     key <AC07> { [            h,               H,            leftarrow,        paragraph ] };
     key <AC08> { [            t,               T,           rightarrow,        trademark ] };
     key <AC09> { [            n,               N,                  eng,              ENG ] };
-    key <AC10> { [            s,               S,               ssharp,           ssharp ] };
+    key <AC10> { [            s,               S,               ssharp,            U1E9E ] };
     key <AC11> { [   dead_tilde, dead_circumflex,           asciitilde,      asciicircum ] };
     key <BKSL> { [        minus,      underscore,           0x01002015,       0x01000336 ] };
 
@@ -234,7 +232,7 @@ xkb_symbols "nativo" {
     key <AC05> { [            u,               U,               oslash,         Ooblique ] };
     key <AC06> { [            m,               M,                   mu,               mu ] };
     key <AC07> { [            d,               D,                  eth,              ETH ] };
-    key <AC08> { [            s,               S,               ssharp,           ssharp ] };
+    key <AC08> { [            s,               S,               ssharp,            U1E9E ] };
     key <AC09> { [            r,               R,           registered,       registered ] };
     key <AC10> { [            n,               N,                  eng,              ENG ] };
     key <AC11> { [   dead_acute,      dead_grave,                acute,            grave ] };

@@ -1,6 +1,4 @@
-// based on a keyboard map from an 'xkb/symbols/no' file
-
-default  partial alphanumeric_keys
+default partial alphanumeric_keys
 xkb_symbols "basic" {
 
     // Describes the differences between a very simple en_US
@@ -56,7 +54,7 @@ partial alphanumeric_keys
 xkb_symbols "winkeys" {
 
      include "no(basic)"
-     name[Group1]="Norwegian (Win keys)";
+     name[Group1]="Norwegian (Windows)";
      include "eurosign(5)"
 };
 
@@ -96,7 +94,7 @@ xkb_symbols "dvorak" {
     key <AC03> { [	    e,	E,      EuroSign,	cent	 ] };
     key <AC05> { [	    i,	I,      idotless,       Iabovedot] };
     key <AC06> { [	    d,	D,      eth,		ETH	 ] };
-    key <AC10> { [	    s,	S,      ssharp			 ] };
+    key <AC10> { [	    s,	S,      ssharp,		U1E9E	 ] };
     key <AC11> { [	minus,	underscore, hyphen,	diaeresis] };
 
     key <AB01> { [	   ae,	AE,     braceleft,	bracketleft] };
@@ -266,7 +264,7 @@ partial alphanumeric_keys
 	include "sun_vndr/no(sun_type6)"
 };
 
-//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/no
+//  >>--> DreymaR (OEystein Bech-Aase, formerly Bech Gadmar), 2012-01: Additions to xkb/symbols/no
 //  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Norwegian.
 //  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
 //  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
@@ -304,4 +302,4 @@ xkb_symbols "cmk_ed_us" {
     key <LSGT> { [        oslash,      Ooblique,                  oe,                  OE ] }; // from <AC10>
 //  NOTE: The Scandinavian layouts (dk/fi/no/se) have been harmonized. This shouldn't affect typing efficiency.
 };
-//  <-- DreymaR: Additions to xkb/symbols/no
+//  <--<< DreymaR: Additions to xkb/symbols/no

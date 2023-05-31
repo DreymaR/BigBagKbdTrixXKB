@@ -1,5 +1,3 @@
-// based on a keyboard map from an 'xkb/symbols/de' file
-
 default
 xkb_symbols "basic" {
 
@@ -24,15 +22,7 @@ xkb_symbols "mac" {
     name[Group1]= "German (Austria, Macintosh)";
 };
 
-partial alphanumeric_keys
-xkb_symbols "sundeadkeys" {
-
-    include "de(Sundeadkeys)"
-
-    name[Group1]="German (Austria, with Sun dead keys)";
-};
-
-//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2014-01: Additions to xkb/symbols/at
+//  >>--> DreymaR (OEystein Bech-Aase, formerly Bech Gadmar), 2014-01: Additions to xkb/symbols/at
 //  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for German (Austria).
 //  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
 //  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
@@ -52,4 +42,4 @@ xkb_symbols "cmk_ed_us" {
     include "de(cmk_ed_us)"
     name[Group1]= "German (Austria, Colemak[eD], unified symbols)";
 };
-//  <-- DreymaR: Additions to xkb/symbols/at
+//  <--<< DreymaR: Additions to xkb/symbols/at

@@ -467,7 +467,7 @@ xkb_symbols "lctrl_lwin_toggle" {
     };
 };
 
-//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2013: Additions to xkb/symbols/group
+//  >>--> DreymaR (OEystein Bech-Aase, formerly Bech Gadmar), 2013: Additions to xkb/symbols/group
 //  The Left Ctrl key (while pressed) chooses the second group.
 //  (Needed mainly for mirrored layouts.)
 partial modifier_keys
@@ -486,5 +486,5 @@ xkb_symbols "rctrl_switch_ctrls_toggle" {
         symbols[ Group1 ] = [ Mode_switch, ISO_Next_Group ]
     };
 };  // rctrl_switch_ctrls_toggle
-//  <-- DreymaR: Additions to xkb/symbols/group
+//  <--<< DreymaR: Additions to xkb/symbols/group
 

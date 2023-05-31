@@ -411,7 +411,7 @@ xkb_keycodes "thinkpadz60" {
 };
 
 
-//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2017: Additions to xkb/keycodes/xfree86
+//  >>--> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2017: Additions to xkb/keycodes/xfree86
 // pc104_Angle(Z) ergonomic mod (by DreymaR, 2011)
 xkb_keycodes "pc104angle-z" {
 
@@ -570,4 +570,4 @@ xkb_keycodes "pc105wide-rightpart" {
     <AB09> =  61;	// .	<  /
 };
 
-//  <-- DreymaR: Additions to xkb/keycodes/xfree86
+//  <--<< DreymaR: Additions to xkb/keycodes/xfree86

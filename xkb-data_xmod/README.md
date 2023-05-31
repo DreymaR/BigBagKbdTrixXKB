@@ -5,9 +5,10 @@ VERSION:
 --------
 	File description: Modified xkb-data files for DreymaR's Big Bag of Keyboard Tricks (Linux/XKB)
 	Files found here: https://github.com/DreymaR/BigBagKbdTrixXKB
-	xkb-data version: 2-23-1-1ub1, edition DreymaR
-	XKB archive date: 2018-02-02
-	My starting date: 2018-08-21
+	xkb-data version: 2.35.1-1_all_eD
+	Files repository: https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config
+	XKB archive date: 2022-04-05 (changes: Cherry-picked commit bc927671, 2022-07-04)
+	My starting date: 2023-05-31
 <br>
 
 
@@ -17,9 +18,9 @@ This readme holds version info, TODO and DONE lists for the BigBag-4-XKB repo.
 
 For more general info, see the [main repo README][BBREADME].
 
-The [xkeyboard-config][XKBgitHb] files in this folder are updated to [XKB-data v2.23.1-1ubuntu1][XKB-Ub18], 2018. 
+The [xkeyboard-config][XKBgitLb] files in this folder are updated to match Debian (Sid) [XKB-data v2.35.1][XKB_2-35], 2022. 
 
-They work fine with other versions though, in nearly all cases.
+They work just fine with nearly all other versions and distros, though.
 
 Note that the `base` and `evdev` rules are compiled slightly differently, so I provide both. Their `.lst` and `.xml` counterparts are identical/aliases.
 <br>
@@ -210,6 +211,6 @@ DONE:
 [BBREADME]: README.md                               (main BigBag4XKB README)
 [xmREADME]: /xkb-data_xmod/README.md                (xmod BigBag4XKB README)
 
-[XKB-Ub18]: https://ubuntu.pkgs.org/18.04/ubuntu-main-amd64/xkb-data_2.23.1-1ubuntu1_all.deb.html (Ubuntu LTS xkb-data page, 2018-04)
-[XKB-Ub22]: https://ubuntu.pkgs.org/22.04/ubuntu-main-amd64/xkb-data_2.33-1_all.deb.html (Ubuntu LTS xkb-data page, 2022-04)
-[XKB-2351]: https://debian.pkgs.org/sid/debian-main-amd64/xkb-data_2.35.1-1_all.deb.html (Debian Sid xkb-data page, 2022-12)
+[XKB_Ub18]: https://ubuntu.pkgs.org/18.04/ubuntu-main-amd64/xkb-data_2.23.1-1ubuntu1_all.deb.html (Ubuntu LTS xkb-data page, 2018-04)
+[XKB_Ub22]: https://ubuntu.pkgs.org/22.04/ubuntu-main-amd64/xkb-data_2.33-1_all.deb.html (Ubuntu LTS xkb-data page, 2022-04)
+[XKB_2-35]: https://debian.pkgs.org/sid/debian-main-amd64/xkb-data_2.35.1-1_all.deb.html (Debian Sid xkb-data page, 2022-12)

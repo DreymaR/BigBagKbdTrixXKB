@@ -1,4 +1,4 @@
-default  partial alphanumeric_keys
+default partial alphanumeric_keys
 xkb_symbols "basic" {
 
     include "rs(latin)"
@@ -13,7 +13,7 @@ xkb_symbols "us" {
 
     include "rs(latinyz)"
 
-    name[Group1]= "Slovenian (US, with Slovenian letters)";
+    name[Group1]= "Slovenian (US)";
 
     key <TLDE> { type[Group1]="TWO_LEVEL", [ cedilla, diaeresis ] };
 };
@@ -28,7 +28,7 @@ xkb_symbols "alternatequotes" {
     key <TLDE> { type[Group1]="TWO_LEVEL", [ cedilla, diaeresis ] };
 };
 
-//  --> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2014-10: Additions to xkb/symbols/si
+//  >>--> DreymaR (OEystein Bech-Aase, formerly Bech Gadmar), 2014-10: Additions to xkb/symbols/si
 //  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for Slovenian.
 //  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
 //  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
@@ -57,4 +57,4 @@ xkb_symbols "cmk_ed_us" {
     include "rs(cmk_ed_us)"
     name[Group1]= "Slovenian (Colemak[eD], unified symbols)";
 };
-//  <-- DreymaR: Additions to xkb/symbols/si
+//  <--<< DreymaR: Additions to xkb/symbols/si

@@ -54,12 +54,12 @@ ModDATE=''
 
 DModDir=`dirname $0` 	# (-d) Path to the script (and mod?) root directory
 ToolDir="${DModDir}/dreymar-xtools" 	# The loc. of tool scripts (like setkb.sh)
-DMod='xkb-data_xmod' 	# (--) The main name of the directory with modded xkb-data files
+DMod='xkb-data_xmod' 	# (--) Name of the directory with DreymaR's modded xkb-data files
 DModTag="${DMod}${XVERSION:+'_v'}${XVERSION}${ModDATE:+'_'}${ModDATE}" 	# (-t) Mod dir "prefix"
 DBakFix='dbak-' 		# (--) Backup dir prefix
 DModFix='d' 			# (--) Modded dir prefix
 InstDir="${X11DIR}" 	# (-i) Path to install subfolder(s) in
-#~ InstDir="${HOME}/drey-xmod" 	# (-i) Path to install subfolder(s) in
+#~ InstDir="${HOME}/dreymar-xmod" 	# (-i) Path to install subfolder(s) in
 WriteSys='no' 			# (-o) Overwrite the original xkb dir with the modded one
 Restore='0' 			# (-r) Reverse: Restore from backup # instead of installing
 DoBackup='ifnone' 		# (-n/b) Default backup behavior is "if no backups are found"

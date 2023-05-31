@@ -1,7 +1,0 @@
-XKB data for DreymaR's Big Bag of Keyboard Tricks
-=================================================
-
-File description: Original xkb-data files selected from Ubuntu 18.04 LTS
-Files found here: https://ubuntu.pkgs.org/18.04/ubuntu-main-amd64/xkb-data_2.23.1-1ubuntu1_all.deb.html
-xkb-data version: 2-23-1-1ub1
-Deb archive date: 2018-02-02
