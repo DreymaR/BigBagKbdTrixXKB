@@ -431,7 +431,7 @@ xkb_symbols "lv5" {
                     BackSpace                   , BackSpace                     ,   // Back
                     KP_Enter                    , KP_Enter                      ] , // KP_Enter
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<BKSP>)        , Redirect(key=<BKSP>)          ,   // <BKSP>
+                    Redirect(key=<BKSP>,clearmods=LevelFive), Redirect(key=<BKSP>,clearmods=LevelFive) , // <BKSP>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE ;, Cmk O
     key <AC11> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // ' "

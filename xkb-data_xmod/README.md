@@ -14,7 +14,7 @@ VERSION:
 
 INTRO:
 ------
-This readme holds version info, TODO and DONE lists for the BigBag-4-XKB repo.
+This readme holds version info, TODO and DONE lists for the BigBagKbdTrixXKB repository.
 
 For more general info, see the [main repo README][BBREADME].
 
@@ -28,26 +28,13 @@ Note that the `base` and `evdev` rules are compiled slightly differently, so I p
 
 TODO:
 -----
-* Update xkb-data
-	- 2.35.1.1 as of 2023-05-24 (2022-04-05)
-	- Use the [freedesktop.org GitLab repo][XKBgitLb] as that's the freshest there is? But it has the rules in raw/uncompiled format.
-	- So, instead use the [Debian Sid xkb-data package][XKB-DebS] which is the most updated one in use.
-	- Add the patch that fixes the hobbled Colemak (LatAm, Colemak for Gaming) variant
-		- Commit bc927671 "symbols/latam: remove a hobbled Colemak variant" by Benno Schulenberg 2022-07-04
-		- https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/commit/bc927671
-
-* Add <!-- DreymaR's BigBag --> comments in evdev.xml? There are some now, typically like `<!-- Keyboard indicator for <locale> layouts -->`.
-	- Change my arrow format: Using `-->` arrows is confusing vis-a-vis html/xml. Use `»->`/`<-«`? That causes encoding trouble. So, `>>-->`/`<--<<`.
-
-* Is `any` equivalent to `NoSymbol` in the definitions? If so, we could make symbols/extend tidier!
-	- According to Benno Schulenberg, yes, but there's little documentation for it.
-	- There are some other compact forms of notation, like leaving out symbols entirely, but those are less clear.
-	- In the repo, I've seen `NoSymbol` been replaced with `any`, and `VoidSymbol` with `none`.
-	- Is it implemented everywhere yet, though? Hard to find good docs on it, methinks.
+* Finish implementing Slovak (sk) and Esperanto (epo) locale variants.
+	- They're nearly ready within their WIP files. I think they're okay as they are now?
 
 * Sym mod implementation
 	- The Sym mod should not be implemented as hard/model; it must not rearrange Extend.
 	- Better to make a new symbols/symbolkeys file, and put all symbol key definitions in there.
+	- That'd be nice for any other (not too radical) alt-layouts as well, I should think?
 	- Then select sym mod according to wide status, as an option.
 	- Update setkb.sh to handle all that.
 
@@ -182,6 +169,25 @@ HOLD:
 
 DONE:
 -----
+* Update xkb-data to 2.35.1.1 as of 2023-05-31 (package updated 2022-04-05)
+	- The [freedesktop.org GitLab repo][XKBgitLb] is the freshest there is? But it has the rules in raw/uncompiled format.
+	- So, instead use the [Debian Sid xkb-data package][XKB-DebS] which is the most updated one in actual use.
+	- Add the patch that fixes the hobbled Colemak (LatAm, Colemak for Gaming) variant
+		- Commit bc927671 "symbols/latam: remove a hobbled Colemak variant" by Benno Schulenberg 2022-07-04
+		- https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config/-/commit/bc927671
+
+* Added <!--  >->  DreymaR's  BigBagKbdTrix  --> and <!--  <-<  DreymaR  --> comments around my changes in evdev.xml.
+	- There are some others there now, typically like `<!-- Keyboard indicator for <locale> layouts -->`.
+
+* Changed my comment arrow format to `>>-->`/`<--<<`.
+	- Using `-->` arrows is confusing vis-a-vis html/xml. `»->`/`<-«`? caused encoding trouble, at least in WinMerge.
+
+* Is `any` equivalent to `NoSymbol` in the definitions? If so, we could make symbols/extend tidier!
+	- According to Benno Schulenberg, yes, but there's little documentation for it.
+	- There are some other compact forms of notation, like leaving out symbols entirely, but those are less clear.
+	- In the repo, I've seen `NoSymbol` been replaced with `any`, and `VoidSymbol` with `none`.
+	- Is it implemented everywhere yet, though? Hard to find good docs on it, methinks.
+
 * Fixed key repetition with Extend, particularly vis-a-vis Wayland.
 	- Added `repeat=yes` after the key actions, to all keys that have actions.
 	- https://discord.com/channels/409502982246236160/1066499260322943006/1080488398403424256
@@ -198,7 +204,7 @@ DONE:
 
 * Changed the default layout for the setkb.sh script to US (UniSym): In my experience, most users that struggle with the setup want US English.
 
-* Relieve the sudo requirement. And add an option to change the X11 dir since Nix uses another place. Pulled from fufexan@github.
+* Relieved the sudo requirement. And added an option to change the X11 dir since Nix uses another place. Pulled from fufexan@github.
 	- https://github.com/DreymaR/BigBagKbdTrixXKB/issues/15#issuecomment-769431139
 
 
