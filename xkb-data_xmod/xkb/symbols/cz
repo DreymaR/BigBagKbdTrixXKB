@@ -514,6 +514,7 @@ xkb_symbols "cmk_ed_us" {
 //  NEEDED: Acute a/e/i/l*/r*/u/y, caron c/e/l*/r/s/z, stroke Dd/Ll, uring, ocircumflex*, adiaeresis*.
 //  NOTE: Slovak(*) `ä ľ ĺ ŕ ô` are not in Czech; Czech `ě ř ů` are not in Slovak. Some may need both sets.
 //  Uring is very rare; it's nevertheless provided for (sm)allcaps writing and referral to the letter.
+//  NOTE: Many users have ANSI-type keyboards without an <LSGT> key. They may have to work around this limitation using lv3-4 of other keys.
 
     key <LSGT> { [         uring,         Uring,          adiaeresis,          Adiaeresis ] }; // from <AC10>
     key <AD11> { [    dead_acute,    dead_acute,         bracketleft,           braceleft ] }; // from <AE12>

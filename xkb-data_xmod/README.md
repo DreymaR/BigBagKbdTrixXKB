@@ -28,9 +28,6 @@ Note that the `base` and `evdev` rules are compiled slightly differently, so I p
 
 TODO:
 -----
-* Finish implementing Slovak (sk) and Esperanto (epo) locale variants.
-	- They're nearly ready within their WIP files. I think they're okay as they are now?
-
 * Sym mod implementation
 	- The Sym mod should not be implemented as hard/model; it must not rearrange Extend.
 	- Better to make a new symbols/symbolkeys file, and put all symbol key definitions in there.

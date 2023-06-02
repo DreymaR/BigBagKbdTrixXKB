@@ -5753,6 +5753,19 @@
             <description>Slovak (QWERTY, extended backslash)</description>
           </configItem>
         </variant>
+        <!--  >->  DreymaR's  BigBagKbdTrix  -->
+        <variant>
+          <configItem>
+            <name>cmk_ed_ks</name>
+            <description>Slovak (Colemak[eD], keep local symbols)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>cmk_ed_us</name>
+            <description>Slovak (Colemak[eD], unified symbols)</description>
+          </configItem>
+        </variant>    <!--  <-<  DreymaR  -->
       </variantList>
     </layout>
     <layout>
@@ -6741,6 +6754,19 @@
             <description>Esperanto (legacy)</description>
           </configItem>
         </variant>
+        <!--  >->  DreymaR's  BigBagKbdTrix  -->
+        <variant>
+          <configItem>
+            <name>cmk_ed_ks</name>
+            <description>Esperanto (Colemak[eD], keep local symbols)</description>
+          </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>cmk_ed_us</name>
+            <description>Esperanto (Colemak[eD], unified symbols)</description>
+          </configItem>
+        </variant>    <!--  <-<  DreymaR  -->
       </variantList>
     </layout>
     <layout>

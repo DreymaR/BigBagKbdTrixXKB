@@ -1,20 +1,21 @@
 // $XKeyboardConfig$
 
-//   *****************************************************************************************
-//  ******                                                                               ******
-//  *****        Colemak layouts - adding locale variants in a consistent fashion         *****
-//  *****           by OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-         *****
-//  *****    (copy this template to a new file then find/replace '<LANGUAGE>'/'<LL>')     *****
-//  *****           ('<LL>' is usually the ISO-3166 two-letter country code)              *****
-//  ******                                                                               ******
-//   *****************************************************************************************
+//    *****************************************************************************************
+//   ******                                                                               ******
+//  ******        Colemak layouts - adding locale variants in a consistent fashion         ******
+//  ******           by OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2012-         ******
+//  ******    (copy this template to a new file then find/replace '<LANGUAGE>'/'<LL>')     ******
+//  ******           ('<LL>' is usually the ISO-3166 two-letter country code)              ******
+//   ******                                                                               ******
+//    *****************************************************************************************
 
-//  ***********************************************
-//  ***   In the symbols file for <LANGUAGE>    ***
-//  ***       (its filename is '<LL>')            ***
-//  ***********************************************
+//  ***************************************************************************
+//  ****                In the symbols file for <LANGUAGE>                 ****
+//  ****                    found at xkb/symbols/<LL>                        ****
+//  ****           (at the end, or below other Colemak variants)           ****
+//  ***************************************************************************
 
-//  >>--> DreymaR (OEystein Bech-Aase), 20??-??: Additions to xkb/symbols/<LL>
+//  >>--> DreymaR (OEystein Bech-Aase), 202?-??: Additions to xkb/symbols/<LL>
 //  Colemak[eD]: National/locale Colemak "edition DreymaR" variants for <LANGUAGE>.
 //  2006-01-01  Shai Coleman  http://colemak.com/  (Public Domain)  : The Colemak keyboard layout.
 //  See the Big Bag section on Cmk[eD] locales: https://dreymar.colemak.org/variants.html#locales
@@ -64,11 +65,12 @@ xkb_symbols "cmk_ed_us" {
 };
 //  <--<< DreymaR: Additions to xkb/symbols/<LL>
 
-//  ***********************************************
-//  ***   In the rules/evdev(+base).xml file    ***
-//  ***   Under the <LL> layout variantList       ***
-//  ***********************************************
+//  ***************************************************************************
+//  ****                In the rules/evdev(+base).xml file                 ****
+//  ****                Under the <LL> layout variantList                    ****
+//  ***************************************************************************
 
+        <!--  >->  DreymaR's  BigBagKbdTrix  -->
         <variant>
           <configItem>
             <name>cmk_ed_ks</name>
@@ -80,23 +82,26 @@ xkb_symbols "cmk_ed_us" {
             <name>cmk_ed_us</name>
             <description><LANGUAGE> (Colemak[eD], unified symbols)</description>
           </configItem>
-        </variant>
+        </variant>    <!--  <-<  DreymaR  -->
 
-//  ***********************************************
-//  ***   In the rules/evdev(+base).lst file    ***
-//  ***      Under '! variant' (norm. <LL>)       ***
-//  ***********************************************
+//  ***************************************************************************
+//  ****                In the rules/evdev(+base).lst file                 ****
+//  ****                  Under '! variant' (norm. <LL>)                     ****
+//  ****       This file is auto-generated when rules are compiled.        ****
+//  ***************************************************************************
 
   cmk_ed_ks       <LL>: <LANGUAGE> (Colemak[eD], keep local symbols)
   cmk_ed_us       <LL>: <LANGUAGE> (Colemak[eD], unified symbols)
 
-//  ***********************************************
-//  ***  (In the main rules/evdev(+base) file   ***
-//  ***  no changes should be necessary.)       ***
-//  ***********************************************
+//  ***************************************************************************
+//  ****                In the main rules/evdev(+base) file                ****
+//  ****                  no changes should be necessary.                  ****
+//  ***************************************************************************
 
-//   *****************************************************************************************
-//  ******                                                                               ******
-//  *****           END of DreymaR's Colemak additions (Cmk[eD], National var.)           *****
-//  ******                                                                               ******
-//   *****************************************************************************************
+//    *****************************************************************************************
+//   ******                                                                               ******
+//  ******                                                                                 ******
+//  ******        THE END of DreymaR's Colemak[eD] locale variant addition template        ******
+//  ******                                                                                 ******
+//   ******                                                                               ******
+//    *****************************************************************************************

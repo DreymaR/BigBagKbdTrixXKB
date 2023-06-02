@@ -730,6 +730,8 @@
   bksl            sk: Slovak (extended backslash)
   qwerty          sk: Slovak (QWERTY)
   qwerty_bksl     sk: Slovak (QWERTY, extended backslash)
+  cmk_ed_ks       sk: Slovak (Colemak[eD], keep local symbols)
+  cmk_ed_us       sk: Slovak (Colemak[eD], unified symbols)
   nodeadkeys      es: Spanish (no dead keys)
   winkeys         es: Spanish (Windows)
   deadtilde       es: Spanish (dead tilde)
@@ -818,6 +820,8 @@
   ara             pk: Arabic (Pakistan)
   snd             pk: Sindhi
   legacy          epo: Esperanto (legacy)
+  cmk_ed_ks       epo: Esperanto (Colemak[eD], keep local symbols)
+  cmk_ed_us       epo: Esperanto (Colemak[eD], unified symbols)
   igbo            ng: Igbo
   yoruba          ng: Yoruba
   hausa           ng: Hausa (Nigeria)
