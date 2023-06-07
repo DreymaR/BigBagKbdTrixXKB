@@ -8268,6 +8268,24 @@
           <name>misc:cmk_curl_dh</name>
           <description>Colemak Curl(DH) ergo mod</description>
         </configItem>
+      </option>
+      <option>
+        <configItem>
+          <name>misc:sym_non-wide</name>
+          <description>Sym ergo mod for non-Wide geometry</description>
+        </configItem>
+      </option>
+      <option>
+        <configItem>
+          <name>misc:sym_wide-iso</name>
+          <description>Sym ergo mod for Wide-ISO geometry</description>
+        </configItem>
+      </option>
+      <option>
+        <configItem>
+          <name>misc:sym_wide-ansi</name>
+          <description>Sym ergo mod for Wide-ANSI geometry</description>
+        </configItem>
       </option>    <!--  <-<  DreymaR  -->
       <option>
         <configItem>

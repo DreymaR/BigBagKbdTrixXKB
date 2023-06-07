@@ -1319,7 +1319,7 @@ xkb_symbols "cmk_ed_ks" {
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "colemak(cmk_ed_letters)"
-    include "colemak(cmk_ed_symbols)"
+    include "symkeys(cmk_ed_symbols)"
     include "level3(ralt_switch)"
     name[Group1]= "French (Colemak[eD], unified symbols)";
 

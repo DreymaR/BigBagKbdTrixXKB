@@ -1,0 +1,110 @@
+// $XKeyboardConfig$
+
+//   *****************************************************************************************
+//  ******                                                                               ******
+//  *****         «  DreymaR's Big Bag of Keyboard Tricks – XKB implementation  »         *****
+//  *****                 Symbol key mappings, with "Sym" ergonomic mods                  *****
+//  *****         by OEystein "DreymaR" Bech-Aase (Bech Gadmar until 2021), 2011-         *****
+//  ******                                                                               ******
+//   *****************************************************************************************
+
+default
+//      ******************************************************
+//      *****     DreymaR: Sym (symbol key) ergo mods    *****
+//      *****     Each one selectable as misc: options   *****
+//      *****     Note: Different ones for Wide mods     *****
+//      ******************************************************
+
+//  'Colemak - edition DreymaR (Cmk-eD)' symbols, for the XKeyboardConfig xkb-data package
+//  2021-01-01  OEystein "DreymaR" Bech-Aase, formerly Bech Gadmar  : Symbol key ergo mods.
+//  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org/ergo-mods.html#symbols
+
+//  Standard symbol key setup, as found in QWERTY and several other layouts
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_symbols" {
+    include "symkeys(cmk_ed_commons)"
+    include "symkeys(cmk_ed_numbers)"
+    key <AE11> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
+    key <AE12> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
+//    key <AD10> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;: ¨…
+    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
+    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
+    key <AC11> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
+    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
+//  NOTE: In Linux, CapsLock behavior should be in the Keyboard settings (for freedom of choice etc.)
+//     key <CAPS> { [     BackSpace,     BackSpace,           Caps_Lock,           Caps_Lock ] }; // Caps/Back
+};  //  U2032 - prime
+
+//  DreymaR's Sym (S) mod for setups not using a Wide (W) mod
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_sym_non-w" {
+    include "symkeys(cmk_ed_commons)"
+    include "symkeys(cmk_ed_numbers)"
+    key <AE11> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
+    key <AE12> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
+    key <AD10> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
+    key <AD11> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
+    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
+    key <AC11> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;: ¨…
+    key <BKSL> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \| _¦
+    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
+};
+
+//  DreymaR's Sym mod for setups using the Wide-ISO model (without Sym, it has the Slash key on AD12)
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_sym_w-iso" {
+    include "symkeys(cmk_ed_commons)"
+    include "symkeys(cmk_ed_numbers)"
+    key <AE11> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
+    key <AE12> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \| _¦
+    key <AD10> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
+    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
+    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
+    key <AC11> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;: ¨…
+    key <BKSL> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
+    key <AB10> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
+};
+
+//  DreymaR's Sym mod for setups using the Wide-ANSI model (without Sym, it has the Quote key on AD12)
+partial alphanumeric_keys
+xkb_symbols "cmk_ed_sym_w-ans" {
+    include "symkeys(cmk_ed_commons)"
+    include "symkeys(cmk_ed_numbers)"
+    key <AE11> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
+    key <AE12> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \| _¦
+    key <AD10> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
+    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
+    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
+    key <AC11> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
+    key <BKSL> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;: ¨…
+    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
+};
+
+hidden partial alphanumeric_keys
+xkb_symbols "cmk_ed_commons" {
+    key <TLDE> { [         grave,    asciitilde,          dead_tilde,               U2248 ] }; // `~ _≈
+    key <LSGT> { [            oe,            OE,              oslash,            Ooblique ] }; // œŒ øØ
+    key <AB08> { [         comma,          less,        dead_cedilla,       lessthanequal ] }; // ,< _≤
+    key <AB09> { [        period,       greater,       dead_abovedot,    greaterthanequal ] }; // .> _≥
+};  //  U2248 - approx. equal
+
+hidden partial alphanumeric_keys
+xkb_symbols "cmk_ed_numbers" {
+    key <AE01> { [             1,        exclam,       dead_belowdot,          exclamdown ] }; // 1! _¡
+    key <AE02> { [             2,            at,           dead_hook,         twosuperior ] }; // 2@ _²
+    key <AE03> { [             3,    numbersign,           dead_horn,       threesuperior ] }; // 3# _³
+    key <AE04> { [             4,        dollar,       dead_currency,            sterling ] }; // 4$ _£
+    key <AE05> { [             5,       percent,                  mu,               U2030 ] }; // 5% µ‰
+    key <AE06> { [             6,   asciicircum,     dead_circumflex,   partialderivative ] }; // 6^ _∂
+    key <AE07> { [             7,     ampersand,          dead_caron,             notsign ] }; // 7& _¬
+    key <AE08> { [             8,      asterisk,         dead_ogonek,            infinity ] }; // 8* _∞
+    key <AE09> { [             9,     parenleft,          dead_breve,      periodcentered ] }; // 9( _·
+    key <AE10> { [             0,    parenright,      dead_abovering,              degree ] }; // 0) _°
+};  //  U2030 - per mille
+
+
+//   *****************************************************************************************
+//  ******                                                                               ******
+//  *****     END of DreymaR's Big Bag addons (Symbol key mappings and "Sym" ergomods)    *****
+//  ******                                                                               ******
+//   *****************************************************************************************

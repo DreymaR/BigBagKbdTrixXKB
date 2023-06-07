@@ -2,11 +2,12 @@
 
 //   *****************************************************************************************
 //  ******                                                                               ******
+//  *****         «  DreymaR's Big Bag of Keyboard Tricks – XKB implementation  »         *****
 //  *****       Colemak layouts - additions, locales and learning steps as variants       *****
 //  *****         by OEystein "DreymaR" Bech-Aase (Bech Gadmar until 2021), 2011-         *****
 //  *****                     The Colemak layout: Shai Coleman, 2006                      *****
 //  ******                                                                               ******
-//  *****************************************************************************************
+//   *****************************************************************************************
 
 default
 // Colemak symbols for xkb on X.Org Server 7.x
@@ -112,7 +113,7 @@ xkb_symbols "cmk_standard" {
 partial alphanumeric_keys
 xkb_symbols "cmk_ed" {
     include "colemak(cmk_ed_letters)"
-    include "colemak(cmk_ed_symbols)"
+    include "symkeys(cmk_ed_symbols)"
     include "level3(ralt_switch)"
     name[Group1]= "English/Intl (Colemak, edition DreymaR)";
 };
@@ -161,67 +162,6 @@ xkb_symbols "cmk_ed_letters" {
 //     include "colemak(cmk_ed_dvh)"
 };
 
-hidden partial alphanumeric_keys
-xkb_symbols "cmk_ed_symbols" {
-    //  Alphanumeric section (number/symbol keys)
-    key <TLDE> { [         grave,    asciitilde,          dead_tilde,               U2248 ] }; // `~ _≈
-    key <AE01> { [             1,        exclam,       dead_belowdot,          exclamdown ] }; // 1! _¡
-    key <AE02> { [             2,            at,           dead_hook,         twosuperior ] }; // 2@ _²
-    key <AE03> { [             3,    numbersign,           dead_horn,       threesuperior ] }; // 3# _³
-    key <AE04> { [             4,        dollar,       dead_currency,            sterling ] }; // 4$ _£
-    key <AE05> { [             5,       percent,                  mu,               U2030 ] }; // 5% µ‰
-    key <AE06> { [             6,   asciicircum,     dead_circumflex,   partialderivative ] }; // 6^ _∂
-    key <AE07> { [             7,     ampersand,          dead_caron,             notsign ] }; // 7& _¬
-    key <AE08> { [             8,      asterisk,         dead_ogonek,            infinity ] }; // 8* _∞
-    key <AE09> { [             9,     parenleft,          dead_breve,      periodcentered ] }; // 9( _·
-    key <AE10> { [             0,    parenright,      dead_abovering,              degree ] }; // 0) _°
-    key <AE11> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
-    key <AE12> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
-    //  U2248 approx equal; U2030 per mille
-    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
-    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
-    //
-    key <AC11> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
-    key <BKSL> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \| _¦
-    // U2032 prime
-    key <LSGT> { [            oe,            OE,              oslash,            Ooblique ] }; // œŒ øØ
-    key <AB08> { [         comma,          less,        dead_cedilla,       lessthanequal ] }; // ,< _≤
-    key <AB09> { [        period,       greater,       dead_abovedot,    greaterthanequal ] }; // .> _≥
-    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
-    //
-//  NOTE: In Linux, CapsLock is tweaked in the Keyboard settings (for freedom of choice etc.)
-//     key <CAPS> { [     BackSpace,     BackSpace,           Caps_Lock,           Caps_Lock ] }; // Caps/Back
-};
-
-//  NOTE:
-//  - Missing: U017F long s; chevrons; horizconnector; wynn/yogh; some African
-//       d-tail; turned Cc/Ee++; latin epsilon/gamma (Berber); italic v;
-//  - Rare/dropped: U25CA lozenge (Mac; rare); kra (deprecated Inuktitut & IPA);
-//       union/intersection/includedin; integral (need a science/math deadkey; use esh in a pinch);
-//       numerosign (mostly Cyrillic; use N + masc.); squareroot (unworkable); function (use hook-f);
-//       U1E9E Capital German SS (disputed); U2033/U2032 double-/prime (cheat w/ acute/doubleacute?!)
-//       U2639/U263A/U27E8/27E9 sadface/smilingface/brackets (poorly implemented)
-//  - Oddly placed?: 'notsign'/'division' (placed by shape/association)?
-//  TODO: Compose/deadkeys: ligatures (fi/fl/ij); fractions/superior/subscripts; latin/IPA/currencies
-//  - For Currency: U2044 solidus/shilling; yen
-//  - For IPA/Latin: U026A/028F SmCap-I/Y; U0251/0252 script-a/turned-script-a; U0283 esh
-//       U028A lat-upsilon; U027E r-flap; U0294 glottal stop;  U025C turned open e
-//  TODO: Make dead_stroke (for d/g/h/l/i/u) work!? Missing in compose files?
-//        Also, l-tilde, s/c/j/z/schwa hook?
-//  TODO: Unused dead_keys: iota, voiced_sound, semivoiced_sound
-//        (could enhance them like Colemak user 'ghen' suggests, for keys 3/4/5?):
-//  TODO: A Maths/science dead key? Latin/IPA? Greek? (Currency exists)
-//  TODO: Add superior/subscript # to dead_acute/grave; fractions to slash/stroke!?
-//      NB: This happens in the compose files under X11/locale, of which there are legion. :(
-//      Can one get away with changing only the various iso8859-# ones? Or just en_US.UTF-8 ?
-//      Since this lies outside the xkb folder, I might just post the code and where to paste it?
-//  TODO: For extra dead key mappings, could dead_abovering and dead_doubleacute be augmented?
-//      Make sure dead_hook has rhotic hooks for schwa and turned epsilon!
-//      Similarly with smallcap letters and their turned counterparts?
-//  TODO: Add IPA (broad English?) somewhere. Too few free slots, so it'll have to be by dead_keys.
-//  TODO: Phonetic 'colemak_curl' layouts with Curl-DH (it's best to rewire the whole layout in this case).
-//  DONE: Add Greek, Kyrillic and Hebrew phonetic Colemak layouts (nice for group 'switch' layout).
-//  DONE: Update the Tarmak and Mirrored layouts when Colemak[eD] is changed, using search-replace.
 
 
 //      ******************************************************
@@ -619,6 +559,7 @@ xkb_symbols "cmk_ed_mirror_special" {
 //      *****  DreymaR: Colemak[eD] - National variants  *****
 //      *****  are in colemak_template - copy to a new   *****
 //      *****  file and find/replace <LANGUAGE>/<LL>     *****
+//      *****  then follow the editing instructions      *****
 //      ******************************************************
 
 

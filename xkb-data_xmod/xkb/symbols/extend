@@ -261,9 +261,13 @@ xkb_symbols "lv5" {
     key <BKSP> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // BackSpace
                     Pause                       , Pause                         ,   // Pause/Break
                     Pause                       , Pause                         ] , // (<BRK> is special)
+//                    BackSpace                   , BackSpace                   ,   // Ctrl+Backspace (by action)
+//                    BackSpace                   , BackSpace                   ] , // If you want Extend+Back to be Ctrl+Back instead
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
                     Redirect(key=<PAUS>,clearmods=LevelFive), Redirect(key=<PAUS>,clearmods=LevelFive) ,
                     NoAction()                  , NoAction()                    ] ,
+//      Redirect(key=<BKSP>,mods=Control,clearmods=LevelFive), Redirect(key=<BKSP>,mods=Shift+Control,clearmods=LevelFive),  // Ctrl+Back
+//      Redirect(key=<BKSP>,mods=Control,clearmods=LevelFive), Redirect(key=<BKSP>,mods=Shift+Control,clearmods=LevelFive)], // Ctrl+Back
                  repeat=yes     };  // BackSpace
 
 //  +=======+==============================+=======+

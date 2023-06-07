@@ -158,7 +158,7 @@ xkb_symbols "colemak" {
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_ks" {
     include "colemak(cmk_ed_letters)"
-    include "colemak(cmk_ed_symbols)"
+    include "symkeys(cmk_ed_symbols)"
     include "level3(ralt_switch)"
     include "epo(colemak)" // remaps only AltGr mappings for Colemak C/G/H/J/S/U
     name[Group1]= "Esperanto (Colemak[eD], keep local symbols)";
@@ -170,7 +170,7 @@ xkb_symbols "cmk_ed_ks" {
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_us" {
     include "colemak(cmk_ed_letters)"
-    include "colemak(cmk_ed_symbols)"
+    include "symkeys(cmk_ed_symbols)"
     include "level3(ralt_switch)"
     name[Group1]= "Esperanto (Colemak[eD], unified symbols)";
 

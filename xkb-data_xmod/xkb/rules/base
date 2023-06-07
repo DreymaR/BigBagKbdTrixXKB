@@ -1308,6 +1308,9 @@
   lv5:caps_switch_lock_cancel     =       +level5(caps_switch_lock_cancel)
   lv5:lctl_switch_lock_cancel     =       +level5(lctl_switch_lock_cancel)
   parens:swap_brackets   =   +parens(swap_brackets)
+  misc:sym_non-wide               =       +symkeys(cmk_ed_sym_non-w)
+  misc:sym_wide-iso               =       +symkeys(cmk_ed_sym_w-iso)
+  misc:sym_wide-ansi              =       +symkeys(cmk_ed_sym_w-ansi)
 
 
 ! option	=	compat

@@ -1007,6 +1007,9 @@
   misc:apl             Enable APL overlay characters
   misc:extend          Enable level5 Extend mappings (home position arrows etc)
   misc:cmk_curl_dh     Colemak Curl(DH) ergo mod
+  misc:sym_non-wide    Sym ergo mod for non-Wide geometry
+  misc:sym_wide-iso    Sym ergo mod for Wide-ISO geometry
+  misc:sym_wide-ansi   Sym ergo mod for Wide-ANSI geometry
   shift:both_capslock  Both Shift together enable Caps Lock
   shift:both_capslock_cancel Both Shift together enable Caps Lock; one Shift key disables it
   shift:both_shiftlock Both Shift together enable Shift Lock

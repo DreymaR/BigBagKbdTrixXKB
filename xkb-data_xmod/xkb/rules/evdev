@@ -984,7 +984,7 @@
   *			lv3:ralt_alt	= +level3(ralt_alt):3
   *			misc:typo 	= +typo(base):3
   *			misc:apl	= +apl(level3):3
-  *			misc:extend 	= +extend(basic):2
+  *			misc:extend 	= +extend(basic):3
 
 ! layout[4]	option	=	symbols
   $threelevellayouts	grp:alts_toggle = +level3(ralt_switch_for_alts_toggle):4
@@ -1195,6 +1195,9 @@
   lv5:caps_switch_lock_cancel     =       +level5(caps_switch_lock_cancel)
   lv5:lctl_switch_lock_cancel     =       +level5(lctl_switch_lock_cancel)
   parens:swap_brackets   =   +parens(swap_brackets)
+  misc:sym_non-wide               =       +symkeys(cmk_ed_sym_non-w)
+  misc:sym_wide-iso               =       +symkeys(cmk_ed_sym_w-iso)
+  misc:sym_wide-ansi              =       +symkeys(cmk_ed_sym_w-ansi)
 
 
 ! option	=	compat
