@@ -15,8 +15,9 @@
 
 // PC models
 ! $pcmodels = pc86 pc101 pc102 pc104 pc104alt pc105 \
-              pc104angle-z pc104wide-qu pc104aw-zqu pc104awing pc105angle pc105aw-sl \
-              pc104curl-z              pc104caw-zqu pc104cawing pc105curl pc105caw-sl
+              pc104angle pc104wide pc104awide pc104awing \
+              pc105angle pc105wide pc105awide            \
+              pc104curl-z          pc104caw-zqu pc104cawing pc105curl pc105caw-sl
 
 // Jolla devices and keyboards
 ! $jollamodels = jollasbj
@@ -160,15 +161,16 @@
   macintosh_old	=	macintosh(old)
  $macs   	=	macintosh
   thinkpadz60	=	xfree86(thinkpadz60)
-  pc104angle-z	=	xfree86(pc104angle-z)
-  pc104wide-qu	=	xfree86(pc104wide-qu)
-  pc104aw-zqu	=	xfree86(pc104aw-zqu)
+  pc104angle	=	xfree86(pc104angle)
+  pc104wide 	=	xfree86(pc104wide)
+  pc104awide	=	xfree86(pc104awide)
   pc104awing	=	xfree86(pc104awing)
   pc104curl-z	=	xfree86(pc104curl-z)
   pc104caw-zqu	=	xfree86(pc104caw-zqu)
   pc104cawing	=	xfree86(pc104cawing)
   pc105angle	=	xfree86(pc105angle)
-  pc105aw-sl	=	xfree86(pc105aw-sl)
+  pc105wide 	=	xfree86(pc105wide)
+  pc105awide	=	xfree86(pc105awide)
   pc105curl		=	xfree86(pc105curl)
   pc105caw-sl	=	xfree86(pc105caw-sl)
   *		=	xfree86

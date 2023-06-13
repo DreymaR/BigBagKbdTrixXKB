@@ -21,8 +21,8 @@ FootStr="Happy xkb-hacking! ~ Øystein 'DreymaR' Bech-Aase"
 ##  NOTE: I made a handy shorthand for activating simple Cmk[eD] model/layout combos.
 ##  	 See the help text of this script for more info on the model-locale-symbols syntax.
 ##  	 Example: '5w no us' activates model pc105aw-sl, layout no(cmk_ed_us)
-##  	 Models: 4n 4a(pc104angle-z) 4w(pc104wide-qu) 4aw(pc104aw-zqu) 4f(pc104awing)
-##  	         5n 5a(pc105angle) 5w/5aw(pc105aw-sl)
+##  	 Models: 4n 4a(pc104angle) 4w(pc104wide) 4aw(pc104awide) 4f(pc104awing)
+##  	         5n 5a(pc105angle) 5w(pc105wide) 5aw(pc105awide)
 ##  	     - Curl(DH) "models" add a 'c', like this: 4c, 5caw etc
 ##  	     - Thus, the allowed model short strings are (4|5)(n|a|c|ca)[(w|f)]
 ##  	 XKB options are left out of this: Too complex (e.g., replace or append?)
@@ -38,8 +38,8 @@ X11DIR='/usr/share/X11'; [ -d "${X11DIR}" ] || X11DIR='/usr/lib/X11'
 XKBDIR="${X11DIR}/xkb"  		# The default X11 xkb dir
 XKBLOC="./xkb-data_xmod/xkb"  	# The default local xkb dir in this repo
 
-#~ XKBmodel=pc104aw-zqu  		# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
-XKBmodel=pc105aw-sl 			# ISO-105 keyboard w/ CurlAngleWide(Slash) mod
+#~ XKBmodel=pc104awide  		# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
+XKBmodel=pc105awide 			# ISO-105 keyboard w/ CurlAngleWide(Slash) mod
 #~ XKBlayout='us(cmk_ed_us),gr(colemak),ru(colemak)'	# Multiple layouts
 XKBlayout='us(cmk_ed_us)' 		# US English Colemak[eD]'Universal Symbols' layout
 XKBoption='misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu'
@@ -154,19 +154,20 @@ shift $(( $OPTIND - 1 ))							# Remove already processed args
 if [ -n "${SetXStr}" ]; then 						# Use ShortString notation
 	case ${SetXStr[0]} in
 		 4n|4c)       XKBmodel='pc104'  		;;	# Generic ANSI-101/104-key
-		 4a|4ca)      XKBmodel='pc104angle-z' 	;;	# w/ Angle(Z) ergo mod
-		 4w|4cw)      XKBmodel='pc104wide-qu' 	;;	# w/ Wide(Quote) ergo mod
-		 4aw|4caw)    XKBmodel='pc104aw-zqu' 	;;	# w/ Angle(Z)Wide(Quote) ergo mod
+		 4a|4ca)      XKBmodel='pc104angle' 	;;	# w/ Angle(Z) ergo mod
+		 4w|4cw)      XKBmodel='pc104wide'  	;;	# w/ Wide(Quote) ergo mod
+		 4aw|4caw)    XKBmodel='pc104awide' 	;;	# w/ Angle(Z)Wide(Quote) ergo mod
 		 4f|4af|4cf)  XKBmodel='pc104awing' 	;;	# w/ AngleWing(Quote) ergo mod
 
 		 5n|5c)       XKBmodel='pc105'  		;;	# Generic ISO-102/105-key
 		 5a|5ca)      XKBmodel='pc105angle' 	;;	# w/ Angle(LSGT) ergo mod
-		 5w|5aw|5caw) XKBmodel='pc105aw-sl' 	;;	# w/ AngleWide(Slash) ergo mod
+		 5w|5cw)      XKBmodel='pc105wide'  	;;	# w/ Wide(Slash) ergo mod
+		 5aw|5caw)    XKBmodel='pc105awide' 	;;	# w/ AngleWide(Slash) ergo mod
 
 		  *)	MyError "ShortStr model '${SetXStr[0]}' unknown!" ;;
 	esac
 	##case ${SetXStr[0]} in # eD WIP: Check for Sym mods, add as option. Can we do a search for s in the string?
-	##  Also double the model checks above.
+	##  Need different mod variants (options) for `ws` and non-Wide `s`.
 	##  Can we lop of 4/5 first, and make a model string 'pc10#' based on that, to simplify the above?
 	##  Can we search for c and s separately in the string? The c will be first after 4/5, and s at the end.
 	if [ -n "${SetXStr[2]}" ]; then 				# If there are three parts, ...
@@ -260,7 +261,7 @@ exit 0
 ##  Colemak[eD] US layout,
 ##  Extend mappings w/ Caps switch:
 #~ setxkbmap \
-#~ -model pc104wide-qu, \
+#~ -model pc104wide, \
 #~ -layout "us(cmk_ed_us)", \
 #~ -option "misc:extend,lv5:caps_switch_lock"
 

@@ -5,12 +5,12 @@
   pc104           Generic 104-key PC
   pc104alt        Generic 104-key PC with L-shaped Enter key
   pc105           Generic 105-key PC
-  pc104angle-z    Generic 104-key PC Angle(Z)Ergo
-  pc104wide-qu    Generic 104-key PC Wide(Quote)Ergo
-  pc104aw-zqu     Generic 104-key PC Angle(Z)Wide(Quote)Ergo
-  pc104awing      Generic 104-key PC AngleWing(Quote)Ergo
-  pc105angle      Generic 105-key PC (intl.) Angle_Ergo
-  pc105aw-sl      Generic 105-key PC (intl.) AngleWide(/)Ergo
+  pc104angle      Generic 104-key PC Angle(Z) Ergo
+  pc104wide       Generic 104-key PC Wide Ergo
+  pc104awide      Generic 104-key PC Angle(Z)Wide Ergo
+  pc105angle      Generic 105-key PC (intl.) Angle Ergo
+  pc105wide       Generic 105-key PC (intl.) Wide Ergo
+  pc105awide      Generic 105-key PC (intl.) AngleWide Ergo
   dell101         Dell 101-key PC
   latitude        Dell Latitude laptop
   dellm65         Dell Precision M65 laptop

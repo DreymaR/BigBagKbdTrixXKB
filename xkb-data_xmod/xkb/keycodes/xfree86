@@ -413,7 +413,7 @@ xkb_keycodes "thinkpadz60" {
 
 //  >>--> OEystein "DreymaR" Bech-Aase (formerly Bech Gadmar), 2017: Additions to xkb/keycodes/xfree86
 // pc104_Angle(Z) ergonomic mod (by DreymaR, 2011)
-xkb_keycodes "pc104angle-z" {
+xkb_keycodes "pc104angle" {
 
     <AB02> =  52;	// X	<  Z
     <AB03> =  53;	// C	<  X
@@ -425,7 +425,7 @@ xkb_keycodes "pc104angle-z" {
 };
 
 // pc104_Wide(Quote) ergonomic mod (by DreymaR, 2013)
-xkb_keycodes "pc104wide-qu" {
+xkb_keycodes "pc104wide" {
 
     include "xfree86(pc104wide-rightpart)"
     include "xfree86(pc104wide-midpart)"
@@ -433,11 +433,11 @@ xkb_keycodes "pc104wide-qu" {
 };
 
 // pc104_Angle(Z)Wide(Quote) ergonomic mod (by DreymaR, 2013)
-xkb_keycodes "pc104aw-zqu" {
+xkb_keycodes "pc104awide" {
 
     include "xfree86(pc104wide-rightpart)"
     include "xfree86(pc104wide-midpart)"
-    augment "xfree86(pc104angle-z)"
+    augment "xfree86(pc104angle)"
 };
 
 // pc104_AngleWing(Quote) ergonomic mod (by DreymaR, 2015)
@@ -529,14 +529,14 @@ xkb_keycodes "pc105angle" {
 };
 
 // pc105_AngleWide(Slash) ergonomic mod (by DreymaR, 2011)
-xkb_keycodes "pc105aw-sl" {
+xkb_keycodes "pc105awide" {
 
-    include "xfree86(pc105wide-rightpart)"
+    include "xfree86(pc105wide)"
     augment "xfree86(pc105angle)"
 };
 
-// pc105_Wide(Slash) partial ergonomic mod (by DreymaR, 2011)
-xkb_keycodes "pc105wide-rightpart" {
+// pc105_Wide(Slash) ergonomic mod (by DreymaR, 2011)
+xkb_keycodes "pc105wide" {
 
     <AE12> =  16;	// =	<  7
     <AE07> =  17;	// 7	<  8

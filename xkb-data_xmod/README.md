@@ -28,6 +28,14 @@ Note that the `base` and `evdev` rules are compiled slightly differently, so I p
 
 TODO:
 -----
+* Rework ergo model names.
+	- I'd like to use a model string `pc104`/`pc105` in setkb, which would simplify the case search in `SetXStr`.
+	- Then, the mods should have the same names, e.g., `pc104awide`/`pc105awide` instead of `pc104aw-zqu`/`pc105aw-sl`.
+	- Use `#angle`, `#wide`, `#awide` (and pc104awing).
+	- Is there currently no ISO-Wide option? No. That's because the Angle mod is "mandatory". But still, for consistency.
+	- Hide the AWing option from menus? It's pretty arcane and not really recommended.
+	- The `pc105curl` model is actually a CurlAngle model, and thus badly named. Fix. All the Curl models seem messy?
+
 * Sym mod implementation
 	- The Sym mod should not be implemented as hard/model; it must not rearrange Extend.
 	- Better to make a new symbols/symbolkeys file, and put all symbol key definitions in there.
@@ -43,9 +51,6 @@ TODO:
 
 * Lockable lv5 modifier, for users who want Extend-lock. Maybe Shift+Extend to lock it, or something?
 	- It's possible today to have two switch-or-lock lv5 modifiers. But it seems wasteful to use up two keys.
-
-* Non-Fn-key Extend is now the default. Add a separate option for FKey Extend? Many new users struggled with this, or have weird FKey setups.
-	- Add a FKey Extend option to misc? So people can activate `misc:extend` and `misc:extend_fk` separately.
 
 * Add colemak-dh to the colemak symbols file and the US locale? Both ISO, ANSI and Ortho.
 	- Would it be "allowable" to actually move both default and dh colemak _into_ the symbols/colemak file now?
@@ -161,6 +166,11 @@ HOLD:
 * Rulemak (ru) has its own entry now, by its creator GHen (Geert Hendrickx). Bulmak (bg) is still provided in the BigBag.
 	- There exists a ru(Polish) BigBag entry, copied over from pl. I think someone asked for it at some point?
 	- It allows writing latinized Slavic for Colemak users. It is not defined in rules but can be used by the command line.
+
+* Non-Fn-key Extend is now the default. Add a separate option for FKey Extend?
+	- Many new users struggled with Extend overriding `Ctrl+Alt+FK##` TTY server control keys, or other FKey setups they were using.
+	- Add a FKey Extend option to misc? So people can activate `misc:extend` and `misc:extend_fk` separately.
+	- I already added `Extend+AltGr+FK##` mappings so even with FK Extend you have TTY hotkeys. But they aren't on by default now.
 <br>
 
 

@@ -15,8 +15,9 @@
 
 // PC models
 ! $pcmodels = pc86 pc101 pc102 pc104 pc104alt pc105 \
-              pc104angle-z pc104wide-qu pc104aw-zqu pc104awing pc105angle pc105aw-sl \
-              pc104curl-z              pc104caw-zqu pc104cawing pc105curl pc105caw-sl
+              pc104angle pc104wide pc104awide pc104awing \
+              pc105angle pc105wide pc105awide            \
+              pc104curl-z          pc104caw-zqu pc104cawing pc105curl pc105caw-sl
 
 // Jolla devices and keyboards
 ! $jollamodels = jollasbj
@@ -98,16 +99,17 @@
  $jollamodels   =       evdev+jolla(jolla)
   olpc          =       evdev+olpc(olpc)
   olpcm         =       evdev+olpc(olpcm)
-  pc104angle-z	=	evdev(pc104angle-z)
-  pc104wide-qu	=	evdev(pc104wide-qu)
-  pc104aw-zqu	=	evdev(pc104aw-zqu)
+  pc104angle	=	evdev(pc104angle)
+  pc104wide 	=	evdev(pc104wide)
+  pc104awide	=	evdev(pc104awide)
   pc104awing	=	evdev(pc104awing)
   pc104curl-z	=	evdev(pc104curl-z)
   pc104caw-zqu	=	evdev(pc104caw-zqu)
   pc104cawing	=	evdev(pc104cawing)
   pc105angle	=	evdev(pc105angle)
-  pc105aw-sl	=	evdev(pc105aw-sl)
-  pc105curl		=	evdev(pc105curl)
+  pc105wide 	=	evdev(pc105wide)
+  pc105awide	=	evdev(pc105awide)
+  pc105curl 	=	evdev(pc105curl)
   pc105caw-sl	=	evdev(pc105caw-sl)
   *		=	evdev
 
