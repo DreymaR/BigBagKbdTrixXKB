@@ -15,8 +15,8 @@
 
 // PC models
 ! $pcmodels = pc86 pc101 pc102 pc104 pc104alt pc105 \
-              pc104angle pc104wide pc104awide pc104awing \
-              pc105angle pc105wide pc105awide            \
+              pc104angle pc104-wide pc104awide pc104awing \
+              pc105angle pc105-wide pc105awide            \
               pc104curl-z          pc104caw-zqu pc104cawing pc105curl pc105caw-sl
 
 // Jolla devices and keyboards
@@ -162,14 +162,14 @@
  $macs   	=	macintosh
   thinkpadz60	=	xfree86(thinkpadz60)
   pc104angle	=	xfree86(pc104angle)
-  pc104wide 	=	xfree86(pc104wide)
+  pc104-wide	=	xfree86(pc104-wide)
   pc104awide	=	xfree86(pc104awide)
   pc104awing	=	xfree86(pc104awing)
   pc104curl-z	=	xfree86(pc104curl-z)
   pc104caw-zqu	=	xfree86(pc104caw-zqu)
   pc104cawing	=	xfree86(pc104cawing)
   pc105angle	=	xfree86(pc105angle)
-  pc105wide 	=	xfree86(pc105wide)
+  pc105-wide	=	xfree86(pc105-wide)
   pc105awide	=	xfree86(pc105awide)
   pc105curl		=	xfree86(pc105curl)
   pc105caw-sl	=	xfree86(pc105caw-sl)
@@ -1311,8 +1311,8 @@
   lv5:lctl_switch_lock_cancel     =       +level5(lctl_switch_lock_cancel)
   parens:swap_brackets   =   +parens(swap_brackets)
   misc:sym_non-wide               =       +symkeys(cmk_ed_sym_non-w)
-  misc:sym_wide-iso               =       +symkeys(cmk_ed_sym_w-iso)
-  misc:sym_wide-ansi              =       +symkeys(cmk_ed_sym_w-ansi)
+  misc:sym_wide-104               =       +symkeys(cmk_ed_sym_w-104)
+  misc:sym_wide-105               =       +symkeys(cmk_ed_sym_w-105)
 
 
 ! option	=	compat

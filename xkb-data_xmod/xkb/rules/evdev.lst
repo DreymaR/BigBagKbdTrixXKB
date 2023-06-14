@@ -6,10 +6,10 @@
   pc104alt        Generic 104-key PC with L-shaped Enter key
   pc105           Generic 105-key PC
   pc104angle      Generic 104-key PC Angle(Z) Ergo
-  pc104wide       Generic 104-key PC Wide Ergo
+  pc104-wide      Generic 104-key PC Wide Ergo
   pc104awide      Generic 104-key PC Angle(Z)Wide Ergo
   pc105angle      Generic 105-key PC (intl.) Angle Ergo
-  pc105wide       Generic 105-key PC (intl.) Wide Ergo
+  pc105-wide      Generic 105-key PC (intl.) Wide Ergo
   pc105awide      Generic 105-key PC (intl.) AngleWide Ergo
   dell101         Dell 101-key PC
   latitude        Dell Latitude laptop
@@ -1008,8 +1008,8 @@
   misc:extend          Enable level5 Extend mappings (home position arrows etc)
   misc:cmk_curl_dh     Colemak Curl(DH) ergo mod
   misc:sym_non-wide    Sym ergo mod for non-Wide geometry
-  misc:sym_wide-iso    Sym ergo mod for Wide-ISO geometry
-  misc:sym_wide-ansi   Sym ergo mod for Wide-ANSI geometry
+  misc:sym_wide-104    Sym ergo mod for Wide-ANSI geometry
+  misc:sym_wide-105    Sym ergo mod for Wide-ISO geometry
   shift:both_capslock  Both Shift together enable Caps Lock
   shift:both_capslock_cancel Both Shift together enable Caps Lock; one Shift key disables it
   shift:both_shiftlock Both Shift together enable Shift Lock

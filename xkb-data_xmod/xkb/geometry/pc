@@ -1026,7 +1026,7 @@ xkb_geometry "pc104angle" {
 };  // End of "pc104angle" geometry
 
 //  pc104_Wide(Quote) ergonomic mod (by DreymaR, 2013)
-xkb_geometry "pc104wide" {
+xkb_geometry "pc104-wide" {
     include "pc(pc104)"
     description= "Generic 104 - Wide Ergo mod";
 
@@ -1069,11 +1069,11 @@ xkb_geometry "pc104wide" {
 	    };
 	};  // End of bottom row
     };  // End of "Alpha" section
-};  // End of "pc104wide" geometry
+};  // End of "pc104-wide" geometry
 
 //  pc104_Angle(Z)Wide(Quote) ergonomic mod (by DreymaR, 2015)
 xkb_geometry "pc104awide" {
-    include "pc(pc104wide)"
+    include "pc(pc104-wide)"
     description= "Generic 104 - Angle(Z)Wide Ergo mod";
 
     section.left= 19;
@@ -1184,7 +1184,7 @@ xkb_geometry "pc105curl" {
 };  // End of "pc105curl" geometry
 
 //  pc105_Wide(Slash) ergonomic mod (by DreymaR, 2011)
-xkb_geometry "pc105wide" {
+xkb_geometry "pc105-wide" {
     include "pc(pc105)"
     description= "Generic 105 - Wide Ergo mod";
 
@@ -1227,11 +1227,11 @@ xkb_geometry "pc105wide" {
 	    };
 	};  // End of bottom row
     };  // End of "Alpha" section
-};  // End of "pc105wide" geometry
+};  // End of "pc105-wide" geometry
 
 //  pc105_AngleWide(Slash) ergonomic mod (by DreymaR, 2011)
 xkb_geometry "pc105awide" {
-    include "pc(pc105wide)"
+    include "pc(pc105-wide)"
     description= "Generic 105 - AngleWide Ergo mod";
 
     section.left= 19;

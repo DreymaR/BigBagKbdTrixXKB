@@ -54,7 +54,7 @@
     </model>
     <model>
       <configItem>
-        <name>pc104wide</name>
+        <name>pc104-wide</name>
         <description>Generic 104-key PC (Wide Ergo mod)</description>
         <vendor>Generic</vendor>
       </configItem>
@@ -75,7 +75,7 @@
     </model>
     <model>
       <configItem>
-        <name>pc105wide</name>
+        <name>pc105-wide</name>
         <description>Generic 105-key PC (intl.) (Wide Ergo mod)</description>
         <vendor>Generic</vendor>
       </configItem>
@@ -8277,14 +8277,14 @@
       </option>
       <option>
         <configItem>
-          <name>misc:sym_wide-iso</name>
-          <description>Sym ergo mod for Wide-ISO geometry</description>
+          <name>misc:sym_wide-104</name>
+          <description>Sym ergo mod for Wide-ANSI geometry</description>
         </configItem>
       </option>
       <option>
         <configItem>
-          <name>misc:sym_wide-ansi</name>
-          <description>Sym ergo mod for Wide-ANSI geometry</description>
+          <name>misc:sym_wide-105</name>
+          <description>Sym ergo mod for Wide-ISO geometry</description>
         </configItem>
       </option>    <!--  <-<  DreymaR  -->
       <option>
