@@ -49,6 +49,7 @@ XRunDir=${XKBDIR}   				# (-d) The xkb-type dir to run setxkbmap from
 AddCmdYN='no'   					# (-a) Add setxkbmap cmd to file?
 AddDefault="${HOME}/.bashrc"
 AddCmdTo=${AddDefault}  			# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
+PrntCmd='no' 						# (-p) Print the setxkbmap command instead of running it?
 ArgStr='' #'5caws us us' 			# (--) Shortcut string for setkb (model locale eD-variant)
 ##  NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
@@ -65,6 +66,7 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 "[-k] Keep old XKB server(s)    - '${KeepXKM}' [toggle, no arg.]\n"\
 "[-a] Add cmd line to file?     - '${AddCmdYN}' [toggle, no arg.]\n"\
 "[-f]   <file> to add cmd to    - '${AddCmdTo}'\n"\
+"[-p] Print cmd; don't run it   - '${PrntCmd}'\n"\
 "[--] <ShortStr>                - '${ArgStr}'\n"\
 "\nSpecify '-d-' to run from the local repo directory w/o installing.\n"\
 "\n\e[1mShortStr syntax, defining eD model+layout as a short split string:\e[0m\n"\
@@ -127,11 +129,11 @@ MyCD()
 	OldDir=`pwd`
 	NewDir=${1:-`pwd`}
 	cd ${NewDir} \
-		&& MyPoint "Changed dir to '${NewDir}'" || MyError "Change to '${NewDir}' failed"
+		&& MyPoint "Changing dir to '${NewDir}'" || MyError "Change to '${NewDir}' failed"
 }
 
 #~ if [ "$#" == 0 ]; then PrintHelpAndExit 2; fi 				# No args
-while getopts "m:l:o:v:d:f:akh?" cmdarg; do
+while getopts "m:l:o:v:d:f:pakh?" cmdarg; do
 	case $cmdarg in
 		m)  	XKBmodel="$OPTARG"  	;;
 		l)  	XKBlayout="$OPTARG" 	;;
@@ -139,6 +141,7 @@ while getopts "m:l:o:v:d:f:akh?" cmdarg; do
 		v)  	Verbosity="$OPTARG" 	;;
 		d)  	XRunDir="$OPTARG"   	;;
 		f)  	AddCmdTo="$OPTARG"  	;;
+		p)  	PrntCmd='yes'   		;;
 		a)  	AddCmdYN='yes'  		;;
 		k)  	KeepXKM='yes'   		;;
 		h)  	PrintHelpAndExit 0  	;;
@@ -150,20 +153,20 @@ done
 shift $(( $OPTIND - 1 ))								# Remove already processed args
 [[ "${XRunDir}" == '-' ]] && XRunDir="${XKBLOC}"    	# Use the default local dir
 
-[[ "$@" == "" ]] || ArgStr=($@) 						# Split the ShortString, if present
+[[ "$@" == "" ]] || ArgStr=($@) 							# Split the ShortString, if present
 if [ -n "${ArgStr}" ]; then 									# Use ShortString notation
 	ModStr="${ArgStr[0]}"
 	KbdStr="${ModStr:0:1}"     ; ModStr="${ModStr:1}"   		# 1st chr = Kbd type: 4/5 for ANSI/ISO
-	[[ "${ModStr:0:1}" == 'c' ]] && DH-Mod='y' || DH-Mod='n' 	# 2nd chr may be 'c' for the Curl mod
-	[[ ${DH-Mod}    == 'y' ]] && ModStr="${ModStr:1}"   		#   (remove the found character)
+	[[ "${KbdStr}" =~ [45] ]] || MyError "Kbd model 'pc10${KbdStr}' unknown!"
+	[[ "${ModStr:0:1}" == 'c' ]] && DH_Mod='y' || DH_Mod='n' 	# 2nd chr may be 'c' for the Curl mod
+	[[ ${DH_Mod}    == 'y' ]] && ModStr="${ModStr:1}"   		#   (remove the found character)
 	[[ "${ModStr: -1}" == 's' ]] && SymMod='y' || SymMod='n' 	# Last chr may be 's' for the Sym mod
 	if [[ ${SymMod} == 'y' ]]; then
 		ModStr="${ModStr:: -1}"
-		if [[ "${ModStr}" =~ 'w' ]]; then   					# Sort out Sym variants
-			case "#{KbdStr}" in
+		if [[ "${ModStr}" =~ [w] ]]; then   					# Sort out Sym variants
+			case "${KbdStr}" in
 				  4)    SymStr='wide-104'   	;;  			# symkeys(sym_w-104)
 				  5)    SymStr='wide-105'   	;;  			# symkeys(sym_w-105)
-				  *)    MyError "Kbd model 'pc10${KbdStr}' unknown!" ;;
 			esac
 		else
 				        SymStr='non-wide'   					# symkeys(sym_non-w)
@@ -171,7 +174,7 @@ if [ -n "${ArgStr}" ]; then 									# Use ShortString notation
 		SymStr="sym_${SymStr}"
 	fi
 	case "${ModStr}" in
-		  n)    ModStr=''       	;;  						# Generic pc104(ANSI)/pc105(ISO) kbd
+		  n|'') ModStr=''       	;;  						# Generic pc104(ANSI)/pc105(ISO) kbd
 		  a)    ModStr='angle'  	;;  						# w/ Angle     ergo mod
 		  w)    ModStr='-wide'  	;;  						# w/      Wide ergo mod
 		  aw)   ModStr='awide'  	;;  						# w/ AngleWide ergo mod
@@ -179,7 +182,7 @@ if [ -n "${ArgStr}" ]; then 									# Use ShortString notation
 		  *)    MyError "ShortStr model '${ArgStr[0]}' unknown!" ;;
 	esac
 	XKBmodel="pc10${KbdStr}${ModStr}"   						# Kbd type and Angle/Wide define xkb model
-	[[ ${DH-Mod} == 'y' ]] && XKBoption+=',misc:cmk_curl_dh' 	# Curl-DH is an XKB option
+	[[ ${DH_Mod} == 'y' ]] && XKBoption+=',misc:cmk_curl_dh' 	# Curl-DH is an XKB option
 	[[ ${SymMod} == 'y' ]] && XKBoption+=",misc:${SymStr}"  	# Sym mod is an XKB option
 
 	if [ -n "${ArgStr[2]}" ]; then  					# If there are three parts, ...
@@ -194,7 +197,8 @@ if [ -n "${ArgStr}" ]; then 									# Use ShortString notation
 	if [ -n "${ArgStr[1]}" ]; then  					# If there are two or more parts, ...
 		XKBlayout="${ArgStr[1]}($XKBvar)"   			# ...use the lay(var) string. 
 	else 												# Otherwise, use existing layout.
-		XKBlayout=`setxkbmap -query | grep layout | awk '{print $2}'`
+		[[ XKBlayout=`setxkbmap -query | grep layout | awk '{print $2}'` ]] \
+		|| XKBlayout='us'   							# If not found, default to the US locale
 	fi
 fi
 ##  TODO: Also set the right Extend variant option for Curl, when it gets implemented.
@@ -204,7 +208,9 @@ fi
 MyMsg "$HeadStr"
 #~ MyCD "${XKBpath%/}/${XRunDir%/}"
 if [ -n "${ArgStr}" ]; then
-	MyPoint "Using model/layout '$XKBmodel'/'$XKBlayout' from ShortStr"
+	MyPoint "ShortStr model/layout: ${XKBmodel} / ${XKBlayout}"
+	MyPoint "ShortStr lay. options: Curl(DH) - '${DH_Mod}'; Sym - '${SymMod}'."
+	MyEcho
 fi
 
 MyCD "${XRunDir%/}"  									# Change to the xkb dir first
@@ -225,16 +231,21 @@ fi
 ##  Clear the xkb options (to avoid duplicates)
 setxkbmap -option ''
 
-##  Run the actual setxkbmap command
+##  Run or print out the actual setxkbmap command
+[[ ${PrntCmd} == 'yes' ]] && RunPrt='Printing' || RunPrt='Running'
 SetXKB="-model ${XKBmodel} -layout ${XKBlayout} -option ${XKBoption}"
 if [ ${XRunDir} == ${XKBDIR} ]; then
-	MyPoint "Running setxkbmap with the system XKB dir:\n"
+	MyPoint "${RunPrt} setxkbmap command with the system XKB dir:\n"
 	OptXKB="-v ${Verbosity}"  	# Note: Verbosity doesn't work well with -print
 else
-	MyPoint "Running setxkbmap with a local XKB dir:\n" 	# . is the local dir
+	MyPoint "${RunPrt} setxkbmap command with a local XKB dir:\n" 	# . is the local dir
 	OptXKB="-print | xkbcomp -I -I. -I${XKBDIR} $DISPLAY 2>/dev/null"   # Wasn't there a hyphen before $DISPLAY?
 fi
-setxkbmap $SetXKB $OptXKB
+if [ ${PrntCmd} == 'yes' ]; then
+	MyEcho "setxkbmap ${SetXKB} ${OptXKB}"
+else
+	setxkbmap ${SetXKB} ${OptXKB}
+fi
 MyEcho ""
 
 ##  Add the setxkbmap command to a file, if specified. Note the quotes necessary for FileXKB.

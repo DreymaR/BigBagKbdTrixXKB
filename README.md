@@ -61,7 +61,7 @@ localectl
 ---------
 * You can use the `localectl set-x11-keymap` command to make changes persistent; you may have to run it with `sudo` privileges
 * Syntax: `[sudo] localectl [--no-convert] set-x11-keymap layout [model [variant [options]]]`
-* Example: `sudo localectl set-x11-keymap us pc105aw-sl cmk_ed_us "lv5:caps_switch_lock,misc:extend"`
+* Example: `sudo localectl set-x11-keymap us pc105awide cmk_ed_us "lv5:caps_switch_lock,misc:extend"`
 * For `layout` and `[variant]`, you can use for instance `"us,us"` and `"cmk_ed_us,"` to switch between Cmk-eD and the default us layout
 * Unfortunately, you can't switch between multiple models nor options this way – so your QWERTY may have the Angle (and Curl!) mods...
 * Add `--no-convert` to not convert between closest matching console and X11 keyboard mappings; this precludes applying as system console mapping
@@ -89,15 +89,14 @@ input * {
 }
 ```
 
-And, here's one for Hyprland:
+And here's one for Hyprland's `~/.config/hypr/hyprland` file:
 ```
 input {
     kb_rules=evdev
-    kb_model=pc105aw-sl
+    kb_model=pc105awide
     kb_layout=us
     kb_variant=cmk_ed_us
     kb_options=misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu,misc:cmk_curl_dh 
-    
     repeat_rate=40
     repeat_delay=200
 }

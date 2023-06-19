@@ -25,23 +25,32 @@ They work just fine with nearly all other versions and distros, though.
 Note that the `base` and `evdev` rules are compiled slightly differently, so I provide both. Their `.lst` and `.xml` counterparts are identical/aliases.
 <br>
 
+FIXD:
+-----
+* The setkb.sh script wasn't working as it should. It got an error saying, e.g., "model pc104 doesn't exist".
+	- Shortstrs like `4ns` and `5cas` worked, as did `4aw` or `5w`. `4ws` didn't; gave "pc104/pc105 doesn't exist" errors.
+	- Identified these bugs: `DH-Mod` -> `DH_Mod` && "#{ModStr}" -> "${ModStr}".
+	- Furthermore, the layout was empty if setkb.sh can't run the setxkbmap cmd to determine layout.
+		- Added a conditional to see if the command was run successfully or default to 'us'
+	- Furthermore, the variant defaults to 'cmk_ed_us' instead of 'basic'? Because of a default setting, or what? It's OK though.
+	- Models `5s`, `5c` or `5cs` still not working, giving errors like `5s doesn't exist`. `5ns` worked.
+		- The error was not having a case model for the empty string ''.
+	- Giving a weird KbdStr could lead to weirdness. Now it gives an error message.
+<br>
+
+2FIX:
+-----
+* WSL1 uses xorg rules. I've only prepared for evdev and base. How to solve that? But xorg -> base by link!
+	- Is there another reason, then, that setxkbmap can't see my changes? The files are installed.
+
+* Local dir by setkb.sh isn't working?
+<br>
+
 
 TODO:
 -----
-* Rework ergo model names.
-	- I'd like to use a model string `pc104`/`pc105` in setkb, which would simplify the case search in `SetXStr`.
-	- Then, the mods should have the same names, e.g., `pc104awide`/`pc105awide` instead of `pc104aw-zqu`/`pc105aw-sl`.
-	- Use `#angle`, `#wide`, `#awide` (and pc104awing).
-	- Is there currently no ISO-Wide option? No. That's because the Angle mod is "mandatory". But still, for consistency.
-	- Hide the AWing option from menus? It's pretty arcane and not really recommended.
-	- The `pc105curl` model is actually a CurlAngle model, and thus badly named. Fix. All the Curl models seem messy?
-
-* Sym mod implementation
-	- The Sym mod should not be implemented as hard/model; it must not rearrange Extend.
-	- Better to make a new symbols/symbolkeys file, and put all symbol key definitions in there.
-	- That'd be nice for any other (not too radical) alt-layouts as well, I should think?
-	- Then select sym mod according to wide status, as an option.
-	- Update setkb.sh to handle all that.
+* The `pc105curl` model is actually a CurlAngle model, and thus badly named. Fix?!
+	- All the Curl models seem messy? What was I thinking? But maybe to avoid the option thing, they could still be useful?
 
 * Better instructions for Wayland?
 	- Depends on your Wayland Compositor (Sway is common?)
@@ -80,8 +89,6 @@ TODO:
 
 * Check out the compose:102 option. This would be similar to what I've used in EPKL for Windows! It's also present in some other layouts.
 	- Add compose:102 in the default setkb options? Inconsistent between ISO and ANSI, just add a pro-tip?
-
-* Echo the setxkbmap command when using setkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping.
 
 * Add a localectl option to setkb.sh? So people can choose that or setxkbmap. Eventually, even more variants such as Sway?
 
@@ -176,7 +183,20 @@ HOLD:
 
 DONE:
 -----
-* Update xkb-data to 2.35.1.1 as of 2023-05-31 (package updated 2022-04-05)
+* Echo the setxkbmap command when using setkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping?
+
+* Reworked ergo model names.
+	- Mods should have modularly related names, e.g., `pc104awide`/`pc105awide` instead of `pc104aw-zqu`/`pc105aw-sl`.
+	- Converted, therefore, to `#angle`, `#wide`, `#awide` (and the "arcane" `pc104awing`, now hidden from menus).
+
+* Sym mod implementation.
+	- The Sym mod can not be implemented as hard/model, as it must not rearrange Extend. Like Curl, it is an `option` mod.
+	- Made a symbols/symkeys file, and put all symbol key definitions in there.
+	- There are `non-wide`, `wide-104` and `wide-105` variants. The latter two build on the Colemak-Wide ergo mods.
+	- The `setkb.sh` script is updated to handle these with an `s` shortstr syntax, so it respects `caws` nomenclature.
+	- This should be nice for use with any other layouts that don't touch symbol keys as well! Even QWERTY.
+
+* Update xkb-data to 2.35.1.1 as of 2023-05-31 (package updated 2022-04-05).
 	- The [freedesktop.org GitLab repo][XKBgitLb] is the freshest there is? But it has the rules in raw/uncompiled format.
 	- So, instead use the [Debian Sid xkb-data package][XKB-DebS] which is the most updated one in actual use.
 	- Add the patch that fixes the hobbled Colemak (LatAm, Colemak for Gaming) variant
