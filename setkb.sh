@@ -29,28 +29,29 @@ FootStr="Happy xkb-hacking! ~ Øystein 'DreymaR' Bech-Aase"
 
 ##  ----------  init  ----------------------------------------------------------------------
 
-#~ MyDATE=`date +"%Y-%m-%d_%H-%M"`
+MyDATE=`date +"%Y-%m-%d_%H-%M"`
 MyNAME=`basename $0`
-#~ MyPATH=`dirname $0`
+MyPATH=`dirname $0`
+#~ MyPATH=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")  	# Alone, dirname gives relative paths like `.`
 ##  @@@ The default X11 dir under Debian/Ubuntu/etc is /usr/share/X11  @@@
 ##  @@@ The default X11 dir under some (older) distros is /usr/lib/X11 @@@
 X11DIR='/usr/share/X11'; [ -d "${X11DIR}" ] || X11DIR='/usr/lib/X11'
-XKBDIR="${X11DIR}/xkb"  			# The default X11 xkb dir
-XKBLOC='./xkb-data_xmod/xkb'    	# The default local xkb dir in this repo
+XKBDIR="${X11DIR}/xkb"  					# The default X11 xkb dir
+XKBLOC='./xkb-data_xmod/xkb'    			# The default local xkb dir in this repo
 
-#~ XKBmodel=pc104awide  			# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
-XKBmodel=pc105awide 				# ISO-105 keyboard w/ CurlAngleWide(Slash) mod
+#~ XKBmodel=pc104awide  					# ANSI-104 keyboard w/ Angle(Z)Wide(Quote) mod
+XKBmodel=pc105awide 						# ISO-105 keyboard w/ CurlAngleWide(Slash) mod
 #~ XKBlayout='us(cmk_ed_us),gr(colemak),ru(colemak)'	# Multiple layouts
-XKBlayout='us(cmk_ed_us)'   		# US English Colemak[eD]'Universal Symbols' layout
+XKBlayout='us(cmk_ed_us)'   				# US English Colemak[eD]'Universal Symbols' layout
 XKBoption='misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu'
-Verbosity=9 						# (-v) How much info should setxkbmap print out?
-KeepXKM='no' 						# (-k) Retain old /var/lib/xkb/server-*.xkm files?
-XRunDir=${XKBDIR}   				# (-d) The xkb-type dir to run setxkbmap from
-AddCmdYN='no'   					# (-a) Add setxkbmap cmd to file?
-AddDefault="${HOME}/.bashrc"
-AddCmdTo=${AddDefault}  			# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
-PrntCmd='no' 						# (-p) Print the setxkbmap command instead of running it?
-ArgStr='' #'5caws us us' 			# (--) Shortcut string for setkb (model locale eD-variant)
+Verbosity=9 								# (-v) How much info should setxkbmap print out?
+KeepXKM='no' 								# (-k) Retain old /var/lib/xkb/server-*.xkm files?
+XRunDir=${XKBDIR}   						# (-d) The xkb-type dir to run setxkbmap from
+AddCmdYN='no'   							# (-a) Add setxkbmap cmd to file?
+AddToDef=${MyPATH}/"add-to-rc-file" 		# "${HOME}/.bashrc" before; there are many options though
+AddCmdTo=${AddToDef} 						# (-f) File (such as '~/.bashrc') to add setxkbmap cmd to
+PrntCmd='no' 								# (-p) Print the setxkbmap command instead of running it?
+ArgStr='' #'5caws us us' 					# (--) Shortcut string for setkb (model locale eD-variant)
 ##  NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\
@@ -64,9 +65,9 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 "[-v] <verbose level>           - '${Verbosity}'\n"\
 "[-d] Run from <directory>      - '${XRunDir}'\n"\
 "[-k] Keep old XKB server(s)    - '${KeepXKM}' [toggle, no arg.]\n"\
-"[-a] Add cmd line to file?     - '${AddCmdYN}' [toggle, no arg.]\n"\
+"[-a] Add cmd line to file?     - '${AddCmdYN}' [toggle]\n"\
 "[-f]   <file> to add cmd to    - '${AddCmdTo}'\n"\
-"[-p] Print cmd; don't run it   - '${PrntCmd}'\n"\
+"[-p] Print cmd; don't run it   - '${PrntCmd}' [toggle]\n"\
 "[--] <ShortStr>                - '${ArgStr}'\n"\
 "\nSpecify '-d-' to run from the local repo directory w/o installing.\n"\
 "\n\e[1mShortStr syntax, defining eD model+layout as a short split string:\e[0m\n"\
@@ -74,7 +75,7 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 "  <kbd> 4/5   - ANSI-104/ISO-105 keyboard model, then...\n"\
 "        n/a/c - Normal/Angle/Curl-DH, and optionally...\n"\
 "        w/f   - Wide/A-Wing (a.k.a. 'A-Frame'), and...\n"\
-"        s     - Sym (optional)\n"\
+"        s     - Sym\n"\
 "  <loc> Two-letter locale layout code like 'us' for USA, 'gb' for UK etc\n"\
 "  <sym> 'us'/'ks' for 'Universal' or 'Keep Locale' symbol variants\n\n"\
 "  Examples: '5a    se us': Angle-ISO, Swedish Cmk[eD] 'UnifiedSym'\n"\
@@ -85,37 +86,45 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 
 ##  ----------  functions and line parser  -------------------------------------------------
 
-MyMsg()	# Formatted output: last arg is printf 'style[;fgcolor[;bgcolor]]'
+MyMsg() 									# Formatted output: last arg is printf 'style[;fgcolor[;bgcolor]]'
 {
-	# Style: 0-Off, 1-Bold, 4-Underscore, 5-Blink, 7-Reverse, 8-Concealed
-	# Color: (3#/4# FG/BG): 0-Black, 1-Red, 2-Green, 3-Yellow, 4-Blue, 5-Magenta, 6-Cyan, 7-White
+	##  Style: 0-Off, 1-Bold, 4-Underscore, 5-Blink, 7-Reverse, 8-Concealed
+	##  Color: (3#/4# FG/BG): 0-Black, 1-Red, 2-Green, 3-Yellow, 4-Blue, 5-Magenta, 6-Cyan, 7-White
 	printf "\n\e[${3:-1;32;40}m@@@ $1 @@@\e[0m\n$2"	# default: Bold green on black
 }
 
-MyEcho()
+MyEcho() 									# What it says...
 {
 	printf "$1\n"
 	[ -z "$2" ] || printf "$1\n" >> "$2"
 }
 
-MyPoint()
+MyPoint()   								# Bulleted output
 {
-	MyEcho "\e[1;32m¤ \e[0m$@"	# Bold green
+	MyEcho "\e[1;32m¤ \e[0m$@"  										# Bold green
 }
 
-MyWarning()
+MyWarning() 								# Blue reverse text
 {
 	MyMsg "WARNING: ${@:-'Beware of nargles!'}" "\n" '1;36;44'      	# Bold cyan on blue
 #~	exit 1
 }
 
-MyError()
+MyError()   								# Red reverse text; crash out
 {
 	MyMsg "$MyNAME - ERROR: ${@:-'Undefined error'}" "\n" '1;37;41' 	# Bold white on red
 	exit 1
 }
 
-PrintHelpAndExit()
+MyCD()  									# Change dir, keeping track
+{
+	OldDir=`pwd`
+	NewDir=${1:-`pwd`}
+	cd ${NewDir} \
+		&& MyPoint "Changing dir to '${NewDir}'" || MyError "Change to '${NewDir}' failed"
+}
+
+PrintHelpAndExit()  						# Invoked with `-h`
 {
 	MyMsg "${HeadStr}" "\n"
 	printf "${DescStr}\n"
@@ -124,12 +133,12 @@ PrintHelpAndExit()
 	exit $1
 }
 
-MyCD()
+ModLayVar() 								# WIP: A fn to sort out model/layout/variant
 {
-	OldDir=`pwd`
-	NewDir=${1:-`pwd`}
-	cd ${NewDir} \
-		&& MyPoint "Changing dir to '${NewDir}'" || MyError "Change to '${NewDir}' failed"
+	[[ ${Set} == 'y' ]] && A='' || A="'"
+	[ -n "$1" ] && StrXKB="-model ${A}${1}${A}" || MyError "ShortStr model not found"
+	[ -n "$2" ] && StrXKB="${StrXKB} -layout ${A}${2}${A}"
+	[ -n "$3" ] && StrXKB="${StrXKB} -variant ${A}${3}${A}"
 }
 
 #~ if [ "$#" == 0 ]; then PrintHelpAndExit 2; fi 				# No args
@@ -147,13 +156,13 @@ while getopts "m:l:o:v:d:f:pakh?" cmdarg; do
 		h)  	PrintHelpAndExit 0  	;;
 		\?) 	PrintHelpAndExit 0  	;;
 		:)  	PrintHelpAndExit 1  	;;
-#		s)  	ArgStr=($OPTARG)    	;;  			# Split the string
+#		s)  	ArgStr=($OPTARG)    	;;  					# Split the string
 	esac
 done
-shift $(( $OPTIND - 1 ))								# Remove already processed args
-[[ "${XRunDir}" == '-' ]] && XRunDir="${XKBLOC}"    	# Use the default local dir
+shift $(( $OPTIND - 1 ))										# Remove already processed args
+[[ "${XRunDir}" == '-' ]] && XRunDir="${XKBLOC}"    			# Use the default local dir
 
-[[ "$@" == "" ]] || ArgStr=($@) 							# Split the ShortString, if present
+[[ "$@" == "" ]] || ArgStr=($@) 								# Split the ShortString, if present
 if [ -n "${ArgStr}" ]; then 									# Use ShortString notation
 	ModStr="${ArgStr[0]}"
 	KbdStr="${ModStr:0:1}"     ; ModStr="${ModStr:1}"   		# 1st chr = Kbd type: 4/5 for ANSI/ISO
@@ -185,20 +194,20 @@ if [ -n "${ArgStr}" ]; then 									# Use ShortString notation
 	[[ ${DH_Mod} == 'y' ]] && XKBoption+=',misc:cmk_curl_dh' 	# Curl-DH is an XKB option
 	[[ ${SymMod} == 'y' ]] && XKBoption+=",misc:${SymStr}"  	# Sym mod is an XKB option
 
-	if [ -n "${ArgStr[2]}" ]; then  					# If there are three parts, ...
-		case "${ArgStr[2]}" in  						# ...determine the layout variant.
-			  us)   XKBvar='cmk_ed_us'  	;;  		# Cmk-eD Unified Symbols variant
-			  ks)   XKBvar='cmk_ed_ks'  	;;  		# Cmk-eD Keep Locale Symbols variant
-			   *)   XKBvar="${ArgStr[2]}" 	;;  		# Use specified variant
+	if [ -n "${ArgStr[2]}" ]; then  							# If there are three parts, ...
+		case "${ArgStr[2]}" in  								# ...determine the layout variant.
+			  us)   XKBvar='cmk_ed_us'  	;;  				# Cmk-eD Unified Symbols variant
+			  ks)   XKBvar='cmk_ed_ks'  	;;  				# Cmk-eD Keep Locale Symbols variant
+			   *)   XKBvar="${ArgStr[2]}" 	;;  				# Use specified variant
 		esac
 	else
-		            XKBvar='basic'  					# Use the default variant for this locale
+		            XKBvar='basic'  							# Use the default variant for this locale
 	fi
-	if [ -n "${ArgStr[1]}" ]; then  					# If there are two or more parts, ...
-		XKBlayout="${ArgStr[1]}($XKBvar)"   			# ...use the lay(var) string. 
-	else 												# Otherwise, use existing layout.
+	if [ -n "${ArgStr[1]}" ]; then  							# If there are two or more parts, ...
+		XKBlayout="${ArgStr[1]}($XKBvar)"   					# ...use the lay(var) string. 
+	else 														# Otherwise, use existing layout.
 		[[ XKBlayout=`setxkbmap -query | grep layout | awk '{print $2}'` ]] \
-		|| XKBlayout='us'   							# If not found, default to the US locale
+		|| XKBlayout='us'   									# If not found, default to the US locale
 	fi
 fi
 ##  TODO: Also set the right Extend variant option for Curl, when it gets implemented.
@@ -210,10 +219,12 @@ MyMsg "$HeadStr"
 if [ -n "${ArgStr}" ]; then
 	MyPoint "ShortStr model/layout: ${XKBmodel} / ${XKBlayout}"
 	MyPoint "ShortStr lay. options: Curl(DH) - '${DH_Mod}'; Sym - '${SymMod}'."
-	MyEcho
+else
+	MyPoint "No ShortStr; using model/layout: ${XKBmodel} / ${XKBlayout}"
 fi
+MyEcho
 
-MyCD "${XRunDir%/}"  									# Change to the xkb dir first
+MyCD "${XRunDir%/}"  											# Change to the xkb dir first
 
 ##  Check for root privileges (if not root, needs the sudo command)
 DoSudo=''
@@ -231,36 +242,43 @@ fi
 ##  Clear the xkb options (to avoid duplicates)
 setxkbmap -option ''
 
-##  Run or print out the actual setxkbmap command
+##  Run and/or print out the actual setxkbmap command
 [[ ${PrntCmd} == 'yes' ]] && RunPrt='Printing' || RunPrt='Running'
+# Set='y'
 SetXKB="-model ${XKBmodel} -layout ${XKBlayout} -option ${XKBoption}"
 if [ ${XRunDir} == ${XKBDIR} ]; then
-	MyPoint "${RunPrt} setxkbmap command with the system XKB dir:\n"
+	MyPoint "${RunPrt} setxkbmap command using the system XKB dir:\n"
 	OptXKB="-v ${Verbosity}"  	# Note: Verbosity doesn't work well with -print
 else
-	MyPoint "${RunPrt} setxkbmap command with a local XKB dir:\n" 	# . is the local dir
+	MyPoint "${RunPrt} setxkbmap command with a local XKB dir:\n"   	# . is the local dir
 	OptXKB="-print | xkbcomp -I -I. -I${XKBDIR} $DISPLAY 2>/dev/null"   # Wasn't there a hyphen before $DISPLAY?
 fi
-if [ ${PrntCmd} == 'yes' ]; then
-	MyEcho "setxkbmap ${SetXKB} ${OptXKB}"
-else
-	setxkbmap ${SetXKB} ${OptXKB}
-fi
+MyEcho "> setxkbmap ${SetXKB} ${OptXKB}"    					# 
 MyEcho ""
-
-##  Add the setxkbmap command to a file, if specified. Note the quotes necessary for FileXKB.
-if [ ${AddCmdYN} == 'yes' ] || [ ${AddCmdTo} != ${AddDefault} ]; then
-	FileXKB="-model '${XKBmodel}' -layout '${XKBlayout}' -option '${XKBoption}'"
-	MyPoint "Adding setxkbmap cmd to ${AddCmdTo}\n"
-	[ -w ${AddCmdTo} ] || MyError "Writing to '${AddCmdTo}' failed"
-	printf "\n%s\n%s\n%s\n" \
-		"##-> DreymaR's SetXKB.sh: Activate layout" \
-		"setxkbmap ${FileXKB} ${OptXKB}" \
-		"##<- DreymaR's SetXKB.sh" \
-		>> ${AddCmdTo}
+if [ ${PrntCmd} != 'yes' ]; then
+	setxkbmap ${SetXKB} ${OptXKB}
+	MyEcho ""
 fi
 
 MyCD "${OldDir}"
+
+##  Add the setxkbmap command to a file, if specified. Note the quotes necessary for FileXKB.
+if [ ${AddCmdYN} == 'yes' ] || [ ${AddCmdTo} != ${AddToDef} ]; then 	# Changing file name alone works
+	rcFi=${AddCmdTo}
+#	Set='n'
+	FileXKB="-model '${XKBmodel}' -layout '${XKBlayout}' -option '${XKBoption}'"
+	MyPoint "Adding setxkbmap cmd to ${rcFi}\n"
+#	exec 66> ${rcFi} 	#>&1 	#/dev/null  				# New file descriptor (`ls -l /proc/$$/fd` to list fds) 	# NOTE: This _will_ create a file, but always empty!!!
+#	MyEcho "Listing file descriptors:\n `ls -l /proc/$$/fd`" 	# eD DEBUG
+	[ cat >> ${rcFi} ] && [ -w ${rcFi} ] || MyError "Writing to '${rcFi}' failed" 	# `touch` didn't create a file?
+	printf "\n%s\n%s\n%s\n" \
+		"## --> DreymaR's setkb.sh, ${MyDATE}: Source this command to activate your layout." \
+		"setxkbmap ${FileXKB} ${OptXKB}" \
+		"## <-- DreymaR's setkb.sh" >> ${rcFi}
+#		>>&66 	# Redirect to a file descriptor? But we're getting a "#: Bad file descriptor" error.
+	exec 66>&-   												# Now close the file descriptor (not really necessary?)
+	MyEcho ""
+fi
 
 ##  When run in a terminal window, wait for a key press
 ##  so you can see the results before the window closes

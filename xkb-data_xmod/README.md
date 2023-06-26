@@ -40,8 +40,15 @@ FIXD:
 
 2FIX:
 -----
+* No shortstr defaults to the `cmk_ed_us` variant. Should default to current variant, as w/ layout?
+	- Instead of the fancy `setxkbmap -query` stuff, could just not use `-layout` nor `-variant` when empty?!
+		- Unless set by `-l -o` switches?
+	- Or keep setkb as a Cmk-eD setting tool, therefore defaulting to `cmk_ed_us`?
+
+* Add a switch for resetting options?
+
 * WSL1 uses xorg rules. I've only prepared for evdev and base. How to solve that? But xorg -> base by link!
-	- Is there another reason, then, that setxkbmap can't see my changes? The files are installed.
+	- Is there another reason, then, that setxkbmap using WSL1 can't see my changes? The files are installed.
 
 * Local dir by setkb.sh isn't working?
 <br>
@@ -49,8 +56,21 @@ FIXD:
 
 TODO:
 -----
+* Not all distros source `~/.bashrc` by default. Seems that `~/.xinitrc` is mostly used by xinit and not generally sourced?
+	- What about `~/.xsession`, `~/.xprofile` or `~/.profile`? Seems to be mostly legacy; used by `startx`? It's messy.
+	- Look in `/etc/X11/Xsession` to see how thing are run at startup?
+	- But `~/.Xresources` seems like a good option (and is sourced by xinitrc too)?
+	- Its format is different though. And it doesn't list keyboard layout as one of its intended purposes.
+	- There is the option of entering the file name manually. But the BigBag default should be the most sensible/common choice.
+	- Or, switch tack completely and just have `setkb.sh` output a string that you can `>` into a file yourself?
+		- If so, have it output nothing else! Or use another file descriptor (stderr is wrong!)? Use `echo <smth> 3>>` then `3> <file>`?
+		- Change tack regarding the -af <file> switches. Could force users to use syntax like `setkb.sh -f > ~/.bashrc`?
+		- Actually... If using file descriptor 3, it usually goes nowhere? So you wouldn't need a switch for it at all!?
+	- Print out the command also when running it, for clarity.
+
 * The `pc105curl` model is actually a CurlAngle model, and thus badly named. Fix?!
 	- All the Curl models seem messy? What was I thinking? But maybe to avoid the option thing, they could still be useful?
+	- The option thing messes with QWERTY and other layouts on switch. Which may be acceptable for Sym? But not so much for Curl.
 
 * Better instructions for Wayland?
 	- Depends on your Wayland Compositor (Sway is common?)
@@ -64,13 +84,6 @@ TODO:
 * Add colemak-dh to the colemak symbols file and the US locale? Both ISO, ANSI and Ortho.
 	- Would it be "allowable" to actually move both default and dh colemak _into_ the symbols/colemak file now?
 	- If so, edit rules components accordingly, and consider editing all locale variants to include them
-
-* Not all distros source `~/.bashrc` by default. Seems that `~/.xinitrc` is mostly used by xinit and not generally sourced?
-	- What about `~/.xsession`, `~/.xprofile` or `~/.profile`? Seems to be mostly legacy; used by `startx`? It's messy.
-	- Look in `/etc/X11/Xsession` to see how thing are run at startup?
-	- But `~/.Xresources` seems like a good option (and is sourced by xinitrc too)?
-	- Its format is different though. And it doesn't list keyboard layout as one of its intended purposes.
-	- There is the option of entering the file name manually. But the BigBag default should be the most sensible/common choice.
 
 * Add some easy way of returning to the old xkbmap setup? But how? Can't unset settings, so we'd have to store it somehow? Or just let them go to us/us?
 	- Could write setxkbmap output to a file. Check it isn't overwritten, like the normal backup.

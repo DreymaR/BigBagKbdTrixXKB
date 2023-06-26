@@ -67,7 +67,7 @@ SubDirs='all' 			# (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale',
 InstGTK='no' 			# (-g) Whether to install the GTK 2.0/3.0 config (if not present)
 NoSudo='no' 			# (-s) Do not use sudo. Helpful for local dir installation.
 SetXMap='no' 			# (-x) Whether to run the setkb script after installing
-SetXStr='5caw us us' 	# (--) Shortcut string for setkb - 'kbd loc sym' (model layout eD-variant)
+SetXStr='5caws us us' 	# (--) Shortcut string for setkb - 'kbd loc sym' (model layout eD-variant)
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\
@@ -85,7 +85,7 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 "[-m] <X11 subdir(s) to mod>            - ${SubDirs}\n"\
 "[-t] <mod dir prefix tag>              - ${DModTag}\n"\
 "[-g] Install GTK 2.0/3.0 edit config?  - ${InstGTK}\n"\
-"[-x] Run the setxkbmap script?         - ${SetXMap}\n"\
+"[-x] Run the setkb script afterwards?  - ${SetXMap}\n"\
 "[-s] Install without using sudo?       - ${NoSudo}\n"\
 "[--] [Setxkb ShortStr <kbd loc sym>]   - ${SetXStr}\n"
 #~ "( - <val> : Default settings)\n"
