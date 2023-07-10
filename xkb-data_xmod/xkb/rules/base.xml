@@ -2668,7 +2668,7 @@
             <name>cmk_ed_us</name>
             <description>Portuguese (Brazil, Colemak[eD], unified symbols)</description>
           </configItem>
-        </variant    <!--  <-<  DreymaR  -->
+        </variant>    <!--  <-<  DreymaR  -->
         <variant>
           <configItem>
             <name>thinkpad</name>
