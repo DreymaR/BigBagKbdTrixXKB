@@ -264,7 +264,7 @@ xkb_symbols "lv5" {
 //                    BackSpace                   , BackSpace                   ,   // Ctrl+Backspace (by action)
 //                    BackSpace                   , BackSpace                   ] , // If you want Extend+Back to be Ctrl+Back instead
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<PAUS>,clearmods=LevelFive), Redirect(key=<PAUS>,clearmods=LevelFive) ,
+                    Redirect(key=<PAUS>,clearmods=LevelFive), Redirect(key=<PAUS>,clearmods=LevelFive),     // <PAUS>
                     NoAction()                  , NoAction()                    ] ,
 //      Redirect(key=<BKSP>,mods=Control,clearmods=LevelFive), Redirect(key=<BKSP>,mods=Shift+Control,clearmods=LevelFive),  // Ctrl+Back
 //      Redirect(key=<BKSP>,mods=Control,clearmods=LevelFive), Redirect(key=<BKSP>,mods=Shift+Control,clearmods=LevelFive)], // Ctrl+Back
@@ -277,8 +277,8 @@ xkb_symbols "lv5" {
                     Escape                      , Escape                        ,   // Esc
                     Home                        , KP_Home                       ] , // Home
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<ESC>,clearmods=LevelFive) , Redirect(key=<ESC>,clearmods=LevelFive)  ,
-                    Redirect(key=<HOME>,clearmods=LevelFive), Redirect(key=<HOME>,clearmods=LevelFive) ] ,
+                    Redirect(key=<ESC>,clearmods=LevelFive) , Redirect(key=<ESC>,clearmods=LevelFive)  ,    // <ESC>
+                    Redirect(key=<HOME>,clearmods=LevelFive), Redirect(key=<HOME>,clearmods=LevelFive) ] ,  // <HOME>
                  repeat=yes     };  // Q
     key <AD02> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // W
                     XF86ScrollUp                , XF86ScrollUp                  ,   // ScrollUp(††)
@@ -291,14 +291,14 @@ xkb_symbols "lv5" {
                     XF86Back                    , XF86Back                      ,   // BrBck
                     End                         , KP_End                        ] , // End
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<I166>,clearmods=LevelFive), Redirect(key=<I166>,clearmods=LevelFive), // <I166>(‡‡)
+                    Redirect(key=<I166>,clearmods=LevelFive), Redirect(key=<I166>,clearmods=LevelFive),     // <I166>(‡‡)
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE E, Cmk F
     key <AD04> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // R
                     XF86Forward                 , XF86Forward                   ,   // BrFwd
                     Delete                      , KP_Delete                     ] , // Del
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<I167>,clearmods=LevelFive), Redirect(key=<I167>,clearmods=LevelFive), // <I167>(‡‡)
+                    Redirect(key=<I167>,clearmods=LevelFive), Redirect(key=<I167>,clearmods=LevelFive),     // <I167>(‡‡)
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE R, Cmk P
     key <AD05> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // T
@@ -306,62 +306,62 @@ xkb_symbols "lv5" {
                     Escape                      , Escape                        ] , // Esc
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
                     MovePtr(x=+0,y=-8)   , MovePtr(x=+0,y=-8)                   ,   // PtrUp(††)
-                    Redirect(key=<ESC>,clearmods=LevelFive) , Redirect(key=<ESC>,clearmods=LevelFive) ] ,
+                    Redirect(key=<ESC>,clearmods=LevelFive) , Redirect(key=<ESC>,clearmods=LevelFive) ] ,   // <ESC>
                  repeat=yes     };  // QWE T, Cmk G
     key <AD06> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // Y
                     Page_Up                     , Page_Up                       ,   // PgUp
                     Page_Up                     , KP_Prior                      ] , // PgUp   / KP_PgUp
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<PGUP>)        , Redirect(key=<PGUP>)          ,   // <PGUP>
-                    Redirect(key=<PGUP>)        , NoAction()                    ] ,
+                    Redirect(key=<PGUP>,clearmods=LevelFive), Redirect(key=<PGUP>,clearmods=LevelFive),     // <PGUP>
+                    Redirect(key=<PGUP>,clearmods=LevelFive), NoAction()        ] ,
                  repeat=yes     };  // QWE Y, Cmk J
     key <AD07> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // U
                     Home                        , Home                          ,   // Home
                     KP_4                        , U21D0                         ] , // KP_4   /   ← ⇐
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<HOME>)        , Redirect(key=<HOME>)          ,   // <HOME>
+                    Redirect(key=<HOME>,clearmods=LevelFive), Redirect(key=<HOME>,clearmods=LevelFive),     // <HOME>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE U, Cmk L
     key <AD08> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // I
                     Up                          , Up                            ,   //  ↑
                     KP_5                        , U21D4                         ] , // KP_5   /   ↔ ⇔
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<UP>)          , Redirect(key=<UP>)            ,   // <UP>
+                    Redirect(key=<UP>,clearmods=LevelFive)  , Redirect(key=<UP>,clearmods=LevelFive)  ,     // <UP>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE I, Cmk U
     key <AD09> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // O
                     End                         , End                           ,   // End
                     KP_6                        , U21D2                         ] , // KP_6   /   → ⇒
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<END>)         , Redirect(key=<END>)           ,   // <END>
+                    Redirect(key=<END>,clearmods=LevelFive) , Redirect(key=<END>,clearmods=LevelFive) ,     // <END>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE O, Cmk Y
     key <AD10> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // P
                     Delete                      , Delete                        ,   // Del
                     KP_Add                      , KP_Add                        ] , // KP_+
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<DELE>)        , Redirect(key=<DELE>)          ,   // <DELE>
+                    Redirect(key=<DELE>,clearmods=LevelFive), Redirect(key=<DELE>,clearmods=LevelFive),     // <DELE>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE P, Cmk ; :
     key <AD11> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // [ {
                     Escape                      , Escape                        ,   // Esc
                     parenleft                   , braceleft                     ] , //  (
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<ESC>,clearmods=LevelFive) , Redirect(key=<ESC>,clearmods=LevelFive),
+                    Redirect(key=<ESC>,clearmods=LevelFive) , Redirect(key=<ESC>,clearmods=LevelFive) ,     // <ESC>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // [ {
     key <AD12> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // ] }
                     Insert                      , Insert                        ,   // Ins
                     parenright                  , braceright                    ] , //  )
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<INS>)         , Redirect(key=<INS>)           ,   // <INS>
+                    Redirect(key=<INS>,clearmods=LevelFive) , Redirect(key=<INS>,clearmods=LevelFive) ,     // <INS>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // ] }
     key <BKSL> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // \ |
                     XF86Favorites               , XF86MyComputer                ,   // BrFav
                     colon                       , bar                           ] , //  :
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<I164>,clearmods=all), Redirect(key=<I165>,clearmods=all), // <I164>/<I165>(‡‡)
+                    Redirect(key=<I164>,clearmods=all), Redirect(key=<I165>,clearmods=all),     // <I164>/<I165>(‡‡)
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // \ |
 
@@ -407,50 +407,50 @@ xkb_symbols "lv5" {
                     Page_Down                   , Page_Down                     ,   // PgDn
                     Page_Down                   , KP_Next                       ] , // PgDn   / KP_PgDn
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<PGDN>)        , Redirect(key=<PGDN>)          ,   // <PGDN>
-                    Redirect(key=<PGDN>)        , NoAction()                    ] ,
+                    Redirect(key=<PGDN>,clearmods=LevelFive), Redirect(key=<PGDN>,clearmods=LevelFive),     // <PGDN>
+                    Redirect(key=<PGDN>,clearmods=LevelFive), NoAction()        ] ,
                  repeat=yes     };  // H
     key <AC07> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // J
                     Left                        , Left                          ,   //  ←
                     KP_1                        , U21D9                         ] , // KP_1   /   ↙ ⇙
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<LEFT>)        , Redirect(key=<LEFT>)          ,   // <LEFT>
+                    Redirect(key=<LEFT>,clearmods=LevelFive), Redirect(key=<LEFT>,clearmods=LevelFive),     // <LEFT>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE J, Cmk N
     key <AC08> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // K
                     Down                        , Down                          ,   //  ↓
                     KP_2                        , U21D3                         ] , // KP_2   /   ↓ ⇓
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<DOWN>)        , Redirect(key=<DOWN>)          ,   // <DOWN>
+                    Redirect(key=<DOWN>,clearmods=LevelFive), Redirect(key=<DOWN>,clearmods=LevelFive),     // <DOWN>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE K, Cmk E
     key <AC09> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // L
                     Right                       , Right                         ,   //  →
                     KP_3                        , U21D8                         ] , // KP_3   /   ↘ ⇘
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<RGHT>)        , Redirect(key=<RGHT>)          ,   // <RGHT>
+                    Redirect(key=<RGHT>,clearmods=LevelFive), Redirect(key=<RGHT>,clearmods=LevelFive),     // <RGHT>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE L, Cmk I
     key <AC10> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // ; :
                     BackSpace                   , BackSpace                     ,   // Back
                     KP_Enter                    , KP_Enter                      ] , // KP_Enter
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<BKSP>,clearmods=LevelFive), Redirect(key=<BKSP>,clearmods=LevelFive) , // <BKSP>
+                    Redirect(key=<BKSP>,clearmods=LevelFive), Redirect(key=<BKSP>,clearmods=LevelFive),     // <BKSP>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // QWE ;, Cmk O
     key <AC11> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // ' "
                     Menu                        , Menu                          ,   // Menu
                     apostrophe                  , quotedbl                      ] , // ' "
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<COMP>,clearmods=LevelFive), Redirect(key=<COMP>,clearmods=LevelFive) , // <MENU>/<COMP>
+                    Redirect(key=<COMP>,clearmods=LevelFive), Redirect(key=<COMP>,clearmods=LevelFive), //  <COMP>/<MENU>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // ' "
 //    key <RTRN> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // Return
 //                   Print                         , Print                        ,   // PrtScr
 //                   Print                         , Print                        ] , // PrtScr
 //                 actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-//                   Redirect(key=<PRSC>,clearmods=LevelFive), Redirect(key=<PRSC>,clearmods=LevelFive) , // <PRSC>
-//                   NoAction()                    , NoAction()                   ] ,
+//                    Redirect(key=<PRSC>,clearmods=LevelFive), Redirect(key=<PRSC>,clearmods=LevelFive),      // <PRSC>
+//                    NoAction()                    , NoAction()                    ] ,
 //                 repeat=yes     };  // Return           // This mapping breaks the Enter key for some users?
 
 //  +=======+==============================+=======+
@@ -460,8 +460,8 @@ xkb_symbols "lv5" {
                     Delete                      , Delete                        ,   // User's choice (Del for now)
                     Delete                      , Delete                        ] , // --"--
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<DELE>)        , Redirect(key=<DELE>)          ,
-                    Redirect(key=<DELE>)        , Redirect(key=<DELE>)          ] ,
+                    Redirect(key=<DELE>,clearmods=LevelFive), Redirect(key=<DELE>,clearmods=LevelFive),     // <DELE>
+                    Redirect(key=<DELE>,clearmods=LevelFive), Redirect(key=<DELE>)          ] ,
                  repeat=yes     };  // < >
     key <AB01> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // Z
                     Undo                        , Redo                          ,   // Undo/Redo
@@ -541,7 +541,7 @@ xkb_symbols "lv5" {
                     Return                      , Return                        ,   // Enter
                     space                       , nobreakspace                  ] , // Space
                  actions[Group1]=[NoAction(),SetMods(mods=Shift),NoAction(),SetMods(mods=Shift),
-                    Redirect(key=<RTRN>)        , Redirect(key=<RTRN>)          ,   // <RTRN>
+                    Redirect(key=<RTRN>,clearmods=LevelFive), Redirect(key=<RTRN>,clearmods=LevelFive),     // <RTRN>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // Space
 
