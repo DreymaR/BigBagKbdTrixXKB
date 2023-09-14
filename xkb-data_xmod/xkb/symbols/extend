@@ -58,6 +58,9 @@
 //      - Added the following to each key's symbols[Group1] definition: `repeat=true`
 //  - The lv5 mod should be eaten up by xkb but isn't. Must manually clearmod it from all necessary keys.
 //  - The first 4 states are defined as `any` (a synonym of `NoSymbol`) to pass-through any existing ones.
+//  - KDE seems to have a problem with key redirection. Doesn't KDE respect `clearmods`?
+//      - Example: If Ext+Backspace is `Pause` and Ext+O is `Backspace`, KDE may wrongly send `Pause` for Ext+O.
+//      - As a result of this problem, the Extend mappings for Backspace and Enter are by default disabled now.
 
 
 //  +=======+==============================+=======+
@@ -66,10 +69,42 @@
 default partial
 xkb_symbols "basic" {
 //    name[Group1]= "Extend layer";
-//    include "extend(lv5_fk)"    // The F# key block. Some may want to exclude this as it affects TTY shortcuts.
-    include "extend(lv5)"       // Extend mappings for all other keys
+//    include "extend(lv5_sk)"    // Extend mappings for special keys: Backspace and Enter. These may not work for all; use with care.
+//    include "extend(lv5_fk)"    // The F# key block. Some exclude it as TTY shortcuts are lost. Ext+AltGr+<FK> should work though.
+    include "extend(lv5)"       // Extend mappings for all other keys, including Space.
 };
 
+
+partial alphanumeric_keys modifier_keys
+xkb_symbols "lv5_sk" {
+    key.type[group1]="EIGHT_LEVEL"; // (Caps)Lock state not used on these keys
+
+//  +=======+==============================+=======+
+//  |=======|         Special keys         |=======|
+//  +=======+==============================+=======+
+//  NOTE: Extend-mapping the Backspace and Enter keys doesn't work for all users. Use with care (enable in the include above).
+    key <BKSP> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // BackSpace
+                    Pause                       , Pause                         ,   // Pause/Break
+                    Pause                       , Pause                         ] , // (<BRK> is special)
+                 actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
+                    Redirect(key=<PAUS>,clearmods=LevelFive), Redirect(key=<PAUS>,clearmods=LevelFive),     // <PAUS>
+                    NoAction()                  , NoAction()                    ] ,
+//  NOTE: Another idea for the Backspace key is Ctrl+Backspace, to delete whole words.
+//                    BackSpace                   , BackSpace                   ,   // Ctrl+Backspace (by action)
+//                    BackSpace                   , BackSpace                   ] , // If you want Extend+Back to be Ctrl+Back instead
+//                 actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
+//      Redirect(key=<BKSP>,mods=Control,clearmods=LevelFive), Redirect(key=<BKSP>,mods=Shift+Control,clearmods=LevelFive),  // Ctrl+Back
+//      Redirect(key=<BKSP>,mods=Control,clearmods=LevelFive), Redirect(key=<BKSP>,mods=Shift+Control,clearmods=LevelFive)], // Ctrl+Back
+                 repeat=yes     };  // BackSpace        // NOTE: May not work well with KDE?
+
+    key <RTRN> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // Return
+                   Print                         , Print                        ,   // PrtScr
+                   Print                         , Print                        ] , // PrtScr
+                 actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
+                    Redirect(key=<PRSC>,clearmods=LevelFive), Redirect(key=<PRSC>,clearmods=LevelFive),      // <PRSC>
+                    NoAction()                    , NoAction()                    ] ,
+                 repeat=yes     };  // Return           // NOTE: This mapping breaks the Enter key for some users?
+};
 
 partial alphanumeric_keys modifier_keys
 xkb_symbols "lv5_fk" {
@@ -167,7 +202,6 @@ xkb_symbols "lv5_fk" {
 
 partial alphanumeric_keys modifier_keys
 xkb_symbols "lv5" {
-//    name[Group1]= "Extend layer";
     key.type[group1]="EIGHT_LEVEL_SEMIALPHABETIC"; // Lock affects lv1/5 but not lv3/7 - a bit inflexible but OK I guess
 
 //  +=======+==============================+=======+
@@ -258,17 +292,6 @@ xkb_symbols "lv5" {
                     Redirect(key=<FK12>,clearmods=LevelFive), Redirect(key=<FK12>,clearmods=LevelFive),
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // = +
-    key <BKSP> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // BackSpace
-                    Pause                       , Pause                         ,   // Pause/Break
-                    Pause                       , Pause                         ] , // (<BRK> is special)
-//                    BackSpace                   , BackSpace                   ,   // Ctrl+Backspace (by action)
-//                    BackSpace                   , BackSpace                   ] , // If you want Extend+Back to be Ctrl+Back instead
-                 actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-                    Redirect(key=<PAUS>,clearmods=LevelFive), Redirect(key=<PAUS>,clearmods=LevelFive),     // <PAUS>
-                    NoAction()                  , NoAction()                    ] ,
-//      Redirect(key=<BKSP>,mods=Control,clearmods=LevelFive), Redirect(key=<BKSP>,mods=Shift+Control,clearmods=LevelFive),  // Ctrl+Back
-//      Redirect(key=<BKSP>,mods=Control,clearmods=LevelFive), Redirect(key=<BKSP>,mods=Shift+Control,clearmods=LevelFive)], // Ctrl+Back
-                 repeat=yes     };  // BackSpace
 
 //  +=======+==============================+=======+
 //  |=======|          Upper Row           |=======|
@@ -445,13 +468,6 @@ xkb_symbols "lv5" {
                     Redirect(key=<COMP>,clearmods=LevelFive), Redirect(key=<COMP>,clearmods=LevelFive), //  <COMP>/<MENU>
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // ' "
-//    key <RTRN> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // Return
-//                   Print                         , Print                        ,   // PrtScr
-//                   Print                         , Print                        ] , // PrtScr
-//                 actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
-//                    Redirect(key=<PRSC>,clearmods=LevelFive), Redirect(key=<PRSC>,clearmods=LevelFive),      // <PRSC>
-//                    NoAction()                    , NoAction()                    ] ,
-//                 repeat=yes     };  // Return           // This mapping breaks the Enter key for some users?
 
 //  +=======+==============================+=======+
 //  |=======|          Lower Row           |=======|
