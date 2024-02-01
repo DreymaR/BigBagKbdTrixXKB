@@ -82,7 +82,7 @@ It depends on which Wayland Compositor you're using. See its docs for more info?
 For the popular Sway compositor, add a piece like this example to your `~/.config/sway/config` file:
 ```
 input * {
-  xkb_model     pc105
+  xkb_model     pc105awide
   xkb_layout    us
   xkb_variant   cmk_ed_us
   xkb_options   lv5:caps_switch_lock,misc:extend,compose:menu
@@ -96,12 +96,23 @@ input {
     kb_model=pc105awide
     kb_layout=us
     kb_variant=cmk_ed_us
-    kb_options=misc:extend,lv5:caps_switch_lock,grp:shifts_toggle,compose:menu,misc:cmk_curl_dh 
+    kb_options=misc:extend,lv5:caps_switch_lock,misc:cmk_curl_dh,compose:menu
     repeat_rate=40
     repeat_delay=200
 }
 ``` 
 The repeat settings are of course optional. Some like a higher repeat rate and a lower delay, and this is how to get that.
+
+In NixOS without Wayland/Sway, [services.xserver](https://nixos.wiki/wiki/Keyboard_Layout_Customization) should work:
+```
+services.xserver = {
+  layout = "us";
+  xkbVariant = "cmk_ed_us";
+  xkbModel   = "pc105awide";
+  xkbOptions = "misc:extend,lv5:caps_switch_lock,misc:cmk_curl_dh,compose:menu";
+};
+```
+To get the xserver layout in your console as well, use `console.useXkbConfig` in your `configuration.nix` file.
 
 I guess the solution will be quite similar for other compositors, but I don't know more at the moment.
 <br>
