@@ -2715,6 +2715,12 @@
             <name>colemak</name>
             <description>Bulgarian (Colemak, phonetic S-Slavic)</description>
           </configItem>
+        </variant>
+        <variant>
+          <configItem>
+            <name>colemak_dh</name>
+            <description>Bulgarian (Colemak-DH, phonetic S-Slavic)</description>
+          </configItem>
         </variant>    <!--  <-<  DreymaR  -->
       </variantList>
     </layout>
