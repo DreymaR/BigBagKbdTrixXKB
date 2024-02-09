@@ -394,4 +394,37 @@ xkb_symbols "colemak" {
 
     include "level3(ralt_switch)"
 };
+
+partial xkb_symbols "colemak_dh" {
+    include "bg(colemak)"
+    name[Group1]= "Bulgarian (Colemak-DH, phonetic S-Slavic)";
+    include "bg(colemak_dbg)"
+    include "bg(colemak_hm)"
+};
+
+hidden partial xkb_symbols "colemak_dhk" {
+    include "bg(colemak)"
+    name[Group1]= "Bulgarian (Colemak-DHk, phonetic S-Slavic)";
+    include "bg(colemak_dbg)"
+    include "bg(colemak_hmk)"
+};
+
+hidden partial xkb_symbols "colemak_dbg" {
+    key <AD05> { [     Cyrillic_be,     Cyrillic_BE,               b,               B ] };
+    key <AC05> { [    Cyrillic_ghe,    Cyrillic_GHE,               g,               G ] };
+    key <AB04> { [     Cyrillic_de,     Cyrillic_DE,               d,               D ] };
+    key <AB05> { [     Cyrillic_ve,     Cyrillic_VE,               v,               V ] };
+};
+
+hidden partial xkb_symbols "colemak_hm" {
+    key <AC06> { [     Cyrillic_em,     Cyrillic_EM,               m,               M ] };
+    key <AB07> { [     Cyrillic_ha,     Cyrillic_HA,               h,               H ] };
+};
+
+hidden partial xkb_symbols "colemak_hmk" {
+    key <AC06> { [     Cyrillic_ka,     Cyrillic_KA,               k,               K ] };
+    key <AC06> { [     Cyrillic_em,     Cyrillic_EM,               m,               M ] };
+    key <AB07> { [     Cyrillic_ha,     Cyrillic_HA,               h,               H ] };
+};
+
 //  <--<< DreymaR: Additions to xkb/symbols/bg

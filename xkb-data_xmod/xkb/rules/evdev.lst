@@ -427,6 +427,7 @@
   bas_phonetic    bg: Bulgarian (new phonetic)
   bekl            bg: Bulgarian (enhanced)
   colemak         bg: Bulgarian (Colemak, phonetic S-Slavic)
+  colemak_dh      bg: Bulgarian (Colemak-DH, phonetic S-Slavic)
   azerty-deadkeys dz: Kabyle (AZERTY, with dead keys)
   qwerty-gb-deadkeys dz: Kabyle (QWERTY, UK, with dead keys)
   qwerty-us-deadkeys dz: Kabyle (QWERTY, US, with dead keys)
