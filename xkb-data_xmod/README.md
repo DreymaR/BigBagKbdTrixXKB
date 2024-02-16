@@ -1,8 +1,8 @@
 XKB data for DreymaR's Big Bag of Keyboard Tricks
 =================================================
 
-VERSION:
---------
+VERSION
+-------
 	File description: Modified xkb-data files for DreymaR's Big Bag of Keyboard Tricks (Linux/XKB)
 	Files found here: https://github.com/DreymaR/BigBagKbdTrixXKB
 	xkb-data version: 2.35.1-1_all_eD
@@ -12,8 +12,8 @@ VERSION:
 <br>
 
 
-INTRO:
-------
+INTRO
+-----
 This readme holds version info, TODO and DONE lists for the BigBagKbdTrixXKB repository.
 
 For more general info, see the [main repo README][BBREADME].
@@ -25,8 +25,8 @@ They work just fine with nearly all other versions and distros, though.
 Note that the `base` and `evdev` rules are compiled slightly differently, so I provide both. Their `.lst` and `.xml` counterparts are identical/aliases.
 <br>
 
-FIXD:
------
+FIXD
+----
 * The setkb.sh script wasn't working as it should. It got an error saying, e.g., "model pc104 doesn't exist".
 	- Shortstrs like `4ns` and `5cas` worked, as did `4aw` or `5w`. `4ws` didn't; gave "pc104/pc105 doesn't exist" errors.
 	- Identified these bugs: `DH-Mod` -> `DH_Mod` && "#{ModStr}" -> "${ModStr}".
@@ -38,8 +38,8 @@ FIXD:
 	- Giving a weird KbdStr could lead to weirdness. Now it gives an error message.
 <br>
 
-2FIX:
------
+2FIX
+----
 * No shortstr defaults to the `cmk_ed_us` variant. Should default to current variant, as w/ layout?
 	- Instead of the fancy `setxkbmap -query` stuff, could just not use `-layout` nor `-variant` when empty?!
 		- Unless set by `-l -o` switches?
@@ -54,8 +54,20 @@ FIXD:
 <br>
 
 
-TODO:
------
+TODO
+----
+* The `pc105curl` model is actually a CurlAngle model, and thus badly named. Fix?!
+	- All the Curl models seem messy? What was I thinking? But maybe to avoid the option thing, they could still be useful?
+	- The option thing messes with QWERTY and other layouts on switch. Which may be acceptable for Sym? But not so much for Curl.
+	- I think that all layout variants should instead have a DH counterpart. Can include vanilla then a mod.
+		- Make a mod also for each non-Latin script then. And special includes for locales that change any of the affected keys.
+
+* Add colemak-dh to the colemak symbols file and the US locale? Both ISO, ANSI and Ortho.
+	- Would it be "allowable" to actually move both default and dh colemak _into_ the symbols/colemak file now?
+		- If so, edit rules components accordingly
+	- Consider editing all locale variants to include DH.
+		- Especially useful for non-Latin and locales that change any of the DBG HMK keys.
+
 * Not all distros source `~/.bashrc` by default. Seems that `~/.xinitrc` is mostly used by xinit and not generally sourced?
 	- What about `~/.xsession`, `~/.xprofile` or `~/.profile`? Seems to be mostly legacy; used by `startx`? It's messy.
 	- Look in `/etc/X11/Xsession` to see how thing are run at startup?
@@ -68,22 +80,15 @@ TODO:
 		- Actually... If using file descriptor 3, it usually goes nowhere? So you wouldn't need a switch for it at all!?
 	- Print out the command also when running it, for clarity.
 
-* The `pc105curl` model is actually a CurlAngle model, and thus badly named. Fix?!
-	- All the Curl models seem messy? What was I thinking? But maybe to avoid the option thing, they could still be useful?
-	- The option thing messes with QWERTY and other layouts on switch. Which may be acceptable for Sym? But not so much for Curl.
-
 * Better instructions for Wayland?
 	- Depends on your Wayland Compositor (Sway is common?)
 		https://wiki.archlinux.org/title/wayland#Compositors
 	- Some good ones were posted at the Colemak Discord.
 		https://discord.com/channels/409502982246236160/1059814838408319026/1059866421066203257
+	- I'm uncertain about how to do it in Ubuntu GNOME now. It uses the Miriway compositor?
 
 * Lockable lv5 modifier, for users who want Extend-lock. Maybe Shift+Extend to lock it, or something?
 	- It's possible today to have two switch-or-lock lv5 modifiers. But it seems wasteful to use up two keys.
-
-* Add colemak-dh to the colemak symbols file and the US locale? Both ISO, ANSI and Ortho.
-	- Would it be "allowable" to actually move both default and dh colemak _into_ the symbols/colemak file now?
-	- If so, edit rules components accordingly, and consider editing all locale variants to include them
 
 * Add some easy way of returning to the old xkbmap setup? But how? Can't unset settings, so we'd have to store it somehow? Or just let them go to us/us?
 	- Could write setxkbmap output to a file. Check it isn't overwritten, like the normal backup.
@@ -169,8 +174,8 @@ TODO:
 <br>
 
 
-HOLD:
------
+HOLD
+----
 * Make a patch file of the mod dir?
 	- WinMerge doesn't support patch generation. So it'd have to be by CLI.
 	- It's a little cumbersome to have to update both the files and the patch file for each commit. So no, for now?
@@ -194,8 +199,8 @@ HOLD:
 <br>
 
 
-DONE:
------
+DONE
+----
 * Echo the setxkbmap command when using setkb.sh, for ease of troubleshooting! Also make the script able to output the command for piping?
 
 * Reworked ergo model names.
@@ -246,6 +251,7 @@ DONE:
 
 * Relieved the sudo requirement. And added an option to change the X11 dir since Nix uses another place. Pulled from fufexan@github.
 	- https://github.com/DreymaR/BigBagKbdTrixXKB/issues/15#issuecomment-769431139
+
 
 
 [XKB-conf]: https://www.freedesktop.org/wiki/Software/XKeyboardConfig/ (XKeyboard Config page)

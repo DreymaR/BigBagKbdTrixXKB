@@ -25,6 +25,7 @@ LICENSE      text
 *.svg        text eol=lf
 *.sh         text eol=lf
 *.mk         text eol=lf
+*.py         text eol=lf
 
 # Declare files that are truly binary and should not be modified:
 *.png        binary
