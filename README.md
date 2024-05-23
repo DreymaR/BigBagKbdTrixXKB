@@ -8,8 +8,8 @@ DreymaR's Big Bag of Keyboard Tricks
 * Powerful Extend layers using Caps Lock as a lv5 modifier for navigation/editing from the home position and more!
 * Comfy Angle/Wide ergo modifications to improve wrist angles(!), hand spacing and right pinky movement+load
 * The Curl-DH ergo mod to allow a more natural finger curvature and avoid lateral stretches
-	- The Colemak-DH layout is a combination of the Curl-DH and Angle mods, on normal row-staggered keyboards
-* WIP: The Sym ergo mod to improve access to often-used symbol keys is planned to be implemented soon
+	- The Colemak-DH layout on normal row-staggered keyboards, is a combination of the Curl-DH and Angle mods
+* The Sym ergo mod to improve access to often-used symbol keys
 * For several locales, a 'Unified Symbols' layout with only a few necessary changes from the standard Colemak[eD]
 * Also, a layout to 'Keep Local Symbols' like their default (QWERTY-type) counterparts for that locale
 * Intuitive phonetic layouts for Cyrillic, Greek and Hebrew scripts
