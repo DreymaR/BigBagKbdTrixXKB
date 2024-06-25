@@ -77,7 +77,7 @@ Wayland & Friends
 -----------------
 Wayland has a somewhat different tack: It uses xkb-data files, but not an X server. So the setkb script won't work there, but the BigBag as such will.
 
-It depends on which Wayland Compositor you're using. See its docs for more info?
+It depends on which Wayland Compositor you're using. Sorry, but I don't know them all. See its docs for more info?
 
 For the popular Sway compositor, add a piece like this example to your `~/.config/sway/config` file:
 ```
@@ -95,21 +95,42 @@ input {
     kb_rules=evdev
     kb_model=pc105awide
     kb_layout=us
-    kb_variant=cmk_ed_us
-    kb_options=misc:extend,lv5:caps_switch_lock,misc:cmk_curl_dh,compose:menu
+    kb_variant=cmk_ed_dh
+    kb_options=misc:extend,lv5:caps_switch_lock,compose:menu
     repeat_rate=40
     repeat_delay=200
 }
 ``` 
 The repeat settings are of course optional. Some like a higher repeat rate and a lower delay, and this is how to get that.
 
+Here's a KDE Settings `~/.config/kxkbrc` file. It can be set via the Settings GUI, or edited directly:
+```
+[$Version]
+update_info=kxkb_variants.upd:split-variants,kxkb.upd:remove-empty-lists,kxkb.upd:add-back-resetoptions
+
+[Layout]
+DisplayNames=,
+LayoutList=us,us
+LayoutLoopCount=-1
+Model=pc104awide
+Options=grp:alt_shift_toggle,grp:win_space_toggle,caps:backspace,lv3:ralt_switch_multikey,compose:menu
+ResetOldOptions=true
+ShowFlag=false
+ShowLabel=true
+ShowLayoutIndicator=true
+ShowSingle=true
+Use=true
+VariantList=cmk_ed_dh,
+``` 
+This one uses Caps as a Backspace. See the example above to upgrade it to an Extend key.
+
 In NixOS without Wayland/Sway, [services.xserver](https://nixos.wiki/wiki/Keyboard_Layout_Customization) should work:
 ```
 services.xserver = {
   layout = "us";
-  xkbVariant = "cmk_ed_us";
+  xkbVariant = "cmk_ed_dh";
   xkbModel   = "pc105awide";
-  xkbOptions = "misc:extend,lv5:caps_switch_lock,misc:cmk_curl_dh,compose:menu";
+  xkbOptions = "misc:extend,lv5:caps_switch_lock,compose:menu";
 };
 ```
 To get the xserver layout in your console as well, use `console.useXkbConfig` in your `configuration.nix` file.
