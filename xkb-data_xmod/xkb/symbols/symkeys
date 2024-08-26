@@ -20,6 +20,8 @@ default
 //  See "DreymaR's Big Bag of Keyboard Tricks": https://dreymar.colemak.org/ergo-mods.html#symbols
 
 //  Standard symbol key setup, as found in QWERTY and several other layouts
+//  NOTE: This should be read in first, before adding any locale variants and then optionally a Symbol mod.
+//        The Sym mods below change as little as possible from this entry, to avoid overwriting locale keys.
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_symbols" {
     include "symkeys(cmk_ed_commons)"
@@ -38,43 +40,43 @@ xkb_symbols "cmk_ed_symbols" {
 //  DreymaR's Sym (S) mod for setups not using a Wide (W) mod
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_sym_non-w" {
-    include "symkeys(cmk_ed_commons)"
-    include "symkeys(cmk_ed_numbers)"
+//    include "symkeys(cmk_ed_commons)"
+//    include "symkeys(cmk_ed_numbers)"
     key <AE11> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
     key <AE12> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
     key <AD10> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
     key <AD11> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
-    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
+//    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
     key <AC11> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;: ¨…
     key <BKSL> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \| _¦
-    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
+//    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
 };
 
 //  DreymaR's Sym mod for setups using the Wide-ANSI model (without Sym, it has the Quote key on AD12)
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_sym_w-104" {
-    include "symkeys(cmk_ed_commons)"
-    include "symkeys(cmk_ed_numbers)"
+//    include "symkeys(cmk_ed_commons)"
+//    include "symkeys(cmk_ed_numbers)"
     key <AE11> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
     key <AE12> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \| _¦
     key <AD10> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
-    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
-    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
-    key <AC11> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
+//    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
+//    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
+//    key <AC11> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
     key <BKSL> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;: ¨…
-    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
+//    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
 };
 
 //  DreymaR's Sym mod for setups using the Wide-ISO model (without Sym, it has the Slash key on AD12)
 partial alphanumeric_keys
 xkb_symbols "cmk_ed_sym_w-105" {
-    include "symkeys(cmk_ed_commons)"
-    include "symkeys(cmk_ed_numbers)"
+//    include "symkeys(cmk_ed_commons)"
+//    include "symkeys(cmk_ed_numbers)"
     key <AE11> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
     key <AE12> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \| _¦
     key <AD10> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
-    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
-    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
+//    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
+//    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
     key <AC11> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;: ¨…
     key <BKSL> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
     key <AB10> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
