@@ -103,6 +103,13 @@ input {
 ``` 
 The repeat settings are of course optional. Some like a higher repeat rate and a lower delay, and this is how to get that.
 
+For GNOME, most of the settings should be available in GUI form in cases where the setxkbmap function is overridden or unavailable.
+It's usually `Settings→Region & Language→Input Sources` or `System→Preferences→Keyboard→Layouts` you want, I think. 
+However, the model component needed for "hard" ergo mods may not be available there, and you may need to set that dconf entry separately. 
+The GNOME Tweak Tool can be useful. For a more manual approach, there's `dconf` and `gsettings` for editing the dconf settings database. 
+E.g., `gsettings set org.gnome.desktop.input-sources xkb-model "'pc104awide'"` (for the AngleWide-ANSI model). 
+This is considered an "old way" nowadays, if I'm correct, and with Wayland & Friends there are usually other, newer ways.
+
 Here's a KDE Settings `~/.config/kxkbrc` file. It can be set via the Settings GUI, or edited directly:
 ```
 [$Version]

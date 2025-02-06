@@ -56,6 +56,10 @@ FIXD
 
 TODO
 ----
+* Move to .config to avoid editing the system files?!
+	- https://github.com/DreymaR/BigBagKbdTrixXKB/issues/42
+	- https://codeaffen.org/2023/09/16/custom-keyboard-layouts-with-xkb/
+
 * The `pc105curl` model is actually a CurlAngle model, and thus badly named. Fix?!
 	- All the Curl models seem messy? What was I thinking? But maybe to avoid the option thing, they could still be useful?
 	- The option thing messes with QWERTY and other layouts on switch. Which may be acceptable for Sym? But not so much for Curl.
