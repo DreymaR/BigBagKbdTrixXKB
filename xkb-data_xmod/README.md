@@ -257,6 +257,14 @@ DONE
 	- https://github.com/DreymaR/BigBagKbdTrixXKB/issues/15#issuecomment-769431139
 
 
+NOTES
+-----
+* Compose editing? It's great to have sway over this incredibly useful and versatile sequencing method.
+	- I tried it, but it isn't always straightforward to make it work everywhere.
+	- https://forum.colemak.com/topic/788-colemak-special-characters-altrgr-for-linuxx11/
+	- https://forum.colemak.com/topic/2787-ubuntu-intl-layout-for-colemak/#p24312
+	- https://man.archlinux.org/man/extra/libx11/Compose.5.en
+
 
 [XKB-conf]: https://www.freedesktop.org/wiki/Software/XKeyboardConfig/ (XKeyboard Config page)
 [XKBgitLb]: https://gitlab.freedesktop.org/xkeyboard-config/xkeyboard-config (XKB-config on GitLab)
