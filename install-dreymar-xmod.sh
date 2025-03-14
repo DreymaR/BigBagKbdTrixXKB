@@ -1,13 +1,12 @@
 #!/bin/bash
+##  ====================================================================
+##  ====    INSTALL-DREYMAR-XMOD for DreymaR's XKB modifications    ====
+##  ====    BASH script by Øystein "DreymaR" Bech-Aase, 2016-       ====
+##  ====================================================================
 
-##  =================================================================
-##  ===  INSTALL-DREYMAR-XMOD.sh for DreymaR's XKB modifications  ===
-##  ===           by Øystein "DreymaR" Bech-Aase, 2016-           ===
-##  =================================================================
-# 
-HeadStr="DreymaR's Big Bag Of Tricks install script (by OeBeAa, 2016-)"
+HeadStr="DreymaR's Big Bag Of Tricks install bash-script (by OeBeAa, 2016-)"
 DescStr=\
-"\e[1mShell script to apply DreymaR's changes to the X keyboard files:\e[0m\n"\
+"\e[1mBASH script to apply DreymaR's changes to the X keyboard files:\e[0m\n"\
 "  - The Colemak [edition DreymaR] layout, using my own lv3-4 mappings,\n"\
 "  - Curl/Angle/Wide Ergonomic keyboard models for pc104/pc105 keyboards,\n"\
 "  - Extend mappings as a Misc option and CapsLock as a chooser (using lv5-8),\n"\
@@ -30,12 +29,12 @@ FootStr="Happy xkb-hacking! ~ Øystein 'DreymaR' Bech-Aase"
 #"- With '-g', also install GTK 2.0/3.0 config for XF86 Cut/Copy/Paste.\n"\
 
 ## NOTE: The mod directory has the form $DModTag="x-mod_v<VER>[_<DATE>]"
-##		- Unless you change this tag, it should be in the same dir as this script
-##		- It has subdirectories like 'xkb' that are to be installed (one, some or all)
+##      - Unless you change this tag, it should be in the same dir as this script
+##      - It has subdirectories like 'xkb' that are to be installed (one, some or all)
 ## NOTE: This is now the preferred way instead of patching the system files:
-##		- Backup system xkb to dbak-xkb_<DATE> (and the same for any other subdirs)
-##		- Copy X11/xkb to ${InstDir}/dxkb, then modify files in dxkb
-##		- Set up setkb.sh to run from the modified dxkb [WARNING: This may not work now!]
+##      - Backup system xkb to dbak-xkb_<DATE> (and the same for any other subdirs)
+##      - Copy X11/xkb to ${InstDir}/dxkb, then modify files in dxkb
+##      - Set up setkb.sh to run from the modified dxkb [WARNING: This may not work now!]
 ##      - Or, (-o) overwrite the system files instead
 ## NOTE: The x-mod dir now holds x-mod*/xkb; eventually there may be a locale dir too.
 
@@ -52,22 +51,22 @@ X11DIR='/usr/share/X11'; [ -d "${X11DIR}" ] || X11DIR='/usr/lib/X11'
 XVERSION=''
 ModDATE=''
 
-DModDir=`dirname $0` 	# (-d) Path to the script (and mod?) root directory
-ToolDir="${DModDir}/dreymar-xtools" 	# The loc. of tool scripts (like setkb.sh)
-DMod='xkb-data_xmod' 	# (--) Name of the directory with DreymaR's modded xkb-data files
+DModDir=`dirname $0`    # (-d) Path to the script (and mod?) root directory
+ToolDir="${DModDir}/dreymar-xtools"     # The loc. of tool scripts (like setkb)
+DMod='xkb-data_xmod'    # (--) Name of the directory with DreymaR's modded xkb-data files
 DModTag="${DMod}${XVERSION:+'_v'}${XVERSION}${ModDATE:+'_'}${ModDATE}" 	# (-t) Mod dir "prefix"
-DBakFix='dbak-' 		# (--) Backup dir prefix
-DModFix='d' 			# (--) Modded dir prefix
-InstDir="${X11DIR}" 	# (-i) Path to install subfolder(s) in
-#~ InstDir="${HOME}/dreymar-xmod" 	# (-i) Path to install subfolder(s) in
-WriteSys='no' 			# (-o) Overwrite the original xkb dir with the modded one
-Restore='0' 			# (-r) Reverse: Restore from backup # instead of installing
-DoBackup='ifnone' 		# (-n/b) Default backup behavior is "if no backups are found"
-SubDirs='all' 			# (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale', 'all')
-InstGTK='no' 			# (-g) Whether to install the GTK 2.0/3.0 config (if not present)
-NoSudo='no' 			# (-s) Do not use sudo. Helpful for local dir installation.
-SetXMap='no' 			# (-x) Whether to run the setkb script after installing
-SetXStr='5caws us us' 	# (--) Shortcut string for setkb - 'kbd loc sym' (model layout eD-variant)
+DBakFix='dbak-'         # (--) Backup dir prefix
+DModFix='d'             # (--) Modded dir prefix
+InstDir="${X11DIR}"     # (-i) Path to install subfolder(s) in
+#~ InstDir="${HOME}/dreymar-xmod"   # (-i) Path to install subfolder(s) in
+WriteSys='no'           # (-o) Overwrite the original xkb dir with the modded one
+Restore='0'             # (-r) Reverse: Restore from backup # instead of installing
+DoBackup='ifnone'       # (-n/b) Default backup behavior is "if no backups are found"
+SubDirs='all'           # (-m) Directory/-ies inside X11 to modify (e.g., 'xkb locale', 'all')
+InstGTK='no'            # (-g) Whether to install the GTK 2.0/3.0 config (if not present)
+NoSudo='no'             # (-s) Do not use sudo. Helpful for local dir installation.
+SetXMap='no'            # (-x) Whether to run the setkb script after installing
+SetXStr='5caws us us'   # (--) Shortcut string for setkb - 'kbd loc sym' (model layout eD-variant)
 ## NOTE: '# (-a)' means that the value can be set by option argument '-a <value>'
 
 HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n"\
@@ -92,7 +91,7 @@ HelpStr="\e[1mUsage: bash ${MyNAME} [optional args] [<kbd> [<loc> <sym>]]\e[0m\n
 
 ##-------------- functions and line parser ---------------------
 
-MyMsg()	# Formatted output: last arg is printf 'style[;fgcolor[;bgcolor]]'
+MyMsg()     # Formatted output: last arg is printf 'style[;fgcolor[;bgcolor]]'
 {
 	# Style: 0-Off, 1-Bold, 4-Underscore, 5-Blink, 7-Reverse, 8-Concealed
 	# Color: (3#/4# FG/BG): 0-Black, 1-Red, 2-Green, 3-Yellow, 4-Blue, 5-Magenta, 6-Cyan, 7-White
@@ -116,18 +115,18 @@ MyEcho()
 
 MyPoint()
 {
-	MyEcho "\e[1;32m¤ \e[0m$@"	# Bold green
+	MyEcho "\e[1;32m¤ \e[0m$@"    # Bold green
 }
 
 MyWarning()
 {
-	MyMsg "WARNING: ${@:-'Beware of nargles!'}" "\n" '1;36;44'	# Bold cyan on blue
+	MyMsg "WARNING: ${@:-'Beware of nargles!'}" "\n" '1;36;44'    # Bold cyan on blue
 #~	exit 1
 }
 
 MyError()
 {
-	MyMsg "$MyNAME - ERROR: ${@:-'Undefined error'}" "\n" '1;37;41'	# Bold white on red
+	MyMsg "$MyNAME - ERROR: ${@:-'Undefined error'}" "\n" '1;37;41'    # Bold white on red
 	exit 1
 }
 
@@ -142,40 +141,40 @@ MyError()
 #~ if [ "$#" == 0 ]; then PrintHelpAndExit 2; fi # No args
 while getopts "obngxsm:i:c:d:t:r:h?" cmdarg; do
 	case $cmdarg in
-		o)	WriteSys='yes'			;;
-		b)	DoBackup='yes'			;;
-		n)	DoBackup='no'			;;
-		g)	InstGTK='yes'			;;
-		x)	SetXMap='yes'			;;
-		s)	NoSudo='yes'			;;
-		m)	SubDirs="$OPTARG"		;;
-		i)	InstDir="$OPTARG"		;;
-		c)	X11DIR="$OPTARG"		;;
-		d)	DModDir="$OPTARG"		;;
-		t)	DModTag="$OPTARG"		;;
-		r)	Restore="$OPTARG"		;;
-		h)		PrintHelpAndExit 0	;;
-		\?)		PrintHelpAndExit 0	;;
-		:)		PrintHelpAndExit 1	;;
-#		s)	SetXStr="$OPTARG"		
-#			SetXMap='yes'			;;
+		o)  WriteSys='yes'			;;
+		b)  DoBackup='yes'			;;
+		n)  DoBackup='no'			;;
+		g)  InstGTK='yes'			;;
+		x)  SetXMap='yes'			;;
+		s)  NoSudo='yes'			;;
+		m)  SubDirs="$OPTARG"		;;
+		i)  InstDir="$OPTARG"		;;
+		c)  X11DIR="$OPTARG"		;;
+		d)  DModDir="$OPTARG"		;;
+		t)  DModTag="$OPTARG"		;;
+		r)  Restore="$OPTARG"		;;
+		h)      PrintHelpAndExit 0	;;
+		\?)     PrintHelpAndExit 0	;;
+		:)      PrintHelpAndExit 1	;;
+#		s)  SetXStr="$OPTARG"		
+#		    SetXMap='yes'			;;
 	esac
 done
-#~ pos_arg=${@:$OPTIND:1}	# Get the remaining positional arg (old way)
-shift $(( $OPTIND - 1 ))		# Remove already processed args
-[[ "$@" == "" ]] || SetXStr=$@	# Don't split the ShortString here!
+#~ pos_arg=${@:$OPTIND:1}       # Get the remaining positional arg (old way)
+shift $(( $OPTIND - 1 ))        # Remove already processed args
+[[ "$@" == "" ]] || SetXStr=$@  # Don't split the ShortString here!
 
 ##-------------- main ------------------------------------------
 
 MyMsg "$HeadStr"
 #~ MyPoint "Working from '`pwd`'"
 
-##	Check for a mod dir (the latest found) and if found, get its full name
+##  Check for a mod dir (the latest found) and if found, get its full name
 DModDir=`find "${DModDir%/}/${DModTag}"* -maxdepth 0 -type d 2>/dev/null | tail -n 1`
 [ -n "${DModDir}" ] || MyError "Mod root dir not found!"
 MyPoint "Found mod root dir '${DModDir}'"
 
-##	Read the mod subdirs
+##  Read the mod subdirs
 if [ "${SubDirs}" == "all" ]; then
 	SubDirs=`find "${DModDir}/"* -maxdepth 0 -type d -exec basename '{}' \; 2>/dev/null`
 	SubDirs=`echo ${SubDirs}` # A trick to make a var space separated for the following echo cmd
@@ -183,7 +182,7 @@ if [ "${SubDirs}" == "all" ]; then
 fi
 MyPoint "Subdirectories to mod: '${SubDirs}'"
 
-##	For each subdir, backup if either DoBackup = 'yes' or DoBackup = 'ifnone' and no backup exists
+##  For each subdir, backup if either DoBackup = 'yes' or DoBackup = 'ifnone' and no backup exists
 BackIt=''
 if [ ${DoBackup} == 'yes' ]; then
 	BackIt="${SubDirs}"
@@ -200,7 +199,7 @@ elif [ ${DoBackup} == 'ifnone' ] && [ ${Restore} == '0' ]; then
 fi
 [ -z "${BackIt}" ] && MyPoint "Backing up: None" || MyPoint "Backing up: '${BackIt}'"
 
-## Check for root privileges (if not root, sudo command); note that root is only needed in some cases!
+##  Check for root privileges (if not root, sudo command); note that root is only needed in some cases!
 DoSudo=''
 if [ ${NoSudo} = 'yes' ]; then
 	MyPoint "Not using sudo."
@@ -212,57 +211,57 @@ else
 	fi
 fi
 
-## Perform the actual backup(s)
-## NOTE: cp -a makes an "archive" copy, preserving all attributes and links
+##  Perform the actual backup(s)
+##  NOTE: cp -a makes an "archive" copy, preserving all attributes and links
 for That in ${BackIt}; do
 	[ -d "${X11DIR}/${That}" ] || MyError "Unable to backup '${That}': Directory not found!"
 	${DoSudo} cp -a "${X11DIR}/${That}" "${X11DIR}/${DBakFix}${That}_${MyDATE}" || MyError "Copy error!"
 done
 
-##	For each subfolder: Restore from backup #, overwrite X11 files or make new mod folder
+##  For each subfolder: Restore from backup #, overwrite X11 files or make new mod folder
 for That in ${SubDirs}; do
-	if [ ${Restore} != '0' ]; then	# Restore from specified backup
+	if [ ${Restore} != '0' ]; then    # Restore from specified backup
 		## Restore from backup. Pick a backup # by parameter, 1 being oldest; use 999 or such for the last one
 		BackIt=`find "${X11DIR}/${DBakFix}${That}"* -maxdepth 0 -type d 2>/dev/null | head -n ${Restore} | tail -n 1`
 		[ -d "${BackIt}" ] || MyError "Unable to locate restore dir '$(basename "${BackIt}")'"
 		MyPoint "Restoring from backup '$(basename "${BackIt}")'"
 		${DoSudo} cp -a "${BackIt}/"* "${X11DIR}/${That}" 2>/dev/null \
 			&& MyPoint "Restore done" || MyError "Restore copy error!"
-		XKBDir="${X11DIR}/xkb"	# Setxkbmap will default to the X11 dir, but this makes it unambigous
-	elif [ ${WriteSys} == 'yes' ] || [ ${InstDir} == ${X11DIR} ] && [ -d "${DModDir}/${That}" ]; then	# Overwrite OS files
+		XKBDir="${X11DIR}/xkb"    # Setxkbmap will default to the X11 dir, but this makes it unambigous
+	elif [ ${WriteSys} == 'yes' ] || [ ${InstDir} == ${X11DIR} ] && [ -d "${DModDir}/${That}" ]; then    # Overwrite OS files
 		MyPoint "Replacing files in '${X11DIR}/${That}' with mod"
 		${DoSudo} cp -a "${DModDir}/${That}/"* "${X11DIR}/${That}" 2>/dev/null \
 			&& MyPoint "System install done" || MyError "System files copy error!"
 		XKBDir="${X11DIR}/xkb"
 	else	## Make new mod folder (will not show up in keyboard settings GUI; use setxkbmap instead)
 		DoSudo=''
-		mkdir -p "${InstDir}" 2>/dev/null && [ -w "${InstDir}" ] || DoSudo='sudo'	# check whether sudo is needed
+		mkdir -p "${InstDir}" 2>/dev/null && [ -w "${InstDir}" ] || DoSudo='sudo'    # check whether sudo is needed
 		MyDir="${InstDir%/}/${DModFix}${That}"
-		#~ MyDir="$(dirname "${MyDir}")/${DModFix}$(basename "${MyDir}")"	# Insert prefix in path/name
+		#~ MyDir="$(dirname "${MyDir}")/${DModFix}$(basename "${MyDir}")"    # Insert prefix in path/name
 		MyPoint "Installing mod files in '${MyDir}'"
 		MyWarning "It seems that setxkbmap w/ local dir isn't working now?!"
 		${DoSudo} mkdir -p "${MyDir}" || MyError "Can't make '${MyDir}'!"
 		${DoSudo} cp -a "${X11DIR}/${That}/"* "${MyDir}" 2>/dev/null || MyError "Local files copy error!"
 		${DoSudo} cp -a "${DModDir}/${That}/"* "${MyDir}" 2>/dev/null \
 			&& MyPoint "Local install done" || MyError "Local files copy error!"
-		XKBDir="${InstDir%/}/${DModFix}xkb"	# Prepare for setxkbmap
-		cp -a setkb.sh ${InstDir}	# Copy over the setkb.sh script to the new dir
+		XKBDir="${InstDir%/}/${DModFix}xkb"    # Prepare for setxkbmap
+		cp -a setkb.sh ${InstDir}    # Copy over the setkb script to the new dir
 	fi
 done
 
-##	If selected, call the DreymaR GTK bindings install script
-## The DreymaR gtk edit install script sets GTK Cut/Copy/Paste key config (if not already present)
+##  If selected, call the DreymaR GTK bindings install script
+##  The DreymaR gtk edit install script sets GTK Cut/Copy/Paste key config (if not already present)
 if [ ${InstGTK} == 'yes' ]; then
 	"${ToolDir}/gtk_edit_install.sh" || MyError "gtk_edit_install.sh failed!"
 fi
 
 #~ ##	Call the DreymaR setxkbmap script unless 'q' is pressed, to activate the new (default) layout
-#~ That=''	#; [ ${InstGTK} == 'yes' ] && That=" and GTK edit config"
+#~ That=''    #; [ ${InstGTK} == 'yes' ] && That=" and GTK edit config"
 #~ MyMsg "Press any key to set the new xkb map${That}, or 'q' to quit"
 #~ read -p '$>' -n 1 keypress
 #~ if [ "${keypress}" == 'q' ]; then
 
-##	If selected, call the DreymaR setxkbmap script to activate the new (default) layout
+##  If selected, call the DreymaR setxkbmap script to activate the new (default) layout
 if [ "${SetXMap}" != 'yes' ]; then
 	MyMsg "XKBmap activation skipped" "" '1;33;40'
 else
@@ -275,4 +274,4 @@ exit 0
 ##-------------- misc ------------------------------------------
 
 #~ MyWarning "'${MyNAME}' debug - exiting!"; exit 0
-#~ echo "$1 $2 $3 $4 $5"; exit 0	# debug
+#~ echo "$1 $2 $3 $4 $5"; exit 0    # debug
