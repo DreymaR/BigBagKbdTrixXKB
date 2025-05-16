@@ -28,7 +28,7 @@
 //  KeyPad overlay with nav block to the left (lv7-8):
 //  +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
 //  |` ***  |1      |2      |3      |4 £    |5 €    |6      |7  ⇖   |8  ⇑   |9  ⇗   |0      |-      |=      |
-//  | *MOn  |  !    |  @    |  #    |  $    |  %    |  ^    | KP_7  | KP_8  | KP_9  | KP_*  | KP_-  | KP_=  |
+//  | *MOn  |  !    |  @    |  #    |  $    |  %    |  ^    | KP_7  | KP_8  | KP_9  | KP_-  | KP_*  | KP_=  |
 //  +-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+-------+
 //  |Tab    |Q ###  |W ###  |F ###  |P €€€  |G €€€  |J ###  |L  ⇐   |U  ⇔   |Y  ⇒   |;      |[ {    |] }    |
 //  |       | Home  | Up    | End   | Del   | Esc   | PgUp  | KP_4  | KP_5  | KP_6  | KP_+  |  (    |  )    |
@@ -275,13 +275,13 @@ xkb_symbols "lv5" {
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // 9
     key <AE10> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // 0
-                    F10         , F10       , KP_Multiply   , KP_Multiply       ] , // F10  /   KP_*
+                    F10         , F10       , KP_Subtract   , KP_Subtract       ] , // F11  /   KP_-
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
                     Redirect(key=<FK10>,clearmods=LevelFive), Redirect(key=<FK10>,clearmods=LevelFive),
                     NoAction()                  , NoAction()                    ] ,
                  repeat=yes     };  // 0
     key <AE11> { symbols[Group1]=[Any       , Any       , Any       , Any       ,   // - _
-                    F11         , F11       , KP_Subtract   , KP_Subtract       ] , // F11  /   KP_-
+                    F11         , F11       , KP_Multiply   , KP_Multiply       ] , // F10  /   KP_*
                  actions[Group1]=[NoAction(), NoAction(), NoAction(), NoAction(),
                     Redirect(key=<FK11>,clearmods=LevelFive), Redirect(key=<FK11>,clearmods=LevelFive),
                     NoAction()                  , NoAction()                    ] ,
