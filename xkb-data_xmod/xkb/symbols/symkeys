@@ -59,10 +59,10 @@ xkb_symbols "cmk_ed_sym_w-104" {
 //    include "symkeys(cmk_ed_numbers)"
     key <AE11> { [         equal,          plus,    dead_doubleacute,            notequal ] }; // =+ _≠
     key <AE12> { [     backslash,           bar,          dead_grave,           brokenbar ] }; // \| _¦
-    key <AD10> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
+    key <AD10> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
 //    key <AD11> { [   bracketleft,     braceleft,               aring,               Aring ] }; // [{ åÅ
 //    key <AD12> { [  bracketright,    braceright,                  ae,                  AE ] }; // ]} æÆ
-//    key <AC11> { [    apostrophe,      quotedbl,          dead_acute,               U2032 ] }; // '" _′
+    key <AC11> { [         minus,    underscore,         dead_macron,           plusminus ] }; // -_ _±
     key <BKSL> { [     semicolon,         colon,      dead_diaeresis,            ellipsis ] }; // QWE P Cmk ;: ¨…
 //    key <AB10> { [         slash,      question,         dead_stroke,        questiondown ] }; // /? _¿
 };
