@@ -232,6 +232,11 @@ for That in ${SubDirs}; do
 		MyPoint "Replacing files in '${X11DIR}/${That}' with mod"
 		${DoSudo} cp -a "${DModDir}/${That}/"* "${X11DIR}/${That}" 2>/dev/null \
 			&& MyPoint "System install done" || MyError "System files copy error!"
+		## Restore contexts if SELinux is present in the system
+		if (command -v restorecon >/dev/null 2>&1); then
+			MyPoint "Restoring SELinux contexts: '${X11DIR}/${That}'"
+			${DoSudo} restorecon -FR "$(realpath "${X11DIR}/${That}")"    # restorecon does not follow symlinks
+		fi
 		XKBDir="${X11DIR}/xkb"
 	else	## Make new mod folder (will not show up in keyboard settings GUI; use setxkbmap instead)
 		DoSudo=''
