@@ -58,7 +58,8 @@ DModTag="${DMod}${XVERSION:+'_v'}${XVERSION}${ModDATE:+'_'}${ModDATE}" 	# (-t) M
 DBakFix='dbak-'         # (--) Backup dir prefix
 DModFix='d'             # (--) Modded dir prefix
 InstDir="${X11DIR}"     # (-i) Path to install subfolder(s) in
-#~ InstDir="${HOME}/dreymar-xmod"   # (-i) Path to install subfolder(s) in
+CpOpts='cp -a --no-preserve=context'	# (--) Copy command with options
+#~ InstDir="${HOME}/dreymar-xmod"       # (-i) Path to install subfolder(s) in
 WriteSys='no'           # (-o) Overwrite the original xkb dir with the modded one
 Restore='0'             # (-r) Reverse: Restore from backup # instead of installing
 DoBackup='ifnone'       # (-n/b) Default backup behavior is "if no backups are found"
@@ -212,10 +213,12 @@ else
 fi
 
 ##  Perform the actual backup(s)
-##  NOTE: cp -a makes an "archive" copy, preserving all attributes and links
+##  NOTE: cp -a makes an "archive" copy, preserving all attributes and links.
+##        However, it has some issues with SELinux labels/contexts (if enabled).
+##        https://github.com/DreymaR/BigBagKbdTrixXKB/issues/50
 for That in ${BackIt}; do
 	[ -d "${X11DIR}/${That}" ] || MyError "Unable to backup '${That}': Directory not found!"
-	${DoSudo} cp -a "${X11DIR}/${That}" "${X11DIR}/${DBakFix}${That}_${MyDATE}" || MyError "Copy error!"
+	${DoSudo} ${CpOpts} "${X11DIR}/${That}" "${X11DIR}/${DBakFix}${That}_${MyDATE}" || MyError "Copy error!"
 done
 
 ##  For each subfolder: Restore from backup #, overwrite X11 files or make new mod folder
@@ -225,12 +228,12 @@ for That in ${SubDirs}; do
 		BackIt=`find "${X11DIR}/${DBakFix}${That}"* -maxdepth 0 -type d 2>/dev/null | head -n ${Restore} | tail -n 1`
 		[ -d "${BackIt}" ] || MyError "Unable to locate restore dir '$(basename "${BackIt}")'"
 		MyPoint "Restoring from backup '$(basename "${BackIt}")'"
-		${DoSudo} cp -a "${BackIt}/"* "${X11DIR}/${That}" 2>/dev/null \
+		${DoSudo} ${CpOpts} "${BackIt}/"* "${X11DIR}/${That}" 2>/dev/null \
 			&& MyPoint "Restore done" || MyError "Restore copy error!"
 		XKBDir="${X11DIR}/xkb"    # Setxkbmap will default to the X11 dir, but this makes it unambigous
 	elif [ ${WriteSys} == 'yes' ] || [ ${InstDir} == ${X11DIR} ] && [ -d "${DModDir}/${That}" ]; then    # Overwrite OS files
 		MyPoint "Replacing files in '${X11DIR}/${That}' with mod"
-		${DoSudo} cp -a "${DModDir}/${That}/"* "${X11DIR}/${That}" 2>/dev/null \
+		${DoSudo} ${CpOpts} "${DModDir}/${That}/"* "${X11DIR}/${That}" 2>/dev/null \
 			&& MyPoint "System install done" || MyError "System files copy error!"
 		XKBDir="${X11DIR}/xkb"
 	else	## Make new mod folder (will not show up in keyboard settings GUI; use setxkbmap instead)
@@ -241,11 +244,11 @@ for That in ${SubDirs}; do
 		MyPoint "Installing mod files in '${MyDir}'"
 		MyWarning "It seems that setxkbmap w/ local dir isn't working now?!"
 		${DoSudo} mkdir -p "${MyDir}" || MyError "Can't make '${MyDir}'!"
-		${DoSudo} cp -a "${X11DIR}/${That}/"* "${MyDir}" 2>/dev/null || MyError "Local files copy error!"
-		${DoSudo} cp -a "${DModDir}/${That}/"* "${MyDir}" 2>/dev/null \
+		${DoSudo} ${CpOpts} "${X11DIR}/${That}/"* "${MyDir}" 2>/dev/null || MyError "Local files copy error!"
+		${DoSudo} ${CpOpts} "${DModDir}/${That}/"* "${MyDir}" 2>/dev/null \
 			&& MyPoint "Local install done" || MyError "Local files copy error!"
 		XKBDir="${InstDir%/}/${DModFix}xkb"    # Prepare for setxkbmap
-		cp -a setkb.sh ${InstDir}    # Copy over the setkb script to the new dir
+		${CpOpts} setkb.sh ${InstDir}    # Copy over the setkb script to the new dir
 	fi
 done
 
