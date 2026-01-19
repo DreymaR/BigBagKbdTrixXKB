@@ -58,7 +58,7 @@ DModTag="${DMod}${XVERSION:+'_v'}${XVERSION}${ModDATE:+'_'}${ModDATE}" 	# (-t) M
 DBakFix='dbak-'         # (--) Backup dir prefix
 DModFix='d'             # (--) Modded dir prefix
 InstDir="${X11DIR}"     # (-i) Path to install subfolder(s) in
-CpOpts='cp -a --no-preserve=context'	# (--) Copy command with options
+CpOpts='cp -aZ'	# (--) Copy command with options
 #~ InstDir="${HOME}/dreymar-xmod"       # (-i) Path to install subfolder(s) in
 WriteSys='no'           # (-o) Overwrite the original xkb dir with the modded one
 Restore='0'             # (-r) Reverse: Restore from backup # instead of installing
